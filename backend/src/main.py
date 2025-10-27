@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.routes import paciente_route
+from src.routes import (
+    paciente_route,
+    anamnese_route,
+)
+
 from src.database.connection import Base, engine
 
 # Cria o app principal
@@ -20,3 +24,4 @@ Base.metadata.create_all(bind=engine)
 
 # Inclui as rotas
 app.include_router(paciente_route.router)
+app.include_router(anamnese_route.router)

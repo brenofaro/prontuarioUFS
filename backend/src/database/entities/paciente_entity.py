@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date
 from src.database.connection import Base
+from sqlalchemy.orm import relationship
 
 class Paciente(Base):
     __tablename__ = "pacientes"  # nome da tabela no banco
@@ -10,3 +11,7 @@ class Paciente(Base):
     data_nascimento = Column(Date)
     telefone = Column(String)
     endereco = Column(String)
+
+    anamneses = relationship("Anamnese", back_populates="paciente", cascade="all, delete")
+
+

@@ -19,3 +19,35 @@ async def cadastrar_paciente(paciente: PacienteCreate, db: Session):
         db.rollback()  # desfaz transação se der erro
         raise e
 
+async def deletar_paciente(paciente_id: int, db: Session):
+    paciente = db.query(Paciente).filter(Paciente.id == paciente_id).first()
+    if paciente:
+        db.delete(paciente)
+        db.commit()
+        return True
+    return False
+
+# READ (listar todos)
+async def listar_pacientes(db: Session):
+    return db.query(Paciente).all()
+
+# READ (buscar por id)
+async def buscar_paciente(id: int, db: Session):
+    paciente = db.query(Paciente).filter(Paciente.id == id).first()
+    return paciente
+
+# UPDATE
+async def atualizar_paciente(id: int, dados: PacienteCreate, db: Session):
+    paciente = db.query(Paciente).filter(Paciente.id == id).first()
+    if not paciente:
+        return None
+
+    paciente.nome = dados.nome
+    paciente.cpf = dados.cpf
+    paciente.data_nascimento = dados.data_nascimento
+    paciente.telefone = dados.telefone
+    paciente.endereco = dados.endereco
+
+    db.commit()
+    db.refresh(paciente)
+    return paciente
