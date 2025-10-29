@@ -1,9 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Initial_page from './pages/Initial_page.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import InitialPage from './pages/InitialPage/InitialPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Initial_page />
+    <InitialPage />
   </StrictMode>,
 )
