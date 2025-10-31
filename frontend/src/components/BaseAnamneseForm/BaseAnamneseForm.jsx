@@ -24,7 +24,7 @@ function BaseAnamneseForm() {
     e.preventDefault();
     // Aqui você pode adicionar a lógica para enviar os dados do formulário para o backend ou processá-los conforme necessário
     try {
-      const response = await fetch("http://localhost:8080/anamneses/cadastrar", {
+      const response = await fetch("http://localhost:8080/base-anamneses/cadastrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

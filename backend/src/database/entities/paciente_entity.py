@@ -3,7 +3,7 @@ from src.database.connection import Base
 from sqlalchemy.orm import relationship
 
 class Paciente(Base):
-    __tablename__ = "pacientes"  # nome da tabela no banco
+    __tablename__ = "pacientes"
 
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False)
@@ -12,6 +12,6 @@ class Paciente(Base):
     telefone = Column(String)
     endereco = Column(String)
 
-    anamneses = relationship("Anamnese", back_populates="paciente", cascade="all, delete")
-
-
+    base_anamneses = relationship("BaseAnamnese", back_populates="paciente", cascade="all, delete")
+    child_anamneses = relationship("ChildAnamnese", back_populates="paciente", cascade="all, delete")
+    #return_anamneses = relationship("ReturnAnamnese", back_populates="paciente", cascade="all, delete")

@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
 
-class AnamneseCreate(BaseModel):
+class BaseAnamneseCreate(BaseModel):
     paciente_id: int
     tipo: str                    # 🔹 novo campo
     queixa_principal: str
@@ -10,7 +10,7 @@ class AnamneseCreate(BaseModel):
     habitos: Optional[str] = None
     observacoes: Optional[str] = None
 
-class AnamneseResponse(AnamneseCreate):
+class BaseAnamneseResponse(BaseAnamneseCreate):
     id: int
 
     class Config:

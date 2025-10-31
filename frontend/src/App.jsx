@@ -5,6 +5,7 @@ import PatientePage from "./pages/PatientePage/PatientePage.jsx";
 import BaseAnamneseForm from "./components/BaseAnamneseForm/BaseAnamneseForm.jsx";
 import ChildAnamneseForm from "./components/ChildAnamneseForm/ChildAnamneseForm.jsx";
 import ReturnAnameseForm from "./components/ReturnAnamneseForm/ReturnAnameseForm.jsx";
+import AnamnesesDetails from "./pages/AnamnesesDetails/AnamnesesDetails.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/anamnese-padrao/:id" element={<BaseAnamneseForm/>}/>
       <Route path="/anamnese-infantil/:id" element={<ChildAnamneseForm/>}/>
       <Route path="/anamnese-retorno/:id" element={<ReturnAnameseForm/>}/>
+      <Route path="/detalhes-anamnese/:id" element={<AnamnesesDetails/>}/>
     </Routes>
   );
 }

@@ -1,10 +1,9 @@
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, DateTime
-from src.database.connection import Base
-import datetime 
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
+from src.database.connection import Base
 
-class Anamnese(Base):
-    __tablename__ = "anamneses"
+class BaseAnamnese(Base):
+    __tablename__ = "base_anamneses"
 
     id = Column(Integer, primary_key=True, index=True)
     paciente_id = Column(Integer, ForeignKey("pacientes.id"))
@@ -14,4 +13,4 @@ class Anamnese(Base):
     habitos = Column(String)
     observacoes = Column(String)
 
-    paciente = relationship("Paciente", back_populates="anamneses")
+    paciente = relationship("Paciente", back_populates="base_anamneses")

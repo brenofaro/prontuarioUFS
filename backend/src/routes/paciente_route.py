@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from src.models.paciente_model import PacienteCreate, PacienteResponse
 from src.services.paciente_service import (
@@ -6,7 +6,8 @@ from src.services.paciente_service import (
         deletar_paciente, 
         listar_pacientes, 
         buscar_paciente, 
-        atualizar_paciente   
+        atualizar_paciente,
+        buscar_paciente_por_nome_ou_cpf
     )
 from src.database.connection import get_db
 
@@ -52,3 +53,18 @@ async def atualizar(id: int, paciente: PacienteCreate, db: Session = Depends(get
     if not atualizado:
         raise HTTPException(status_code=404, detail="Paciente não encontrado")
     return atualizado
+
+# 🔍 NOVA ROTA - buscar por nome e/ou CPF
+@router.get("/buscar/", response_model=list[PacienteResponse])
+async def buscar_por_nome_ou_cpf(
+    nome: str | None = Query(None, description="Nome (ou parte dele) do paciente"),
+    cpf: str | None = Query(None, description="CPF completo do paciente"),
+    db: Session = Depends(get_db),
+):
+    if not nome and not cpf:
+        raise HTTPException(status_code=400, detail="Informe nome ou CPF para busca")
+
+    pacientes = await buscar_paciente_por_nome_ou_cpf(nome, cpf, db)
+    if not pacientes:
+        raise HTTPException(status_code=404, detail="Nenhum paciente encontrado")
+    return pacientes

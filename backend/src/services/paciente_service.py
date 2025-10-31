@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
 from src.database.entities.paciente_entity import Paciente
 from src.models.paciente_model import PacienteCreate
+from sqlalchemy import select
+
 
 async def cadastrar_paciente(paciente: PacienteCreate, db: Session):
     try:
@@ -35,6 +37,18 @@ async def listar_pacientes(db: Session):
 async def buscar_paciente(id: int, db: Session):
     paciente = db.query(Paciente).filter(Paciente.id == id).first()
     return paciente
+
+#READ (buscar por nome ou cpf)
+async def buscar_paciente_por_nome_ou_cpf(nome: str | None, cpf: str | None, db: Session):
+    query = select(Paciente)
+
+    if nome:
+        query = query.filter(Paciente.nome.ilike(f"%{nome}%"))
+    if cpf:
+        query = query.filter(Paciente.cpf == cpf)
+
+    result = db.execute(query).scalars().all()
+    return result
 
 # UPDATE
 async def atualizar_paciente(id: int, dados: PacienteCreate, db: Session):

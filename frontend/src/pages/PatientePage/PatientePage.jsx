@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CadastrateAnamneseButton from "../../components/CadastrateAnamneseButton/CadastrateAnamneseButton";
+import AnamneseList from "./AnamneseList";
 
 const PatientePage = () => {
   const { id } = useParams(); // pega o ID da URL
@@ -34,7 +35,12 @@ const PatientePage = () => {
       <hr />
 
       <CadastrateAnamneseButton pacienteId={paciente.id} />
+       {/* 📋 Lista de anamneses */}
+      <AnamneseList/>
+
     </div>
+
+    
   );
 };
 
