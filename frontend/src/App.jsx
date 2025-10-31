@@ -1,0 +1,22 @@
+import { Routes, Route } from "react-router-dom";
+import InitialPage from "./pages/InitialPage/InitialPage.jsx";
+import RegisterPatientePage from "./pages/RegisterPatientePage/RegisterPatientePage.jsx";
+import PatientePage from "./pages/PatientePage/PatientePage.jsx";
+import BaseAnamneseForm from "./components/BaseAnamneseForm/BaseAnamneseForm.jsx";
+import ChildAnamneseForm from "./components/ChildAnamneseForm/ChildAnamneseForm.jsx";
+import ReturnAnameseForm from "./components/ReturnAnamneseForm/ReturnAnameseForm.jsx";
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<InitialPage />} />
+      <Route path="/cadastrar-paciente" element={<RegisterPatientePage />} />
+      <Route path= "/pagina-paciente/:id" element={<PatientePage />} />
+      <Route path="/anamnese-padrao/:id" element={<BaseAnamneseForm/>}/>
+      <Route path="/anamnese-infantil/:id" element={<ChildAnamneseForm/>}/>
+      <Route path="/anamnese-retorno/:id" element={<ReturnAnameseForm/>}/>
+    </Routes>
+  );
+}
+
+export default App;

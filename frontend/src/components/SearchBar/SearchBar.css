@@ -1,0 +1,29 @@
+.search-bar-container {
+  background-color: #f8f9fa; /* Fundo suave, mesmo tom da SearchResults */
+  border: 1px solid #dee2e6; /* Borda leve */
+}
+
+/* Input estilizado */
+.search-input {
+  background-color: #fff;
+  border-color: #ced4da;
+  border-right: none;
+  box-shadow: none !important;
+}
+
+/* Efeito ao focar o campo */
+.search-input:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25) !important;
+}
+
+/* Botão da lupa */
+button.btn-light:hover {
+  background-color: #eef3ff !important;
+}
+
+/* Título */
+.search-bar-container h5 {
+  font-weight: 600;
+  color: #0d6efd; /* azul padrão Bootstrap */
+}

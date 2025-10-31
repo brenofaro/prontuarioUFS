@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import InitialPage from './pages/InitialPage/InitialPage.jsx';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import App from "./App.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <InitialPage />
-  </StrictMode>,
-)
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>
+);
