@@ -13,8 +13,8 @@ const AnamneseList = () => {
     const [error, setError] = useState(null);
     
     
-    const handleClick = () => {
-        navigate("/detalhes-anamnese/"+id);;
+    const handleClick = (anamneseID) => {
+        navigate(`/detalhes-anamnese/${anamneseID}`);
     };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const AnamneseList = () => {
     };
 
     fetchAnamneses();
-  }, []);
+  }, [id]);
 
   if (loading) return <p>Carregando anamneses...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -56,9 +56,10 @@ const AnamneseList = () => {
               {anamnese.queixa_principal || "-"}
             </div>
             <Button
-              variant="outline-primary"
+              variant="outl
+              ine-primary"
               size="sm"
-              onClick={() => handleClick()}
+              onClick={() => handleClick(anamnese.id)}
             >
               Ver detalhes
             </Button>

@@ -4,43 +4,53 @@ import { Card } from "react-bootstrap";
 
 const AnamnesesDetails = () => {
   const { id } = useParams();
-  const [anamnese, setAnamnese] = useState(null);
+  const [anamnese, setAnamneses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  
 
   useEffect(() => {
-    const fetchAnamnese = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/base-anamneses/paciente/${id}`);
-        if (!response.ok) throw new Error("Erro ao buscar anamnese");
-        const data = await response.json();
-        setAnamnese(data);
-      } catch (error) {
-        console.error("Erro ao buscar anamnese:", error);
-      }
-    };
-    fetchAnamnese();
-  }, [id]);
+      const fetchAnamneses = async () => {
+        try {
+          const response = await fetch(`http://localhost:8080/base-anamneses/${id}`);
+          if (!response.ok) {
+            throw new Error("Erro ao buscar anamneses");
+          }
+          const data = await response.json();
+          console.log(data);
+          setAnamneses(data);
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchAnamneses();
+    }, [id]);
 
-  if (!anamnese) return <p>Carregando detalhes...</p>;
+  if (loading) return <p>Carregando detalhes...</p>;
 
   return (
     <div className="container mt-4">
-      <Card className="shadow-sm">
-        <Card.Body>
-          <Card.Title>
-            {anamnese.tipo === "padrao" && "🩺 Anamnese Padrão"}
-            {anamnese.tipo === "infantil" && "🧒 Anamnese Infantil"}
-            {anamnese.tipo === "retorno" && "🔁 Anamnese de Retorno"}
-          </Card.Title>
-          <hr />
-          <p><strong>Queixa principal:</strong> {anamnese.queixa_principal}</p>
-          <p><strong>Histórico da doença:</strong> {anamnese.historico_doenca}</p>
-          <p><strong>Hábitos:</strong> {anamnese.habitos}</p>
-          <p><strong>Observações:</strong> {anamnese.observacoes}</p>
-          {/* <p><strong>Data da consulta:</strong> {new Date(anamnese.data_consulta).toLocaleDateString("pt-BR")}</p> */}
-        </Card.Body>
-      </Card>
+      <h3 className="fw-semibold text-primary mb-3">Detalhes da Anamnese</h3>
+      
+        <Card className="mb-3" key={anamnese.id}>
+          <Card.Body>
+            <Card.Title>Anamnese ID: {anamnese.id}</Card.Title>
+            <Card.Text>
+              <strong>Tipo:</strong> {anamnese.tipo} <br />
+              <strong>Queixa Principal:</strong> {anamnese.queixa_principal || "-"} <br />
+              <strong>habitos:</strong> {anamnese.habitos || "-"} <br />
+              <strong>Observações:</strong> {anamnese.observacoes || "-"} <br />
+              <strong>ID do paciente:</strong> {anamnese.paciente_id || "-"} <br />  
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      
     </div>
   );
 };
 
 export default AnamnesesDetails;
+
