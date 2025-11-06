@@ -5,8 +5,7 @@ import { Card } from "react-bootstrap";
 const AnamnesesDetails = () => {
   const { id } = useParams();
   const [anamnese, setAnamneses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  
+  const [loading, setLoading] = useState(true);  
   
 
   useEffect(() => {

@@ -42,30 +42,48 @@ const AnamneseList = () => {
 
   return (
     <div className="container mt-4">
-      <h5 className="fw-semibold text-primary mb-3">📋 Lista de Anamneses</h5>
-      <ul className="list-group">
-        {anamneses.map((anamnese) => (
-          <li
-            key={anamnese.id}
-            className="list-group-item d-flex justify-content-between align-items-center"
-          >
-            <div>
-              <strong>ID:</strong> {anamnese.id} <br />
-              <strong>Tipo:</strong> {anamnese.tipo} <br />
+      <p style={{fontFamily: "Roboto, sans-serif", color: "rgba(53, 64, 78, 1)", fontSize: "1.2rem"}} >
+   Lista de Anamneses
+     </p>
+
+{anamneses.length === 0 ? (
+  <div className="text-muted fst-italic">Nenhuma anamnese cadastrada.</div>
+) : (
+  <div className="list-group border-0">
+    {anamneses.map((anamnese) => (
+      <div
+        key={anamnese.id}
+        className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
+        style={{ background: "#f8f9fa" }}
+      >
+        <div>
+          <h6 className="fw-bold text-dark mb-1">
+            🩺 Anamnese #{anamnese.id}
+          </h6>
+          <div className="text-secondary small">
+            <p className="mb-1">
+              <strong>Tipo:</strong> {anamnese.tipo}
+            </p>
+            <p className="mb-0">
               <strong>Queixa principal:</strong>{" "}
               {anamnese.queixa_principal || "-"}
-            </div>
-            <Button
-              variant="outl
-              ine-primary"
-              size="sm"
-              onClick={() => handleClick(anamnese.id)}
-            >
-              Ver detalhes
-            </Button>
-          </li>
-        ))}
-      </ul>
+            </p>
+          </div>
+        </div>
+
+        <Button
+          variant="outline-primary"
+          size="sm"
+          className="px-3 py-1 rounded-pill fw-semibold"
+          onClick={() => handleClick(anamnese.id)}
+        >
+          Ver detalhes
+        </Button>
+      </div>
+    ))}
+  </div>
+)}
+
     </div>
   );
 };

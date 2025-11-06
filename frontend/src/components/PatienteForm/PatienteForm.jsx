@@ -1,4 +1,7 @@
 import { useState } from "react"; 
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function PatienteForm() {
 
@@ -9,6 +12,12 @@ function PatienteForm() {
     cpf: "",
     endereco: "",
   });
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +46,8 @@ function PatienteForm() {
       const data = await response.json();
       console.log("Paciente cadastrado:", data);
 
-      alert("Paciente cadastrado com sucesso!");
+      toast.success("Paciente cadastrado com sucesso!");
+
       // Limpar o formulário após o cadastro bem-sucedido
       setFormData({
         nome: "",
@@ -56,84 +66,126 @@ function PatienteForm() {
 
   return (
     <div className="container mt-4 border rounded p-4 bg-light">
-      <h4>Adicionar Paciente</h4>
-      <h6 className="text-primary mt-3 mb-3">GERAL</h6>
+      <div className="card shadow-sm border-0 rounded-4 p-4 mb-4" style={{ background: "#f8f9fa" }}>
+  <h4 className="fw-bold text-dark mb-4">
+    👤 Adicionar Paciente
+  </h4>
 
-      <form onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <div className="col-md-8">
-            <label className="form-label">Nome*</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="nome"
-              value={formData.nome}
-              onChange={handleChange}
-              required  
-            />
-          </div>
-          
-        </div>
+  <h6 className="text-primary fw-semibold mb-3">Informações Gerais</h6>
 
-        <div className="row mb-3 align-items-center">
-          <div className="col-md-4">
-            <label className="form-label">Data de nasc.*</label>
-            <input 
-              type="date" 
-              className="form-control" 
-              name="dataNascimento"
-              value={formData.dataNascimento}
-              onChange={handleChange}
-              required
-              />
-          </div>
+  <form onSubmit={handleSubmit}>
+    {/* Nome */}
+    <div className="row mb-3">
+      <div className="col-md-8">
+        <label className="form-label fw-semibold">
+          <i className="bi bi-person me-2 text-primary"></i>Nome*
+        </label>
+        <input
+          type="text"
+          className="form-control shadow-sm"
+          name="nome"
+          value={formData.nome}
+          onChange={handleChange}
+          placeholder="Ex: Rodolfo Botto Garcia"
+          required
+        />
+      </div>
+    </div>
 
-            </div>
+    {/* Data de nascimento */}
+    <div className="row mb-3">
+      <div className="col-md-4">
+        <label className="form-label fw-semibold">
+          <i className="bi bi-calendar3 me-2 text-primary"></i>Data de Nascimento*
+        </label>
+        <input
+          type="date"
+          className="form-control shadow-sm"
+          name="dataNascimento"
+          value={formData.dataNascimento}
+          onChange={handleChange}
+          required
+        />
+      </div>
+    </div>
 
-        {/* telefone */}
-        <div className="row mb-3">
-          <div className="col-md-12">
-            <label className="form-label">Telefone</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="telefone"
-              value={formData.telefone}
-              onChange={handleChange}
-              />
-          </div>
-        </div>
+    {/* Telefone */}
+    <div className="row mb-3">
+      <div className="col-md-6">
+        <label className="form-label fw-semibold">
+          <i className="bi bi-telephone me-2 text-primary"></i>Telefone
+        </label>
+        <input
+          type="text"
+          className="form-control shadow-sm"
+          name="telefone"
+          value={formData.telefone}
+          onChange={handleChange}
+          placeholder="(79) 99999-9999"
+        />
+      </div>
+    </div>
 
-        {/* CPF e endereço */}
-        <div className="row mb-4">
-          <div className="col-md-6">
-            <label className="form-label">CPF</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="cpf"
-              value={formData.cpf}
-              onChange={handleChange} 
-              required
-              />
-          </div>
-            <div className="col-md-6">
-            <label className="form-label">endereço</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="endereco"
-              value={formData.endereco}
-              onChange={handleChange} 
-              />
-          </div> 
-        </div>
+    {/* CPF e Endereço */}
+    <div className="row mb-4">
+      <div className="col-md-6">
+        <label className="form-label fw-semibold">
+          <i className="bi bi-person-vcard me-2 text-primary"></i>CPF
+        </label>
+        <input
+          type="text"
+          className="form-control shadow-sm"
+          name="cpf"
+          value={formData.cpf}
+          onChange={handleChange}
+          placeholder="000.000.000-00"
+          required
+        />
+      </div>
 
-        {/* Botão */}
-        <button type="submit" className="btn btn-primary">
-          Salvar Paciente
-        </button>
-      </form>
+      <div className="col-md-6">
+        <label className="form-label fw-semibold">
+          <i className="bi bi-geo-alt me-2 text-primary"></i>Endereço
+        </label>
+        <input
+          type="text"
+          className="form-control shadow-sm"
+          name="endereco"
+          value={formData.endereco}
+          onChange={handleChange}
+          placeholder="Rua, número, bairro, cidade"
+        />
+      </div>
+    </div>
+
+    {/* Botões */}
+    <div className="d-flex justify-content-between mt-4">
+      <button
+        type="button"
+        className="btn btn-outline-secondary rounded-pill px-4"
+        onClick={handleClick}
+      >
+        ← Voltar
+      </button>
+
+      <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
+        💾 Salvar Paciente
+      </button>
+    </div>
+  </form>
+</div>
+
+
+<ToastContainer 
+ position="bottom-right"
+  autoClose={2000}          // fecha em 3 segundos
+  hideProgressBar={false}   // mostra a barrinha de progresso
+  newestOnTop={false}       // toasts mais novos não sobrepõem
+  closeOnClick              // fecha ao clicar
+  pauseOnHover              // pausa se o mouse estiver sobre o toast
+  draggable                 // permite arrastar o toast
+  
+  />
     </div>
   );
 }

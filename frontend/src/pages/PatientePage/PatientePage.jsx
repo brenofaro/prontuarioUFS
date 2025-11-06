@@ -26,18 +26,48 @@ const PatientePage = () => {
   }
 
   return (
-    <div className="container mt-4">
-      <h3 className="fw-semibold text-primary mb-3">{paciente.nome}</h3>
-      <p><strong>CPF:</strong> {paciente.cpf}</p>
-      <p><strong>Endereço:</strong> {paciente.endereco}</p>
-      <p><strong>Data de nascimento:</strong> {paciente.dataNascimento}</p>
+    <div className="container mt-4 border rounded p-4 bg-light">
+  <div className="card border-0 shadow p-4 rounded-4 mb-3" style={{ background: "#f8f9fa" }}>
+  <div className="d-flex align-items-center border-bottom pb-3 mb-3">
+    <div
+      className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold"
+      style={{ width: 60, height: 60, fontSize: "1.2rem" }}
+    >
+      {paciente.nome
+        ? paciente.nome
+            .split(" ")
+            .filter((word) => word.length > 1) // evita pegar preposições tipo "da", "de"
+            .slice(0, 2) // pega só nome e sobrenome
+            .map((word) => word[0].toUpperCase())
+            .join("")
+        : "??"}
+    </div>
 
-      <hr />
+    <div className="ms-3">
+      <h4 className="fw-bold mb-0 text-dark">{paciente.nome}</h4>
+      <small className="text-muted">Dados do paciente</small>
+    </div>
+  </div>
+
+  <div className="row text-secondary">
+    <div className="col-md-6 mb-2">
+      <strong>CPF:</strong> {paciente.cpf}
+    </div>
+    <div className="col-md-6 mb-2">
+      <strong>Data de Nascimento:</strong> {paciente.dataNascimento}
+    </div>
+    <div className="col-12">
+      <strong>Endereço:</strong> {paciente.endereco}
+    </div>
+  </div>
+</div>
+
 
       <CadastrateAnamneseButton pacienteId={paciente.id} />
        {/* 📋 Lista de anamneses */}
       <AnamneseList/>
 
+    
     </div>
 
     

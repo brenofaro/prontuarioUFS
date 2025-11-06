@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./index.css";
 
 const SearchResults = ({ results, loading }) => {
   const navigate = useNavigate();
 
   const handleClick = (id) => {
   navigate(`/pagina-paciente/${id}`);
-};
+  };
 
 
   return (
@@ -15,14 +16,13 @@ const SearchResults = ({ results, loading }) => {
 
       <ul className="list-unstyled border rounded bg-white">
         <li className="d-flex fw-bold border-bottom bg-light p-2">
-          <div style={{ width: "2rem" }}></div>
-          <div className="col-3">Nome</div>
-          <div className="col-3">CPF</div>
-          <div className="col-2">Endereço</div>
-          <div className="col-3">Data Nascimento</div>
+          {/* <div style={{ width: "2rem" }}></div> */}
+          <div className="col-4">Nome</div>
+          <div className="col-4">CPF</div>
+          <div className="col-4">Endereço</div>
         </li>
 
-        <div className="overflow-auto" style={{ maxHeight: "400px" }}>
+        <div className="overflow-auto custom-scroll" style={{ minHeight: "230px", maxHeight: "230px" }}>
           {loading ? (
             <li className="text-center text-muted py-3">Carregando...</li>
           ) : results.length > 0 ? (
@@ -31,15 +31,14 @@ const SearchResults = ({ results, loading }) => {
                 key={index}
                 className="d-flex align-items-center ps-2 py-2 border-bottom hover-row"
               >
-                <input type="checkbox" className="form-check-input me-3" />
-                <div className="col-3">
+                {/* <input type="checkbox" className="form-check-input me-3" /> */}
+                <div className="col-4">
                   <button onClick={() => handleClick(result.id)} className="btn btn-link text-decoration-none p-0 text-primary fw-semibold">
                     {result.nome}
                   </button>
                 </div>
-                <div className="col-3">{result.cpf}</div>
-                <div className="col-2">{result.endereco}</div>
-                <div className="col-3">{result.dataNascimento}</div>
+                <div className="col-4">{result.cpf}</div>
+                <div className="col-4">{result.endereco}</div>
               </li>
             ))
           ) : (

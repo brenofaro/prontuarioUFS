@@ -4,14 +4,7 @@ from src.models.base_anamnese_model import BaseAnamneseCreate
 
 # CREATE
 async def cadastrar_base_anamnese(anamnese: BaseAnamneseCreate, db: Session):
-    nova_anamnese = BaseAnamnese(
-        paciente_id=anamnese.paciente_id,
-        tipo=anamnese.tipo,
-        queixa_principal=anamnese.queixa_principal,
-        historico_doenca=anamnese.historico_doenca,
-        habitos=anamnese.habitos,
-        observacoes=anamnese.observacoes,
-    )
+    nova_anamnese = BaseAnamnese(**anamnese.model_dump(exclude_unset=True))
     db.add(nova_anamnese)
     db.commit()
     db.refresh(nova_anamnese)
@@ -35,13 +28,9 @@ async def atualizar_base_anamnese(id: int, dados: BaseAnamneseCreate, db: Sessio
     if not anamnese:
         return None
 
-    anamnese.paciente_id = dados.paciente_id
-    anamnese.tipo = dados.tipo
-    anamnese.queixa_principal = dados.queixa_principal
-    anamnese.historico_doenca = dados.historico_doenca
-    anamnese.habitos = dados.habitos
-    anamnese.observacoes = dados.observacoes
-
+    for key, value in dados.model_dump(exclude_unset=True).items():
+        setattr(anamnese, key, value)
+        
     db.commit()
     db.refresh(anamnese)
     return anamnese
