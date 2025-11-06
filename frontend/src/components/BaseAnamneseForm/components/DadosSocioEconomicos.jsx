@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DadosSocioEconomicos = (props) => {
+const DadosSocioEconomicos = () => {
   return (
     <>
       <form action="">
@@ -122,6 +122,7 @@ const DadosSocioEconomicos = (props) => {
           <input 
             type="radio" 
             name="exercicio_casa"
+            value=""
           />
           <label>Sim</label>
           <input 
