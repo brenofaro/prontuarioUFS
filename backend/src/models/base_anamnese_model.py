@@ -20,11 +20,6 @@ class BaseAnamneseCreate(BaseModel):
     data_consulta: date
     numero_prontuario: str
     nutricionista_responsavel: str
-    tipo: str
-    queixa_principal: str
-    historico_doenca: Optional[str] = None
-    habitos: Optional[str] = None
-    observacoes: Optional[str] = None
 
     # -------------------- Dados Socioeconômicos --------------------
     estado_civil: Optional[EstadoCivilEnum] = None
@@ -58,21 +53,21 @@ class BaseAnamneseCreate(BaseModel):
     objetivo_consulta: str
     historia_doenca: str
 
-    hipertencao_hma: Optional[str] = None
+    hipertencao_hma: Optional[bool] = None
     hipertencao_hf: Optional[bool] = False
-    diabetes_hma: Optional[str] = None
+    diabetes_hma: Optional[bool] = None
     diabetes_hf: Optional[bool] = False
-    doenca_cardiovascular_hma: Optional[str] = None
+    doenca_cardiovascular_hma: Optional[bool] = None
     doenca_cardiovascular_hf: Optional[bool] = False
-    dislipidemia_hma: Optional[str] = None
+    dislipidemia_hma: Optional[bool] = None
     dislipidemia_hf: Optional[bool] = False
-    cancer_hma: Optional[str] = None
+    cancer_hma: Optional[bool] = None
     cancer_hf: Optional[bool] = False
-    osteoporose_hma: Optional[str] = None
+    osteoporose_hma: Optional[bool] = None
     osteoporose_hf: Optional[bool] = False
-    depressao_hma: Optional[str] = None
+    depressao_hma: Optional[bool] = None
     depressao_hf: Optional[bool] = False
-    sop_hma: Optional[str] = None
+    sop_hma: Optional[bool] = None
     sop_hf: Optional[bool] = False
     outras_patologias: Optional[str] = None
     faz_uso_medicamentos: Optional[bool] = False
