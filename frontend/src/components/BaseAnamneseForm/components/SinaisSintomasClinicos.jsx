@@ -1,190 +1,160 @@
-import React from 'react'
+import React from "react";
 
-const SinaisSintomasClinicos = () => {
+const SinaisSintomasClinicos = ({ formData, setFormData }) => {
+  // Função genérica para atualizar qualquer campo dentro de sinais_sintomas_clinicos
+  const handleChange = (e) => {
+    const { name, value, type } = e.target;
+    let newValue = value;
+
+    // Converte para boolean se o campo for tipo radio e tiver "true"/"false"
+    if (value === "true") newValue = true;
+    if (value === "false") newValue = false;
+
+    setFormData({
+      ...formData,
+      sinais_sintomas_clinicos: {
+        ...formData.sinais_sintomas_clinicos,
+        [name]: newValue,
+      },
+    });
+  };
+
   return (
-   <>
-    <div className='d-flex flex-row'>
+    <>
+      <div className="d-flex flex-row">
+        <label className="form-check">Dentição:</label>
 
-            <label className="form-check">Dentição:</label>
+        <input
+          type="radio"
+          name="denticao"
+          value="natural_completa"
+          checked={formData.sinais_sintomas_clinicos.denticao === "natural_completa"}
+          onChange={handleChange}
+        />
+        <label>Natural Completa</label>
 
-              <input 
-                type="radio"
-                name="denticao" 
-              
-              />
-              <label>Natural Completa</label>
+        <input
+          type="radio"
+          name="denticao"
+          value="protese_completa"
+          checked={formData.sinais_sintomas_clinicos.denticao === "protese_completa"}
+          onChange={handleChange}
+        />
+        <label>Prótese completa</label>
 
-          
-                <input 
-                  type="radio" 
-                  name="denticao" 
-                />
-                <label>Prótese completa</label>
+        <input
+          type="radio"
+          name="denticao"
+          value="natural_parcial"
+          checked={formData.sinais_sintomas_clinicos.denticao === "natural_parcial"}
+          onChange={handleChange}
+        />
+        <label>Natural parcial</label>
 
-                <input 
-                  type="radio" 
-                  name="denticao" 
-                />
-                <label>Natural parcial</label>
+        <input
+          type="radio"
+          name="denticao"
+          value="protese_parcial"
+          checked={formData.sinais_sintomas_clinicos.denticao === "protese_parcial"}
+          onChange={handleChange}
+        />
+        <label>Prótese parcial</label>
 
-                <input 
-                  type="radio" 
-                  name="denticao" 
-                />
-                <label>Prótese parcial</label>
+        <input
+          type="radio"
+          name="denticao"
+          value="edentulo"
+          checked={formData.sinais_sintomas_clinicos.denticao === "edentulo"}
+          onChange={handleChange}
+        />
+        <label>Edêntulo</label>
+      </div>
 
-                <input 
-                  type="radio" 
-                  name="denticao" 
-                />
-                <label>Edêntulo</label>
+      <div>
+        <label>Mastigação:</label>
+        <input
+          type="radio"
+          name="mastigacao"
+          value="comprometida"
+          checked={formData.sinais_sintomas_clinicos.mastigacao === "comprometida"}
+          onChange={handleChange}
+        />
+        <label>Comprometida</label>
 
+        <input
+          type="radio"
+          name="mastigacao"
+          value="normal"
+          checked={formData.sinais_sintomas_clinicos.mastigacao === "normal"}
+          onChange={handleChange}
+        />
+        <label>Normal</label>
 
+        <label className="ms-3">Disfalgia:</label>
+        <input
+          type="radio"
+          name="disfalgia"
+          value="true"
+          checked={formData.sinais_sintomas_clinicos.disfalgia === true}
+          onChange={handleChange}
+        />
+        <label>Sim</label>
 
-          </div>
+        <input
+          type="radio"
+          name="disfalgia"
+          value="false"
+          checked={formData.sinais_sintomas_clinicos.disfalgia === false}
+          onChange={handleChange}
+        />
+        <label>Não</label>
 
-          <div>
-            <label htmlFor="">Mastigação:</label>
-            <input 
-              type="radio" 
-              name="mastigação" 
-            />
-            <label htmlFor="">Comprometida</label>
-            <input 
-              type="radio" 
-              name="mastigação"
-            />
-            <label htmlFor="">Normal</label>
-             <label className='ms-3' htmlFor="">Disfalgia:</label>
-            <input 
-              type="radio" 
-              name="disfalgia" 
-            />
-            <label htmlFor="">Sim</label>
-            <input 
-              type="radio" 
-              name="disfalgia"
-            />
-            <label htmlFor="">Nao</label>
-             <label className='ms-3' htmlFor="">Odinofalgia:</label>
-            <input 
-              type="radio" 
-              name="odinofalgia" 
-            />
-            <label htmlFor="">Sim</label>
-            <input 
-              type="radio" 
-              name="odinofalgia"
-            />
-            <label htmlFor="">Nao</label>
-          </div>
+        <label className="ms-3">Odinofalgia:</label>
+        <input
+          type="radio"
+          name="odinofalgia"
+          value="true"
+          checked={formData.sinais_sintomas_clinicos.odinofalgia === true}
+          onChange={handleChange}
+        />
+        <label>Sim</label>
 
-          <div>
-                 <label className='ms-3' htmlFor="">Dispepsia:</label>
-            <input 
-              type="radio" 
-              name="dispepsia" 
-            />
-            <label htmlFor="">Sim</label>
-            <input 
-              type="radio" 
-              name="dispepsia"
-            />
-            <label htmlFor="">Nao</label>
-             <label className='ms-3' htmlFor="">Náuseas:</label>
-            <input 
-              type="radio" 
-              name="nauseas" 
-            />
-            <label htmlFor="">Sim</label>
-            <input 
-              type="radio" 
-              name="nauseas"
-            />
-            <label htmlFor="">Nao</label>
-             <label className='ms-3' htmlFor="">Vomitos:</label>
-            <input 
-              type="radio" 
-              name="vomitos" 
-            />
-            <label htmlFor="">Sim</label>
-            <input 
-              type="radio" 
-              name="vomitos"
-            />
-            <label htmlFor="">Nao</label>
-          </div>
+        <input
+          type="radio"
+          name="odinofalgia"
+          value="false"
+          checked={formData.sinais_sintomas_clinicos.odinofalgia === false}
+          onChange={handleChange}
+        />
+        <label>Não</label>
+      </div>
 
-          <div>
-             <label className='ms-3' htmlFor="">Flatulencia:</label>
-            <input 
-              type="radio" 
-              name="flatulencia" 
-            />
-            <label htmlFor="">Sim</label>
-            <input 
-              type="radio" 
-              name="flatulencia"
-            />
-            <label htmlFor="">Nao</label>
-             <label className='ms-3' htmlFor="">Ritmo intestinal:</label>
-            <input 
-              type="radio" 
-              name="ritmo-intestinal" 
-            />
-            <label htmlFor="">Normal</label>
-            <input 
-              type="radio" 
-              name="ritmo-intestinal"
-            />
-            <label htmlFor="">Diarréia</label>
-            <input 
-              type="radio" 
-              name="ritmo-intestinal"
-            />
-            <label htmlFor="">Obstipação</label>
-            <label className='ms-3' htmlFor="">Ritmo Urinário:</label>
-            <input 
-              type="radio" 
-              name="ritmo-urinario" 
-            />
-            <label htmlFor="">Oligúria</label>
-            <input 
-              type="radio" 
-              name="ritmo-urinario"
-            />
-            <label htmlFor="">Anúria</label>
-            <input 
-              type="radio" 
-              name="ritmo-urinario"
-            />
-            <label htmlFor="">Poliúria</label>
-             <input 
-              type="radio" 
-              name="ritmo-urinario"
-            />
-            <label htmlFor="">Normal</label>
+      {/* Exemplo para campos de texto */}
+      <div className="d-flex flex-column align-items-start">
+        <label>Pele:</label>
+        <input
+          type="text"
+          name="pele"
+          value={formData.sinais_sintomas_clinicos.pele || ""}
+          onChange={handleChange}
+        />
+        <label>Unhas:</label>
+        <input
+          type="text"
+          name="unhas"
+          value={formData.sinais_sintomas_clinicos.unhas || ""}
+          onChange={handleChange}
+        />
+        <label>Cabelo:</label>
+        <input
+          type="text"
+          name="cabelo"
+          value={formData.sinais_sintomas_clinicos.cabelo || ""}
+          onChange={handleChange}
+        />
+      </div>
+    </>
+  );
+};
 
-
-          </div>
-          <div d-flex flex-column align-items-start>
-            <label htmlFor="">Pele:</label>
-            <input type="text" />
-            <label htmlFor="">Unhas:</label>
-            <input type="text" />
-            <label htmlFor="">Cabelo:</label>
-            <input type="text" />
-          </div>
-           <div>
-            <label htmlFor="">Mucosas:</label>
-            <input type="text" />
-            <label htmlFor="">Edemas:</label>
-            <input type="text" />
-            <label htmlFor="">Abdômen:</label>
-            <input type="text" />
-          </div>
-   </>
-  )
-}
-
-export default SinaisSintomasClinicos
+export default SinaisSintomasClinicos;

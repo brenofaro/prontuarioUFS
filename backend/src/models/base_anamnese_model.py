@@ -50,8 +50,8 @@ class BaseAnamneseCreate(BaseModel):
     tempo_parado_tabagismo: Optional[str] = None
 
     # -------------------- Dados de Saúde --------------------
-    objetivo_consulta: str
-    historia_doenca: str
+    objetivo_consulta: Optional[str] = None
+    historia_doenca: Optional[str] = None
 
     hipertencao_hma: Optional[bool] = None
     hipertencao_hf: Optional[bool] = False
@@ -78,7 +78,7 @@ class BaseAnamneseCreate(BaseModel):
     peso_usual: Optional[float] = None
     aj: Optional[float] = None
     altura_real: Optional[float] = None
-    altura_estim: Optional[float] = None
+    altura_estimada: Optional[float] = None
     imc: Optional[float] = None
     circunferencia_braco: Optional[float] = None
     circunferencia_pescoco: Optional[float] = None

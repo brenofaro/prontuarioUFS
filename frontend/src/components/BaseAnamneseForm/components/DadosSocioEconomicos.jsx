@@ -27,7 +27,7 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
               <label className="form-check-label" htmlFor="solteiro">Solteiro</label>
             </div>
 
-            <div className="form-check form-check-inline">
+            {/* <div className="form-check form-check-inline">
               <input
                 className="form-check-input"
                 type="radio"
@@ -190,81 +190,81 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
 
 
 
+            </div>
+
+              <label>Ocupação</label>
+              <input 
+                type="text" 
+                className='form-control w-25'
+                name="ocupacao"
+                value={formData.socioeconomico.ocupacao}
+                placeholder='Ex: Professor'
+                onChange={(e) =>
+                  setFormData({ ...formData
+                    , socioeconomico: {
+                      ...formData.socioeconomico,
+                      ocupacao: e.target.value
+                    }
+                  })
+                }
+                
+              />
+            <div>
+
+              <label>Exerce alguma atividade dentro de casa?</label>
+              <input 
+                type="radio" 
+                name="exercicio_casa"
+                value="true"
+                id='sim'
+                checked={formData.socioeconomico.faz_atividade_dentro_casa === true}
+                onChange={(e) =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      faz_atividade_dentro_casa: true
+                    }
+                  })
+                }
+              />
+              <label htmlFor='sim'>Sim</label>
+              <input 
+                type="radio" 
+                name="exercicio_casa"
+                id='nao'
+                value="false"
+                checked={formData.socioeconomico.faz_atividade_dentro_casa === false}
+                onChange={(e) =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      faz_atividade_dentro_casa: false
+                    }
+
+                  })
+                }
+              />
+              <label className='form-check-label' htmlFor='nao'>Não</label>
+              <label className="ms-3">Qual</label>
+              <input 
+                type="text" 
+                className='form-control d-inline-block w-auto ms-2'
+                name="atividade_casa"
+                value={formData.socioeconomico.atividade_dentro_casa}
+                placeholder='Ex: Abdominais'
+                onChange={(e) =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      atividade_dentro_casa: e.target.value
+                    }
+                  })
+                }
+              />
+
           </div>
 
-          <label>Ocupação</label>
-          <input 
-            type="text" 
-            className='form-control w-25'
-            name="ocupacao"
-            value={formData.socioeconomico.ocupacao}
-            placeholder='Ex: Professor'
-            onChange={(e) =>
-              setFormData({ ...formData
-                , socioeconomico: {
-                  ...formData.socioeconomico,
-                  ocupacao: e.target.value
-                }
-              })
-            }
-            
-          />
-        <div>
-
-          <label>Exerce alguma atividade dentro de casa?</label>
-          <input 
-            type="radio" 
-            name="exercicio_casa"
-            value="true"
-            id='sim'
-            checked={formData.socioeconomico.faz_atividade_dentro_casa === true}
-            onChange={(e) =>
-              setFormData({ ...formData,
-                socioeconomico: {
-                  ...formData.socioeconomico,
-                  faz_atividade_dentro_casa: true
-                }
-              })
-            }
-          />
-          <label htmlFor='sim'>Sim</label>
-          <input 
-            type="radio" 
-            name="exercicio_casa"
-            id='nao'
-            value="false"
-            checked={formData.socioeconomico.faz_atividade_dentro_casa === false}
-            onChange={(e) =>
-              setFormData({ ...formData,
-                socioeconomico: {
-                  ...formData.socioeconomico,
-                  faz_atividade_dentro_casa: false
-                }
-
-              })
-            }
-          />
-          <label className='form-check-label' htmlFor='nao'>Não</label>
-          <label className="ms-3">Qual</label>
-          <input 
-            type="text" 
-            className='form-control d-inline-block w-auto ms-2'
-            name="atividade_casa"
-            value={formData.socioeconomico.atividade_dentro_casa}
-            placeholder='Ex: Abdominais'
-            onChange={(e) =>
-              setFormData({ ...formData,
-                socioeconomico: {
-                  ...formData.socioeconomico,
-                  atividade_dentro_casa: e.target.value
-                }
-              })
-            }
-          />
-
-        </div>
-
-        
+          
 
         <div>
             <label>Estrutura Familiar:</label>
@@ -670,21 +670,61 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <input 
                 type="radio" 
                 name="Etilismo" 
+                value="true"
+                id="sim_etilismo"
+                checked={formData.socioeconomico.tem_etilismo === true}
+                onChange={() =>
+                  formData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tem_etilismo: true
+                    }
+                    })
+                }
             />
-            <label>Sim</label>
+            <label htmlFor="sim_etilismo">Sim</label>
             <input 
                 type="radio" 
                 name="Etilismo" 
+                value="false"
+                id="nao_etilismo"
+                checked={formData.socioeconomico.tem_etilismo === false}
+                onChange={() =>
+                  formData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tem_etilismo: false
+                    }
+                    })
+                }
             />
-            <label>Não</label>
+            <label htmlFor="nao_etilismo">Não</label>
 
             <label>Tipo:</label>
             <input 
                 type="text" 
+                value={formData.socioeconomico.tipo_etilismo}
+                onChange={(e) =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tipo_etilismo: e.target.value
+                    }
+                    })
+                }
             />
             <label>Quanto:</label>
             <input 
                 type="text" 
+                value={formData.socioeconomico.quanto_etilismo}
+                onChange={(e) =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      quanto_etilismo: e.target.value
+                    }
+                    })
+                }
             />
 
         </div>
@@ -693,17 +733,49 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <input 
                 type="radio" 
                 name="ja-foi-etilista" 
+                value="true"
+                id="sim_ja_foi_etilista"
+                checked={formData.socioeconomico.ja_foi_etilista === true}
+                onChange={() =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      ja_foi_etilista: true
+                    }
+                    })
+                }
             />
-            <label>Sim</label>
+            
+            <label htmlFor="sim_ja_foi_etilista">Sim</label>
             <input 
                 type="radio" 
                 name="ja-foi-etilista" 
+                value="false"
+                id="nao_ja_foi_etilista"
+                checked={formData.socioeconomico.ja_foi_etilista === false}
+                onChange={() =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      ja_foi_etilista: false
+                    }
+                    })
+                }
             />
-            <label>Não</label>
+            <label htmlFor="nao_ja_foi_etilista">Não</label>
 
             <label>Há quanto tempo parou:</label>
             <input 
                 type="text" 
+                value={formData.socioeconomico.tempo_parado_etilismo}
+                onChange={(e) =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tempo_parado_etilismo: e.target.value
+                    }
+                    })
+                }
             />
 
         </div>
@@ -713,21 +785,63 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <input 
                 type="radio" 
                 name="tabagismo" 
+                value="true"
+                id="sim_tabagismo"
+                checked={formData.socioeconomico.tem_tabagismo === true}
+                onChange={() =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tem_tabagismo: true
+                    }
+                    })
+                }
             />
-            <label>Sim</label>
+            <label htmlFor="sim_tabagismo">Sim</label>
             <input 
                 type="radio" 
                 name="tabagismo" 
+                value="false"
+                id="nao_tabagismo"
+                checked={formData.socioeconomico.tem_tabagismo === false}
+                onChange={() =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tem_tabagismo: false
+                    }
+                    })
+                }
+
             />
-            <label>Não</label>
+            <label htmlFor="nao_tabagismo">Não</label>
 
             <label>Tipo:</label>
             <input 
                 type="text" 
+                value={formData.socioeconomico.tipo_tabagismo}
+                onChange={(e) =>
+                  setFormData({ ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tipo_tabagismo: e.target.value
+                    }
+                    })
+                }
             />
             <label>Quanto:</label>
             <input 
                 type="text" 
+                value={formData.socioeconomico.quanto_tabagismo}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      quanto_tabagismo: e.target.value
+                    }
+                  })
+                }
             />
 
         </div>
@@ -736,23 +850,54 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <input 
                 type="radio" 
                 name="ja-foi-tabagista" 
+                value="true"
+                id="sim_ja_foi_tabagista"
+                checked={formData.socioeconomico.ja_foi_tabagista === true}
+                onChange={() =>
+                  setFormData({
+                    ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      ja_foi_tabagista: true
+                    }
+                  })
+                }
             />
-            <label>Sim</label>
+            <label htmlFor="sim_ja_foi_tabagista">Sim</label>
             <input 
                 type="radio" 
                 name="ja-foi-tabagista" 
+                value="false"
+                id="nao_ja_foi_tabagista"
+                checked={formData.socioeconomico.ja_foi_tabagista === false}
+                onChange={() =>
+                  setFormData({
+                    ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      ja_foi_tabagista: false
+                    }
+                  })
+                } 
             />
-            <label>Não</label>
+            <label htmlFor="nao_ja_foi_tabagista">Não</label>
 
             <label>Há quanto tempo parou:</label>
             <input 
                 type="text" 
+                value={formData.socioeconomico.tempo_parado_tabagismo}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    socioeconomico: {
+                      ...formData.socioeconomico,
+                      tempo_parado_tabagismo: e.target.value
+                    }
+                  })
+                }
             />
-
-        </div>
+        </div> */}
         
-     
-    
     </>
   )
 }

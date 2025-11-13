@@ -59,8 +59,8 @@ class BaseAnamnese(Base):
     tempo_parado_tabagismo = Column(String, nullable=True)
 
     #Dados de saúde
-    objetivo_consulta = Column(Text, nullable=False)
-    Historia_doenca = Column(Text, nullable=False)
+    objetivo_consulta = Column(Text, nullable=True)
+    historia_doenca = Column(Text, nullable=True)
     hipertencao_hma = Column(Boolean, nullable=True)
     hipertencao_hf = Column(Boolean, nullable=True, default=False)
     diabetes_hma = Column(Boolean, nullable=True)
@@ -86,7 +86,7 @@ class BaseAnamnese(Base):
     peso_usual = Column(Float, nullable=True)
     aj = Column(Float, nullable=True)
     altura_real = Column(Float, nullable=True)
-    altura_estim = Column(Float, nullable=True)
+    altura_estimada = Column(Float, nullable=True)
     imc = Column(Float, nullable=True)
     circunferencia_braco = Column(Float, nullable=True)
     circunferencia_pescoco = Column(Float, nullable=True)

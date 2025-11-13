@@ -1,6 +1,4 @@
-import React from 'react'
-
-const AvaliacaoAntropometrica = () => {
+const AvaliacaoAntropometrica = ({formData, setFormData}) => {
   return (
    <>
     <div className=''>
@@ -11,15 +9,33 @@ const AvaliacaoAntropometrica = () => {
           step="0.1"
           min="0"
           className="w-15"
+          value={formData.antropometrica.peso_atual}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      peso_atual: e.target.value
+                    }
+                    })
+            }
 
         />
-        <label htmlFor=""> Peso usua(Kg):</label>
+        <label htmlFor=""> Peso usual(Kg):</label>
         <input 
           type="number" 
           placeholder='Ex: 72.5'
           step="0.1"
           min="0"
           className="w-15"
+          value={formData.antropometrica.peso_usual}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      peso_usual: e.target.value
+                    }
+                    })
+            }
 
         />
         <label htmlFor="">AJ(cm):</label>
@@ -28,6 +44,15 @@ const AvaliacaoAntropometrica = () => {
           placeholder='Ex: 120'
           min="0"
           className="w-15"
+          value={formData.antropometrica.aj}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      aj: e.target.value
+                    }
+                    })
+            }
         />
         <label htmlFor="">Altura real(m):</label>
         <input 
@@ -36,6 +61,15 @@ const AvaliacaoAntropometrica = () => {
           step="0.10"
           min="0"
           className="w-15"
+          value={formData.antropometrica.altura_real}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      altura_real: e.target.value
+                    }
+                    })
+            }
 
         />
 
@@ -48,6 +82,15 @@ const AvaliacaoAntropometrica = () => {
           step="0.10"
           min="0"
           style={{ width: "10%" }}
+          value={formData.antropometrica.altura_estimada}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      altura_estimada: e.target.value
+                    }
+                    })
+            }
 
         />
         <label htmlFor=""> IMC(kg/m²):</label>
@@ -57,6 +100,15 @@ const AvaliacaoAntropometrica = () => {
           step="0.1"
           min="0"
           className="w-15"
+          value={formData.antropometrica.imc}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      imc: e.target.value
+                    }
+                    })
+            }
 
         />
         <label htmlFor="">Circunferência do braço(cm):</label>
@@ -65,6 +117,15 @@ const AvaliacaoAntropometrica = () => {
           placeholder='Ex: 30'
           min="0"
           className="w-15"
+          value={formData.antropometrica.circunferencia_braco}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      circunferencia_braco: e.target.value
+                    }
+                    })
+            }
         />
         <label htmlFor="">Comprimento do pescoço(cm):</label>
         <input 
@@ -72,7 +133,15 @@ const AvaliacaoAntropometrica = () => {
           placeholder='Ex: 40'
           min="0"
           className="w-15"
-
+          value={formData.antropometrica.comprimento_cotovelo}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      comprimento_cotovelo: e.target.value
+                    }
+                    })
+            }
         />
 
     </div>
@@ -83,6 +152,15 @@ const AvaliacaoAntropometrica = () => {
           placeholder='Ex: 15'
           min="0"
           style={{ width: "10%" }}
+          value={formData.antropometrica.pct}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      pct: e.target.value
+                    }
+                    })
+            }
 
         />
         <label htmlFor="">Prega cutânea biciptal(mm):</label>
@@ -90,6 +168,15 @@ const AvaliacaoAntropometrica = () => {
           type="number" 
           placeholder='Ex: 15'
           min="0"
+          value={formData.antropometrica.pcb}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      pcb: e.target.value
+                    }
+                    })
+            }
 
         />
         <label htmlFor="">PCSE(mm):</label>
@@ -98,6 +185,15 @@ const AvaliacaoAntropometrica = () => {
           placeholder='Ex: 30'
           min="0"
           className="w-15"
+          value={formData.antropometrica.pcse}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      pcse: e.target.value
+                    }
+                    })
+            }
         />
 
 
@@ -109,6 +205,15 @@ const AvaliacaoAntropometrica = () => {
           placeholder='Ex: 15'
           min="0"
           style={{ width: "10%" }}
+          value={formData.antropometrica.pcsis}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      pcsis: e.target.value
+                    }
+                    })
+            }
 
         />
         <label htmlFor="">Circunferencia da cintura(cm):</label>
@@ -117,20 +222,47 @@ const AvaliacaoAntropometrica = () => {
           placeholder='Ex: 100'
           min="0"
           style={{ width: "10%" }}
-
+          value={formData.antropometrica.circunferencia_cintura}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      circunferencia_cintura: e.target.value
+                    }
+                    })
+            }
         />
         <label htmlFor="">Circunferencia da panturrilha(mm):</label>
         <input 
           type="number" 
           placeholder='Ex: 30'
           min="0"
-          style={{ width: "10%" }}        
+          style={{ width: "10%" }}   
+          value={formData.antropometrica.circunferencia_panturrilha}
+          onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      circunferencia_panturrilha: e.target.value
+                    }
+                    })
+            }     
           />
 
     </div>
     <div className="d-flex flex-column align-items-start">
       <label className="" htmlFor="">Diagnostico antropometrico</label>
-      <textarea>
+      <textarea
+        value={formData.antropometrica.diagnostico_antropometrico}
+        onChange={(e) =>
+                  setFormData({ ...formData, 
+                    antropometrica: {
+                      ...formData.antropometrica,
+                      diagnostico_antropometrico: e.target.value
+                    }
+                    })
+            }
+      >
 
       </textarea>
     </div>

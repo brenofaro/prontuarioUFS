@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
 from src.database.entities.base_anamnese_entity import BaseAnamnese
 from src.models.base_anamnese_model import BaseAnamneseCreate
+#from src.utils.flatten import flatten
+
 
 # CREATE
 async def cadastrar_base_anamnese(anamnese: BaseAnamneseCreate, db: Session):
