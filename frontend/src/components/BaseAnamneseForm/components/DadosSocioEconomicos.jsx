@@ -27,7 +27,7 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
               <label className="form-check-label" htmlFor="solteiro">Solteiro</label>
             </div>
 
-            {/* <div className="form-check form-check-inline">
+            <div className="form-check form-check-inline">
               <input
                 className="form-check-input"
                 type="radio"
@@ -896,7 +896,7 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                   })
                 }
             />
-        </div> */}
+        </div>
         
     </>
   )
