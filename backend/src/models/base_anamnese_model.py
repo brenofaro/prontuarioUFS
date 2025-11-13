@@ -28,7 +28,7 @@ class BaseAnamneseCreate(BaseModel):
     faz_atividade_dentro_casa: Optional[bool] = False
     atividade_dentro_casa: Optional[str] = None
     estrutura_familia: Optional[List[str]] = None
-    renda_pessoal: Optional[str] = None
+    renda_pessoal: Optional[float] = None
     gastos_alimentacao: Optional[str] = None
 
     faz_atividade_fisica: Optional[bool] = False

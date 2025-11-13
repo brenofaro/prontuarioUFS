@@ -17,29 +17,30 @@ function BaseAnamneseForm() {
       numero_prontuario: "",
       nutricionista_responsavel: "",
 
-      // estado_civil: "",
-      // escolaridade: "",
-      // ocupacao: "",
-      // faz_atividade_dentro_casa: null,
-      // atividade_dentro_casa: "",
-      // estrutura_familia: [],
-      // renda_pessoal: "",
-      // gastos_alimentacao: "",
-      // faz_atividade_fisica: null,
-      // qual_atividade_fisica: "",
-      // frequencia_atividade_fisica: "",
-      // ja_fez_atividade_fisica: null,
-      // tempo_parado_atividade_fisica: "",
-      // tem_etilismo: null,
-      // tipo_etilismo: "",
-      // quanto_etilismo: "",
-      // ja_foi_etilista: null,
-      // tempo_parado_etilismo: "",
-      // tem_tabagismo: null,
-      // tipo_tabagismo: "",
-      // quanto_tabagismo: "",
-      // ja_foi_tabagista: null,
-      // tempo_parado_tabagismo: "",
+       estado_civil: null,
+       escolaridade: null,
+       ocupacao: null,
+       faz_atividade_dentro_casa: null,
+       atividade_dentro_casa: null,
+       estrutura_familia: [],
+       outros_estrutura_familia: null,
+        // renda_pessoal: null,
+        // gastos_alimentacao: null,
+      faz_atividade_fisica: null,
+      qual_atividade_fisica: null,
+      frequencia_atividade_fisica: null,
+       ja_fez_atividade_fisica: null,
+       tempo_parado_atividade_fisica: null,
+      tem_etilismo: null,
+      tipo_etilismo: null,
+      quanto_etilismo: null,
+      ja_foi_etilista: null,
+      tempo_parado_etilismo: null,
+      tem_tabagismo: null,
+      tipo_tabagismo: null,
+      quanto_tabagismo: null,
+      ja_foi_tabagista: null,
+      tempo_parado_tabagismo: null,
    
       // objetivo_consulta: "",
       // historia_doenca: null,
@@ -174,13 +175,13 @@ function BaseAnamneseForm() {
         
         
         <DadosIniciais formData={formData} setFormData={setFormData}/>
-        {/* <DadosSocioEconomicos formData={formData} setFormData={setFormData}/>
-        <DadosSaude formData={formData} setFormData={setFormData}/>
+         <DadosSocioEconomicos formData={formData} setFormData={setFormData}/>
+        {/* <DadosSaude formData={formData} setFormData={setFormData}/>
         <AvaliacaoAntropometrica formData={formData} setFormData={setFormData}/>
         <DadosBioimpedancia formData={formData} setFormData={setFormData}/>
         <SinaisSintomasClinicos formData={formData} setFormData={setFormData}/>
         <AvaliacaoBioquimica formData={formData} setFormData={setFormData}/>
-        <HistoriaAlimentar formData={formData} setFormData={setFormData}/> */}
+        <HistoriaAlimentar formData={formData} setFormData={setFormData}/>  */}
         
       <button type="submit" className="btn btn-success mt-3">Salvar</button>
 

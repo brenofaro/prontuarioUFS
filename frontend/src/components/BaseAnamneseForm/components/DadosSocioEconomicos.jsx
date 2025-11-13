@@ -1,6 +1,66 @@
 import React from 'react'
 
-const DadosSocioEconomicos = ({formData, setFormData}) => {
+const DadosSocioEconomicos = ({ formData, setFormData }) => {
+  const handleChange = (e) => {
+    let { name, value, type, checked } = e.target;
+
+    // 1️⃣ Checkbox boolean (não é lista)
+    if (type === "checkbox" && !Array.isArray(formData[name])) {
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: checked,
+      }));
+    }
+
+    // 2️⃣ Radio boolean (value="true"/"false")
+    if (type === "radio" && (value === "true" || value === "false")) {
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: value === "true",
+      }));
+    }
+
+    // 3️⃣ Number (converte string → número)
+    if (type === "number") {
+  const numericValue = value === "" ? null : Number(value);
+  return setFormData((prev) => ({
+    ...prev,
+    [name]: numericValue,
+  }));
+}
+
+    // 4️⃣ Datas (YYYY-MM-DD)
+    if (type === "date") {
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+
+    // 5️⃣ Campos normais (text, select, radio string etc.)
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+ const handleCheckboxList = (e) => {
+  const { name, checked, value } = e.target; // name = "estrutura_familia"
+
+  setFormData((prev) => {
+    const list = prev[name] || [];
+
+    const updatedList = checked
+      ? [...list, value]
+      : list.filter((item) => item !== value);
+
+    return {
+      ...prev,
+      [name]: updatedList,
+    };
+  });
+};
+
   return (
     <>
        
@@ -14,15 +74,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                 name="estado_civil"
                 id="solteiro"
                 value="solteiro"
-                checked={formData.socioeconomico.estado_civil === "solteiro"}
-                onChange={(e) =>
-                  setFormData({ ...formData, 
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      estado_civil: e.target.value
-                    }
-                    })
-                }
+                checked={formData.estado_civil === "solteiro"}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="solteiro">Solteiro</label>
             </div>
@@ -34,15 +87,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                 name="estado_civil"
                 id="casado"
                 value="casado"
-                checked={formData.socioeconomico.estado_civil === "casado"}
-                onChange={(e) =>
-                  setFormData({ ...formData, 
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      estado_civil: e.target.value
-                    }
-                    })
-                }
+                checked={formData.estado_civil === "casado"}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="casado">Casado</label>
             </div>
@@ -54,15 +100,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                 name="estado_civil"
                 id="viuvo"
                 value="viuvo"
-                checked={formData.socioeconomico.estado_civil === "viuvo"}
-                onChange={(e) =>
-                  setFormData({ ...formData, 
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      estado_civil : e.target.value
-                    }
-                    })
-                }
+                checked={formData.estado_civil === "viuvo"}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="viuvo">Viúvo</label>
             </div>
@@ -74,15 +113,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                 name="estado_civil"
                 id="separado"
                 value="separado"
-                checked={formData.socioeconomico.estado_civil === "separado"}
-                onChange={(e) =>
-                  setFormData({ ...formData, 
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      estado_civil : e.target.value
-                    }
-                    })
-                }
+                checked={formData.estado_civil === "separado"}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="separado">Separado</label>
             </div>
@@ -98,15 +130,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                 name="escolaridade" 
                 id="analfabeto"
                 value="analfabeto"
-                checked={formData.socioeconomico.escolaridade === "analfabeto"}
-                onChange={(e) =>
-                  setFormData({ ...formData, 
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      escolaridade : e.target.value
-                    }
-                    })  
-                }
+                checked={formData.escolaridade === "analfabeto"}
+                onChange={handleChange}
               />
               <label htmlFor="analfabeto">Analfabeto</label>
 
@@ -118,15 +143,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                   name="escolaridade"
                   id='alfabetizado' 
                   value='alfabetizado'
-                  checked={formData.socioeconomico.escolaridade === "alfabetizado"}
-                  onChange={(e) =>
-                    setFormData({ ...formData, 
-                      socioeconomico: {
-                        ...formData.socioeconomico,
-                        escolaridade : e.target.value
-                      }
-                      })  
-                  } 
+                  checked={formData.escolaridade === "alfabetizado"}
+                  onChange={handleChange} 
                 />
                 <label htmlFor="alfabetizado">Afabetizado</label>
               </div>
@@ -137,15 +155,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                   name="escolaridade" 
                   id='fundamental_incompleto_completo'
                   value='fundamental_incompleto_completo'
-                  checked={formData.socioeconomico.escolaridade === "fundamental_incompleto_completo"}
-                  onChange={(e) =>
-                    setFormData({ ...formData,      
-                      socioeconomico: {
-                        ...formData.socioeconomico,
-                        escolaridade : e.target.value
-                        }
-                      })  
-                  } 
+                  checked={formData.escolaridade === "fundamental_incompleto_completo"}
+                  onChange={handleChange} 
                 />
                 <label htmlFor='fundamental_incompleto_completo'>Ensino Fundamental completo/incompleto</label>
               </div>
@@ -156,15 +167,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                   name="escolaridade" 
                   id='medio_incompleto_completo'
                   value='medio_incompleto_completo'
-                  checked={formData.socioeconomico.escolaridade === "medio_incompleto_completo"}
-                  onChange={(e) =>
-                    setFormData({ ...formData, 
-                      socioeconomico: {
-                        ...formData.socioeconomico,
-                        escolaridade : e.target.value
-                        }
-                      })  
-                    }
+                  checked={formData.escolaridade === "medio_incompleto_completo"}
+                  onChange={handleChange}
                 />
                 <label htmlFor='medio_incompleto_completo'>Ensino Médio completo/imcompleto</label>
               </div>
@@ -175,15 +179,8 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
                   name="escolaridade" 
                   id='superior_incompleto_completo'
                   value='superior_incompleto_completo'
-                  checked={formData.socioeconomico.escolaridade === "superior_incompleto_completo"}
-                  onChange={(e) => 
-                    setFormData({ ...formData,
-                      socioeconomico: {
-                        ...formData.socioeconomico,
-                        escolaridade: e.target.value
-                      }
-                    })
-                  }
+                  checked={formData.escolaridade === "superior_incompleto_completo"}
+                  onChange={handleChange}
                 />
                 <label htmlFor='superior_incompleto_completo'>Ensino Superior completo/incompleto</label>
               </div>
@@ -191,104 +188,65 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
 
 
             </div>
-
+            <div>
               <label>Ocupação</label>
               <input 
                 type="text" 
                 className='form-control w-25'
                 name="ocupacao"
-                value={formData.socioeconomico.ocupacao}
+                value={formData.ocupacao}
                 placeholder='Ex: Professor'
-                onChange={(e) =>
-                  setFormData({ ...formData
-                    , socioeconomico: {
-                      ...formData.socioeconomico,
-                      ocupacao: e.target.value
-                    }
-                  })
-                }
+                onChange={handleChange}
                 
               />
+            </div>
+
             <div>
 
               <label>Exerce alguma atividade dentro de casa?</label>
               <input 
                 type="radio" 
-                name="exercicio_casa"
+                name="faz_atividade_dentro_casa"
                 value="true"
-                id='sim'
-                checked={formData.socioeconomico.faz_atividade_dentro_casa === true}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      faz_atividade_dentro_casa: true
-                    }
-                  })
-                }
+                id='sim_exercicio_casa'
+                checked={formData.faz_atividade_dentro_casa === true}
+                onChange={handleChange}
               />
-              <label htmlFor='sim'>Sim</label>
+              <label htmlFor='sim_exercicio_casa'>Sim</label>
               <input 
                 type="radio" 
-                name="exercicio_casa"
-                id='nao'
+                name="faz_atividade_dentro_casa"
+                id='nao_exercicio_casa'
                 value="false"
-                checked={formData.socioeconomico.faz_atividade_dentro_casa === false}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      faz_atividade_dentro_casa: false
-                    }
-
-                  })
-                }
+                checked={formData.faz_atividade_dentro_casa === false}
+                onChange={handleChange}
               />
-              <label className='form-check-label' htmlFor='nao'>Não</label>
-              <label className="ms-3">Qual</label>
-              <input 
-                type="text" 
-                className='form-control d-inline-block w-auto ms-2'
-                name="atividade_casa"
-                value={formData.socioeconomico.atividade_dentro_casa}
-                placeholder='Ex: Abdominais'
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      atividade_dentro_casa: e.target.value
-                    }
-                  })
-                }
-              />
+              <label className='form-check-label' htmlFor='nao_exercicio_casa'>Não</label>
+             {formData.faz_atividade_dentro_casa === true && (
+                <>
+                  <label className="ms-3">Qual</label>
+                  <input 
+                    type="text"
+                    className="form-control d-inline-block w-auto ms-2"
+                    name="atividade_dentro_casa"
+                    value={formData.atividade_dentro_casa}
+                    onChange={handleChange}
+                  />
+                </>
+              )}
 
           </div>
 
           
-
         <div>
             <label>Estrutura Familiar:</label>
             <div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar" 
+                    name="estrutura_familia" 
                     value="pai_mae"
-                    checked={formData.socioeconomico.estrutura_familia.includes("pai_mae")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }}
+                    checked={formData.estrutura_familia.includes("pai_mae")}
+                    onChange={handleCheckboxList}
                     />
                 <label>Pai/Mãe</label>
 
@@ -297,24 +255,10 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar" 
+                    name="estrutura_familia" 
                     value="conjuge"
-                    checked={formData.socioeconomico.estrutura_familia.includes("conjuge")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }}
+                    checked={formData.estrutura_familia.includes("conjuge")}
+                    onChange={handleCheckboxList}
                     />
                 <label>Cônjuge</label>
 
@@ -322,48 +266,20 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar"
+                    name="estrutura_familia"
                     value="filho"
-                    checked={formData.socioeconomico.estrutura_familia.includes("filho")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }} 
+                    checked={formData.estrutura_familia.includes("filho")}
+                    onChange={handleCheckboxList} 
                     />
                 <label>Filho</label>
 
             </div><div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar" 
+                    name="estrutura_familia" 
                     value="irmao"
-                    checked={formData.socioeconomico.estrutura_familia.includes("irmao")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }}
+                    checked={formData.estrutura_familia.includes("irmao")}
+                    onChange={handleCheckboxList}
                     />
                 <label>Irmão</label>
 
@@ -371,24 +287,10 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar"
+                    name="estrutura_familia"
                     value="netos"
-                    checked={formData.socioeconomico.estrutura_familia.includes("netos")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }} 
+                    checked={formData.estrutura_familia.includes("netos")}
+                    onChange={handleCheckboxList} 
                     />
                 <label>Netos</label>
 
@@ -396,24 +298,10 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar" 
+                    name="estrutura_familia" 
                     value="sobrinho"
-                    checked={formData.socioeconomico.estrutura_familia.includes("sobrinho")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }} 
+                    checked={formData.estrutura_familia.includes("sobrinho")}
+                    onChange={handleCheckboxList} 
                     />
                 <label>Sobrinho</label>
 
@@ -421,24 +309,10 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar" 
+                    name="estrutura_familia" 
                     value="cunhado"
-                    checked={formData.socioeconomico.estrutura_familia.includes("cunhado")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }} 
+                    checked={formData.estrutura_familia.includes("cunhado")}
+                    onChange={handleCheckboxList} 
                     />
                 <label>Cunhado</label>
 
@@ -446,24 +320,10 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <div>
                 <input 
                     type="checkbox" 
-                    name="estrutura-familiar" 
+                    name="estrutura_familia" 
                     value="so"
-                    checked={formData.socioeconomico.estrutura_familia.includes("so")}
-                    onChange={(e) => {
-                      const isChecked = e.target.checked;
-                      const updatedChecked = isChecked
-                        ? [...formData.socioeconomico.estrutura_familia, e.target.value]
-                        : formData.socioeconomico.estrutura_familia.filter(
-                          (value) => value !== e.target.value
-                        );
-                      setFormData({
-                        ...formData,
-                        socioeconomico: {
-                          ...formData.socioeconomico,
-                          estrutura_familia: updatedChecked,
-                        },
-                      });
-                    }} 
+                    checked={formData.estrutura_familia.includes("so")}
+                    onChange={handleCheckboxList} 
                     />
                 <label>Só</label>
 
@@ -473,309 +333,184 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
               className="form-check-input"
               type="checkbox"
               id="outros"
-              name="estrutura-familiar"
+              name="estrutura_familia"
               value="outros"
-              checked={formData.socioeconomico.estrutura_familia.includes("outros")}
-              onChange={(e) => {
-                const checked = e.target.checked;
-                const value = e.target.value;
-                const updated = checked
-                  ? [...formData.socioeconomico.estrutura_familia, value]
-                  : formData.socioeconomico.estrutura_familia.filter((v) => v !== value);
-
-                setFormData({
-                  ...formData,
-                  socioeconomico: {
-                    ...formData.socioeconomico,
-                    estrutura_familia: updated,
-                  },
-                });
-              }}
+              checked={formData.estrutura_familia.includes("outros")}
+              onChange={handleCheckboxList}
             />
             <label className="form-check-label" htmlFor="outros">Outros</label>
           </div>
 
           {/* Campo de texto só aparece se o "outros" estiver marcado */}
-          {formData.socioeconomico.estrutura_familia.includes("outros") && (
+          {formData.estrutura_familia.includes("outros") && (
             <input
               type="text"
               className="form-control w-50 mt-2"
               placeholder="Especifique..."
-              value={formData.socioeconomico.outros_estrutura_familia || ""}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  socioeconomico: {
-                    ...formData.socioeconomico,
-                    outros_estrutura_familia: e.target.value,
-                  },
-                })
-              }
+              value={formData.outros_estrutura_familia || ""}
+              onChange={handleChange}
             />
           )}
 
 
         </div>
-        <div className='mt-3'>
+          {/* <div className='mt-3'>
             <label>Renda Pessoal:</label>
             <input 
                 type="number" 
-                value={formData.socioeconomico.renda_pessoal}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      renda_pessoal: e.target.value
-                    }
-                    })
-                }
+                name="renda_pessoal"
+                className="form-control w-25"
+                value={formData.renda_pessoal === null ? '' : formData.renda_pessoal}
+                onChange={handleChange}
             />
             <label>Gastos com a alimentação</label>
             <input 
                 type="number" 
-                value={formData.socioeconomico.renda_pessoal}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      gastos_alimentacao: e.target.value
-                    }
-                    })
-                }
+                name="gastos_alimentacao"
+                value={formData.gastos_alimentacao}
+                onChange={handleChange}
             />
 
 
-        </div>
+        </div> */}
 
         <div className='d-flex align-items-center m-2'>
             <label>Atividade Física:</label>
             <input 
                 type="radio" 
-                name="atividade-fisica" 
+                name="faz_atividade_fisica" 
                 value="true"
                 id="sim_atividade_fisica"
-                checked={formData.socioeconomico.faz_atividade_fisica === true}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      faz_atividade_fisica: true
-                    }
-                    })
-                }
+                checked={formData.faz_atividade_fisica}
+                onChange={handleChange}
             />
             <label htmlFor="sim_atividade_fisica">Sim</label>
             <input 
                 type="radio" 
-                name="atividade-fisica" 
+                name="faz_atividade_fisica" 
                 value="false"
                 id="nao_atividade_fisica"
-                checked={formData.socioeconomico.faz_atividade_fisica === false}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      faz_atividade_fisica: false
-                    }
-                    })
-                }
+                checked={formData.faz_atividade_fisica}
+                onChange={handleChange}
             />
             <label htmlFor="nao_atividade_fisica">Não</label>
 
             <label>Qual:</label>
             <input 
               type="text" 
-              value={formData.socioeconomico.qual_atividade_fisica}
-              onChange={(e) => 
-                setFormData({
-                  ...formData,
-                  socioeconomico: {
-                    ...formData.socioeconomico,
-                    qual_atividade_fisica: e.target.value,
-                  },
-                })
-              }
+              name="qual_atividade_fisica"
+              value={formData.qual_atividade_fisica}
+              onChange={handleChange}
             />
 
             <label htmlFor="">Frequência</label>
             <input 
               type="text"
-              value={formData.socioeconomico.frequencia_atividade_fisica}
-              onChange={(e) => 
-                setFormData({
-                  ...formData,
-                  socioeconomico: {
-                    ...formData.socioeconomico,
-                    frequencia_atividade_fisica: e.target.value,
-                  },
-                })
-              }
+              name="frequencia_atividade_fisica"
+              value={formData.frequencia_atividade_fisica}
+              onChange={handleChange}
             /> 
 
         </div>
-        
-        <div>
+
+          <div>
             <label>Já fez alguma atividade física:</label>
             <input 
                 type="radio" 
-                name="ja-fez-atividade" 
+                name="ja_fez_atividade_fisica" 
                 value="true"
                 id="sim_ja_fez_atividade"
-                checked={formData.socioeconomico.ja_fez_atividade_fisica === true}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      ja_fez_atividade_fisica: true
-                    }
-                    })
-                }
+                checked={formData.ja_fez_atividade_fisica}
+                onChange={handleChange}
             />
             <label htmlFor="sim_ja_fez_atividade">Sim</label>
             <input 
                 type="radio" 
-                name="ja-fez-atividade"
+                name="ja_fez_atividade_fisica"
                 value="false"
                 id="nao_ja_fez_atividade"
-                checked={formData.socioeconomico.ja_fez_atividade_fisica === false}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      ja_fez_atividade_fisica: false
-                    }
-                    })
-                }
+                checked={formData.ja_fez_atividade_fisica}
+                onChange={handleChange}
             />
             <label htmlFor="nao_ja_fez_atividade">Não</label>
 
             <label>Há quanto tempo parou:</label>
             <input 
                 type="text" 
-                value={formData.socioeconomico.tempo_parado_atividade_fisica}
-                onChange={() => 
-                  setFormData({
-                    ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tempo_parado_atividade_fisica: e.target.value,
-                    },
-                  })
-                }
+                name="tempo_parado_atividade_fisica"
+                value={formData.tempo_parado_atividade_fisica}
+                onChange={handleChange}
             />
 
         </div>
+       
+
         <div className='mt-3'>
             <label>Etilismo:</label>
             <input 
                 type="radio" 
-                name="Etilismo" 
+                name="tem_etilismo" 
                 value="true"
                 id="sim_etilismo"
-                checked={formData.socioeconomico.tem_etilismo === true}
-                onChange={() =>
-                  formData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tem_etilismo: true
-                    }
-                    })
-                }
+                checked={formData.tem_etilismo}
+                onChange={handleChange}
             />
             <label htmlFor="sim_etilismo">Sim</label>
             <input 
                 type="radio" 
-                name="Etilismo" 
+                name="tem_etilismo" 
                 value="false"
                 id="nao_etilismo"
-                checked={formData.socioeconomico.tem_etilismo === false}
-                onChange={() =>
-                  formData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tem_etilismo: false
-                    }
-                    })
-                }
+                checked={formData.tem_etilismo === false}
+                onChange={handleChange}
             />
             <label htmlFor="nao_etilismo">Não</label>
 
             <label>Tipo:</label>
             <input 
                 type="text" 
-                value={formData.socioeconomico.tipo_etilismo}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tipo_etilismo: e.target.value
-                    }
-                    })
-                }
+                name="tipo_etilismo"
+                value={formData.tipo_etilismo}
+                onChange={handleChange}
             />
             <label>Quanto:</label>
             <input 
                 type="text" 
-                value={formData.socioeconomico.quanto_etilismo}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      quanto_etilismo: e.target.value
-                    }
-                    })
-                }
+                name="quanto_etilismo"
+                value={formData.quanto_etilismo}
+                onChange={handleChange}
             />
 
         </div>
-     <div>
+
+        <div>
             <label>Já foi etilista:</label>
             <input 
                 type="radio" 
-                name="ja-foi-etilista" 
+                name="ja_foi_etilista" 
                 value="true"
                 id="sim_ja_foi_etilista"
-                checked={formData.socioeconomico.ja_foi_etilista === true}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      ja_foi_etilista: true
-                    }
-                    })
-                }
+                checked={formData.ja_foi_etilista}
+                onChange={handleChange}
             />
             
             <label htmlFor="sim_ja_foi_etilista">Sim</label>
             <input 
                 type="radio" 
-                name="ja-foi-etilista" 
+                name="ja_foi_etilista" 
                 value="false"
                 id="nao_ja_foi_etilista"
-                checked={formData.socioeconomico.ja_foi_etilista === false}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      ja_foi_etilista: false
-                    }
-                    })
-                }
+                checked={formData.ja_foi_etilista}
+                onChange={handleChange }
             />
             <label htmlFor="nao_ja_foi_etilista">Não</label>
 
             <label>Há quanto tempo parou:</label>
             <input 
                 type="text" 
-                value={formData.socioeconomico.tempo_parado_etilismo}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tempo_parado_etilismo: e.target.value
-                    }
-                    })
-                }
+                name="tempo_parado_etilismo"
+                value={formData.tempo_parado_etilismo}
+                onChange={handleChange }
             />
 
         </div>
@@ -784,34 +519,20 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <label>Tabagismo:</label>
             <input 
                 type="radio" 
-                name="tabagismo" 
+                name="tem_tabagismo" 
                 value="true"
                 id="sim_tabagismo"
-                checked={formData.socioeconomico.tem_tabagismo === true}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tem_tabagismo: true
-                    }
-                    })
-                }
+                checked={formData.tem_tabagismo === true}
+                onChange={handleChange}
             />
             <label htmlFor="sim_tabagismo">Sim</label>
             <input 
                 type="radio" 
-                name="tabagismo" 
+                name="tem_tabagismo" 
                 value="false"
                 id="nao_tabagismo"
-                checked={formData.socioeconomico.tem_tabagismo === false}
-                onChange={() =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tem_tabagismo: false
-                    }
-                    })
-                }
+                checked={formData.tem_tabagismo === false}
+                onChange={handleChange}
 
             />
             <label htmlFor="nao_tabagismo">Não</label>
@@ -819,29 +540,16 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <label>Tipo:</label>
             <input 
                 type="text" 
-                value={formData.socioeconomico.tipo_tabagismo}
-                onChange={(e) =>
-                  setFormData({ ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tipo_tabagismo: e.target.value
-                    }
-                    })
-                }
+                name="tipo_tabagismo"
+                value={formData.tipo_tabagismo}
+                onChange={handleChange}
             />
             <label>Quanto:</label>
             <input 
                 type="text" 
-                value={formData.socioeconomico.quanto_tabagismo}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      quanto_tabagismo: e.target.value
-                    }
-                  })
-                }
+                name="quanto_tabagismo"
+                value={formData.quanto_tabagismo}
+                onChange={handleChange }
             />
 
         </div>
@@ -849,54 +557,32 @@ const DadosSocioEconomicos = ({formData, setFormData}) => {
             <label>Já foi tabagista:</label>
             <input 
                 type="radio" 
-                name="ja-foi-tabagista" 
+                name="ja_foi_tabagista" 
                 value="true"
                 id="sim_ja_foi_tabagista"
-                checked={formData.socioeconomico.ja_foi_tabagista === true}
-                onChange={() =>
-                  setFormData({
-                    ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      ja_foi_tabagista: true
-                    }
-                  })
-                }
+                checked={formData.ja_foi_tabagista === true}
+                onChange={handleChange}
             />
             <label htmlFor="sim_ja_foi_tabagista">Sim</label>
             <input 
                 type="radio" 
-                name="ja-foi-tabagista" 
+                name="ja_foi_tabagista" 
                 value="false"
                 id="nao_ja_foi_tabagista"
-                checked={formData.socioeconomico.ja_foi_tabagista === false}
-                onChange={() =>
-                  setFormData({
-                    ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      ja_foi_tabagista: false
-                    }
-                  })
-                } 
+                checked={formData.ja_foi_tabagista === false}
+                onChange={handleChange } 
             />
             <label htmlFor="nao_ja_foi_tabagista">Não</label>
 
             <label>Há quanto tempo parou:</label>
             <input 
                 type="text" 
-                value={formData.socioeconomico.tempo_parado_tabagismo}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    socioeconomico: {
-                      ...formData.socioeconomico,
-                      tempo_parado_tabagismo: e.target.value
-                    }
-                  })
-                }
+                name="tempo_parado_tabagismo"
+                value={formData.tempo_parado_tabagismo}
+                onChange={handleChange}
             />
         </div>
+        
         
     </>
   )
