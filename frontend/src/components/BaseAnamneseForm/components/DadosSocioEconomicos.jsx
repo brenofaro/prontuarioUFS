@@ -69,7 +69,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
 
             <div className="form-check form-check-inline">
               <input
-                className="form-check-input"
+                className="form-check-input "
                 type="radio"
                 name="estado_civil"
                 id="solteiro"
@@ -354,13 +354,13 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
 
 
         </div>
-          {/* <div className='mt-3'>
+          <div className='mt-3'>
             <label>Renda Pessoal:</label>
             <input 
                 type="number" 
                 name="renda_pessoal"
                 className="form-control w-25"
-                value={formData.renda_pessoal === null ? '' : formData.renda_pessoal}
+                value={formData.renda_pessoal}
                 onChange={handleChange}
             />
             <label>Gastos com a alimentação</label>
@@ -372,7 +372,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             />
 
 
-        </div> */}
+        </div>
 
         <div className='d-flex align-items-center m-2'>
             <label>Atividade Física:</label>
@@ -419,20 +419,20 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 type="radio" 
                 name="ja_fez_atividade_fisica" 
                 value="true"
-                id="sim_ja_fez_atividade"
+                id="ja_fez_atividade"
                 checked={formData.ja_fez_atividade_fisica}
                 onChange={handleChange}
             />
-            <label htmlFor="sim_ja_fez_atividade">Sim</label>
+            <label htmlFor="ja_fez_atividade">Sim</label>
             <input 
                 type="radio" 
                 name="ja_fez_atividade_fisica"
                 value="false"
-                id="nao_ja_fez_atividade"
+                id="nao_fez_atividade"
                 checked={formData.ja_fez_atividade_fisica}
                 onChange={handleChange}
             />
-            <label htmlFor="nao_ja_fez_atividade">Não</label>
+            <label htmlFor="nao_fez_atividade">Não</label>
 
             <label>Há quanto tempo parou:</label>
             <input 
