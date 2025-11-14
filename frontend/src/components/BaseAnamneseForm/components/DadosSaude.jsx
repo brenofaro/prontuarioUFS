@@ -1,6 +1,44 @@
 import React from 'react'
 
 const DadosSaude = ({formData, setFormData}) => {
+
+    const handleChange = (e) => {
+    let { name, value, type, checked } = e.target;
+
+    if (type === "checkbox" && !Array.isArray(formData[name])) {
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: checked,
+      }));
+    }
+
+    if (type === "radio" && (value === "true" || value === "false")) {
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: value === "true",
+      }));
+    }
+
+    if (type === "number") {
+  const numericValue = value === "" ? null : Number(value);
+  return setFormData((prev) => ({
+    ...prev,
+    [name]: numericValue,
+  }));
+}
+
+    if (type === "date") {
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   return (
     <>
     <div>
@@ -10,45 +48,29 @@ const DadosSaude = ({formData, setFormData}) => {
         </div>
       
             <textarea 
-            name="" 
+            name="objetivo_consulta" 
             id=""
-            value={formData.saude.objetivo_consulta}
-            onChange={(e) =>
-                  setFormData({ ...formData, 
-                    saude: {
-                      ...formData.saude,
-                      objetivo_consulta: e.target.value
-                    }
-                    })
-            }
+            value={formData.objetivo_consulta}
+            onChange={handleChange}
             >  
             </textarea>
        
         
     </div>
-
     <div>
         <label htmlFor="">História da Doença(Queixa) Atual: </label>
         <div>
             <textarea 
-                name="" 
+                name="historia_doenca" 
                 id=""
-                value={formData.saude.historia_doenca}
-                onChange={(e) =>
-                  setFormData({ ...formData, 
-                    saude: {
-                      ...formData.saude,
-                      historia_doenca: e.target.value
-                    }
-                    })
-            } 
+                value={formData.historia_doenca}
+                onChange={handleChange} 
             >
                 
             </textarea>
         </div>
     </div>
-
-    <div>
+     <div>
         <table className='table-bordered'>
             <thead className='table-light'>
                 <tr>
@@ -65,32 +87,18 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.diabetes_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        diabetes_hma:e.target.checked
-                                    }
-                                })
-                            }
+                            name="diabetes_hma"
+                            checked={formData.diabetes_hma}
+                            onChange={handleChange}
 
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.diabetes_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        diabetes_hf:e.target.checked
-                                    }
-                                })
-                            }
+                            name="diabetes_hf"
+                            checked={formData.diabetes_hf}
+                            onChange={handleChange}
                         />
                     </td>
                 </tr>
@@ -99,31 +107,17 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.hipertencao_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        hipertencao_hma:e.target.checked
-                                    }
-                                })
-                            }
+                            name="hipertencao_hma"
+                            checked={formData.hipertencao_hma}
+                            onChange={handleChange}
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.hipertencao_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        hipertencao_hf:e.target.checked
-                                    }
-                                })
-                            } 
+                            name="hipertencao_hf"
+                            checked={formData.hipertencao_hf}
+                            onChange={handleChange} 
                         />
                     </td>
                 </tr>
@@ -132,31 +126,17 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.doenca_cardiovascular_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        doenca_cardiovascular_hma:e.target.checked
-                                    }
-                                })
-                            }
+                            name="doenca_cardiovascular_hma"
+                            checked={formData.doenca_cardiovascular_hma}
+                            onChange={handleChange}
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.doenca_cardiovascular_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        doenca_cardiovascular_hf:e.target.checked
-                                    }
-                                })
-                            }
+                            name="doenca_cardiovascular_hf"
+                            checked={formData.doenca_cardiovascular_hf}
+                            onChange={handleChange}
                         />
                     </td>
                 </tr>
@@ -165,31 +145,17 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.dislipidemia_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        dislipidemia_hma:e.target.checked
-                                    }
-                                })
-                            }
+                            name="dislipidemia_hma"
+                            checked={formData.dislipidemia_hma}
+                            onChange={handleChange}
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.dislipidemia_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        dislipidemia_hf:e.target.checked
-                                    }
-                                })
-                            }
+                            name="dislipidemia_hf"
+                            checked={formData.dislipidemia_hf}
+                            onChange={handleChange}
                         />
                     </td>
                 </tr>
@@ -198,31 +164,17 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.cancer_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        cancer_hma:e.target.checked
-                                    }
-                                })
-                            }
+                            name="cancer_hma"
+                            checked={formData.cancer_hma}
+                            onChange={handleChange}
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.cancer_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        cancer_hf:e.target.checked
-                                    }
-                                })
-                            } 
+                            name="cancer_hf"
+                            checked={formData.cancer_hf}
+                            onChange={handleChange} 
                         />
                     </td>
                 </tr>
@@ -231,31 +183,17 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.osteoporose_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        osteoporose_hma:e.target.checked
-                                    }
-                                })
-                            }
+                            name="osteoporose_hma"
+                            checked={formData.osteoporose_hma}
+                            onChange={handleChange}
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.osteoporose_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        osteoporose_hf:e.target.checked
-                                    }
-                                })
-                            } 
+                            name="osteoporose_hf"
+                            checked={formData.osteoporose_hf}
+                            onChange={handleChange } 
                         />
                     </td>
                 </tr>
@@ -264,31 +202,17 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.depressao_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        depressao_hma:e.target.checked
-                                    }
-                                })
-                            } 
+                            name="depressao_hma"
+                            checked={formData.depressao_hma}
+                            onChange={handleChange} 
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.depressao_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        depressao_hf:e.target.checked
-                                    }
-                                })
-                            } 
+                            name="depressao_hf"
+                            checked={formData.depressao_hf}
+                            onChange={handleChange} 
                         />
                     </td>
                 </tr>
@@ -297,31 +221,17 @@ const DadosSaude = ({formData, setFormData}) => {
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.sop_hma}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        sop_hma:e.target.checked
-                                    }
-                                })
-                            } 
+                            name="sop_hma"
+                            checked={formData.sop_hma}
+                            onChange={handleChange} 
                         />
                     </td>
                     <td>
                         <input 
                             type="checkbox" 
-                            checked={formData.saude.sop_hf}
-                            onChange={(e) => 
-                                setFormData({
-                                    ...formData,
-                                    saude: {
-                                        ...formData.saude,
-                                        sop_hf:e.target.checked
-                                    }
-                                })
-                            } 
+                            name="sop_hf"
+                            checked={formData.sop_hf}
+                            onChange={handleChange} 
                         />
                     </td>
                 </tr>
@@ -332,19 +242,13 @@ const DadosSaude = ({formData, setFormData}) => {
         </table>
 
     </div>
-
-    <div className='d-flex flex-column align-items-start '>
+     <div className='d-flex flex-column align-items-start '>
         <label htmlFor="">Outras patologias:</label>
         <textarea 
-            value={formData.saude.outras_patologias}
-            onChange={(e) =>
-                  setFormData({ ...formData, 
-                    saude: {
-                      ...formData.saude,
-                      outras_patologias: e.target.value
-                    }
-                    })
-            }>
+            name="outras_patologias"
+            value={formData.outras_patologias}
+            onChange={handleChange}
+        >
             
         </textarea>
     </div>
@@ -352,33 +256,21 @@ const DadosSaude = ({formData, setFormData}) => {
         <label htmlFor="">Faz uso de medicamentos?</label>
         <input 
             type="radio" 
-            name="medicamentos" 
+            name="faz_uso_medicamentos" 
+            value="true"
             id="uso_medicamentos" 
-            checked={formData.saude.faz_uso_medicamentos === true}
-            onChange={(e) =>
-                  setFormData({ ...formData,
-                    saude: {
-                      ...formData.saude,
-                      faz_uso_medicamentos: true
-                    }
-                  })
-                }
+            checked={formData.faz_uso_medicamentos === true}
+            onChange={handleChange}
         />
         <label htmlFor="uso_medicamentos">Sim</label>
 
         <input 
             type="radio" 
-            name="medicamentos"
+            name="faz_uso_medicamentos"
+            value="false"
             id="nao_uso_medicamentos" 
-            checked={formData.saude.faz_uso_medicamentos === false}
-            onChange={(e) =>
-                  setFormData({ ...formData,
-                    saude: {
-                      ...formData.saude,
-                      faz_uso_medicamentos: false
-                    }
-                  })
-                }
+            checked={formData.faz_uso_medicamentos === false}
+            onChange={handleChange}
         />
         <label htmlFor="nao_uso_medicamentos">Não</label>
 
@@ -386,22 +278,15 @@ const DadosSaude = ({formData, setFormData}) => {
 
         <input 
             type="text" 
-            value={formData.saude.medicamentos}
+            name="medicamentos"
+            value={formData.medicamentos}
             placeholder='Ex: Fluoexetina'
-            onChange={(e) =>
-                setFormData({ ...formData,
-                    saude: {
-                      ...formData.saude,
-                      medicamentos: e.target.value
-                    }
-                  })
-                }
+            onChange={handleChange}
         />
     </div>
-    <div>
-        
 
-    </div>
+
+ 
     
     </>
   )

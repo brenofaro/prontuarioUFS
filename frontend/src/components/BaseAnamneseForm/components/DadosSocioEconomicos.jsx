@@ -381,7 +381,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 name="faz_atividade_fisica" 
                 value="true"
                 id="sim_atividade_fisica"
-                checked={formData.faz_atividade_fisica}
+                checked={formData.faz_atividade_fisica === true}
                 onChange={handleChange}
             />
             <label htmlFor="sim_atividade_fisica">Sim</label>
@@ -390,7 +390,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 name="faz_atividade_fisica" 
                 value="false"
                 id="nao_atividade_fisica"
-                checked={formData.faz_atividade_fisica}
+                checked={formData.faz_atividade_fisica === false}
                 onChange={handleChange}
             />
             <label htmlFor="nao_atividade_fisica">Não</label>
@@ -420,7 +420,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 name="ja_fez_atividade_fisica" 
                 value="true"
                 id="ja_fez_atividade"
-                checked={formData.ja_fez_atividade_fisica}
+                checked={formData.ja_fez_atividade_fisica === true}
                 onChange={handleChange}
             />
             <label htmlFor="ja_fez_atividade">Sim</label>
@@ -429,7 +429,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 name="ja_fez_atividade_fisica"
                 value="false"
                 id="nao_fez_atividade"
-                checked={formData.ja_fez_atividade_fisica}
+                checked={formData.ja_fez_atividade_fisica === false}
                 onChange={handleChange}
             />
             <label htmlFor="nao_fez_atividade">Não</label>
@@ -452,7 +452,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 name="tem_etilismo" 
                 value="true"
                 id="sim_etilismo"
-                checked={formData.tem_etilismo}
+                checked={formData.tem_etilismo === true}
                 onChange={handleChange}
             />
             <label htmlFor="sim_etilismo">Sim</label>
@@ -490,7 +490,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 name="ja_foi_etilista" 
                 value="true"
                 id="sim_ja_foi_etilista"
-                checked={formData.ja_foi_etilista}
+                checked={formData.ja_foi_etilista === true}
                 onChange={handleChange}
             />
             
@@ -500,7 +500,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
                 name="ja_foi_etilista" 
                 value="false"
                 id="nao_ja_foi_etilista"
-                checked={formData.ja_foi_etilista}
+                checked={formData.ja_foi_etilista ===false}
                 onChange={handleChange }
             />
             <label htmlFor="nao_ja_foi_etilista">Não</label>
