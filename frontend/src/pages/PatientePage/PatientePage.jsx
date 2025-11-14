@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CadastrateAnamneseButton from "../../components/CadastrateAnamneseButton/CadastrateAnamneseButton";
 import AnamneseList from "./AnamneseList";
 
 const PatientePage = () => {
   const { id } = useParams(); // pega o ID da URL
   const [paciente, setPaciente] = useState(null);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     const fetchPatiente = async () => {
@@ -66,7 +71,13 @@ const PatientePage = () => {
       <CadastrateAnamneseButton pacienteId={paciente.id} />
        {/* 📋 Lista de anamneses */}
       <AnamneseList/>
-
+  <button
+        type="button"
+        className="btn btn-outline-secondary rounded-pill px-4"
+        onClick={handleClick}
+      >
+        ← Voltar
+      </button>
     
     </div>
 

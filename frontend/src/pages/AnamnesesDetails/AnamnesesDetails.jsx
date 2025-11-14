@@ -38,11 +38,11 @@ const AnamnesesDetails = () => {
           <Card.Body>
             <Card.Title>Anamnese ID: {anamnese.id}</Card.Title>
             <Card.Text>
-              <strong>Tipo:</strong> {anamnese.tipo} <br />
-              <strong>Queixa Principal:</strong> {anamnese.queixa_principal || "-"} <br />
-              <strong>habitos:</strong> {anamnese.habitos || "-"} <br />
-              <strong>Observações:</strong> {anamnese.observacoes || "-"} <br />
-              <strong>ID do paciente:</strong> {anamnese.paciente_id || "-"} <br />  
+              <strong>Data:</strong> {anamnese.data_consulta} <br />
+              <strong>Número prontuário:</strong> {anamnese.numero_prontuario || "-"} <br />
+              <strong>nutricionista_responsavel:</strong> {anamnese.nutricionista_responsavel || "-"} <br />
+              <strong>estado_civil:</strong> {anamnese.estado_civil || "-"} <br />
+              <strong>estrutura_familia:</strong> {anamnese.estrutura_familia || "-"} <br />  
             </Card.Text>
           </Card.Body>
         </Card>

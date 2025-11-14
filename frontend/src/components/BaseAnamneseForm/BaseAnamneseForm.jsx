@@ -1,5 +1,5 @@
 import { useState } from "react"; 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import DadosSocioEconomicos from "./components/DadosSocioEconomicos.jsx";
 import DadosSaude from "./components/DadosSaude.jsx";
 import AvaliacaoAntropometrica from "./components/AvaliacaoAntropometrica.jsx";
@@ -11,6 +11,7 @@ import DadosIniciais from "./components/DadosIniciais.jsx";
 
 function BaseAnamneseForm() {
   const { id } = useParams(); 
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
       data_consulta : "",
@@ -106,21 +107,26 @@ function BaseAnamneseForm() {
       edemas: null,
       abdomen: null,
     
-      // data_ab: "",
-      // avaliacao_bioquimica: "",
+      data_ab: null,
+      avaliacao_bioquimica: null,
     
 
-      // possui_aversoes_alimentares: null,
-      // aversoes_alimentares: "",
-      // possui_alergias_alimentares: null,
-      // alergias_alimentares: "",
-      // ingestao_hidrica: "",
-      // existe_horario_mais_fome: null,
-      // horario_mais_fome: "",
-      // apetite: "",
-      // diagnostico_conclusivo: "",
+      possui_aversoes_alimentares: null,
+      aversoes_alimentares: null,
+      possui_alergias_alimentares: null,
+      alergias_alimentares: null,
+      ingestao_hidrica: null,
+      existe_horario_mais_fome: null,
+      horario_mais_fome: null,
+      apetite: null,
+      diagnostico_conclusivo: null,
     
   });
+
+const handleClick = () => {
+  navigate(`/pagina-paciente/${id}`);
+};
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -169,22 +175,40 @@ function BaseAnamneseForm() {
 }
 
   return (
-    <div>
+    <div className="container mt-4 border rounded p-4 bg-light">
       <form onSubmit={handleSubmit} className="p-3">
         <h3 className="text-primary">Cadastro de Anamnese</h3>
         
-        
+        <h4 className="mt-5 mb-3">Dados Iniciais</h4>
         <DadosIniciais formData={formData} setFormData={setFormData}/>
+        <h4 className="mt-5 mb-3">Dados Demográficos</h4>
         <DadosSocioEconomicos formData={formData} setFormData={setFormData}/>
+        <h4 className="mt-5 mb-3">Dados de Saúde</h4>
         <DadosSaude formData={formData} setFormData={setFormData}/>
+        <h4 className="mt-5 mb-3">Avaliação Antropometrica</h4>
         <AvaliacaoAntropometrica formData={formData} setFormData={setFormData}/>
+        <h4 className="mt-5 mb-3">Dados Bioimpedancia</h4>
         <DadosBioimpedancia formData={formData} setFormData={setFormData}/>
+        <h4 className="mt-5 mb-3">Sinais e Sintomas</h4>
         <SinaisSintomasClinicos formData={formData} setFormData={setFormData}/>
-        {/*<AvaliacaoBioquimica formData={formData} setFormData={setFormData}/>
-        <HistoriaAlimentar formData={formData} setFormData={setFormData}/>  */}
+        <h4 className="mt-5 mb-3">Avaliação Bioquímica</h4>
+        <AvaliacaoBioquimica formData={formData} setFormData={setFormData}/>
+        <h4 className="mt-5 mb-3">História Alimentar</h4>
+        <HistoriaAlimentar formData={formData} setFormData={setFormData}/>  
         
-      <button type="submit" className="btn btn-success mt-3">Salvar</button>
+      <div className="d-flex justify-content-between mt-4">
+      <button
+        type="button"
+        className="btn btn-outline-secondary rounded-pill px-4"
+        onClick={handleClick}
+      >
+        ← Voltar
+      </button>
 
+      <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
+        💾 Salvar Paciente
+      </button>
+    </div>
       </form>
       
     </div>
@@ -192,3 +216,5 @@ function BaseAnamneseForm() {
 }
 
 export default BaseAnamneseForm;
+
+  

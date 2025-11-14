@@ -64,61 +64,82 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
   return (
     <>
        
-          <div className="mb-3">
-            <label className="form-label d-block">Estado civil</label>
+          <div className="mb-4 p-3 border rounded bg-white shadow-sm">
 
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input "
-                type="radio"
-                name="estado_civil"
-                id="solteiro"
-                value="solteiro"
-                checked={formData.estado_civil === "solteiro"}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="solteiro">Solteiro</label>
-            </div>
+  <label className="form-label fw-semibold mb-2 d-block">
+    Estado Civil
+  </label>
 
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="estado_civil"
-                id="casado"
-                value="casado"
-                checked={formData.estado_civil === "casado"}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="casado">Casado</label>
-            </div>
+  <div className="d-flex flex-wrap gap-3">
 
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="estado_civil"
-                id="viuvo"
-                value="viuvo"
-                checked={formData.estado_civil === "viuvo"}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="viuvo">Viúvo</label>
-            </div>
+    {/* Solteiro */}
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="estado_civil"
+        id="solteiro"
+        value="solteiro"
+        checked={formData.estado_civil === "solteiro"}
+        onChange={handleChange}
+      />
+      <label className="form-check-label ms-1" htmlFor="solteiro">
+        Solteiro
+      </label>
+    </div>
 
-              <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="estado_civil"
-                id="separado"
-                value="separado"
-                checked={formData.estado_civil === "separado"}
-                onChange={handleChange}
-              />
-              <label className="form-check-label" htmlFor="separado">Separado</label>
-            </div>
-          </div>
+    {/* Casado */}
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="estado_civil"
+        id="casado"
+        value="casado"
+        checked={formData.estado_civil === "casado"}
+        onChange={handleChange}
+      />
+      <label className="form-check-label ms-1" htmlFor="casado">
+        Casado
+      </label>
+    </div>
+
+    {/* Viúvo */}
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="estado_civil"
+        id="viuvo"
+        value="viuvo"
+        checked={formData.estado_civil === "viuvo"}
+        onChange={handleChange}
+      />
+      <label className="form-check-label ms-1" htmlFor="viuvo">
+        Viúvo
+      </label>
+    </div>
+
+    {/* Separado */}
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="estado_civil"
+        id="separado"
+        value="separado"
+        checked={formData.estado_civil === "separado"}
+        onChange={handleChange}
+      />
+      <label className="form-check-label ms-1" htmlFor="separado">
+        Separado
+      </label>
+    </div>
+
+  </div>
+
+</div>
+
 
           <div>
 
