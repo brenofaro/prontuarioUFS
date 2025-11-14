@@ -41,249 +41,307 @@ const DadosSaude = ({formData, setFormData}) => {
   };
   return (
     <>
-    <div>
-        <div>
+   <div className="mb-4 p-3 border rounded bg-white shadow-sm">
 
-        <label htmlFor="">Queixa principal/ Objetivo da consulta</label>
-        </div>
-      
-            <textarea 
-            name="objetivo_consulta" 
-            id=""
-            value={formData.objetivo_consulta}
+  <div className="form-floating">
+    <textarea
+      className="form-control"
+      placeholder="Descreva a queixa principal..."
+      id="objetivo_consulta"
+      name="objetivo_consulta"
+      style={{ height: "150px" }}
+      value={formData.objetivo_consulta || ""}
+      onChange={handleChange}
+    ></textarea>
+
+    <label htmlFor="objetivo_consulta">
+      Queixa principal / Objetivo da consulta
+    </label>
+  </div>
+
+</div>
+
+    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+
+  <div className="form-floating">
+    <textarea
+      className="form-control"
+      placeholder="Descreva a evolução da doença, sintomas, início, intensidade..."
+      id="historia_doenca"
+      name="historia_doenca"
+      style={{ height: "150px" }}
+      value={formData.historia_doenca || ""}
+      onChange={handleChange}
+    ></textarea>
+
+    <label htmlFor="historia_doenca">
+      História da Doença (Queixa) Atual
+    </label>
+  </div>
+
+</div>
+
+    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+
+  <h5 className="fw-semibold mb-3">Patologias</h5>
+
+  <table className="table table-hover align-middle">
+
+    <thead className="table-primary">
+      <tr>
+        <th style={{ width: "45%" }}>Patologia</th>
+        <th className="text-center">HMA</th>
+        <th className="text-center">HF</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Diabetes</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="diabetes_hma"
+            checked={formData.diabetes_hma}
             onChange={handleChange}
-            >  
-            </textarea>
-       
-        
-    </div>
-    <div>
-        <label htmlFor="">História da Doença(Queixa) Atual: </label>
-        <div>
-            <textarea 
-                name="historia_doenca" 
-                id=""
-                value={formData.historia_doenca}
-                onChange={handleChange} 
-            >
-                
-            </textarea>
-        </div>
-    </div>
-     <div>
-        <table className='table-bordered'>
-            <thead className='table-light'>
-                <tr>
-                    <th>Patologias</th>
-                    <th>História da Moléstia Atual</th>
-                    <th>História Familiar</th>
-                </tr>
-
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td>Diabetes</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="diabetes_hma"
-                            checked={formData.diabetes_hma}
-                            onChange={handleChange}
-
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="diabetes_hf"
-                            checked={formData.diabetes_hf}
-                            onChange={handleChange}
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hipertensão</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="hipertencao_hma"
-                            checked={formData.hipertencao_hma}
-                            onChange={handleChange}
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="hipertencao_hf"
-                            checked={formData.hipertencao_hf}
-                            onChange={handleChange} 
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Doença Cardiovacular</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="doenca_cardiovascular_hma"
-                            checked={formData.doenca_cardiovascular_hma}
-                            onChange={handleChange}
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="doenca_cardiovascular_hf"
-                            checked={formData.doenca_cardiovascular_hf}
-                            onChange={handleChange}
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Dislipidemia</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="dislipidemia_hma"
-                            checked={formData.dislipidemia_hma}
-                            onChange={handleChange}
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="dislipidemia_hf"
-                            checked={formData.dislipidemia_hf}
-                            onChange={handleChange}
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Câncer</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="cancer_hma"
-                            checked={formData.cancer_hma}
-                            onChange={handleChange}
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="cancer_hf"
-                            checked={formData.cancer_hf}
-                            onChange={handleChange} 
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Osteoporose</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="osteoporose_hma"
-                            checked={formData.osteoporose_hma}
-                            onChange={handleChange}
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="osteoporose_hf"
-                            checked={formData.osteoporose_hf}
-                            onChange={handleChange } 
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Depressão/Ansiedade</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="depressao_hma"
-                            checked={formData.depressao_hma}
-                            onChange={handleChange} 
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="depressao_hf"
-                            checked={formData.depressao_hf}
-                            onChange={handleChange} 
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Síndrome dos ovários policísticos</td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="sop_hma"
-                            checked={formData.sop_hma}
-                            onChange={handleChange} 
-                        />
-                    </td>
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            name="sop_hf"
-                            checked={formData.sop_hf}
-                            onChange={handleChange} 
-                        />
-                    </td>
-                </tr>
-                
-                
-            </tbody>
-
-        </table>
-
-    </div>
-     <div className='d-flex flex-column align-items-start '>
-        <label htmlFor="">Outras patologias:</label>
-        <textarea 
-            name="outras_patologias"
-            value={formData.outras_patologias}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="diabetes_hf"
+            checked={formData.diabetes_hf}
             onChange={handleChange}
-        >
-            
-        </textarea>
-    </div>
-    <div>
-        <label htmlFor="">Faz uso de medicamentos?</label>
-        <input 
-            type="radio" 
-            name="faz_uso_medicamentos" 
-            value="true"
-            id="uso_medicamentos" 
-            checked={formData.faz_uso_medicamentos === true}
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Hipertensão</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="hipertencao_hma"
+            checked={formData.hipertencao_hma}
             onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="hipertencao_hf"
+            checked={formData.hipertencao_hf}
+            onChange={handleChange}
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Doença Cardiovascular</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="doenca_cardiovascular_hma"
+            checked={formData.doenca_cardiovascular_hma}
+            onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="doenca_cardiovascular_hf"
+            checked={formData.doenca_cardiovascular_hf}
+            onChange={handleChange}
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Dislipidemia</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="dislipidemia_hma"
+            checked={formData.dislipidemia_hma}
+            onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="dislipidemia_hf"
+            checked={formData.dislipidemia_hf}
+            onChange={handleChange}
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Câncer</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="cancer_hma"
+            checked={formData.cancer_hma}
+            onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="cancer_hf"
+            checked={formData.cancer_hf}
+            onChange={handleChange}
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Osteoporose</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="osteoporose_hma"
+            checked={formData.osteoporose_hma}
+            onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="osteoporose_hf"
+            checked={formData.osteoporose_hf}
+            onChange={handleChange}
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Depressão / Ansiedade</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="depressao_hma"
+            checked={formData.depressao_hma}
+            onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="depressao_hf"
+            checked={formData.depressao_hf}
+            onChange={handleChange}
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Síndrome dos Ovários Policísticos</td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="sop_hma"
+            checked={formData.sop_hma}
+            onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <input
+            type="checkbox"
+            name="sop_hf"
+            checked={formData.sop_hf}
+            onChange={handleChange}
+          />
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+
+  <div className="form-floating">
+    <textarea
+      className="form-control"
+      placeholder="Descreva aqui outras patologias relevantes..."
+      id="outras_patologias"
+      name="outras_patologias"
+      style={{ height: "130px" }}
+      value={formData.outras_patologias || ""}
+      onChange={handleChange}
+    ></textarea>
+
+    <label htmlFor="outras_patologias">
+      Outras Patologias
+    </label>
+  </div>
+
+</div>
+
+  <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+
+  <label className="form-label fw-semibold mb-3 d-block">
+    Faz uso de medicamentos?
+  </label>
+
+  <div className="d-flex flex-wrap align-items-center gap-4">
+
+    {/* SIM */}
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="faz_uso_medicamentos"
+        id="uso_medicamentos"
+        value="true"
+        checked={formData.faz_uso_medicamentos === true}
+        onChange={handleChange}
+      />
+      <label className="form-check-label ms-1" htmlFor="uso_medicamentos">
+        Sim
+      </label>
+    </div>
+
+    {/* NÃO */}
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="faz_uso_medicamentos"
+        id="nao_uso_medicamentos"
+        value="false"
+        checked={formData.faz_uso_medicamentos === false}
+        onChange={handleChange}
+      />
+      <label className="form-check-label ms-1" htmlFor="nao_uso_medicamentos">
+        Não
+      </label>
+    </div>
+
+    {/* CAMPO CONDICIONAL */}
+    {formData.faz_uso_medicamentos === true && (
+      <>
+        <label className="ms-3 mb-0">Quais:</label>
+
+        <input
+          type="text"
+          name="medicamentos"
+          className="form-control d-inline-block"
+          style={{ width: "250px" }}
+          placeholder="Ex: Fluoxetina"
+          value={formData.medicamentos || ""}
+          onChange={handleChange}
         />
-        <label htmlFor="uso_medicamentos">Sim</label>
+      </>
+    )}
 
-        <input 
-            type="radio" 
-            name="faz_uso_medicamentos"
-            value="false"
-            id="nao_uso_medicamentos" 
-            checked={formData.faz_uso_medicamentos === false}
-            onChange={handleChange}
-        />
-        <label htmlFor="nao_uso_medicamentos">Não</label>
+  </div>
 
-        <label htmlFor="">Quais:</label>
+</div>
 
-        <input 
-            type="text" 
-            name="medicamentos"
-            value={formData.medicamentos}
-            placeholder='Ex: Fluoexetina'
-            onChange={handleChange}
-        />
-    </div>
 
 
  

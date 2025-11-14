@@ -4,7 +4,7 @@ const DadosIniciais = ({ formData, setFormData }) => {
   return (
     <div className="p-3 rounded shadow-sm bg-white border">
 
-      <h5 className="mb-3 text-primary fw-bold">Dados Iniciais</h5>
+
 
       <div className="row">
 
@@ -31,7 +31,6 @@ const DadosIniciais = ({ formData, setFormData }) => {
           <input
             type="text"
             className="form-control"
-            placeholder="Ex: 2025-00123"
             value={formData.numero_prontuario}
             onChange={(e) =>
               setFormData({

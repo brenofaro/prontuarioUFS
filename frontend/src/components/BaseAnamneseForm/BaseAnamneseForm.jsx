@@ -8,6 +8,7 @@ import SinaisSintomasClinicos from "./components/SinaisSintomasClinicos.jsx";
 import AvaliacaoBioquimica from "./components/AvaliacaoBioquimica.jsx";
 import HistoriaAlimentar from "./components/HistoriaAlimentar.jsx";
 import DadosIniciais from "./components/DadosIniciais.jsx";
+import DiagnosticoConclusivo from "./components/DiagnosticoConclusivo.jsx";
 
 function BaseAnamneseForm() {
   const { id } = useParams(); 
@@ -195,6 +196,8 @@ const handleClick = () => {
         <AvaliacaoBioquimica formData={formData} setFormData={setFormData}/>
         <h4 className="mt-5 mb-3">História Alimentar</h4>
         <HistoriaAlimentar formData={formData} setFormData={setFormData}/>  
+        <h4 className="mt-5 mb-3">Diagnostico Conclusivo</h4>
+        <DiagnosticoConclusivo formData={formData} setFormData={setFormData}/>
         
       <div className="d-flex justify-content-between mt-4">
       <button
@@ -206,7 +209,7 @@ const handleClick = () => {
       </button>
 
       <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
-        💾 Salvar Paciente
+         Salvar Anamnese
       </button>
     </div>
       </form>

@@ -49,12 +49,16 @@ const AnamneseList = () => {
 {anamneses.length === 0 ? (
   <div className="text-muted fst-italic">Nenhuma anamnese cadastrada.</div>
 ) : (
-  <div className="list-group border-0">
+  <div className="list-group border-0"  style={{
+    maxHeight: "400px",     // altura máxima
+    overflowY: "auto",       // ativa scroll vertical
+    paddingRight: "6px"     // evita scrollbar por cima do conteúdo
+  }}>
     {anamneses.map((anamnese) => (
       <div
         key={anamnese.id}
         className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
-        style={{ background: "#f8f9fa" }}
+        style={{ background: "#f8f9fa"}}
       >
         <div>
           <h6 className="fw-bold text-dark mb-1">

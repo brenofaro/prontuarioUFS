@@ -46,100 +46,136 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
 
   return (
    <>
-    <div className="mb-3">
-      <label htmlFor="gordura">Percentual de gordura (%):</label>
-      <input
-        type="number"
-        id="gordura"
-        name="percentual_gordura"
-        step="0.1"   // permite casas decimais (ex: 15.5)
-        min="0"
-        max="100"
-        placeholder="Ex: 15.5"
-        value={formData.percentual_gordura}
-        onChange={handleChange }
-      />
-      <label htmlFor="">Peso gordura(kg):</label>
-      <input 
-        type="number" 
-        placeholder='Ex: 72.5'
-        step="0.1"
-        min="0"
-        name="peso_gordura"
-        value={formData.peso_gordura}
-        onChange={handleChange}
-      />
-      <label htmlFor="">Massa magra(kg):</label>
-      <input 
-        type="number" 
-        placeholder='Ex: 12.5'
-        step="0.1"
-        min="0"
-        name="massa_magra"
-        value={formData.massa_magra}
-        onChange={handleChange}
-      />
+    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
 
-    </div>
-    <div className="mb-3">
-      <label htmlFor="gordura">Gordura alvo (%):</label>
+
+  {/* Linha 1 */}
+  <div className="row g-3">
+
+    <div className="col-md-3">
+      <label className="form-label">Percentual de gordura (%)</label>
       <input
         type="number"
-        id="gordura"
-        name="gordura_alvo"
-        step="0.1"   // permite casas decimais (ex: 15.5)
+        className="form-control"
+        name="percentual_gordura"
+        step="0.1"
         min="0"
         max="100"
         placeholder="Ex: 15.5"
-        value={formData.gordura_alvo}
+        value={formData.percentual_gordura || ""}
         onChange={handleChange}
       />
-      <label htmlFor="">Peso alvo(kg):</label>
-      <input 
-        type="number" 
-        placeholder='Ex: 72.5'
+    </div>
+
+    <div className="col-md-3">
+      <label className="form-label">Peso gordura (kg)</label>
+      <input
+        type="number"
+        className="form-control"
+        name="peso_gordura"
         step="0.1"
         min="0"
-        name="peso_alvo"
-        value={formData.peso_alvo}
+        placeholder="Ex: 10.5"
+        value={formData.peso_gordura || ""}
         onChange={handleChange}
       />
-      <label htmlFor="">TMB(kcal):</label>
-      <input 
-        type="number" 
-        placeholder='Ex: 125'
+    </div>
+
+    <div className="col-md-3">
+      <label className="form-label">Massa magra (kg)</label>
+      <input
+        type="number"
+        className="form-control"
+        name="massa_magra"
+        step="0.1"
+        min="0"
+        placeholder="Ex: 58.2"
+        value={formData.massa_magra || ""}
+        onChange={handleChange}
+      />
+    </div>
+
+    <div className="col-md-3">
+      <label className="form-label">Gordura alvo (%)</label>
+      <input
+        type="number"
+        className="form-control"
+        name="gordura_alvo"
+        step="0.1"
+        min="0"
+        max="100"
+        placeholder="Ex: 12.5"
+        value={formData.gordura_alvo || ""}
+        onChange={handleChange}
+      />
+    </div>
+
+  </div>
+
+
+  {/* Linha 2 */}
+  <div className="row g-3 mt-2">
+
+    <div className="col-md-3">
+      <label className="form-label">Peso alvo (kg)</label>
+      <input
+        type="number"
+        className="form-control"
+        name="peso_alvo"
+        step="0.1"
+        min="0"
+        placeholder="Ex: 70.0"
+        value={formData.peso_alvo || ""}
+        onChange={handleChange}
+      />
+    </div>
+
+    <div className="col-md-3">
+      <label className="form-label">TMB (kcal)</label>
+      <input
+        type="number"
+        className="form-control"
         name="tmb"
         min="0"
-        value={formData.tmb}
+        placeholder="Ex: 1500"
+        value={formData.tmb || ""}
         onChange={handleChange}
       />
-
     </div>
-    <div className="mb-3">
-      <label htmlFor="gordura">Percentual de água da massa magra(%):</label>
+
+    <div className="col-md-3">
+      <label className="form-label">Água da massa magra (%)</label>
       <input
         type="number"
+        className="form-control"
         name="percentual_agua_massa_magra"
-        step="0.1"   // permite casas decimais (ex: 15.5)
-        min="0"
-        max="100"
-        placeholder="Ex: 15.5"
-        value={formData.percentual_agua_massa_magra}
-        onChange={handleChange}
-      />
-      <label htmlFor="">Agua corporal total(l):</label>
-      <input 
-        type="number" 
-        placeholder='Ex: 72.5'
         step="0.1"
         min="0"
-        name="agua_corporal_total"
-        value={formData.agua_corporal_total}
+        max="100"
+        placeholder="Ex: 73.0"
+        value={formData.percentual_agua_massa_magra || ""}
         onChange={handleChange}
       />
-   
-
     </div>
+
+    <div className="col-md-3">
+      <label className="form-label">Água corporal total (L)</label>
+      <input
+        type="number"
+        className="form-control"
+        name="agua_corporal_total"
+        step="0.1"
+        min="0"
+        placeholder="Ex: 40.5"
+        value={formData.agua_corporal_total || ""}
+        onChange={handleChange}
+      />
+    </div>
+
+  </div>
+
+</div>
+
    </>
   )
 }

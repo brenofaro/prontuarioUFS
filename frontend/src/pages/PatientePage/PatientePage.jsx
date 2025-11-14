@@ -31,6 +31,7 @@ const PatientePage = () => {
   }
 
   return (
+    <>
     <div className="container mt-4 border rounded p-4 bg-light">
   <div className="card border-0 shadow p-4 rounded-4 mb-3" style={{ background: "#f8f9fa" }}>
   <div className="d-flex align-items-center border-bottom pb-3 mb-3">
@@ -68,21 +69,30 @@ const PatientePage = () => {
 </div>
 
 
-      <CadastrateAnamneseButton pacienteId={paciente.id} />
-       {/* 📋 Lista de anamneses */}
+      <div className="mt-4">
       <AnamneseList/>
-  <button
+
+      </div>
+       {/* 📋 Lista de anamneses */}
+
+     <div className="d-flex justify-content-between mt-5">
+      <button
         type="button"
         className="btn btn-outline-secondary rounded-pill px-4"
         onClick={handleClick}
       >
         ← Voltar
       </button>
-    
-    </div>
 
-    
+        <CadastrateAnamneseButton pacienteId={id} />
+  
+    </div>
+    </div>
+   
+
+    </>
   );
 };
 
 export default PatientePage;
+

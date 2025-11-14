@@ -46,26 +46,41 @@ const AvaliacaoBioquimica = ({ formData, setFormData }) => {
   };
   return (
     <>
-      <div>
-        <label htmlFor="data_avaliacao">Data:</label>
-        <input
-          type="date"
-          name="data_ab"
-          value={formData.data_ab}
-          onChange={handleChange}
-        />
-      </div>
+      <div className="mb-4 p-3 border rounded bg-white shadow-sm">
 
-      <div className="d-flex flex-column mt-2">
-        <label htmlFor="descricao_avaliacao">Descrição:</label>
-        <textarea
-          name="avaliacao_bioquimica"
-          value={formData.avaliacao_bioquimica}
-          onChange={handleChange}
-          rows="4"
-          cols="50"
-        />
-      </div>
+
+  {/* Data */}
+  <div className="d-flex flex-column mb-3" style={{ maxWidth: "250px" }}>
+    <label className="form-label" htmlFor="data_ab">Data da Avaliação</label>
+    <input
+      type="date"
+      id="data_ab"
+      name="data_ab"
+      className="form-control"
+      value={formData.data_ab || ""}
+      onChange={handleChange}
+    />
+  </div>
+
+  {/* Descrição */}
+<div className="form-floating mb-4">
+  <textarea
+    className="form-control"
+    id="avaliacao_bioquimica"
+    name="avaliacao_bioquimica"
+    placeholder="Descreva os resultados, observações ou detalhes relevantes..."
+    style={{ height: "150px" }}
+    value={formData.avaliacao_bioquimica || ""}
+    onChange={handleChange}
+  ></textarea>
+
+  <label htmlFor="avaliacao_bioquimica">
+    Descrição da avaliação bioquímica
+  </label>
+</div>
+
+</div>
+
     </>
   );
 };
