@@ -13,7 +13,7 @@ function App() {
       <Route path="/" element={<InitialPage />} />
       <Route path="/cadastrar-paciente" element={<RegisterPatientePage />} />
       <Route path= "/pagina-paciente/:id" element={<PatientePage />} />
-      <Route path="/anamnese-padrao/:id" element={<BaseAnamneseForm/>}/>
+      <Route path="/anamnese-padrao/:pacienteId" element={<BaseAnamneseForm/>}/>
       {/* <Route path="/anamnese-infantil/:id" element={<ChildAnamneseForm/>}/> */}
       {/* <Route path="/anamnese-retorno/:id" element={<ReturnAnameseForm/>}/> */}
       <Route path="/detalhes-anamnese/:id" element={<AnamnesesDetails/>}/>
