@@ -1,29 +1,74 @@
-.search-bar-container {
-  background-color: #f8f9fa; /* Fundo suave, mesmo tom da SearchResults */
-  border: 1px solid #dee2e6; /* Borda leve */
+.search-bar-wrapper {
+  margin-bottom: 2rem;
 }
 
-/* Input estilizado */
+.search-bar-wrapper h4 {
+  color: #212529;
+}
+
+/* Search Container */
+.search-container {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.search-container:hover {
+  border-color: #c0c0c0;
+}
+
+.search-container:focus-within {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+/* Input Group */
+.search-input-group {
+  background: transparent;
+}
+
 .search-input {
-  background-color: #fff;
-  border-color: #ced4da;
-  border-right: none;
-  box-shadow: none !important;
+  font-size: 0.95rem;
+  padding: 0.75rem 0.5rem;
 }
 
-/* Efeito ao focar o campo */
 .search-input:focus {
-  border-color: #86b7fe;
-  box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25) !important;
+  box-shadow: none !important;
+  outline: none;
 }
 
-/* Botão da lupa */
-button.btn-light:hover {
-  background-color: #eef3ff !important;
+.search-input::placeholder {
+  color: #999;
 }
 
-/* Título */
-.search-bar-container h5 {
-  font-weight: 600;
-  color: #0d6efd; /* azul padrão Bootstrap */
+/* Input Group Text */
+.input-group-text {
+  padding: 0.75rem 1rem;
+}
+
+/* Clear Button */
+.clear-btn {
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  transition: color 0.2s ease;
+}
+
+.clear-btn:hover {
+  color: #dc3545 !important;
+}
+
+.clear-btn i {
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-bar-wrapper h4 {
+    font-size: 1.25rem;
+  }
+
+  .search-input {
+    font-size: 0.9rem;
+  }
 }

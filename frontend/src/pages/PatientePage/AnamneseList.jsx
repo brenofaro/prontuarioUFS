@@ -50,7 +50,7 @@ const AnamneseList = () => {
   <div className="text-muted fst-italic">Nenhuma anamnese cadastrada.</div>
 ) : (
   <div className="list-group border-0"  style={{
-    maxHeight: "400px", 
+    maxHeight: "300px", 
     minHeight: "300px",   // altura máxima
     overflowY: "auto",       // ativa scroll vertical
     paddingRight: "6px"     // evita scrollbar por cima do conteúdo
@@ -61,19 +61,13 @@ const AnamneseList = () => {
         className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
         style={{ background: "#f8f9fa"}}
       >
-        <div>
-          <h6 className="fw-bold text-dark mb-1">
-            🩺 Anamnese #{anamnese.id}
+        <div >
+          <h6 className="mb-1" style={{fontFamily:"arial"}}>
+             Data: {anamnese.data_consulta} <br/>
+             Número prontuário: {anamnese.numero_prontuario} <br/>
+             Nutricionista responsável: {anamnese.nutricionista_responsavel}  
           </h6>
-          <div className="text-secondary small">
-            <p className="mb-1">
-              <strong>Tipo:</strong> {anamnese.tipo}
-            </p>
-            <p className="mb-0">
-              <strong>Queixa principal:</strong>{" "}
-              {anamnese.queixa_principal || "-"}
-            </p>
-          </div>
+         
         </div>
 
         <Button

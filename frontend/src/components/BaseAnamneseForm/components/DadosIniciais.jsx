@@ -2,18 +2,18 @@ import React from "react";
 
 const DadosIniciais = ({ formData, setFormData }) => {
   return (
-    <div className="p-3 rounded shadow-sm bg-white border">
+    <div className="p-4 rounded-3 bg-white border">
 
-
-
-      <div className="row">
-
+      <div className="row g-3">
         {/* Data da consulta */}
-        <div className="col-md-4 mb-3">
-          <label className="form-label">Data da Consulta *</label>
+        <div className="col-md-4">
+          <label htmlFor="data_consulta" className="form-label text-muted small">
+            Data da Consulta *
+          </label>
           <input
             type="date"
             className="form-control"
+            id="data_consulta"
             value={formData.data_consulta}
             onChange={(e) =>
               setFormData({
@@ -26,11 +26,14 @@ const DadosIniciais = ({ formData, setFormData }) => {
         </div>
 
         {/* Número do prontuário */}
-        <div className="col-md-4 mb-3">
-          <label className="form-label">Número do Prontuário *</label>
+        <div className="col-md-4">
+          <label htmlFor="numero_prontuario" className="form-label text-muted small">
+            Número do Prontuário *
+          </label>
           <input
             type="text"
             className="form-control"
+            id="numero_prontuario"
             value={formData.numero_prontuario}
             onChange={(e) =>
               setFormData({
@@ -43,11 +46,14 @@ const DadosIniciais = ({ formData, setFormData }) => {
         </div>
 
         {/* Nutricionista */}
-        <div className="col-md-4 mb-3">
-          <label className="form-label">Nutricionista Responsável *</label>
+        <div className="col-md-4">
+          <label htmlFor="nutricionista_responsavel" className="form-label text-muted small">
+            Nutricionista Responsável *
+          </label>
           <input
             type="text"
             className="form-control"
+            id="nutricionista_responsavel"
             placeholder="Nome completo"
             value={formData.nutricionista_responsavel}
             onChange={(e) =>
@@ -59,7 +65,6 @@ const DadosIniciais = ({ formData, setFormData }) => {
             required
           />
         </div>
-
       </div>
     </div>
   );

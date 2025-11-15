@@ -1,6 +1,5 @@
 import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
 
 function SearchBar({ placeholder, onSearch, onFilterChange }) {
@@ -22,32 +21,38 @@ function SearchBar({ placeholder, onSearch, onFilterChange }) {
     if (onFilterChange) onFilterChange(newFilter);
   };
 
-  return (
-    <div className="search-bar-container mt-4 mb-3 p-3 rounded shadow-sm">
-      <div className="d-flex justify-content-between align-items-center mb-2">
-        <h5 className="fw-semibold text-primary mb-0">Prontuários</h5>
-      </div>
+  const handleClear = () => {
+    setQuery("");
+    if (onSearch) onSearch("", filter);
+  };
 
-      <InputGroup>
-        <FormControl
-          placeholder={placeholder || "Digite o nome ou CPF do paciente..."}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyPress={handleKeyPress}
-          className="search-input"
-        />
-        <Button
-          variant="light"
-          className="border-start"
-          onClick={handleSearch}
-          style={{
-            backgroundColor: "white",
-            borderColor: "#ced4da",
-          }}
-        >
-          <FaSearch className="text-muted" />
-        </Button>
-      </InputGroup>
+  return (
+    <div className="search-bar-wrapper">
+      <h4 className=" mb-3" style={{fontFamily:"arial"}}>Prontuários</h4>
+
+      <div className="search-container">
+        <InputGroup className="search-input-group">
+          <span className="input-group-text bg-transparent border-0">
+            <i className="bi bi-search text-muted"></i>
+          </span>
+          <FormControl
+            placeholder={placeholder || "Buscar paciente por nome ou CPF..."}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
+            className="border-0 search-input"
+          />
+          {query && (
+            <Button
+              variant="link"
+              className="border-0 text-muted clear-btn"
+              onClick={handleClear}
+            >
+              <i className="bi bi-x-lg"></i>
+            </Button>
+          )}
+        </InputGroup>
+      </div>
     </div>
   );
 }

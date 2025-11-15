@@ -1,35 +1,82 @@
-.btn-link {
-  font-family: "Poppins", sans-serif;
+.patient-card {
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
 }
 
-ul {
-  width: 100%;
+.patient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+  border-color: #0d6efd;
 }
 
-li {
-  list-style: none;
+.patient-card:active {
+  transform: translateY(-2px);
 }
 
-/* Para navegadores baseados em WebKit (Chrome, Edge, Safari) */
-.custom-scroll::-webkit-scrollbar {
+/* Animação suave para o grid */
+.row.g-3 > * {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .patient-card .card-body {
+    padding: 1rem !important;
+  }
+}
+
+/* Loading spinner personalizado */
+.spinner-border {
+  border-width: 0.3rem;
+}
+
+/*Scrollbar customizada (caso necessite scroll) */
+.overflow-auto::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
-.custom-scroll::-webkit-scrollbar-track {
-  background: transparent; /* fundo transparente */
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2); /* leve transparência */
+.overflow-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
   border-radius: 10px;
-  transition: background-color 0.3s ease;
 }
 
-.custom-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.4); /* mais visível ao passar o mouse */
+.overflow-auto::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
 }
-/* Para Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #808b97 #f1f1f1;
+
+.overflow-auto::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Scrollbar para navegadores baseados em WebKit (Chrome, Edge, Brave, Opera) */
+.fina::-webkit-scrollbar {
+  width: 6px;        /* Largura da scroll vertical */
+}
+
+.fina::-webkit-scrollbar-track {
+  background: transparent; /* fundo do trilho */
+}
+
+.fina::-webkit-scrollbar-thumb {
+  background: #b5b5b5;      /* cor da barrinha */
+  border-radius: 10px;      /* deixa arredondada */
+}
+
+/* Scrollbar para Firefox */
+.fina {
+  scrollbar-width: thin;        /* deixa fina */
+  scrollbar-color: #b5b5b5 transparent; /* cor da barra e fundo */
 }

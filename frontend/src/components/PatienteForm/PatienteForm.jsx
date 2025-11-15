@@ -7,7 +7,7 @@ function PatienteForm() {
 
   const [formData, setFormData] = useState({
     nome: "",
-    dataNascimento: "",
+    data_nascimento: null,
     telefone: "",
     cpf: "",
     endereco: "",
@@ -51,7 +51,7 @@ function PatienteForm() {
       // Limpar o formulário após o cadastro bem-sucedido
       setFormData({
         nome: "",
-        dataNascimento: "",
+        data_nascimento: "",
         telefone: "",
         cpf: "",
         endereco: "",
@@ -100,8 +100,8 @@ function PatienteForm() {
         <input
           type="date"
           className="form-control shadow-sm"
-          name="dataNascimento"
-          value={formData.dataNascimento}
+          name="data_nascimento"
+          value={formData.data_nascimento}
           onChange={handleChange}
           required
         />
