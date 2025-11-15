@@ -178,9 +178,9 @@ const handleClick = () => {
   return (
     <div className="container mt-4 border rounded p-4 bg-light">
       <form onSubmit={handleSubmit} className="p-3">
-        <h3 className="text-primary">Cadastro de Anamnese</h3>
+        <h3 className="" style={{fontFamily:"arial"}}>Cadastro de Anamnese</h3>
         
-        <h4 className="mt-5 mb-3">Dados Iniciais</h4>
+        <h4 className="mt-5 mb-3"style={{fontFamily:"arial", fontSize: "1.3rem"}}>Dados Iniciais</h4>
         <DadosIniciais formData={formData} setFormData={setFormData}/>
         <h4 className="mt-5 mb-3">Dados Demográficos</h4>
         <DadosSocioEconomicos formData={formData} setFormData={setFormData}/>

@@ -66,19 +66,18 @@ function PatienteForm() {
 
   return (
     <div className="container mt-4 border rounded p-4 bg-light">
-      <div className="card shadow-sm border-0 rounded-4 p-4 mb-4" style={{ background: "#f8f9fa" }}>
-  <h4 className="fw-bold text-dark mb-4">
-    👤 Adicionar Paciente
+      {/* <div className="card shadow-sm border-0 rounded-4 p-4 mb-4" style={{ background: "#f8f9fa" }}> */}
+  <h4 className=" text-dark mb-4" style={{fontFamily:"arial"}}>
+     Cadastrar Paciente
   </h4>
 
-  <h6 className="text-primary fw-semibold mb-3">Informações Gerais</h6>
 
   <form onSubmit={handleSubmit}>
     {/* Nome */}
     <div className="row mb-3">
       <div className="col-md-8">
-        <label className="form-label fw-semibold">
-          <i className="bi bi-person me-2 text-primary"></i>Nome*
+        <label className="form-label" style={{fontFamily:"arial"}}>
+          <i className="bi bi-person me-2 text-primary" ></i>Nome
         </label>
         <input
           type="text"
@@ -165,15 +164,15 @@ function PatienteForm() {
         className="btn btn-outline-secondary rounded-pill px-4"
         onClick={handleClick}
       >
-        ← Voltar
+         Voltar
       </button>
 
       <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
-        💾 Salvar Paciente
+         Salvar Paciente
       </button>
     </div>
   </form>
-</div>
+{/* </div> */}
 
 
 <ToastContainer 

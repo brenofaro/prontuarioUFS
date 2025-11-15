@@ -327,9 +327,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="pai_mae"
+          value="pai e mãe, "
           id="pai_mae"
-          checked={formData.estrutura_familia.includes("pai_mae")}
+          checked={formData.estrutura_familia.includes("pai e mãe, ")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="pai_mae">
@@ -345,9 +345,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="conjuge"
-          id="conjuge"
-          checked={formData.estrutura_familia.includes("conjuge")}
+          value="cônjuge, "
+          id="cônjuge, "
+          checked={formData.estrutura_familia.includes("cônjuge, ")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="conjuge">
@@ -363,9 +363,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="filho"
+          value="filho, "
           id="filho"
-          checked={formData.estrutura_familia.includes("filho")}
+          checked={formData.estrutura_familia.includes("filho, ")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="filho">
@@ -381,9 +381,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="irmao"
+          value="irmão, "
           id="irmao"
-          checked={formData.estrutura_familia.includes("irmao")}
+          checked={formData.estrutura_familia.includes("irmão, ")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="irmao">
@@ -399,9 +399,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="netos"
+          value="netos, "
           id="netos"
-          checked={formData.estrutura_familia.includes("netos")}
+          checked={formData.estrutura_familia.includes("netos, ")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="netos">
@@ -417,9 +417,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="sobrinho"
+          value="sobrinho, "
           id="sobrinho"
-          checked={formData.estrutura_familia.includes("sobrinho")}
+          checked={formData.estrutura_familia.includes("sobrinho, ")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="sobrinho">
@@ -435,9 +435,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="cunhado"
+          value="cunhado, "
           id="cunhado"
-          checked={formData.estrutura_familia.includes("cunhado")}
+          checked={formData.estrutura_familia.includes("cunhado, ")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="cunhado">
@@ -453,9 +453,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-check-input"
           type="checkbox"
           name="estrutura_familia"
-          value="so"
+          value="só."
           id="so"
-          checked={formData.estrutura_familia.includes("so")}
+          checked={formData.estrutura_familia.includes("só.")}
           onChange={handleCheckboxList}
         />
         <label className="form-check-label" htmlFor="so">

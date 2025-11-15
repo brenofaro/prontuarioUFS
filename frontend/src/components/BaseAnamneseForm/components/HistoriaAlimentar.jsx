@@ -1,4 +1,4 @@
-import React from "react";
+import "./Index.css"
 
 const HistoriaAlimentar = ({ formData, setFormData }) => {
   const handleChange = (e) => {
@@ -261,6 +261,13 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           value="diminuido"
           checked={formData.apetite === "diminuido"}
           onChange={handleChange}
+          onClick={() =>
+      setFormData((prev) => ({
+        ...prev,
+        apetite:
+          prev.apetite === "diminuido" ? null : "diminuido", // <-- aqui a mágica
+      }))
+    }
         />
         <label htmlFor="apetite_diminuido">Diminuído</label>
       </div>

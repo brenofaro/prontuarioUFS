@@ -50,7 +50,8 @@ const AnamneseList = () => {
   <div className="text-muted fst-italic">Nenhuma anamnese cadastrada.</div>
 ) : (
   <div className="list-group border-0"  style={{
-    maxHeight: "400px",     // altura máxima
+    maxHeight: "400px", 
+    minHeight: "300px",   // altura máxima
     overflowY: "auto",       // ativa scroll vertical
     paddingRight: "6px"     // evita scrollbar por cima do conteúdo
   }}>
