@@ -1,33 +1,107 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Modal, Button, Dropdown } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router-dom";
 
 const AnamneseList = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-    
-    const { id } = useParams();
-    const [anamneses, setAnamneses] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    
-    
-    const handleClick = (anamneseID) => {
-        navigate(`/detalhes-anamnese/${anamneseID}`);
-    };
+  const [anamneses, setAnamneses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Estados dos modais
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
+  // ---------- MODAL DE CONFIRMAÇÃO ----------
+  function ModalExcluir({ show, handleClose, handleConfirm }) {
+    return (
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Exclusão</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          Tem certeza que deseja excluir este registro?
+          <br />
+          <strong>Essa ação não pode ser desfeita.</strong>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={handleConfirm}>
+            Excluir
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  // ---------- MODAL DE SUCESSO ----------
+  function ModalSucesso({ show, handleClose }) {
+    return (
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Sucesso</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-success fw-semibold">
+          Registro excluído com sucesso!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  // ABRIR MODAL DE CONFIRMAÇÃO
+  const handleOpenConfirm = (id) => {
+    setSelectedId(id);
+    setShowConfirm(true);
+  };
+
+  // CONFIRMAR EXCLUSÃO
+  const handleConfirmDelete = async () => {
+    setShowConfirm(false); // fecha modal de confirmação
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/base-anamneses/${selectedId}`,
+        { method: "DELETE" }
+      );
+
+      if (!response.ok) throw new Error("Erro ao excluir anamnese");
+
+      // Remove item da lista sem reload
+      setAnamneses((prev) => prev.filter((a) => a.id !== selectedId));
+
+      setShowSuccess(true); // abre modal de sucesso
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao excluir anamnese.");
+    }
+  };
+
+  // BUSCAR DADOS
   useEffect(() => {
     const fetchAnamneses = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/base-anamneses/paciente/${id}`);
-        if (!response.ok) {
-          throw new Error("Erro ao buscar anamneses");
-        }
+        const response = await fetch(
+          `http://localhost:8080/base-anamneses/paciente/${id}`
+        );
+
+        if (!response.ok) throw new Error("Erro ao buscar anamneses");
+
         const data = await response.json();
         setAnamneses(data);
-      } catch (error) {
-        setError(error.message);
+      } catch (err) {
+        setError(err.message);
       } finally {
         setLoading(false);
       }
@@ -36,53 +110,104 @@ const AnamneseList = () => {
     fetchAnamneses();
   }, [id]);
 
+  // ----------- RENDERIZAÇÃO -----------
   if (loading) return <p>Carregando anamneses...</p>;
   if (error) return <p>Erro: {error}</p>;
-  if (!anamneses.length) return <p>Nenhuma anamnese encontrada.</p>;
 
   return (
     <div className="container mt-4">
-      <p style={{fontFamily: "Roboto, sans-serif", color: "rgba(53, 64, 78, 1)", fontSize: "1.2rem"}} >
-   Lista de Anamneses
-     </p>
-
-{anamneses.length === 0 ? (
-  <div className="text-muted fst-italic">Nenhuma anamnese cadastrada.</div>
-) : (
-  <div className="list-group border-0"  style={{
-    maxHeight: "300px", 
-    minHeight: "300px",   // altura máxima
-    overflowY: "auto",       // ativa scroll vertical
-    paddingRight: "6px"     // evita scrollbar por cima do conteúdo
-  }}>
-    {anamneses.map((anamnese) => (
-      <div
-        key={anamnese.id}
-        className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
-        style={{ background: "#f8f9fa"}}
+      <p
+        style={{
+          fontFamily: "Roboto, sans-serif",
+          color: "rgba(53, 64, 78, 1)",
+          fontSize: "1.2rem",
+        }}
       >
-        <div >
-          <h6 className="mb-1" style={{fontFamily:"arial"}}>
-             Data: {anamnese.data_consulta} <br/>
-             Número prontuário: {anamnese.numero_prontuario} <br/>
-             Nutricionista responsável: {anamnese.nutricionista_responsavel}  
-          </h6>
-         
+        Lista de Anamneses
+      </p>
+
+      {anamneses.length === 0 ? (
+        <div className="text-muted fst-italic">
+          Nenhuma anamnese cadastrada.
         </div>
-
-        <Button
-          variant="outline-primary"
-          size="sm"
-          className="px-3 py-1 rounded-pill fw-semibold"
-          onClick={() => handleClick(anamnese.id)}
+      ) : (
+        <div
+          className="list-group border-0"
+          style={{
+            maxHeight: "300px",
+            minHeight: "300px",
+            overflowY: "auto",
+            paddingRight: "6px",
+          }}
         >
-          Ver detalhes
-        </Button>
-      </div>
-    ))}
-  </div>
-)}
+          {anamneses.map((anamnese) => (
+            <div
+              key={anamnese.id}
+              className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
+              style={{ background: "#f8f9fa" }}
+            >
+              <div>
+                <h6 className="mb-1" style={{ fontFamily: "arial" }}>
+                  Data: {anamnese.data_consulta} <br />
+                  Número prontuário: {anamnese.numero_prontuario} <br />
+                  Nutricionista: {anamnese.nutricionista_responsavel}
+                </h6>
+              </div>
 
+              <Dropdown align="end">
+                <Dropdown.Toggle
+                  variant="light"
+                  size="sm"
+                  className="border-0 p-0"
+                  id="dropdown-basic"
+                  style={{ boxShadow: "none" }}
+                >
+                  <span style={{ fontSize: "22px", lineHeight: "0" }}>⋮</span>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() =>
+                      navigate(`/detalhes-anamnese/${anamnese.id}`)
+                    }
+                  >
+                    Ver detalhes
+                  </Dropdown.Item>
+
+                  <Dropdown.Item
+                    onClick={() =>
+                      navigate(
+                        `/base-anamnese/editar/${id}/${anamnese.id}`
+                      )
+                    }
+                  >
+                    Editar
+                  </Dropdown.Item>
+
+                  <Dropdown.Item
+                    className="text-danger"
+                    onClick={() => handleOpenConfirm(anamnese.id)}
+                  >
+                    Excluir
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* MODAIS (fora do map) */}
+      <ModalExcluir
+        show={showConfirm}
+        handleClose={() => setShowConfirm(false)}
+        handleConfirm={handleConfirmDelete}
+      />
+
+      <ModalSucesso
+        show={showSuccess}
+        handleClose={() => setShowSuccess(false)}
+      />
     </div>
   );
 };

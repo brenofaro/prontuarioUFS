@@ -1,20 +1,44 @@
-.icon-radio {
+/* --- RADIO PREMIUM --- */
+.radio-premium {
   appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #007bff;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #6c63ff;     /* cor da borda */
   border-radius: 50%;
-  position: relative;
+  background: #fff;
   cursor: pointer;
+  position: relative;
+  transition: 0.25s ease;
+  outline: none;
 }
 
-.icon-radio:checked::before {
+/* Hover bonitão */
+.radio-premium:hover {
+  border-color: #5146ff;
+  box-shadow: 0 0 4px rgba(108, 99, 255, 0.6);
+}
+
+/* Círculo interno */
+.radio-premium:checked::before {
   content: "";
+  position: absolute;
   width: 12px;
   height: 12px;
-  background-color: #007bff;
+  background: #6c63ff;            /* cor da bolinha */
   border-radius: 50%;
-  position: absolute;
-  top: 3px;
-  left: 3px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  animation: pop 0.25s ease forwards;
+}
+
+/* Animação de pop */
+@keyframes pop {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Efeito de foco */
+.radio-premium:focus {
+  box-shadow: 0 0 6px rgba(108, 99, 255, 0.8);
 }

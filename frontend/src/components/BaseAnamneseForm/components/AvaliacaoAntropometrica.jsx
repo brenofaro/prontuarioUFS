@@ -1,8 +1,9 @@
-const AvaliacaoAntropometrica = ({formData, setFormData}) => {
+import React, { useEffect } from 'react';
+
+const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
   const handleChange = (e) => {
     let { name, value, type, checked } = e.target;
 
-    // 1️⃣ Checkbox boolean (não é lista)
     if (type === "checkbox" && !Array.isArray(formData[name])) {
       return setFormData((prev) => ({
         ...prev,
@@ -10,7 +11,6 @@ const AvaliacaoAntropometrica = ({formData, setFormData}) => {
       }));
     }
 
-    // 2️⃣ Radio boolean (value="true"/"false")
     if (type === "radio" && (value === "true" || value === "false")) {
       return setFormData((prev) => ({
         ...prev,
@@ -18,16 +18,14 @@ const AvaliacaoAntropometrica = ({formData, setFormData}) => {
       }));
     }
 
-    // 3️⃣ Number (converte string → número)
     if (type === "number") {
-  const numericValue = value === "" ? null : Number(value);
-  return setFormData((prev) => ({
-    ...prev,
-    [name]: numericValue,
-  }));
-}
+      const numericValue = value === "" ? null : Number(value);
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: numericValue,
+      }));
+    }
 
-    // 4️⃣ Datas (YYYY-MM-DD)
     if (type === "date") {
       return setFormData((prev) => ({
         ...prev,
@@ -35,251 +33,331 @@ const AvaliacaoAntropometrica = ({formData, setFormData}) => {
       }));
     }
 
-    // 5️⃣ Campos normais (text, select, radio string etc.)
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
+  // 🔥 Cálculo automático do IMC
+  useEffect(() => {
+    const { peso_atual, altura_real, altura_estimada } = formData;
+    const altura = altura_real || altura_estimada;
+    
+    if (peso_atual && altura && altura > 0) {
+      const imcCalculado = (peso_atual / (altura * altura)).toFixed(1);
+      if (formData.imc !== parseFloat(imcCalculado)) {
+        setFormData(prev => ({
+          ...prev,
+          imc: parseFloat(imcCalculado)
+        }));
+      }
+    }
+  }, [formData.peso_atual, formData.altura_real, formData.altura_estimada]);
+
+  // 🔥 Classificação do IMC
+  const getClassificacaoIMC = (imc) => {
+    if (!imc) return { texto: '', cor: '' };
+    if (imc < 18.5) return { texto: 'Baixo peso', cor: 'text-info' };
+    if (imc < 25) return { texto: 'Peso normal', cor: 'text-success' };
+    if (imc < 30) return { texto: 'Sobrepeso', cor: 'text-warning' };
+    if (imc < 35) return { texto: 'Obesidade grau I', cor: 'text-danger' };
+    if (imc < 40) return { texto: 'Obesidade grau II', cor: 'text-danger' };
+    return { texto: 'Obesidade grau III', cor: 'text-danger' };
+  };
+
+  // 🔥 Cálculo da altura pela fórmula de Chumlea (AJ)
+  const calcularAlturaPorAJ = () => {
+    const { aj } = formData;
+    if (!aj) return;
+    
+    // Fórmula simplificada (ajustar conforme protocolo usado)
+    const alturaEstimada = (aj * 1.73).toFixed(2);
+    setFormData(prev => ({
+      ...prev,
+      altura_estimada: parseFloat(alturaEstimada)
+    }));
+  };
+
+  const classificacaoIMC = getClassificacaoIMC(formData.imc);
+
   return (
-   <>
-    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+    <div className="mb-4 p-4 border rounded bg-white shadow-sm">
 
-  
+      {/* SEÇÃO 1: Peso e Altura */}
+      <div className="mb-4">
+        <h6 className="text-secondary mb-3">Peso e Altura</h6>
+        <div className="row g-3">
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">
+              Peso atual (kg) <span className="text-danger">*</span>
+            </label>
+            <input 
+              type="number"
+              name="peso_atual"
+              className="form-control"
+              placeholder="Ex: 72.5"
+              step="0.1"
+              min="0"
+              value={formData.peso_atual || ''}
+              onChange={handleChange}
+            />
+          </div>
 
-  {/* Linha 1 */}
-  <div className="row g-3">
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Peso usual (kg)</label>
+            <input 
+              type="number"
+              name="peso_usual"
+              className="form-control"
+              placeholder="Ex: 70.0"
+              step="0.1"
+              min="0"
+              value={formData.peso_usual || ''}
+              onChange={handleChange}
+            />
+            {formData.peso_atual && formData.peso_usual && (
+              <small className="text-muted">
+                Variação: {((formData.peso_atual - formData.peso_usual) / formData.peso_usual * 100).toFixed(1)}%
+              </small>
+            )}
+          </div>
 
-    <div className="col-md-3">
-      <label className="form-label">Peso atual (kg)</label>
-      <input 
-        type="number"
-        name="peso_atual"
-        className="form-control"
-        placeholder="Ex: 72.5"
-        step="0.1"
-        min="0"
-        value={formData.peso_atual}
-        onChange={handleChange}
-      />
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">
+              Altura real (m) <span className="text-danger">*</span>
+            </label>
+            <input 
+              type="number"
+              name="altura_real"
+              className="form-control"
+              placeholder="Ex: 1.75"
+              step="0.01"
+              min="0"
+              max="3"
+              value={formData.altura_real || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Altura da joelho (cm)</label>
+            <div className="input-group">
+              <input 
+                type="number"
+                name="aj"
+                className="form-control"
+                placeholder="Ex: 52"
+                min="0"
+                value={formData.aj || ''}
+                onChange={handleChange}
+              />
+              {/* <button 
+                type="button"
+                className="btn btn-outline-secondary btn-sm"
+                onClick={calcularAlturaPorAJ}
+                disabled={!formData.aj}
+              >
+                Calcular
+              </button> */}
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Altura estimada (m)</label>
+            <input 
+              type="number"
+              name="altura_estimada"
+              className="form-control"
+              placeholder="Ex: 1.70"
+              step="0.01"
+              min="0"
+              max="3"
+              value={formData.altura_estimada || ''}
+              onChange={handleChange}
+            />
+            <small className="text-info">Calculada por AJ ou manual</small>
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">IMC (kg/m²)</label>
+            <input 
+              type="number"
+              name="imc"
+              className="form-control bg-light"
+              placeholder="Automático"
+              step="0.1"
+              min="0"
+              value={formData.imc || ''}
+              readOnly
+            />
+            {classificacaoIMC.texto && (
+              <small className={`fw-bold ${classificacaoIMC.cor}`}>
+                {classificacaoIMC.texto}
+              </small>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* SEÇÃO 2: Circunferências */}
+      <div className="mb-4">
+        <h6 className="text-secondary mb-3">Circunferências (cm)</h6>
+        <div className="row g-3">
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Braço</label>
+            <input 
+              type="number"
+              name="circunferencia_braco"
+              className="form-control"
+              placeholder="Ex: 30"
+              step="0.1"
+              min="0"
+              value={formData.circunferencia_braco || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Cintura</label>
+            <input 
+              type="number"
+              name="circunferencia_cintura"
+              className="form-control"
+              placeholder="Ex: 85"
+              step="0.1"
+              min="0"
+              value={formData.circunferencia_cintura || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Panturrilha</label>
+            <input 
+              type="number"
+              name="circunferencia_panturrilha"
+              className="form-control"
+              placeholder="Ex: 35"
+              step="0.1"
+              min="0"
+              value={formData.circunferencia_panturrilha || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Pescoço</label>
+            <input 
+              type="number"
+              name="comprimento_pescoco"
+              className="form-control"
+              placeholder="Ex: 38"
+              step="0.1"
+              min="0"
+              value={formData.comprimento_pescoco || ''}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* SEÇÃO 3: Pregas Cutâneas */}
+      <div className="mb-4">
+        <h6 className="text-secondary mb-3">Pregas Cutâneas (mm)</h6>
+        <div className="row g-3">
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Tricipital (PCT)</label>
+            <input 
+              type="number"
+              name="pct"
+              className="form-control"
+              placeholder="Ex: 15"
+              step="0.1"
+              min="0"
+              value={formData.pct || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Bicipital (PCB)</label>
+            <input 
+              type="number"
+              name="pcb"
+              className="form-control"
+              placeholder="Ex: 12"
+              step="0.1"
+              min="0"
+              value={formData.pcb || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Subescapular (PCSE)</label>
+            <input 
+              type="number"
+              name="pcse"
+              className="form-control"
+              placeholder="Ex: 20"
+              step="0.1"
+              min="0"
+              value={formData.pcse || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label fw-semibold">Suprailíaca (PCSI)</label>
+            <input 
+              type="number"
+              name="pcsi"
+              className="form-control"
+              placeholder="Ex: 18"
+              step="0.1"
+              min="0"
+              value={formData.pcsi || ''}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* SEÇÃO 4: Diagnóstico */}
+      <div className="mb-3">
+        <label htmlFor="diagnostico_antropometrico" className="form-label fw-semibold">
+          Diagnóstico Antropométrico
+        </label>
+        <textarea
+          className="form-control"
+          id="diagnostico_antropometrico"
+          name="diagnostico_antropometrico"
+          placeholder="Descreva a avaliação dos dados antropométricos, classificações e observações relevantes..."
+          rows="5"
+          value={formData.diagnostico_antropometrico || ""}
+          onChange={handleChange}
+        />
+        <small className="text-muted">
+          Inclua classificações do IMC, circunferências, pregas cutâneas e interpretação clínica
+        </small>
+      </div>
+
+      {/* Indicadores Visuais */}
+      {formData.imc && (
+        <div className="alert alert-info mt-3">
+          <strong>Resumo:</strong> IMC {formData.imc} kg/m² - {classificacaoIMC.texto}
+          {formData.circunferencia_cintura && (
+            <span className="ms-3">
+              | Cintura: {formData.circunferencia_cintura} cm
+              {formData.circunferencia_cintura > 102 ? ' (Alto risco - H)' : 
+               formData.circunferencia_cintura > 88 ? ' (Alto risco - M)' : ' (Normal)'}
+            </span>
+          )}
+        </div>
+      )}
     </div>
-
-    <div className="col-md-3">
-      <label className="form-label">Peso usual (kg)</label>
-      <input 
-        type="number"
-        name="peso_usual"
-        className="form-control"
-        placeholder="Ex: 70.0"
-        step="0.1"
-        min="0"
-        value={formData.peso_usual}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">AJ (cm)</label>
-      <input 
-        type="number"
-        name="aj"
-        className="form-control"
-        placeholder="Ex: 120"
-        min="0"
-        value={formData.aj}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">Altura real (m)</label>
-      <input 
-        type="number"
-        name="altura_real"
-        className="form-control"
-        placeholder="Ex: 1.75"
-        step="0.01"
-        min="0"
-        value={formData.altura_real}
-        onChange={handleChange}
-      />
-    </div>
-
-  </div>
-
-
-  {/* Linha 2 */}
-  <div className="row g-3 mt-2">
-
-    <div className="col-md-3">
-      <label className="form-label">Altura estimada (m)</label>
-      <input 
-        type="number"
-        name="altura_estimada"
-        className="form-control"
-        placeholder="Ex: 1.70"
-        step="0.01"
-        min="0"
-        value={formData.altura_estimada}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">IMC (kg/m²)</label>
-      <input 
-        type="number"
-        name="imc"
-        className="form-control"
-        placeholder="Ex: 23.6"
-        step="0.1"
-        min="0"
-        value={formData.imc}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">Circunferência do braço (cm)</label>
-      <input 
-        type="number"
-        name="circunferencia_braco"
-        className="form-control"
-        placeholder="Ex: 30"
-        min="0"
-        value={formData.circunferencia_braco}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">Comprimento do pescoço (cm)</label>
-      <input 
-        type="number"
-        name="comprimento_pescoco"
-        className="form-control"
-        placeholder="Ex: 40"
-        min="0"
-        value={formData.comprimento_pescoco}
-        onChange={handleChange}
-      />
-    </div>
-
-  </div>
-
-
-  {/* Linha 3 */}
-  <div className="row g-3 mt-2">
-
-    <div className="col-md-3">
-      <label className="form-label">Prega cutânea triciptal (mm)</label>
-      <input 
-        type="number"
-        name="pct"
-        className="form-control"
-        placeholder="Ex: 15"
-        min="0"
-        value={formData.pct}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">Prega cutânea biciptal (mm)</label>
-      <input 
-        type="number"
-        name="pcb"
-        className="form-control"
-        placeholder="Ex: 12"
-        min="0"
-        value={formData.pcb}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">PCSE (mm)</label>
-      <input 
-        type="number"
-        name="pcse"
-        className="form-control"
-        placeholder="Ex: 30"
-        min="0"
-        value={formData.pcse}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">PCSI (mm)</label>
-      <input 
-        type="number"
-        name="pcsi"
-        className="form-control"
-        placeholder="Ex: 18"
-        min="0"
-        value={formData.pcsi}
-        onChange={handleChange}
-      />
-    </div>
-
-  </div>
-
-
-  {/* Linha 4 */}
-  <div className="row g-3 mt-2">
-
-    <div className="col-md-3">
-      <label className="form-label">Circunferência da cintura (cm)</label>
-      <input 
-        type="number"
-        name="circunferencia_cintura"
-        className="form-control"
-        placeholder="Ex: 100"
-        min="0"
-        value={formData.circunferencia_cintura}
-        onChange={handleChange}
-      />
-    </div>
-
-    <div className="col-md-3">
-      <label className="form-label">Circunferência da panturrilha (cm)</label>
-      <input 
-        type="number"
-        name="circunferencia_panturrilha"
-        className="form-control"
-        placeholder="Ex: 32"
-        min="0"
-        value={formData.circunferencia_panturrilha}
-        onChange={handleChange}
-      />
-    </div>
-
-  </div>
-
-
-    <div className="form-floating mt-5 mb-4">
-  <textarea
-    className="form-control"
-    id="diagnostico_antropometrico"
-    name="diagnostico_antropometrico"
-    placeholder="Descreva o diagnóstico antropométrico..."
-    style={{ height: "150px" }}
-    value={formData.diagnostico_antropometrico || ""}
-    onChange={handleChange}
-    ></textarea>
-
-  <label htmlFor="diagnostico_antropometrico">
-    Diagnóstico antropométrico
-  </label>
-</div>
-
-    </div>
-   </>
-
-
-  )
-}
+  );
+};
 
 export default AvaliacaoAntropometrica;

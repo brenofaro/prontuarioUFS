@@ -1,4 +1,5 @@
 import React from 'react'
+import TabelaPatologica from './TabelaPatologica';
 
 const DadosSaude = ({formData, setFormData}) => {
 
@@ -281,13 +282,13 @@ const DadosSaude = ({formData, setFormData}) => {
 
 </div>
 
-  <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+  <div className="mb-3 p-4 border rounded-3 bg-white">
 
   <label className="form-label fw-semibold mb-3 d-block">
     Faz uso de medicamentos?
   </label>
 
-  <div className="d-flex flex-wrap align-items-center gap-4">
+  <div className="d-flex flex-wrap align-items-center gap-3">
 
     {/* SIM */}
     <div className="form-check">
@@ -323,19 +324,19 @@ const DadosSaude = ({formData, setFormData}) => {
 
     {/* CAMPO CONDICIONAL */}
     {formData.faz_uso_medicamentos === true && (
-      <>
-        <label className="ms-3 mb-0">Quais:</label>
+       <div className="d-flex align-items-center gap-2 ms-3">
+        <label className="text-muted small mb-0">Quais:</label>
 
         <input
           type="text"
           name="medicamentos"
-          className="form-control d-inline-block"
+          className="form-control form-control-sm"
           style={{ width: "250px" }}
           placeholder="Ex: Fluoxetina"
           value={formData.medicamentos || ""}
           onChange={handleChange}
         />
-      </>
+      </div>
     )}
 
   </div>

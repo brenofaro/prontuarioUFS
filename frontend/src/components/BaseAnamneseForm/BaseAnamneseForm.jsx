@@ -1,5 +1,6 @@
-import { useState } from "react"; 
+import { useState, useEffect } from "react"; 
 import { useParams, useNavigate } from "react-router-dom";
+
 import DadosSocioEconomicos from "./components/DadosSocioEconomicos.jsx";
 import DadosSaude from "./components/DadosSaude.jsx";
 import AvaliacaoAntropometrica from "./components/AvaliacaoAntropometrica.jsx";
@@ -11,7 +12,7 @@ import DadosIniciais from "./components/DadosIniciais.jsx";
 import DiagnosticoConclusivo from "./components/DiagnosticoConclusivo.jsx";
 
 function BaseAnamneseForm() {
-  const { id } = useParams(); 
+  const { pacienteId, anamneseId } = useParams();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ function BaseAnamneseForm() {
       quanto_tabagismo: null,
       ja_foi_tabagista: null,
       tempo_parado_tabagismo: null,
-   
+
       objetivo_consulta: null,
       historia_doenca: null,
       diabetes_hma: null,
@@ -90,7 +91,7 @@ function BaseAnamneseForm() {
       tmb: null,
       percentual_agua_massa_magra: null,
       agua_corporal_total: null,
-    
+
       denticao: null,
       mastigacao: null,
       disfagia: null,
@@ -107,10 +108,9 @@ function BaseAnamneseForm() {
       mucosas: null,
       edemas: null,
       abdomen: null,
-    
+
       data_ab: null,
       avaliacao_bioquimica: null,
-    
 
       possui_aversoes_alimentares: null,
       aversoes_alimentares: null,
@@ -121,103 +121,109 @@ function BaseAnamneseForm() {
       horario_mais_fome: null,
       apetite: null,
       diagnostico_conclusivo: null,
-    
   });
 
-const handleClick = () => {
-  navigate(`/pagina-paciente/${id}`);
-};
+  // 🔥 CARREGA ANAMNESE SE ESTIVER EDITANDO
+  useEffect(() => {
+    if (anamneseId) {
+      fetch(`http://localhost:8080/base-anamneses/${anamneseId}`)
+        .then(res => res.json())
+        .then(data => {
+          setFormData(data);
+        })
+        .catch(err => console.error("Erro ao carregar anamnese:", err));
+    }
+  }, [anamneseId]);
 
+  // 🔙 Botão voltar
+  const handleClick = () => {
+    navigate(`/pagina-paciente/${pacienteId}`);
+  };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
-
+  // 🔥 SALVAR OU EDITAR (POST ou PUT)
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const url = anamneseId
+      ? `http://localhost:8080/base-anamneses/${anamneseId}`
+      : `http://localhost:8080/base-anamneses/cadastrar`;
+
+    const method = anamneseId ? "PUT" : "POST";
+
     try {
-      const response = await fetch("http://localhost:8080/base-anamneses/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          paciente_id: Number(id),
+          paciente_id: Number(pacienteId),
           ...formData
-        
-}),
-      })
+        }),
+      });
 
-      if (!response.ok) {
-        throw new Error("Erro ao cadastrar Anamnese");
-      }
+      if (!response.ok) throw new Error("Erro ao salvar anamnese");
 
-      const data = await response.json();
-      console.log("Anamnese cadastrada:", data);
+      alert(anamneseId ? "Anamnese atualizada!" : "Anamnese cadastrada!");
+      navigate(`/pagina-paciente/${pacienteId}`);
 
-      alert("Anamnese cadastrada com sucesso!");
-      // setFormData({
-      //   tipo: "",
-      //   queixa_principal: "",
-      //   historico_doenca: "",
-      //   habitos: "",
-      //   observacoes: "",
-      // });
     } catch (error) {
-      console.error("Erro ao cadastrar anamnese:", error);
-      alert("Erro ao cadastrar anamnese. Por favor, tente novamente.");
-
-
-  }
-}
+      console.error(error);
+      alert("Erro ao salvar anamnese.");
+    }
+  };
 
   return (
     <div className="container mt-4 border rounded p-4 bg-light">
       <form onSubmit={handleSubmit} className="p-3">
-        <h3 className="" style={{fontFamily:"arial"}}>Cadastro de Anamnese</h3>
-        
-        <h4 className="mt-5 mb-3"style={{fontFamily:"arial", fontSize: "1.3rem"}}>Dados Iniciais</h4>
-        <DadosIniciais formData={formData} setFormData={setFormData}/>
-        <h4 className="mt-5 mb-3">Dados Demográficos</h4>
-        <DadosSocioEconomicos formData={formData} setFormData={setFormData}/>
-        <h4 className="mt-5 mb-3">Dados de Saúde</h4>
-        <DadosSaude formData={formData} setFormData={setFormData}/>
-        <h4 className="mt-5 mb-3">Avaliação Antropometrica</h4>
-        <AvaliacaoAntropometrica formData={formData} setFormData={setFormData}/>
-        <h4 className="mt-5 mb-3">Dados Bioimpedancia</h4>
-        <DadosBioimpedancia formData={formData} setFormData={setFormData}/>
-        <h4 className="mt-5 mb-3">Sinais e Sintomas</h4>
-        <SinaisSintomasClinicos formData={formData} setFormData={setFormData}/>
-        <h4 className="mt-5 mb-3">Avaliação Bioquímica</h4>
-        <AvaliacaoBioquimica formData={formData} setFormData={setFormData}/>
-        <h4 className="mt-5 mb-3">História Alimentar</h4>
-        <HistoriaAlimentar formData={formData} setFormData={setFormData}/>  
-        <h4 className="mt-5 mb-3">Diagnostico Conclusivo</h4>
-        <DiagnosticoConclusivo formData={formData} setFormData={setFormData}/>
-        
-      <div className="d-flex justify-content-between mt-4">
-      <button
-        type="button"
-        className="btn btn-outline-secondary rounded-pill px-4"
-        onClick={handleClick}
-      >
-        ← Voltar
-      </button>
 
-      <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
-         Salvar Anamnese
-      </button>
-    </div>
+        <h3 style={{fontFamily:"arial"}}>
+          {anamneseId ? "Editar Anamnese" : "Cadastro de Anamnese"}
+        </h3>
+
+        <h4 className="mt-5 mb-3">Dados Iniciais</h4>
+        <DadosIniciais formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">Dados Demográficos</h4>
+        <DadosSocioEconomicos formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">Dados de Saúde</h4>
+        <DadosSaude formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">Avaliação Antropométrica</h4>
+        <AvaliacaoAntropometrica formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">Dados Bioimpedância</h4>
+        <DadosBioimpedancia formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">Sinais e Sintomas</h4>
+        <SinaisSintomasClinicos formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">Avaliação Bioquímica</h4>
+        <AvaliacaoBioquimica formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">História Alimentar</h4>
+        <HistoriaAlimentar formData={formData} setFormData={setFormData} />
+
+        <h4 className="mt-5 mb-3">Diagnóstico Conclusivo</h4>
+        <DiagnosticoConclusivo formData={formData} setFormData={setFormData} />
+
+        <div className="d-flex justify-content-between mt-4">
+          
+          <button
+            type="button"
+            className="btn btn-outline-secondary rounded-pill px-4"
+            onClick={handleClick}
+          >
+            ← Voltar
+          </button>
+
+          <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
+            {anamneseId ? "Atualizar Anamnese" : "Salvar Anamnese"}
+          </button>
+
+        </div>
       </form>
-      
     </div>
   );
 }
 
 export default BaseAnamneseForm;
-
-  

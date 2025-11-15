@@ -17,6 +17,8 @@ function App() {
       {/* <Route path="/anamnese-infantil/:id" element={<ChildAnamneseForm/>}/> */}
       {/* <Route path="/anamnese-retorno/:id" element={<ReturnAnameseForm/>}/> */}
       <Route path="/detalhes-anamnese/:id" element={<AnamnesesDetails/>}/>
+      <Route path="/base-anamnese/editar/:pacienteId/:anamneseId" element={<BaseAnamneseForm />} />
+
     </Routes>
   );
 }
