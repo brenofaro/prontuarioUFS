@@ -50,7 +50,7 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
       <div className="mb-4 p-3 border rounded bg-white shadow-sm">
         <label className="form-label fw-semibold mb-2 d-block">Dentição:</label>
           <div className="d-flex flex-wrap gap-3">
-            <div className="form-check">
+            <div className="form-check align-items-center">
                 <input
                   className="form-check-input"
                   type="radio"
@@ -91,7 +91,7 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
                   onChange={handleChange}
                 />
                 <label>Prótese parcial</label>
-
+<div className="form-check">
                   <input
                     type="radio"
                     name="denticao"
@@ -100,6 +100,8 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
                     onChange={handleChange}
                   />
                   <label>Edêntulo</label>
+
+</div>
                 </div>
           </div>
       <div className="mb-4 p-3 border rounded bg-white shadow-sm">

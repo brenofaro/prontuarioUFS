@@ -31,7 +31,7 @@ const SearchResults = ({ results, loading }) => {
           <h5 className="mb-0 " style={{fontFamily:"arial"}}>Pacientes Cadastrados</h5>
         </div>
         {!loading && results.length > 0 && (
-          <span className="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">
+          <span className="badge bg-primary bg-opacity-10 text-dark rounded-pill px-3 py-2">
             {results.length} {results.length === 1 ? 'paciente' : 'pacientes'}
           </span>
         )}

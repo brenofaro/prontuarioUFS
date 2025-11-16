@@ -115,16 +115,20 @@ const AnamneseList = () => {
   if (error) return <p>Erro: {error}</p>;
 
   return (
-    <div className="container mt-4">
-      <p
+    <div className="container mt-4 ">
+      {anamneses.length > 0 && (
+          <p
         style={{
           fontFamily: "Roboto, sans-serif",
           color: "rgba(53, 64, 78, 1)",
           fontSize: "1.2rem",
+          marginLeft: "10px",
         }}
       >
-        Lista de Anamneses
+        Anamneses Cadastradas
       </p>
+      )}
+    
 
       {anamneses.length === 0 ? (
         <div className="text-muted fst-italic">
@@ -134,8 +138,8 @@ const AnamneseList = () => {
         <div
           className="list-group border-0"
           style={{
-            maxHeight: "300px",
-            minHeight: "300px",
+            maxHeight: "400px",
+            minHeight: "200px",
             overflowY: "auto",
             paddingRight: "6px",
           }}
@@ -146,13 +150,39 @@ const AnamneseList = () => {
               className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
               style={{ background: "#f8f9fa" }}
             >
-              <div>
-                <h6 className="mb-1" style={{ fontFamily: "arial" }}>
-                  Data: {anamnese.data_consulta} <br />
-                  Número prontuário: {anamnese.numero_prontuario} <br />
-                  Nutricionista: {anamnese.nutricionista_responsavel}
-                </h6>
-              </div>
+             <div className="bg-light rounded-3 p-3 border-start border-primary border-4">
+  <div className="row g-2">
+    <div className="col-md-5">
+      <div className="d-flex align-items-center">
+        <i className="bi bi-calendar-check text-primary me-2"></i>
+        <div>
+          <small className="text-muted d-block">Data da Consulta</small>
+          <span className="fw-semibold">{anamnese.data_consulta}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div className="col-md-4">
+      <div className="d-flex align-items-center">
+        <i className="bi bi-file-medical text-primary me-2"></i>
+        <div>
+          <small className="text-muted d-block">Nº Prontuário</small>
+          <span className="fw-semibold">{anamnese.numero_prontuario}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div className="col-md-3">
+      <div className="d-flex align-items-center">
+        <i className="bi bi-person-badge text-primary me-2"></i>
+        <div>
+          <small className="text-muted d-block">Nutricionista</small>
+          <span className="fw-semibold">{anamnese.nutricionista_responsavel}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
               <Dropdown align="end">
                 <Dropdown.Toggle
