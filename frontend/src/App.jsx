@@ -6,6 +6,8 @@ import BaseAnamneseForm from "./components/BaseAnamneseForm/BaseAnamneseForm.jsx
 import ChildAnamneseForm from "./components/ChildAnamneseForm/ChildAnamneseForm.jsx";
 import ReturnAnameseForm from "./components/ReturnAnamneseForm/ReturnAnameseForm.jsx";
 import AnamnesesDetails from "./pages/AnamnesesDetails/AnamnesesDetails.jsx";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 function App() {
   return (

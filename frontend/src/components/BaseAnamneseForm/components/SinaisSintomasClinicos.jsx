@@ -1,4 +1,6 @@
 import React from "react";
+import "./Index.css";
+
 
 const SinaisSintomasClinicos = ({ formData, setFormData }) => {
   // Função genérica para atualizar qualquer campo dentro de sinais_sintomas_clinicos
@@ -507,7 +509,7 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
     </div>
 
     <div className="d-flex flex-column">
-      <label className="form-label">Abdome</label>
+      <label className="form-label">Abdômen:</label>
       <input
         type="text"
         name="abdomen"

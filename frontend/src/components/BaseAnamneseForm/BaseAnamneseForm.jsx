@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { useParams, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 import DadosSocioEconomicos from "./components/DadosSocioEconomicos.jsx";
 import DadosSaude from "./components/DadosSaude.jsx";
@@ -175,11 +176,20 @@ function BaseAnamneseForm() {
     <div className="container mt-4 border rounded p-4 bg-light">
       <form onSubmit={handleSubmit} className="p-3">
 
-        <h3 style={{fontFamily:"arial"}}>
-          {anamneseId ? "Editar Anamnese" : "Cadastro de Anamnese"}
-        </h3>
+ <h3 className="d-flex align-items-center" style={{ fontFamily: "arial" }}>
+  <FaArrowLeft
+    size={22}
+    className="me-2"
+    style={{ cursor: "pointer" }}
+    onClick={handleClick}
+  />
 
-        <h4 className="mt-5 mb-3">Dados Iniciais</h4>
+  {anamneseId ? "Editar Anamnese" : "Cadastro de Anamnese"}
+</h3>
+
+
+
+        <p className="mt-5 mb-3 ms-1" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Iniciais</p>
         <DadosIniciais formData={formData} setFormData={setFormData} />
 
         <h4 className="mt-5 mb-3">Dados Demográficos</h4>

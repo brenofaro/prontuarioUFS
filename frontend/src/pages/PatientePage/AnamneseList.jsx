@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
+import {state} from "react";
+
 
 const AnamneseList = () => {
   const navigate = useNavigate();
@@ -110,6 +112,11 @@ const AnamneseList = () => {
     fetchAnamneses();
   }, [id]);
 
+  const formatarData = (data) => {
+    if (!data) return "-";
+    const [ano, mes, dia] = data.split("-");
+    return `${dia}/${mes}/${ano}`;
+  };
   // ----------- RENDERIZAÇÃO -----------
   if (loading) return <p>Carregando anamneses...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -151,20 +158,20 @@ const AnamneseList = () => {
               style={{ background: "#f8f9fa" }}
             >
              <div className="bg-light rounded-3 p-3 border-start border-primary border-4">
-  <div className="row g-2">
+  <div className="row g-2" >
     <div className="col-md-5">
       <div className="d-flex align-items-center">
-        <i className="bi bi-calendar-check text-primary me-2"></i>
+        {/* <i className="bi bi-calendar-check text-primary me-2"></i> */}
         <div>
           <small className="text-muted d-block">Data da Consulta</small>
-          <span className="fw-semibold">{anamnese.data_consulta}</span>
+          <span className="fw-semibold">{formatarData(anamnese.data_consulta)}</span>
         </div>
       </div>
     </div>
     
     <div className="col-md-4">
       <div className="d-flex align-items-center">
-        <i className="bi bi-file-medical text-primary me-2"></i>
+        {/* <i className="bi bi-file-medical text-primary me-2"></i> */}
         <div>
           <small className="text-muted d-block">Nº Prontuário</small>
           <span className="fw-semibold">{anamnese.numero_prontuario}</span>
@@ -174,7 +181,7 @@ const AnamneseList = () => {
     
     <div className="col-md-3">
       <div className="d-flex align-items-center">
-        <i className="bi bi-person-badge text-primary me-2"></i>
+        {/* <i className="bi bi-person-badge text-primary me-2"></i> */}
         <div>
           <small className="text-muted d-block">Nutricionista</small>
           <span className="fw-semibold">{anamnese.nutricionista_responsavel}</span>
@@ -197,12 +204,14 @@ const AnamneseList = () => {
 
                 <Dropdown.Menu>
                   <Dropdown.Item
-                    onClick={() =>
-                      navigate(`/detalhes-anamnese/${anamnese.id}`)
-                    }
-                  >
-                    Ver detalhes
-                  </Dropdown.Item>
+  onClick={() =>
+    navigate(`/detalhes-anamnese/${anamnese.id}`, {
+      state: { id }
+    })
+  }
+>
+  Ver detalhes
+</Dropdown.Item>
 
                   <Dropdown.Item
                     onClick={() =>

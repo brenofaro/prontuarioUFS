@@ -42,6 +42,22 @@ function CadastrateAnamneseButton({ pacienteId }) {
       icon: "bi-arrow-repeat",
       variant: "info",
       color: "#0dcaf0"
+    },
+    {
+      tipo: "Tipo_4",
+      titulo: "Tipo 4",
+      descricao: "Ainda não definido",
+      icon: "bi-question",
+      variant: "info",
+      color: "#0dcaf0"
+    },
+    {
+      tipo: "Tipo_5",
+      titulo: "Tipo 5",
+      descricao: "Ainda não definido",
+      icon: "bi-question",
+      variant: "info",
+      color: "#0dcaf0"
     }
   ];
 
@@ -74,7 +90,7 @@ function CadastrateAnamneseButton({ pacienteId }) {
         <Modal.Body className="px-4 py-4">
           <div className="row g-3">
             {anamneseTypes.map((item) => (
-              <div className="col-md-4" key={item.tipo}>
+              <div className="col" key={item.tipo}>
                 <div
                   className="card h-100 border-0 shadow-sm hover-card"
                   style={{ 

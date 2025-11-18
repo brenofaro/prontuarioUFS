@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import SocioEconomicosDetails from "./components/SocioEconomicosDetails.jsx";
 import SaudeDetails from "./components/SaudeDetails.jsx";
+import { FaArrowLeft } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+import AntropometricaDetails from "./components/AntropometricaDetails.jsx";
+import BioimpedanciaDetails from "./components/BioimpedanciaDetails.jsx";
+import SintomasClinicosDetails from "./components/SintomasClinicosDetails.jsx";
+import InformacoesGerias from "./components/InformacoesGerias.jsx";
+
 
 
 const AnamnesesDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [anamnese, setAnamneses] = useState([]);
-  const [loading, setLoading] = useState(true);  
+  const [loading, setLoading] = useState(true); 
+  
+  const location = useLocation();
+  console.log(location.state.id);
+
+  const handleClick = () => {
+    navigate(`/pagina-paciente/${location.state.id}`);
+  };
  
+
 
   useEffect(() => {
       const fetchAnamneses = async () => {
@@ -35,63 +51,27 @@ const AnamnesesDetails = () => {
 
   return (
     <div className="container mt-4">
-      <h3 className="fw-semibold text-primary mb-3">Detalhes da Anamnese</h3>
-      
+
+            <Card.Title className="mb-3 d-flex align-items-center" style={{fontFamily:"arial", fontSize: "1.5rem"}}>
+            
+              <FaArrowLeft
+                  size={22}
+                  className="me-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleClick}
+                />
+              Detalhes da Anamnese
+            </Card.Title>
+
+
         <Card className="mb-3" key={anamnese.id}>
-          <Card.Body>
-  <Card.Title className="mb-4 d-flex align-items-center" style={{fontFamily:"arial"}}>
-    <span className="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-2">
-      <i className="bi bi-info-circle-fill"></i>
-    </span>
-    Informações Gerais
-  </Card.Title>
-
-  <div className="row g-3">
-    <div className="col-md-4">
-      <div className="info-item p-3 bg-light rounded-3 h-100">
-        <div className="d-flex align-items-center mb-2">
-          <i className="bi bi-calendar-event text-primary me-2"></i>
-          <small className="text-muted text-uppercase fw-semibold" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
-            Data da Consulta
-          </small>
-        </div>
-        <div className="fw-semibold text-dark ms-2">
-          {anamnese.data_consulta || <span className="text-muted">Não informado</span>}
-        </div>
-      </div>
-    </div>
-
-    <div className="col-md-4">
-      <div className="info-item p-3 bg-light rounded-3 h-100">
-        <div className="d-flex align-items-center mb-2">
-          <i className="bi bi-file-medical text-primary me-2"></i>
-          <small className="text-muted text-uppercase fw-semibold" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
-            Nº Prontuário
-          </small>
-        </div>
-        <div className="fw-semibold text-dark ms-2">
-          {anamnese.numero_prontuario || <span className="text-muted">Não informado</span>}
-        </div>
-      </div>
-    </div>
-
-    <div className="col-md-4">
-      <div className="info-item p-3 bg-light rounded-3 h-100">
-        <div className="d-flex align-items-center mb-2">
-          <i className="bi bi-person-badge text-primary me-2"></i>
-          <small className="text-muted text-uppercase fw-semibold" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
-            Nutricionista
-          </small>
-        </div>
-        <div className="fw-semibold text-dark ms-2">
-          {anamnese.nutricionista_responsavel || <span className="text-muted">Não informado</span>}
-        </div>
-      </div>
-    </div>
-  </div>
-</Card.Body>
+          <InformacoesGerias anamnese={anamnese} />
           <SocioEconomicosDetails anamnese={anamnese} />
           <SaudeDetails anamnese={anamnese} />
+          <AntropometricaDetails anamnese={anamnese} />
+          <BioimpedanciaDetails anamnese={anamnese} />
+          <SintomasClinicosDetails anamnese={anamnese} />
+          
         </Card>
       
     </div>

@@ -193,17 +193,17 @@ function PatienteForm() {
       <div className="container mt-4">
         <div className="card shadow-sm border-0 rounded p-4 bg-white">
           <div className="d-flex align-items-center mb-4">
-            <div className="bg-primary rounded-circle p-3 me-3">
-              <i className="bi bi-person-plus-fill text-white fs-4"></i>
+            <div className="bg-white rounded-circle p-2 me-2">
+              <i class="bi bi-person-circle fs-2 text-dark"></i>
             </div>
-            <h4 className="mb-0 text-dark fw-bold">Cadastrar Paciente</h4>
+            <h4 className="mb-0 text-dark" style={{fontFamily:"arial"}}>Cadastrar Paciente</h4>
           </div>
 
           <form onSubmit={handleSubmit}>
             {/* Nome */}
             <div className="mb-4">
-              <label className="form-label fw-semibold">
-                Nome completo <span className="text-danger">*</span>
+              <label className="form-label">
+                Nome completo <span className="text-dark">*</span>
               </label>
               <input
                 type="text"
@@ -219,8 +219,8 @@ function PatienteForm() {
             <div className="row mb-4">
               {/* Data de nascimento */}
               <div className="col-md-6">
-                <label className="form-label fw-semibold">
-                  Data de Nascimento <span className="text-danger">*</span>
+                <label className="form-label">
+                  Data de Nascimento <span className="text-dark">*</span>
                 </label>
                 <input
                   type="date"
@@ -242,8 +242,8 @@ function PatienteForm() {
 
               {/* CPF */}
               <div className="col-md-6">
-                <label className="form-label fw-semibold">
-                  CPF <span className="text-danger">*</span>
+                <label className="form-label ">
+                  CPF <span className="text-dark">*</span>
                 </label>
                 <input
                   type="text"
@@ -261,7 +261,7 @@ function PatienteForm() {
             <div className="row mb-4">
               {/* Telefone */}
               <div className="col-md-6">
-                <label className="form-label fw-semibold">Telefone</label>
+                <label className="form-label">Telefone</label>
                 <input
                   type="text"
                   className={`form-control ${errors.telefone ? 'is-invalid' : ''}`}
@@ -276,7 +276,7 @@ function PatienteForm() {
 
               {/* Endereço */}
               <div className="col-md-6">
-                <label className="form-label fw-semibold">Endereço</label>
+                <label className="form-label">Endereço</label>
                 <input
                   type="text"
                   className="form-control"

@@ -65,7 +65,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
     <>
       {/* Estado Civil */}
       <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Estado Civil</label>
+        <label className="form-label  mb-3 d-block">Estado Civil</label>
         <div className="d-flex flex-wrap gap-3">
           {['solteiro', 'casado', 'viuvo', 'separado'].map((estado) => (
             <div className="form-check" key={estado}>

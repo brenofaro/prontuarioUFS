@@ -27,7 +27,7 @@ const SearchResults = ({ results, loading }) => {
       {/* Header com contador */}
       <div className="d-flex align-items-center justify-content-between mb-3">
         <div className="d-flex align-items-center">
-          <i className="bi bi-people-fill text-primary me-2" style={{ fontSize: "1.2rem" }}></i>
+          <i className="bi bi-people-fill text-secondary me-2" style={{ fontSize: "1.2rem" }}></i>
           <h5 className="mb-0 " style={{fontFamily:"arial"}}>Pacientes Cadastrados</h5>
         </div>
         {!loading && results.length > 0 && (
@@ -92,7 +92,7 @@ const SearchResults = ({ results, loading }) => {
                             <i className="bi bi-card-text me-2 text-primary" style={{ fontSize: "1rem" }}></i>
                             <span className="fw-medium text-dark">{formatCPF(result.cpf)}</span>
                           </div>
-                          <div className="d-flex align-items-start text-muted small">
+                          <div className="d-flex align-items-center text-muted small">
                             <i className="bi bi-geo-alt me-2 text-primary mt-1" style={{ fontSize: "1rem" }}></i>
                             <span className="text-truncate" title={result.endereco}>
                               {result.endereco || "Endereço não informado"}

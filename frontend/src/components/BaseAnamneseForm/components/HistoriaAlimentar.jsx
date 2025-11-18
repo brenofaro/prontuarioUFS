@@ -221,42 +221,56 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
 
 
   {/* Apetite */}
-  <div className="mb-3">
+  <div className="mb-3 d-flex flex-column align-items-start" >
     <label className="form-label fw-semibold d-block">Apetite:</label>
 
-    <div className="d-flex flex-wrap gap-4">
+    <div className="d-flex flex-wrap gap-4 ">
 
-      <div className="form-check d-flex align-items-center gap-2">
+      <div className="d-flex align-items-center gap-2">
         <input
           type="radio"
           name="apetite"
-          className="form-check-input"
+          className=""
           id="apetite_normal"
           value="normal"
           checked={formData.apetite === "normal"}
           onChange={handleChange}
+          onClick={() =>
+      setFormData((prev) => ({
+        ...prev,
+        apetite:
+          prev.apetite === "normal" ? null : "normal", // <-- aqui a mágica
+      }))
+    }
         />
         <label htmlFor="apetite_normal">Normal</label>
       </div>
 
-      <div className="form-check d-flex align-items-center gap-2">
+      <div className=" d-flex align-items-center gap-2">
         <input
           type="radio"
           name="apetite"
-          className="form-check-input"
+          className=""
           id="apetite_aumentado"
           value="aumentado"
           checked={formData.apetite === "aumentado"}
           onChange={handleChange}
+          onClick={() =>
+      setFormData((prev) => ({
+        ...prev,
+        apetite:
+          prev.apetite === "aumentado" ? null : "aumentado", // <-- aqui a mágica
+      }))
+    }
         />
         <label htmlFor="apetite_aumentado">Aumentado</label>
       </div>
 
-      <div className="form-check d-flex align-items-center gap-2">
+      <div className=" d-flex align-items-center gap-2">
         <input
           type="radio"
           name="apetite"
-          className="form-check-input"
+          className=""
           id="apetite_diminuido"
           value="diminuido"
           checked={formData.apetite === "diminuido"}

@@ -95,12 +95,10 @@ const PatientePage = () => {
               <h4 className="mb-1 text-dark" style={{fontFamily:"arial"}}>{paciente.nome}</h4>
               <div className="d-flex align-items-center text-muted">
                 <small>
-                  <i className="bi bi-calendar3 me-1"></i>
                   {calcularIdade(paciente.data_nascimento)} anos
                 </small>
                 <span className="mx-2">•</span>
                 <small>
-                  <i className="bi bi-file-person me-1"></i>
                   Paciente
                 </small>
               </div>
@@ -112,7 +110,7 @@ const PatientePage = () => {
           <div className="row g-3">
             <div className="col-md-4">
               <div className="d-flex align-items-start">
-                <i className="bi bi-card-text text-primary me-2 mt-1"></i>
+                {/* <i className="bi bi-card-text text-secondary me-2 mt-1"></i> */}
                 <div>
                   <small className="text-muted d-block">CPF</small>
                   <span className="fw-medium">{paciente.cpf || "-"}</span>
@@ -122,7 +120,7 @@ const PatientePage = () => {
 
             <div className="col-md-4">
               <div className="d-flex align-items-start">
-                <i className="bi bi-calendar-event text-primary me-2 mt-1"></i>
+                {/* <i className="bi bi-calendar-event text-secondary me-2 mt-1"></i> */}
                 <div>
                   <small className="text-muted d-block">Data de Nascimento</small>
                   <span className="fw-medium">
@@ -134,7 +132,7 @@ const PatientePage = () => {
 
             <div className="col-md-4">
               <div className="d-flex align-items-start">
-                <i className="bi bi-geo-alt text-primary me-2 mt-1"></i>
+                <i className="bi bi-geo-alt text-secondary me-2 mt-1"></i>
                 <div>
                   <small className="text-muted d-block">Endereço</small>
                   <span className="fw-medium">{paciente.endereco || "-"}</span>
