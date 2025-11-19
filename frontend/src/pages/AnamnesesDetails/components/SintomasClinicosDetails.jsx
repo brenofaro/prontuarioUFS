@@ -39,19 +39,19 @@ const SintomasClinicosDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Dentição:</small>
-                    <span className="fw-medium">{denticaoLabels[anamnese.denticao] || "-"}</span>
+                    <span className="fw-normal">{denticaoLabels[anamnese.denticao] || "-"}</span>
                 </div>                            
             </div>
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Mastigação:</small>
-                    <span className="fw-medium">{mastigacaoLabels[anamnese.mastigacao] || "-"}</span>
+                    <span className="fw-normal">{mastigacaoLabels[anamnese.mastigacao] || "-"}</span>
                 </div>                            
             </div>
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Disfagia:</small>
-                    <span className="fw-medium">{anamnese.disfagia === true ? "Sim" : "Não"}</span>
+                    <span className="fw-medium">{anamnese.disfagia === true ? "Sim" : (anamnese.disfagia === false ? "Não" : "")}</span>
                 </div>                            
             </div>
             <div className='col-md-3'>

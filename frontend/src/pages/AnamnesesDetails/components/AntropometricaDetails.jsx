@@ -86,7 +86,11 @@ const AntropometricaDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Circunferência de cintura:</small>
-                    <span className="fw-medium">{anamnese.circunferencia_cintura || "-"} cm</span>
+                    <span className="fw-medium">
+                        {anamnese.circunferencia_cintura
+                            ? `${anamnese.circunferencia_cintura}cm`
+                            : "-"}
+                    </span>
                 </div>                            
             </div>
             <div className='col-md-3'>

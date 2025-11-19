@@ -105,8 +105,8 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
 
 </div>
                 </div>
-          </div>
-      <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+          {/* </div>
+      <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
         <label className="form-label fw-semibold mb-2 d-block">Mastigação:</label>
         <div className="d-flex flex-wrap gap-3">
         <input
@@ -129,9 +129,9 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
         />
         <label>Normal</label>
         </div>
-        </div>
+        {/* </div>
 
-       <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+       <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
 
 
 
@@ -326,10 +326,10 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
 
   </div>
 
-</div>
+{/* </div>
 
 
-        <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+        <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
         <label className="form-label fw-semibold mb-2 d-block">Ritmo Intestinal:</label>
         <div className="d-flex flex-wrap gap-3">
 
@@ -366,9 +366,9 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
         />
         <label className="form check-label" htmlFor="ritmo_obstipacao">Obstipação</label>
         </div>
-        </div>
+        {/* </div>
 
-     <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+     <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
 
   <label className="form-label fw-semibold mb-2 d-block">
     Ritmo Urinário
@@ -434,10 +434,10 @@ const SinaisSintomasClinicos = ({ formData, setFormData }) => {
 
   </div>
 
-</div>
+{/* </div>
 
 
-    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+    <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
 
 
   {/* Linha 1 - Pele / Unhas / Cabelo */}

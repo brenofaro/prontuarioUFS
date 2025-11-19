@@ -9,8 +9,8 @@ import AntropometricaDetails from "./components/AntropometricaDetails.jsx";
 import BioimpedanciaDetails from "./components/BioimpedanciaDetails.jsx";
 import SintomasClinicosDetails from "./components/SintomasClinicosDetails.jsx";
 import InformacoesGerias from "./components/InformacoesGerias.jsx";
-
-
+import BioquimicaDetails from "./components/BioquimicaDetails.jsx";
+import HistoriaAlimentarDetails from "./components/HistoriaAlimentarDetails.jsx";
 
 const AnamnesesDetails = () => {
   const navigate = useNavigate();
@@ -71,6 +71,9 @@ const AnamnesesDetails = () => {
           <AntropometricaDetails anamnese={anamnese} />
           <BioimpedanciaDetails anamnese={anamnese} />
           <SintomasClinicosDetails anamnese={anamnese} />
+          <BioquimicaDetails anamnese={anamnese} />
+          <HistoriaAlimentarDetails anamnese={anamnese} />
+         
           
         </Card>
       

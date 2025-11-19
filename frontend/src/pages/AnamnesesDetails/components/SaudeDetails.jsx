@@ -45,10 +45,10 @@ const SaudeDetails = ({anamnese}) => {
 
     {/* História Familiar (HF) */}
    <div className="mb-2">
-<h6 className="text-muted fw-semibold mb-2 small text-uppercase">
-            {/* <i className="bi bi-virus me-1 ms-1"></i> */}
+{/* <h6 className="text-muted fw-semibold mb-2 small text-uppercase">
+            <i className="bi bi-virus me-1 ms-1"></i>
             Patologias
-          </h6>  
+          </h6>   */}
   <div className="table-responsive">
     <table className="table table-bordered table-hover align-middle">
       <thead className="table-light">

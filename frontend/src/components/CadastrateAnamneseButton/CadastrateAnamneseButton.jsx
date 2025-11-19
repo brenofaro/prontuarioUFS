@@ -78,7 +78,7 @@ function CadastrateAnamneseButton({ pacienteId }) {
         <Modal.Header closeButton className="border-0 pb-0">
           <Modal.Title className="w-100 text-center">
             <div className="mb-2">
-              <i className="bi bi-clipboard2-pulse text-primary" style={{ fontSize: "2.5rem" }}></i>
+              <i className="bi bi-clipboard2-pulse text-secondary" style={{ fontSize: "2.5rem" }}></i>
             </div>
             <h5 className="mb-1">Selecionar Tipo de Anamnese</h5>
             <small className="text-muted fw-normal">

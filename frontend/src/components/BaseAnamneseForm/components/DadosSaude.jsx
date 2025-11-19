@@ -44,7 +44,7 @@ const DadosSaude = ({formData, setFormData}) => {
     <>
    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
 
-  <div className="form-floating">
+  <div className="form-floating mb-3">
     <textarea
       className="form-control"
       placeholder="Descreva a queixa principal..."
@@ -60,11 +60,9 @@ const DadosSaude = ({formData, setFormData}) => {
     </label>
   </div>
 
-</div>
 
-    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
 
-  <div className="form-floating">
+  <div className="form-floating mb-3">
     <textarea
       className="form-control"
       placeholder="Descreva a evolução da doença, sintomas, início, intensidade..."
@@ -79,14 +77,14 @@ const DadosSaude = ({formData, setFormData}) => {
       História da Doença (Queixa) Atual
     </label>
   </div>
-
+{/* 
 </div>
 
-    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+    <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
 
   <h5 className="fw-semibold mb-3">Patologias</h5>
 
-  <table className="table table-hover align-middle">
+  <table className="table table-hover align-middle mb-4">
 
     <thead className="table-primary">
       <tr>
@@ -260,11 +258,11 @@ const DadosSaude = ({formData, setFormData}) => {
 
     </tbody>
   </table>
-</div>
+{/* </div>
 
-    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
+    <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
 
-  <div className="form-floating">
+  <div className="form-floating mb-3">
     <textarea
       className="form-control"
       placeholder="Descreva aqui outras patologias relevantes..."
@@ -280,9 +278,9 @@ const DadosSaude = ({formData, setFormData}) => {
     </label>
   </div>
 
-</div>
+{/* </div>
 
-  <div className="mb-3 p-4 border rounded-3 bg-white">
+  <div className="mb-3 p-4 border rounded-3 bg-white"> */}
 
   <label className="form-label fw-semibold mb-3 d-block">
     Faz uso de medicamentos?

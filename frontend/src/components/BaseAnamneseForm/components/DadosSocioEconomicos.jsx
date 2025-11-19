@@ -64,9 +64,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
   return (
     <>
       {/* Estado Civil */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label  mb-3 d-block">Estado Civil</label>
-        <div className="d-flex flex-wrap gap-3">
+      <div className="mb-3 p-4 border rounded-3 bg-white ">
+        <label className="form-label text-muted small">Estado Civil</label>
+        <div className="d-flex flex-wrap gap-3 mb-3">
           {['solteiro', 'casado', 'viuvo', 'separado'].map((estado) => (
             <div className="form-check" key={estado}>
               <input
@@ -84,15 +84,15 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </div>
           ))}
         </div>
-      </div>
+      {/* </div>
 
-      {/* Escolaridade */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Escolaridade</label>
-        <div className="d-flex flex-wrap gap-3">
-          <div className="form-check">
+  
+      <div className="mb-3 p-4 border rounded-3 bg-white"> */}
+        <label className="form-label text-muted small">Escolaridade</label>
+        <div className="d-flex flex-wrap gap-3 mb-3">
+          <div className="d-flex align-items-center gap-2">
             <input
-              className="form-check-input"
+              className=""
               type="radio"
               name="escolaridade"
               id="analfabeto"
@@ -100,7 +100,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
               checked={formData.escolaridade === "analfabeto"}
               onChange={handleChange}
             />
-            <label className="form-check-label" htmlFor="analfabeto">
+            <label className="form-check-label" style={{fontFamily:"inter"}} htmlFor="analfabeto">
               Analfabeto
             </label>
           </div>
@@ -114,7 +114,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
               checked={formData.escolaridade === "alfabetizado"}
               onChange={handleChange}
             />
-            <label className="form-check-label" htmlFor="alfabetizado">
+            <label className="form-check-label" style={{fontFamily:"inter"}} htmlFor="alfabetizado">
               Alfabetizado
             </label>
           </div>
@@ -128,7 +128,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
               checked={formData.escolaridade === "fundamental_incompleto_completo"}
               onChange={handleChange}
             />
-            <label className="form-check-label" htmlFor="fundamental">
+            <label className="form-check-label" style={{fontFamily:"inter"}} htmlFor="fundamental">
               Fundamental
             </label>
           </div>
@@ -161,28 +161,26 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </label>
           </div>
         </div>
-      </div>
+      {/* </div>
 
-      {/* Ocupação */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label htmlFor="ocupacao" className="form-label fw-semibold mb-2">Ocupação</label>
+      <div className="mb-3 p-4 border rounded-3 bg-white"> */}
+        <label htmlFor="ocupacao" className="form-label text-muted small">Ocupação</label>
         <input
           type="text"
-          className="form-control"
+          className="form-control mb-3"
           id="ocupacao"
           name="ocupacao"
           value={formData.ocupacao || ""}
           placeholder="Ex: Professor"
           onChange={handleChange}
         />
-      </div>
+      {/* </div>
 
-      {/* Atividade dentro de casa */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">
+      <div className="mb-3 p-4 border rounded-3 bg-white"> */}
+        <label className="form-label text-muted small">
           Exerce alguma atividade dentro de casa?
         </label>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -222,12 +220,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Estrutura Familiar */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Estrutura Familiar</label>
-        <div className="row g-3">
+        <label className="form-label text-muted small">Estrutura Familiar</label>
+        <div className="row g-3 mb-3">
           {[
             { value: "pai e mãe, ", label: "Pai/Mãe", id: "pai_mae" },
             { value: "cônjuge, ", label: "Cônjuge", id: "conjuge" },
@@ -267,12 +262,8 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             onChange={handleChange}
           />
         )}
-      </div>
-
-      {/* Renda e Gastos */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Renda e Gastos Mensais</label>
-        <div className="row g-3">
+    
+        <div className="row g-3 mb-3">
           <div className="col-md-6">
             <label htmlFor="renda_pessoal" className="form-label text-muted small">
               Renda Pessoal (R$)
@@ -304,12 +295,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             />
           </div>
         </div>
-      </div>
 
-      {/* Atividade Física */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Atividade Física</label>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <label className="form-label text-muted small">Atividade Física</label>
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -363,14 +351,11 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </>
           )}
         </div>
-      </div>
 
-      {/* Já fez atividade física */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">
+        <label className="form-label text-muted small">
           Já fez alguma atividade física?
         </label>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -410,14 +395,11 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Etilismo */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">
+        <label className="form-label text-muted small">
           Etilismo (consumo de bebidas alcoólicas)
         </label>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -471,12 +453,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </>
           )}
         </div>
-      </div>
 
-      {/* Já foi etilista */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Já foi etilista?</label>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <label className="form-label text-muted small">Já foi etilista?</label>
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -516,12 +495,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Tabagismo */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Tabagismo</label>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <label className="form-label text-muted small">Tabagismo</label>
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -575,12 +551,9 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
             </>
           )}
         </div>
-      </div>
-
-      {/* Já foi tabagista */}
-      <div className="mb-3 p-4 border rounded-3 bg-white">
-        <label className="form-label fw-semibold mb-3 d-block">Já foi tabagista?</label>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+  
+        <label className="form-label text-muted small">Já foi tabagista?</label>
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
           <div className="form-check">
             <input
               className="form-check-input"
