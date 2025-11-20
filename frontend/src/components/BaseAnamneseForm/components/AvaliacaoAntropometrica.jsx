@@ -134,7 +134,6 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
               placeholder="Ex: 1.75"
               step="0.01"
               min="0"
-              max="3"
               value={formData.altura_real || ''}
               onChange={handleChange}
             />
@@ -172,7 +171,6 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
               placeholder="Ex: 1.70"
               step="0.01"
               min="0"
-              max="3"
               value={formData.altura_estimada || ''}
               onChange={handleChange}
             />

@@ -16,8 +16,8 @@ function App() {
       <Route path="/cadastrar-paciente" element={<RegisterPatientePage />} />
       <Route path= "/pagina-paciente/:id" element={<PatientePage />} />
       <Route path="/anamnese-padrao/:pacienteId" element={<BaseAnamneseForm/>}/>
-      {/* <Route path="/anamnese-infantil/:id" element={<ChildAnamneseForm/>}/> */}
-      {/* <Route path="/anamnese-retorno/:id" element={<ReturnAnameseForm/>}/> */}
+      <Route path="/anamnese-infantil/:pacienteId" element={<ChildAnamneseForm/>}/>
+      <Route path="/anamnese-retorno/:pacienteId" element={<ReturnAnameseForm/>}/>
       <Route path="/detalhes-anamnese/:id" element={<AnamnesesDetails/>}/>
       <Route path="/base-anamnese/editar/:pacienteId/:anamneseId" element={<BaseAnamneseForm />} />
 

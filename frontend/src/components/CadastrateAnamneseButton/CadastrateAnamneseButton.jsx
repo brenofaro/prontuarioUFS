@@ -16,46 +16,48 @@ function CadastrateAnamneseButton({ pacienteId }) {
     if (tipo === "infantil") navigate(`/anamnese-infantil/${pacienteId}`);
     else if (tipo === "padrao") navigate(`/anamnese-padrao/${pacienteId}`);
     else if (tipo === "retorno") navigate(`/anamnese-retorno/${pacienteId}`);
+    else if (tipo === "plano_alimentar") navigate(`/anamnese-plano-alimentar/${pacienteId}`);
+    else if (tipo === "ficha_recordatorio") navigate(`/anamnese-ficha-recordatorio/${pacienteId}`);
   };
 
   const anamneseTypes = [
     {
       tipo: "padrao",
-      titulo: "Padrão",
-      descricao: "Primeira consulta",
+      titulo: "",
+      descricao: "Anamnese Padrão",
       icon: "bi-person",
       variant: "success",
       color: "#198754"
     },
     {
       tipo: "infantil",
-      titulo: "Infantil",
-      descricao: "",
+      titulo: "",
+      descricao: "Anamnese Infantil",
       icon: "bi-bandaid",
       variant: "primary",
       color: "#0d6efd"
     },
     {
       tipo: "retorno",
-      titulo: "Retorno",
-      descricao: "Acompanhamento de consulta",
+      titulo: "",
+      descricao: "Ficha de Retorno",
       icon: "bi-arrow-repeat",
       variant: "info",
       color: "#0dcaf0"
     },
     {
-      tipo: "Tipo_4",
-      titulo: "Histórico alimentar",
-      descricao: "",
+      tipo: "plano_alimentar",
+      titulo: "",
+      descricao: "Plano Alimentar",
       icon: "bi-cart2",
       variant: "secondary",
-      color: "#6a8381ff"
+      color: "#426461ff"
     },
     {
-      tipo: "Tipo_5",
-      titulo: "Tipo 5",
-      descricao: "",
-      icon: "bi-question",
+      tipo: "ficha_recordatorio",
+      titulo: "",
+      descricao: "Ficha de Recordatório",
+      icon: "bi-card-checklist",
       variant: "dark",
       color: "#252a2bff"
     }
@@ -69,7 +71,7 @@ function CadastrateAnamneseButton({ pacienteId }) {
           onClick={handleOpenModal}
         >
           <i className="bi bi-plus-circle me-2"></i>
-          Cadastrar Anamnese
+          Adicionar Registro
         </button>
       </div>
 
@@ -80,9 +82,9 @@ function CadastrateAnamneseButton({ pacienteId }) {
             <div className="mb-2">
               <i className="bi bi-clipboard2-pulse text-secondary" style={{ fontSize: "2.5rem" }}></i>
             </div>
-            <h5 className="mb-1">Selecionar Tipo de Anamnese</h5>
+            <h5 className="mb-1">Selecionar Tipo de Registro</h5>
             <small className="text-muted fw-normal">
-              Escolha o tipo adequado para o paciente
+              
             </small>
           </Modal.Title>
         </Modal.Header>
@@ -113,7 +115,7 @@ function CadastrateAnamneseButton({ pacienteId }) {
                       style={{
                         width: "70px",
                         height: "70px",
-                        backgroundColor: `${item.color}15`
+                        // backgroundColor: `${item.color}15`
                       }}
                     >
                       <i 

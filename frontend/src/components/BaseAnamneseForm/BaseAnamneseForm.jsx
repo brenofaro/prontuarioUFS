@@ -16,6 +16,26 @@ function BaseAnamneseForm() {
   const { pacienteId, anamneseId } = useParams();
   const navigate = useNavigate();
 
+   const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.data_consulta) {
+      newErrors.data_consulta = "Data da consulta é obrigatória";
+    }
+
+    if (!formData.numero_prontuario) {
+      newErrors.numero_prontuario = "Número do prontuário é obrigatório";
+    }
+
+    if (!formData.nutricionista_responsavel) {
+      newErrors.nutricionista_responsavel = "Nutricionista responsável é obrigatório";
+    }
+
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const [formData, setFormData] = useState({
       data_consulta : "",
       numero_prontuario: "",
@@ -144,6 +164,10 @@ function BaseAnamneseForm() {
   // 🔥 SALVAR OU EDITAR (POST ou PUT)
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+     if (!validateForm()) {
+      return;
+    }
 
     const url = anamneseId
       ? `http://localhost:8080/base-anamneses/${anamneseId}`

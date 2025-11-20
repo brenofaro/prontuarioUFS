@@ -132,14 +132,14 @@ const AnamneseList = () => {
           marginLeft: "10px",
         }}
       >
-        Anamneses Cadastradas
+        Registros encontrados
       </p>
       )}
     
 
       {anamneses.length === 0 ? (
         <div className="text-muted fst-italic">
-          Nenhuma anamnese cadastrada.
+          Nenhum registro encontrado.
         </div>
       ) : (
         <div
