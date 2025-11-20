@@ -40,11 +40,21 @@ const DadosSaude = ({formData, setFormData}) => {
       [name]: value,
     }));
   };
+
+    const toggleField = (fieldName) => {
+  setFormData((prev) => ({
+    ...prev,
+    [fieldName]: prev[fieldName] === "true" ? null : "true",
+  }));
+};
   return (
     <>
    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
 
-  <div className="form-floating mb-3">
+  <div className=" mb-3">
+    <label htmlFor="diagnostico_antropometrico" className="form-label text-muted small">
+          Queixa Principal/ Objetivo da consulta
+        </label>
     <textarea
       className="form-control"
       placeholder="Descreva a queixa principal..."
@@ -55,14 +65,15 @@ const DadosSaude = ({formData, setFormData}) => {
       onChange={handleChange}
     ></textarea>
 
-    <label htmlFor="objetivo_consulta">
-      Queixa principal / Objetivo da consulta
-    </label>
+   
   </div>
 
 
 
-  <div className="form-floating mb-3">
+  <div className="mb-4">
+    <label htmlFor="diagnostico_antropometrico" className="form-label text-muted small">
+          História da Doença (Queixa) Atual
+        </label>
     <textarea
       className="form-control"
       placeholder="Descreva a evolução da doença, sintomas, início, intensidade..."
@@ -73,16 +84,13 @@ const DadosSaude = ({formData, setFormData}) => {
       onChange={handleChange}
     ></textarea>
 
-    <label htmlFor="historia_doenca">
-      História da Doença (Queixa) Atual
-    </label>
+   
   </div>
 {/* 
 </div>
 
     <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
 
-  <h5 className="fw-semibold mb-3">Patologias</h5>
 
   <table className="table table-hover align-middle mb-4">
 
@@ -262,7 +270,11 @@ const DadosSaude = ({formData, setFormData}) => {
 
     <div className="mb-4 p-3 border rounded bg-white shadow-sm"> */}
 
-  <div className="form-floating mb-3">
+  <div className="mb-3">
+     <label htmlFor="diagnostico_antropometrico" className="form-label text-muted small">
+          Outras Patologias
+        </label>
+    
     <textarea
       className="form-control"
       placeholder="Descreva aqui outras patologias relevantes..."
@@ -273,23 +285,21 @@ const DadosSaude = ({formData, setFormData}) => {
       onChange={handleChange}
     ></textarea>
 
-    <label htmlFor="outras_patologias">
-      Outras Patologias
-    </label>
+  
   </div>
 
 {/* </div>
 
   <div className="mb-3 p-4 border rounded-3 bg-white"> */}
 
-  <label className="form-label fw-semibold mb-3 d-block">
+  <label className="form-label text-muted small mb-3 d-block">
     Faz uso de medicamentos?
   </label>
 
-  <div className="d-flex flex-wrap align-items-center gap-3">
+  <div className="d-flex gap-3">
 
     {/* SIM */}
-    <div className="form-check">
+    <div className="form-check d-flex align-items-center gap-2">
       <input
         className="form-check-input"
         type="radio"
@@ -298,6 +308,7 @@ const DadosSaude = ({formData, setFormData}) => {
         value="true"
         checked={formData.faz_uso_medicamentos === true}
         onChange={handleChange}
+        onClick={() => toggleField("faz_uso_medicamentos")}
       />
       <label className="form-check-label ms-1" htmlFor="uso_medicamentos">
         Sim
@@ -305,7 +316,7 @@ const DadosSaude = ({formData, setFormData}) => {
     </div>
 
     {/* NÃO */}
-    <div className="form-check">
+    <div className="form-check d-flex align-items-center gap-2">
       <input
         className="form-check-input"
         type="radio"
@@ -314,6 +325,7 @@ const DadosSaude = ({formData, setFormData}) => {
         value="false"
         checked={formData.faz_uso_medicamentos === false}
         onChange={handleChange}
+        onClick={() => toggleField("faz_uso_medicamentos")}
       />
       <label className="form-check-label ms-1" htmlFor="nao_uso_medicamentos">
         Não
@@ -329,7 +341,7 @@ const DadosSaude = ({formData, setFormData}) => {
           type="text"
           name="medicamentos"
           className="form-control form-control-sm"
-          style={{ width: "250px" }}
+          style={{ width: "400px" }}
           placeholder="Ex: Fluoxetina"
           value={formData.medicamentos || ""}
           onChange={handleChange}

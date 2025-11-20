@@ -73,7 +73,7 @@ const AnamnesesDetails = () => {
           <SintomasClinicosDetails anamnese={anamnese} />
           <BioquimicaDetails anamnese={anamnese} />
           <HistoriaAlimentarDetails anamnese={anamnese} />
-         
+          
           
         </Card>
       

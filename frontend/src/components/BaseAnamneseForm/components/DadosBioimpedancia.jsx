@@ -53,7 +53,7 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
   <div className="row g-3">
 
     <div className="col-md-3">
-      <label className="form-label">Percentual de gordura (%)</label>
+      <label className="form-label text-muted small">Percentual de gordura (%)</label>
       <input
         type="number"
         className="form-control"
@@ -68,7 +68,7 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     </div>
 
     <div className="col-md-3">
-      <label className="form-label">Peso gordura (kg)</label>
+      <label className="form-label text-muted small">Peso gordura (kg)</label>
       <input
         type="number"
         className="form-control"
@@ -82,7 +82,7 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     </div>
 
     <div className="col-md-3">
-      <label className="form-label">Massa magra (kg)</label>
+      <label className="form-label text-muted small">Massa magra (kg)</label>
       <input
         type="number"
         className="form-control"
@@ -96,7 +96,7 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     </div>
 
     <div className="col-md-3">
-      <label className="form-label">Gordura alvo (%)</label>
+      <label className="form-label text-muted small">Gordura alvo (%)</label>
       <input
         type="number"
         className="form-control"
@@ -117,7 +117,7 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
   <div className="row g-3 mt-2">
 
     <div className="col-md-3">
-      <label className="form-label">Peso alvo (kg)</label>
+      <label className="form-label text-muted small">Peso alvo (kg)</label>
       <input
         type="number"
         className="form-control"
@@ -130,8 +130,8 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
       />
     </div>
 
-    <div className="col-md-3">
-      <label className="form-label">TMB (kcal)</label>
+    <div className="col-md-3"> 
+      <label className="form-label text-muted small">TMB (kcal)</label>
       <input
         type="number"
         className="form-control"
@@ -144,7 +144,7 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     </div>
 
     <div className="col-md-3">
-      <label className="form-label">Água da massa magra (%)</label>
+      <label className="form-label text-muted small">Água da massa magra (%)</label>
       <input
         type="number"
         className="form-control"
@@ -159,7 +159,7 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     </div>
 
     <div className="col-md-3">
-      <label className="form-label">Água corporal total (L)</label>
+      <label className="form-label text-muted small">Água corporal total (L)</label>
       <input
         type="number"
         className="form-control"

@@ -43,6 +43,14 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
       [name]: value,
     }));
   };
+
+   const toggleField = (fieldName) => {
+  setFormData((prev) => ({
+    ...prev,
+    [fieldName]: prev[fieldName] === "true" ? null : "true",
+  }));
+};
+
   return (
     <>
    <div className="mb-4 p-3 border rounded bg-white shadow-sm">
@@ -52,7 +60,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
 
   {/* Aversões alimentares */}
   <div className="mb-3">
-    <label className="form-label fw-semibold d-block">Aversões alimentares:</label>
+    <label className="form-label text-muted small">Aversões alimentares:</label>
 
     <div className="d-flex flex-wrap gap-4">
 
@@ -66,6 +74,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           value="true"
           checked={formData.possui_aversoes_alimentares === true}
           onChange={handleChange}
+          onClick={() => toggleField("possui_aversoes_alimentares")}
         />
         <label htmlFor="aversao_sim" className="form-check-label">Sim</label>
       </div>
@@ -80,21 +89,27 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           value="false"
           checked={formData.possui_aversoes_alimentares === false}
           onChange={handleChange}
+          onClick={() => toggleField("possui_aversoes_alimentares")}
         />
         <label htmlFor="aversao_nao" className="form-check-label">Não</label>
       </div>
 
       {/* Campo condicionado */}
       {formData.possui_aversoes_alimentares === true && (
-        <input
-          type="text"
-          name="aversoes_alimentares"
-          className="form-control d-inline-block"
-          style={{ width: "250px" }}
-          placeholder="Quais?"
-          value={formData.aversoes_alimentares || ""}
-          onChange={handleChange}
-        />
+                      <div className="d-flex align-items-center gap-2 ms-3">
+
+                        <label className="text-muted small mb-0">Quais:</label>
+  
+          <input
+            type="text"
+            name="aversoes_alimentares"
+            className="form-control form-control-sm"
+            style={{ width: "250px" }}
+
+            value={formData.aversoes_alimentares || ""}
+            onChange={handleChange}
+          />
+                      </div>
       )}
 
     </div>
@@ -103,7 +118,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
 
   {/* Alergias alimentares */}
   <div className="mb-3">
-    <label className="form-label fw-semibold d-block">Alergias / Intolerâncias alimentares:</label>
+    <label className="form-label text-muted small d-block">Alergias / Intolerâncias alimentares:</label>
 
     <div className="d-flex flex-wrap gap-4">
 
@@ -117,6 +132,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           value="true"
           checked={formData.possui_alergias_alimentares === true}
           onChange={handleChange}
+          onClick={() => toggleField("possui_alergias_alimentares")}
         />
         <label htmlFor="alergia_sim" className="form-check-label">Sim</label>
       </div>
@@ -131,21 +147,25 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           value="false"
           checked={formData.possui_alergias_alimentares === false}
           onChange={handleChange}
+          onClick={() => toggleField("possui_alergias_alimentares")}
         />
         <label htmlFor="alergia_nao" className="form-check-label">Não</label>
       </div>
 
       {/* Campo condicionado */}
       {formData.possui_alergias_alimentares === true && (
-        <input
-          type="text"
-          name="alergias_alimentares"
-          className="form-control d-inline-block"
-          style={{ width: "250px" }}
-          placeholder="Quais?"
-          value={formData.alergias_alimentares || ""}
-          onChange={handleChange}
-        />
+        <div className="d-flex align-items-center gap-2 ms-3">
+            <label className="text-muted small mb-0">Quais:</label>
+
+          <input
+            type="text"
+            name="alergias_alimentares"
+            className="form-control form-control-sm"
+            style={{ width: "250px" }}
+            value={formData.alergias_alimentares || ""}
+            onChange={handleChange}
+          />
+        </div>
       )}
 
     </div>
@@ -154,22 +174,22 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
 
   {/* Ingestão hídrica */}
   <div className="mb-3">
-    <label className="form-label fw-semibold">Ingestão hídrica:</label>
+    <label className="form-label text-muted small">Ingestão hídrica:</label>
     <input
       type="text"
-      className="form-control mt-1"
+      className="form-control form-control-sm mt-1"
       name="ingestao_hidrica"
       placeholder="Ex: 2 litros/dia"
       value={formData.ingestao_hidrica || ""}
       onChange={handleChange}
-      style={{ width: "250px" }}
+      style={{ width: "250px", height: "40px"}}
     />
   </div>
 
 
   {/* Horário de maior fome */}
   <div className="mb-3">
-    <label className="form-label fw-semibold d-block">
+    <label className="form-label text-muted small d-block">
       Existe algum horário que sente mais fome?
     </label>
 
@@ -185,6 +205,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           value="true"
           checked={formData.existe_horario_mais_fome === true}
           onChange={handleChange}
+          onClick={() => toggleField("existe_horario_mais_fome")}
         />
         <label htmlFor="fome_sim" className="form-check-label">Sim</label>
       </div>
@@ -199,21 +220,25 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           value="false"
           checked={formData.existe_horario_mais_fome === false}
           onChange={handleChange}
+          onClick={() => toggleField("existe_horario_mais_fome")}
         />
         <label htmlFor="fome_nao" className="form-check-label">Não</label>
       </div>
 
       {/* Campo condicionado */}
       {formData.existe_horario_mais_fome === true && (
-        <input
-          type="text"
-          className="form-control d-inline-block"
-          style={{ width: "250px" }}
-          name="horario_mais_fome"
-          placeholder="Qual horário?"
-          value={formData.horario_mais_fome || ""}
-          onChange={handleChange}
-        />
+        <div className="d-flex align-items-center gap-2 ms-3">
+            <label className="text-muted small mb-0">Qual horário:</label>
+
+          <input
+            type="text"
+            className="form-control form-control-sm"
+            style={{ width: "250px" }}
+            name="horario_mais_fome"
+            value={formData.horario_mais_fome || ""}
+            onChange={handleChange}
+          />
+        </div>
       )}
 
     </div>
@@ -222,7 +247,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
 
   {/* Apetite */}
   <div className="mb-3 d-flex flex-column align-items-start" >
-    <label className="form-label fw-semibold d-block">Apetite:</label>
+    <label className="form-label text-muted small d-block">Apetite:</label>
 
     <div className="d-flex flex-wrap gap-4 ">
 
@@ -230,18 +255,14 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
         <input
           type="radio"
           name="apetite"
-          className=""
+          className="form-check-input"
           id="apetite_normal"
           value="normal"
           checked={formData.apetite === "normal"}
           onChange={handleChange}
-          onClick={() =>
-      setFormData((prev) => ({
-        ...prev,
-        apetite:
-          prev.apetite === "normal" ? null : "normal", // <-- aqui a mágica
-      }))
-    }
+          onClick={() => toggleField("apetite")}
+        
+
         />
         <label htmlFor="apetite_normal">Normal</label>
       </div>
@@ -250,18 +271,12 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
         <input
           type="radio"
           name="apetite"
-          className=""
+          className="form-check-input"
           id="apetite_aumentado"
           value="aumentado"
           checked={formData.apetite === "aumentado"}
           onChange={handleChange}
-          onClick={() =>
-      setFormData((prev) => ({
-        ...prev,
-        apetite:
-          prev.apetite === "aumentado" ? null : "aumentado", // <-- aqui a mágica
-      }))
-    }
+          onClick={() => toggleField("apetite")}
         />
         <label htmlFor="apetite_aumentado">Aumentado</label>
       </div>
@@ -270,18 +285,12 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
         <input
           type="radio"
           name="apetite"
-          className=""
+          className="form-check-input"
           id="apetite_diminuido"
           value="diminuido"
           checked={formData.apetite === "diminuido"}
           onChange={handleChange}
-          onClick={() =>
-      setFormData((prev) => ({
-        ...prev,
-        apetite:
-          prev.apetite === "diminuido" ? null : "diminuido", // <-- aqui a mágica
-      }))
-    }
+          onClick={() => toggleField("apetite")}
         />
         <label htmlFor="apetite_diminuido">Diminuído</label>
       </div>

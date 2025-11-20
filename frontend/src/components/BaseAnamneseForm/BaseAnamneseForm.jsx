@@ -176,44 +176,44 @@ function BaseAnamneseForm() {
     <div className="container mt-4 border rounded p-4 bg-light">
       <form onSubmit={handleSubmit} className="p-3">
 
- <h3 className="d-flex align-items-center" style={{ fontFamily: "arial" }}>
-  <FaArrowLeft
-    size={22}
-    className="me-2"
-    style={{ cursor: "pointer" }}
-    onClick={handleClick}
-  />
+        <h3 className="d-flex align-items-center" style={{ fontFamily: "arial" }}>
+          <FaArrowLeft
+            size={22}
+            className="me-2"
+            style={{ cursor: "pointer" }}
+            onClick={handleClick}
+          />
 
-  {anamneseId ? "Editar Anamnese" : "Cadastro de Anamnese"}
-</h3>
+          {anamneseId ? "Editar Anamnese" : "Cadastro de Anamnese"}
+        </h3>
 
 
 
         <p className="mt-5 mb-3 ms-1" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Iniciais</p>
         <DadosIniciais formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">Dados Demográficos</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Demográficos</h4>
         <DadosSocioEconomicos formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">Dados de Saúde</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados de Saúde</h4>
         <DadosSaude formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">Avaliação Antropométrica</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Avaliação Antropométrica</h4>
         <AvaliacaoAntropometrica formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">Dados Bioimpedância</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Bioimpedância</h4>
         <DadosBioimpedancia formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">Sinais e Sintomas</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Sinais e Sintomas</h4>
         <SinaisSintomasClinicos formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">Avaliação Bioquímica</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Avaliação Bioquímica</h4>
         <AvaliacaoBioquimica formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">História Alimentar</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>História Alimentar</h4>
         <HistoriaAlimentar formData={formData} setFormData={setFormData} />
 
-        <h4 className="mt-5 mb-3">Diagnóstico Conclusivo</h4>
+        <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Diagnóstico Conclusivo</h4>
         <DiagnosticoConclusivo formData={formData} setFormData={setFormData} />
 
         <div className="d-flex justify-content-between mt-4">

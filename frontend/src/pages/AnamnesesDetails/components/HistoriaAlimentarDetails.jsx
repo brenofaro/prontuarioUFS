@@ -16,7 +16,7 @@ const HistoriaAlimentarDetails = ({anamnese}) => {
     <div>
           <Card.Body>
          <Card.Title className='mb-4 border-bottom pb-2' style={{fontFamily:"arial"}}>
-            Avaliação Antropométrica
+            História Alimentar
         </Card.Title>
         <div className='row mb-4 ps-1'>
         <div className='col-md-3'>

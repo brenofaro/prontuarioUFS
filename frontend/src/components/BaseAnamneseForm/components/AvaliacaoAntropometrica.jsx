@@ -86,10 +86,10 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
 
       {/* SEÇÃO 1: Peso e Altura */}
       <div className="mb-4">
-        <h6 className="text-secondary mb-3">Peso e Altura</h6>
+        {/* <h6 className="text-secondary mb-3">Peso e Altura</h6> */}
         <div className="row g-3">
           <div className="col-md-3">
-            <label className="form-label fw-semibold">
+            <label className="form-label text-muted small">
               Peso atual (kg) <span className="text-danger">*</span>
             </label>
             <input 
@@ -105,7 +105,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Peso usual (kg)</label>
+            <label className="form-label text-muted small">Peso usual (kg)</label>
             <input 
               type="number"
               name="peso_usual"
@@ -124,7 +124,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">
+            <label className="form-label text-muted small">
               Altura real (m) <span className="text-danger">*</span>
             </label>
             <input 
@@ -141,7 +141,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Altura da joelho (cm)</label>
+            <label className="form-label text-muted small">Altura da joelho (cm)</label>
             <div className="input-group">
               <input 
                 type="number"
@@ -164,7 +164,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Altura estimada (m)</label>
+            <label className="form-label text-muted small">Altura estimada (m)</label>
             <input 
               type="number"
               name="altura_estimada"
@@ -176,11 +176,11 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
               value={formData.altura_estimada || ''}
               onChange={handleChange}
             />
-            <small className="text-info">Calculada por AJ ou manual</small>
+            {/* <small className="text-info">Calculada por AJ ou manual</small> */}
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">IMC (kg/m²)</label>
+            <label className="form-label text-muted small">IMC (kg/m²)</label>
             <input 
               type="number"
               name="imc"
@@ -202,10 +202,10 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
 
       {/* SEÇÃO 2: Circunferências */}
       <div className="mb-4">
-        <h6 className="text-secondary mb-3">Circunferências (cm)</h6>
+        {/* <h6 className="text-secondary mb-3">Circunferências (cm)</h6> */}
         <div className="row g-3">
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Braço</label>
+            <label className="form-label text-muted small">Braço</label>
             <input 
               type="number"
               name="circunferencia_braco"
@@ -219,7 +219,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Cintura</label>
+            <label className="form-label text-muted small">Cintura</label>
             <input 
               type="number"
               name="circunferencia_cintura"
@@ -233,7 +233,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Panturrilha</label>
+            <label className="form-label text-muted small">Panturrilha</label>
             <input 
               type="number"
               name="circunferencia_panturrilha"
@@ -247,7 +247,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Pescoço</label>
+            <label className="form-label text-muted small">Pescoço</label>
             <input 
               type="number"
               name="comprimento_pescoco"
@@ -264,10 +264,10 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
 
       {/* SEÇÃO 3: Pregas Cutâneas */}
       <div className="mb-4">
-        <h6 className="text-secondary mb-3">Pregas Cutâneas (mm)</h6>
+        {/* <h6 className="text-secondary mb-3">Pregas Cutâneas (mm)</h6> */}
         <div className="row g-3">
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Tricipital (PCT)</label>
+            <label className="form-label text-muted small">Tricipital (PCT)</label>
             <input 
               type="number"
               name="pct"
@@ -281,7 +281,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Bicipital (PCB)</label>
+            <label className="form-label text-muted small">Bicipital (PCB)</label>
             <input 
               type="number"
               name="pcb"
@@ -295,7 +295,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Subescapular (PCSE)</label>
+            <label className="form-label text-muted small">Subescapular (PCSE)</label>
             <input 
               type="number"
               name="pcse"
@@ -309,7 +309,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Suprailíaca (PCSI)</label>
+            <label className="form-label text-muted small">Suprailíaca (PCSI)</label>
             <input 
               type="number"
               name="pcsi"
@@ -326,7 +326,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
 
       {/* SEÇÃO 4: Diagnóstico */}
       <div className="mb-3">
-        <label htmlFor="diagnostico_antropometrico" className="form-label fw-semibold">
+        <label htmlFor="diagnostico_antropometrico" className="form-label text-muted small">
           Diagnóstico Antropométrico
         </label>
         <textarea
@@ -338,9 +338,7 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           value={formData.diagnostico_antropometrico || ""}
           onChange={handleChange}
         />
-        <small className="text-muted">
-          Inclua classificações do IMC, circunferências, pregas cutâneas e interpretação clínica
-        </small>
+       
       </div>
 
       {/* Indicadores Visuais */}

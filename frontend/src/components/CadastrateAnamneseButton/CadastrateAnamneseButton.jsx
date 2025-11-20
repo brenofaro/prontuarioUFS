@@ -22,16 +22,16 @@ function CadastrateAnamneseButton({ pacienteId }) {
     {
       tipo: "padrao",
       titulo: "Padrão",
-      descricao: "Avaliação completa inicial",
-      icon: "bi-clipboard-check",
+      descricao: "Primeira consulta",
+      icon: "bi-person",
       variant: "success",
       color: "#198754"
     },
     {
       tipo: "infantil",
       titulo: "Infantil",
-      descricao: "Para crianças e adolescentes",
-      icon: "bi-person",
+      descricao: "",
+      icon: "bi-bandaid",
       variant: "primary",
       color: "#0d6efd"
     },
@@ -45,19 +45,19 @@ function CadastrateAnamneseButton({ pacienteId }) {
     },
     {
       tipo: "Tipo_4",
-      titulo: "Tipo 4",
-      descricao: "Ainda não definido",
-      icon: "bi-question",
-      variant: "info",
-      color: "#0dcaf0"
+      titulo: "Histórico alimentar",
+      descricao: "",
+      icon: "bi-cart2",
+      variant: "secondary",
+      color: "#6a8381ff"
     },
     {
       tipo: "Tipo_5",
       titulo: "Tipo 5",
-      descricao: "Ainda não definido",
+      descricao: "",
       icon: "bi-question",
-      variant: "info",
-      color: "#0dcaf0"
+      variant: "dark",
+      color: "#252a2bff"
     }
   ];
 
