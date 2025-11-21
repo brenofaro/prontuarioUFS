@@ -1,20 +1,93 @@
-# from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-# from sqlalchemy.orm import relationship
-# from src.database.connection import Base
-# import datetime
+from sqlalchemy import (
+    Column, 
+    Integer, 
+    String, 
+    ForeignKey, 
+    Boolean, 
+    Date, 
+    Text, 
+    Enum as SqlEnum
+)
+from sqlalchemy.orm import relationship
+from src.database.connection import Base
+from src.database.entities.enums import (
+    RitmoIntestinal, 
+    RitmoUrinario,
+    SonoEnum,
+    SatisfacaoAlimentarEnum,
+    GrauImcEnum
 
-# class ReturnAnamnese(Base):
-#     __tablename__ = "return_anamneses"
+)
 
-#     id = Column(Integer, primary_key=True, index=True)
-#     paciente_id = Column(Integer, ForeignKey("pacientes.id"))
-#     tipo = Column(String, default="retorno", nullable=False)
-#     data_consulta = Column(DateTime, default=datetime.datetime.utcnow)
+class ReturnAnamnese(Base):
+    __tablename__ = "return_anamneses"
 
-#     # FK opcional — aponta para a anamnese original (pode ser BaseAnamnese ou ChildAnamnese)
-#     anamnese_referencia_id = Column(Integer, nullable=True)
-#     anamnese_referencia_tipo = Column(String, nullable=True)  # "base" ou "child"
+    id = Column(Integer, primary_key=True, index=True)
+    paciente_id = Column(Integer, ForeignKey("pacientes.id"))
+    tipo_registro = Column(String, nullable=False)
 
-#     observacoes = Column(String)
+    data_consulta = Column(Date, nullable=False)
+    numero_prontuario = Column(Integer, unique=False)
+    nutricionista_responsavel = Column(String, nullable=False)
 
-#     paciente = relationship("Paciente", back_populates="return_anamneses")
+    diagnostico_clinico = Column(Text, nullable=True)
+    queixa_principal = Column(Text, nullable=True)
+    medicacoes_uso = Column(Text, nullable=True)
+    ritmo_intestinal = Column(SqlEnum(RitmoIntestinal), nullable=True)
+    frequencia_ritmo_intestinal = Column(String, nullable=True)
+    consistencia_ritmo_intestinal = Column(String, nullable=True)
+    ritmo_urinario = Column(SqlEnum(RitmoUrinario), nullable=True)
+    ingestao_hidrica = Column(String, nullable=True)
+    disfagia = Column(Boolean, nullable=True, default=False)
+    odinofagia = Column(Boolean, nullable=True, default=False)
+    dispepsia = Column(Boolean, nullable=True, default=False)
+    nauseas = Column(Boolean, nullable=True, default=False)
+    vomitos = Column(Boolean, nullable=True, default=False)
+    flatulencia = Column(Boolean, nullable=True, default=False)
+    cefaleia = Column(String, nullable=True)
+    sono = Column(SqlEnum(SonoEnum), nullable=True)
+    horario_dorme = Column(String, nullable=True)
+    horario_acorda = Column(String, nullable=True)
+    outros_dados_clinicos = Column(Text, nullable=True)
+
+    dificuldades_plano_anterior = Column(Text, nullable=True)
+    falta_dieta = Column(Text, nullable=True)
+    rotina_exercicios = Column(Text, nullable=True)
+    modificacao_exames = Column(Text, nullable=True)
+    alimentacao_fds = Column(Text, nullable=True)
+    nivel_estresse = Column(String, nullable=True)
+    melhorou_mudancas = Column(Text, nullable=True)
+    precisa_melhorar = Column(Text, nullable=True)
+    como_se_sente = Column(Text, nullable=True)
+    satisfacao_plano = Column(SqlEnum(SatisfacaoAlimentarEnum), nullable=True)
+
+    cabelo = Column(String, nullable=True)
+    mucosas = Column(String, nullable=True)
+    denticao = Column(String, nullable=True)
+    labios = Column(String, nullable=True)
+    lingua = Column(String, nullable=True)
+    gengiva = Column(String, nullable=True)
+    pele = Column(String, nullable=True)
+    unhas = Column(String, nullable=True)
+    abdomen = Column(String, nullable=True)
+    edema = Column(String, nullable=True)
+
+    peso = Column(String, nullable=True)
+    altura = Column(String, nullable=True)
+    imc_i = Column(String, nullable=True)
+    e_i = Column(String, nullable=True)
+    circunferencia_cabeca = Column(String, nullable=True)
+    circunferencia_coxa = Column(String, nullable=True)
+    pct = Column(String, nullable=True)
+    circunferencia_braco = Column(String, nullable=True)
+    imc = Column(String, nullable=True)
+    grau_imc = Column(SqlEnum(GrauImcEnum), nullable=True)
+
+    data_eb = Column(Date, nullable=True)
+    vitamina_a = Column(String, nullable=True)
+    vitamina_bdoze = Column(String, nullable=True)
+    fosfatase_prostatica = Column(String, nullable=True)
+    vitamina_d = Column(String, nullable=True)
+
+
+    paciente = relationship("Paciente", back_populates="return_anamneses")

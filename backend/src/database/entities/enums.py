@@ -39,3 +39,26 @@ class ApetiteEnum(str, Enum):
     normal = "normal"
     aumentado = "aumentado"
     diminuido = "diminuido"
+
+class SonoEnum(str, Enum):
+    bom = "bom"
+    mediano = "mediano"
+    ruim = "ruim"
+
+class SatisfacaoAlimentarEnum(str, Enum):
+    insatisfeito = "insatisfeito"
+    pouco_satisfeito = "pouco_satisfeito"
+    satisfeito = "satisfeito"
+    muito_satisfeito = "muito_satisfeito"
+
+class GrauImcEnum(str, Enum):
+    desnutricao_grau_i = "desnutricao_grau_i"
+    desnutricao_grau_ii = "desnutricao_grau_ii"
+    desnutricao_grau_iii = "desnutricao_grau_iii"
+    eutrofia = "eutrofia"
+    sobrepeso = "sobrepeso"
+    obesidade_grau_i = "obesidade_grau_i"
+    obesidade_grau_ii = "obesidade_grau_ii"
+    obesidade_grau_iii = "obesidade_grau_iii"
+
+

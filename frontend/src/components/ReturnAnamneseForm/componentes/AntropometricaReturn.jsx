@@ -171,13 +171,41 @@ const AntropometricaReturn = ({formData, setFormData}) => {
                   className="form-check-input"
                   type="radio"
                   name="grau_imc"
-                  id="desnutricao"
-                  value="desnutricao"
-                  checked={formData.grau_imc === "desnutricao"}
+                  id="desnutricao_grau_i"
+                  value="desnutricao_grau_i"
+                  checked={formData.grau_imc === "desnutricao_grau_i"}
                   onChange={handleChange}
                   onClick={() => toggleField("grau_imc")}
                 />
-                <label className="form-check-label text-muted  ms-1" htmlFor="desnutricao">Desnutrição</label>
+                <label className="form-check-label text-muted small " htmlFor="desnutricao_grau_i">Desnutrição Grau 1</label>
+              </div>
+
+              <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grau_imc"
+                  id="desnutricao_grau_ii"
+                  value="desnutricao_grau_ii"
+                  checked={formData.grau_imc === "desnutricao_grau_ii"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("grau_imc")}
+                />
+                <label className="form-check-label text-muted small" htmlFor="desnutricao_grau_ii">Desnutrição Grau 2</label>
+              </div>
+
+              <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grau_imc"
+                  id="desnutricao_grau_iii"
+                  value="desnutricao_grau_iii"
+                  checked={formData.grau_imc === "desnutricao_grau_iii"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("grau_imc")}
+                />
+                <label className="form-check-label text-muted small" htmlFor="desnutricao_grau_iii">Desnutrição Grau 3</label>
               </div>
 
               {/* Anúria */}
@@ -192,7 +220,7 @@ const AntropometricaReturn = ({formData, setFormData}) => {
                   onChange={handleChange}
                   onClick={() => toggleField("grau_imc")}
                 />
-                <label className="form-check-label text-muted  ms-1" htmlFor="eutrofia">Eutrofia</label>
+                <label className="form-check-label text-muted small" htmlFor="eutrofia">Eutrofia</label>
               </div>
 
               {/* Poliúria */}
@@ -207,7 +235,7 @@ const AntropometricaReturn = ({formData, setFormData}) => {
                   onChange={handleChange}
                   onClick={() => toggleField("grau_imc")}
                 />
-                <label className="form-check-label text-muted  ms-1" htmlFor="sobrepeso">Sobrepeso</label>
+                <label className="form-check-label text-muted small " htmlFor="sobrepeso">Sobrepeso</label>
               </div>
 
               {/* Normal */}
@@ -216,44 +244,46 @@ const AntropometricaReturn = ({formData, setFormData}) => {
                   className="form-check-input"
                   type="radio"
                   name="grau_imc"
-                  id="obesidade"
-                  value="obesidade"
-                  checked={formData.grau_imc === "obesidade"}
+                  id="obesidade_grau_i"
+                  value="obesidade_grau_i"
+                  checked={formData.grau_imc === "obesidade_grau_i"}
                   onChange={handleChange}
                   onClick={() => toggleField("grau_imc")}
                 />
-                <label className="form-check-label text-muted  ms-1" htmlFor="obesidade">Obesidade</label>
+                <label className="form-check-label text-muted small" htmlFor="obesidade_grau_i">Obesidade Grau 1</label>
               </div>
 
-              {formData.grau_imc === "obesidade" && (
-                <div className="d-flex align-items-center gap-2 ms-3">
-                  <label className="text-muted small mb-0">Grau de obesidade:</label>
+               <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grau_imc"
+                  id="obesidade_grau_ii"
+                  value="obesidade_grau_ii"
+                  checked={formData.grau_imc === "obesidade_grau_ii"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("grau_imc")}
+                />
+                <label className="form-check-label text-muted small " htmlFor="obesidade_grau_ii">Obesidade Grau 2</label>
+              </div>
 
-                  <input
-                    type="text"
-                    name="grau_obesidade"
-                    className="form-control form-control-sm"
-                    style={{ width: "150px" }}
-                    value={formData.grau_obesidade || ""}
-                    onChange={handleChange}
-                  />
-                </div>
-              )}
+               <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="grau_imc"
+                  id="obesidade_grau_iii"
+                  value="obesidade_grau_iii"
+                  checked={formData.grau_imc === "obesidade_grau_iii"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("grau_imc")}
+                />
+                <label className="form-check-label text-muted small" htmlFor="obesidade_grau_iii">Obesidade Grau 3</label>
+              </div>
 
-              {formData.grau_imc === "desnutricao" && (
-                <div className="d-flex align-items-center gap-2 ms-3">
-                  <label className="text-muted small mb-0">Grau de desnutrição:</label>
+              
 
-                  <input
-                    type="text"
-                    name="grau_desnutricao"
-                    className="form-control form-control-sm"
-                    style={{ width: "150px" }}
-                    value={formData.grau_desnutricao || ""}
-                    onChange={handleChange}
-                  />
-                </div>
-              )}
+              
 
             </div>  
         </div>
