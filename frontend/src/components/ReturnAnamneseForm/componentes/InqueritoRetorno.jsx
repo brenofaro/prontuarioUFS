@@ -40,10 +40,10 @@ const InqueritoRetorno = ({formData, setFormData}) => {
   };
 
     const toggleField = (fieldName) => {
-  setFormData((prev) => ({
-    ...prev,
-    [fieldName]: prev[fieldName] === "true" ? null : "true",
-  }));
+      setFormData((prev) => ({
+        ...prev,
+        [fieldName]: prev[fieldName] === "true" ? null : "true",
+      }));
 };
   return (
     <div className="mb-3 p-4 border rounded-3 bg-white ">
@@ -166,7 +166,88 @@ const InqueritoRetorno = ({formData, setFormData}) => {
                 ></textarea>
 
             
-            </div>    
+            </div>   
+          <div className="mb-4">
+                <label htmlFor="diagnostico_antropometrico" className="form-label text-muted small">
+                    Em relação aos resultados do último plano alimentar, como você se sente:
+                    </label>
+                <textarea
+                className="form-control"
+                placeholder=""
+                name="como_se_sente"
+                style={{ height: "70px" }}
+                value={formData.como_se_sente || ""}
+                onChange={handleChange}
+                ></textarea>
+
+            
+            </div>  
+
+             <label className="form-label text-muted small mb-2 d-block">
+              Qual sua satisfação?
+            </label>
+
+            <div className="d-flex flex-wrap gap-3 mb-4">
+
+              <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="satisfacao_plano"
+                  id="insatisfeito"
+                  value="insatisfeito"
+                  checked={formData.satisfacao_plano === "insatisfeito"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("satisfacao_plano")}
+                />
+                <label className="form-check-label ms-1" htmlFor="insatisfeito">Insatisfeito(a))</label>
+              </div>
+
+              {/* Anúria */}
+              <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="satisfacao_plano"
+                  id="pouco_satisfeito"
+                  value="pouco_satisfeito"
+                  checked={formData.satisfacao_plano === "pouco_satisfeito"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("satisfacao_plano")}
+                />
+                <label className="form-check-label ms-1" htmlFor="pouco_satisfeito">Pouco satisfeito(a)</label>
+              </div>
+
+              {/* Poliúria */}
+              <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="satisfacao_plano"
+                  id="satisfeito"
+                  value="satisfeito"
+                  checked={formData.satisfacao_plano === "satisfeito"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("satisfacao_plano")}
+                />
+                <label className="form-check-label ms-1" htmlFor="satisfeito">Satisfeito(a)</label>
+              </div>
+
+              {/* Normal */}
+              <div className="form-check d-flex align-items-center gap-1">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="satisfacao_plano"
+                  id="muito_satisfeito"
+                  value="muito_satisfeito"
+                  checked={formData.satisfacao_plano === "muito_satisfeito"}
+                  onChange={handleChange}
+                  onClick={() => toggleField("satisfacao_plano")}
+                />
+                <label className="form-check-label ms-1" htmlFor="muito_satisfeito">Muito satisfeito(a)</label>
+              </div>
+            </div>  
     </div>
   )
 }

@@ -45,6 +45,25 @@ const DadosIniciaisReturn = ({formData, setFormData}) => {
           />
         </div>
 
+         <div className="col-md-4">
+          <label htmlFor="nutricionista_responsavel" className="form-label text-muted small">
+            Nutricionista Responsável *
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="nutricionista_responsavel"
+            placeholder="Nome completo"
+            value={formData.nutricionista_responsavel}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                nutricionista_responsavel: e.target.value,
+              })
+            }
+            required
+          />
+        </div>
 
       </div>
     </div>

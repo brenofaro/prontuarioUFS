@@ -5,6 +5,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import DadosClinicos from './componentes/DadosClinicos';
 import InqueritoRetorno from './componentes/InqueritoRetorno';
+import ExameFisico from './componentes/ExameFisico';
+import AntropometricaReturn from './componentes/AntropometricaReturn';
+import ExameBioquimico from './componentes/ExameBioquimico';
 
 const ReturnAnameseForm = () => {
   const { pacienteId, anamneseId } = useParams();
@@ -194,10 +197,17 @@ const ReturnAnameseForm = () => {
 
 
         <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Exame Físico</h4>
+        <ExameFisico formData={formData} setFormData={setFormData} />
+
 
         <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Avaliação Antropométrica</h4>
+        <AntropometricaReturn formData={formData} setFormData={setFormData} />
+
 
         <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Exame Bioquímico</h4>
+        <ExameBioquimico formData={formData} setFormData={setFormData} />
+
+
 
         <div className="d-flex justify-content-between mt-4">
           
