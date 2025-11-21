@@ -38,16 +38,24 @@ function BaseAnamneseForm() {
 
   const [formData, setFormData] = useState({
       data_consulta : "",
-      numero_prontuario: "",
       nutricionista_responsavel: "",
-
+      
+      numero_prontuario: null,
       estado_civil: null,
       escolaridade: null,
       ocupacao: null,
       faz_atividade_dentro_casa: null,
       atividade_dentro_casa: null,
-      estrutura_familia: [],
-      outros_estrutura_familia: null,
+      pai_mae: null,
+      conjuge: null,
+      filho: null,
+      irmao: null,
+      netos: null,
+      sobrinho: null,
+      cunhado: null,
+      so: null,
+      amigos: null,
+      outros_da_familia: null,
       renda_pessoal: null,
       gastos_alimentacao: null,
       faz_atividade_fisica: null,
@@ -181,6 +189,7 @@ function BaseAnamneseForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           paciente_id: Number(pacienteId),
+          tipo_registro: "Anamnese Padrão",
           ...formData
         }),
       });

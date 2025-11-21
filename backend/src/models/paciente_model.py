@@ -5,7 +5,6 @@ from typing import Optional
 # Schema usado para CADASTRAR um novo paciente
 class PacienteCreate(BaseModel):
     nome: str
-    cpf: str
     data_nascimento: Optional[date] = None
     telefone: Optional[str] = None
     endereco: Optional[str] = None

@@ -17,9 +17,10 @@ from src.database.entities.enums import (
 
 class BaseAnamneseCreate(BaseModel):
     paciente_id: int
+    tipo_registro: str
     data_consulta: date
-    numero_prontuario: str
     nutricionista_responsavel: str
+    numero_prontuario: Optional[int] = None
 
     # -------------------- Dados Socioeconômicos --------------------
     estado_civil: Optional[EstadoCivilEnum] = None
@@ -27,9 +28,18 @@ class BaseAnamneseCreate(BaseModel):
     ocupacao: Optional[str] = None
     faz_atividade_dentro_casa: Optional[bool] = False
     atividade_dentro_casa: Optional[str] = None
-    estrutura_familia: Optional[List[str]] = None
-    renda_pessoal: Optional[float] = None
-    gastos_alimentacao: Optional[float] = None
+    pai_mae: Optional[bool] = False
+    conjuge: Optional[bool] = False
+    filho: Optional[bool] = False
+    irmao: Optional[bool] = False
+    netos: Optional[bool] = False
+    sobrinho: Optional[bool] = False
+    cunhado: Optional[bool] = False
+    so: Optional[bool] = False
+    amigos: Optional[bool] = False
+    outros_da_familia: Optional[str] = None
+    renda_pessoal: Optional[str] = None
+    gastos_alimentacao: Optional[str] = None
 
     faz_atividade_fisica: Optional[bool] = False
     qual_atividade_fisica: Optional[str] = None
@@ -74,31 +84,31 @@ class BaseAnamneseCreate(BaseModel):
     medicamentos: Optional[str] = None
 
     # -------------------- Avaliação Antropométrica --------------------
-    peso_atual: Optional[float] = None
-    peso_usual: Optional[float] = None
-    aj: Optional[float] = None
-    altura_real: Optional[float] = None
-    altura_estimada: Optional[float] = None
-    imc: Optional[float] = None
-    circunferencia_braco: Optional[float] = None
-    circunferencia_pescoco: Optional[float] = None
-    pct: Optional[float] = None
-    pcb: Optional[float] = None
-    pcse: Optional[float] = None
-    pcsi: Optional[float] = None
-    circunferencia_cintura: Optional[float] = None
-    circunferencia_panturrilha: Optional[float] = None
+    peso_atual: Optional[str] = None
+    peso_usual: Optional[str] = None
+    aj: Optional[str] = None
+    altura_real: Optional[str] = None
+    altura_estimada: Optional[str] = None
+    imc: Optional[str] = None
+    circunferencia_braco: Optional[str] = None
+    circunferencia_pescoco: Optional[str] = None
+    pct: Optional[str] = None
+    pcb: Optional[str] = None
+    pcse: Optional[str] = None
+    pcsi: Optional[str] = None
+    circunferencia_cintura: Optional[str] = None
+    circunferencia_panturrilha: Optional[str] = None
     diagnostico_antropometrico: Optional[str] = None
 
     # -------------------- Bioimpedância --------------------
-    percentual_gordura: Optional[float] = None
-    peso_gordura: Optional[float] = None
-    massa_magra: Optional[float] = None
-    gordura_alvo: Optional[float] = None
-    peso_alvo: Optional[float] = None
-    tmb: Optional[float] = None
-    percentual_agua_massa_magra: Optional[float] = None
-    agua_corporal_total: Optional[float] = None
+    percentual_gordura: Optional[str] = None
+    peso_gordura: Optional[str] = None
+    massa_magra: Optional[str] = None
+    gordura_alvo: Optional[str] = None
+    peso_alvo: Optional[str] = None
+    tmb: Optional[str] = None
+    percentual_agua_massa_magra: Optional[str] = None
+    agua_corporal_total: Optional[str] = None
 
     # -------------------- Dados Clínicos --------------------
     denticao: Optional[DenticaoEnum] = None

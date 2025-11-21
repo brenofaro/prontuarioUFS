@@ -55,13 +55,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3">
       <label className="form-label text-muted small">Percentual de gordura (%)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="percentual_gordura"
-        step="0.1"
-        min="0"
-        max="100"
-        placeholder="Ex: 15.5"
         value={formData.percentual_gordura || ""}
         onChange={handleChange}
       />
@@ -70,12 +66,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3">
       <label className="form-label text-muted small">Peso gordura (kg)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="peso_gordura"
-        step="0.1"
-        min="0"
-        placeholder="Ex: 10.5"
         value={formData.peso_gordura || ""}
         onChange={handleChange}
       />
@@ -84,12 +77,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3">
       <label className="form-label text-muted small">Massa magra (kg)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="massa_magra"
-        step="0.1"
-        min="0"
-        placeholder="Ex: 58.2"
         value={formData.massa_magra || ""}
         onChange={handleChange}
       />
@@ -98,13 +88,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3">
       <label className="form-label text-muted small">Gordura alvo (%)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="gordura_alvo"
-        step="0.1"
-        min="0"
-        max="100"
-        placeholder="Ex: 12.5"
         value={formData.gordura_alvo || ""}
         onChange={handleChange}
       />
@@ -119,12 +105,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3">
       <label className="form-label text-muted small">Peso alvo (kg)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="peso_alvo"
-        step="0.1"
-        min="0"
-        placeholder="Ex: 70.0"
         value={formData.peso_alvo || ""}
         onChange={handleChange}
       />
@@ -133,11 +116,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3"> 
       <label className="form-label text-muted small">TMB (kcal)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="tmb"
-        min="0"
-        placeholder="Ex: 1500"
         value={formData.tmb || ""}
         onChange={handleChange}
       />
@@ -146,13 +127,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3">
       <label className="form-label text-muted small">Água da massa magra (%)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="percentual_agua_massa_magra"
-        step="0.1"
-        min="0"
-        max="100"
-        placeholder="Ex: 73.0"
         value={formData.percentual_agua_massa_magra || ""}
         onChange={handleChange}
       />
@@ -161,12 +138,9 @@ const DadosBioimpedancia = ({formData, setFormData}) => {
     <div className="col-md-3">
       <label className="form-label text-muted small">Água corporal total (L)</label>
       <input
-        type="number"
+        type="text"
         className="form-control"
         name="agua_corporal_total"
-        step="0.1"
-        min="0"
-        placeholder="Ex: 40.5"
         value={formData.agua_corporal_total || ""}
         onChange={handleChange}
       />

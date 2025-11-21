@@ -6,7 +6,6 @@ function PatienteForm() {
     nome: "",
     data_nascimento: "",
     telefone: "",
-    cpf: "",
     endereco: "",
   });
 
@@ -16,7 +15,7 @@ function PatienteForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  // 📱 Formatar telefone: (79) 99999-9999
+  // Formatar telefone: (79) 99999-9999
   const formatTelefone = (value) => {
     const numbers = value.replace(/\D/g, '');
     if (numbers.length <= 10) {
@@ -25,38 +24,7 @@ function PatienteForm() {
     return numbers.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
   };
 
-  // 🆔 Formatar CPF: 000.000.000-00
-  const formatCPF = (value) => {
-    const numbers = value.replace(/\D/g, '');
-    return numbers.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
-  };
-
-  // ✅ Validar CPF
-  const validarCPF = (cpf) => {
-    const numbers = cpf.replace(/\D/g, '');
-    if (numbers.length !== 11) return false;
-    if (/^(\d)\1{10}$/.test(numbers)) return false;
-    
-    let sum = 0;
-    for (let i = 0; i < 9; i++) {
-      sum += parseInt(numbers.charAt(i)) * (10 - i);
-    }
-    let digit = 11 - (sum % 11);
-    if (digit >= 10) digit = 0;
-    if (digit !== parseInt(numbers.charAt(9))) return false;
-    
-    sum = 0;
-    for (let i = 0; i < 10; i++) {
-      sum += parseInt(numbers.charAt(i)) * (11 - i);
-    }
-    digit = 11 - (sum % 11);
-    if (digit >= 10) digit = 0;
-    if (digit !== parseInt(numbers.charAt(10))) return false;
-    
-    return true;
-  };
-
-  // 🎂 Calcular idade
+  // Calcular idade
   const calcularIdade = (dataNascimento) => {
     if (!dataNascimento) return null;
     const hoje = new Date();
@@ -79,8 +47,6 @@ function PatienteForm() {
 
     if (name === "telefone") {
       formattedValue = formatTelefone(value);
-    } else if (name === "cpf") {
-      formattedValue = formatCPF(value);
     }
 
     setFormData({
@@ -107,12 +73,6 @@ function PatienteForm() {
       if (idade < 0) {
         newErrors.data_nascimento = "Data de nascimento inválida";
       }
-    }
-
-    if (!formData.cpf) {
-      newErrors.cpf = "CPF é obrigatório";
-    } else if (!validarCPF(formData.cpf)) {
-      newErrors.cpf = "CPF inválido";
     }
 
     if (formData.telefone) {
@@ -144,29 +104,18 @@ function PatienteForm() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        
-        // Verificar se é erro de CPF duplicado
-        if (response.status === 409 || errorData.message?.includes("CPF já cadastrado")) {
-          setErrorMessage("Este CPF já está cadastrado no sistema. Por favor, verifique os dados ou entre em contato com o suporte.");
-          setShowErrorModal(true);
-          return;
-        }
-        
         throw new Error(errorData.message || "Erro ao cadastrar paciente");
       }
 
       const data = await response.json();
       console.log("Paciente cadastrado:", data);
 
-      // Mostrar modal de sucesso
       setShowSuccessModal(true);
 
-      // Limpar formulário
       setFormData({
         nome: "",
         data_nascimento: "",
         telefone: "",
-        cpf: "",
         endereco: "",
       });
       setErrors({});
@@ -194,7 +143,7 @@ function PatienteForm() {
         <div className="card shadow-sm border-0 rounded p-4 bg-white">
           <div className="d-flex align-items-center mb-4">
             <div className="bg-white rounded-circle p-2 me-2">
-              <i class="bi bi-person-circle fs-2 text-dark"></i>
+              <i className="bi bi-person-circle fs-2 text-dark"></i>
             </div>
             <h4 className="mb-0 text-dark" style={{fontFamily:"arial"}}>Cadastrar Paciente</h4>
           </div>
@@ -240,25 +189,6 @@ function PatienteForm() {
                 )}
               </div>
 
-              {/* CPF */}
-              <div className="col-md-6">
-                <label className="form-label ">
-                  CPF <span className="text-dark">*</span>
-                </label>
-                <input
-                  type="text"
-                  className={`form-control ${errors.cpf ? 'is-invalid' : ''}`}
-                  name="cpf"
-                  value={formData.cpf}
-                  onChange={handleChange}
-                  placeholder="000.000.000-00"
-                  maxLength="14"
-                />
-                {errors.cpf && <div className="invalid-feedback">{errors.cpf}</div>}
-              </div>
-            </div>
-
-            <div className="row mb-4">
               {/* Telefone */}
               <div className="col-md-6">
                 <label className="form-label">Telefone</label>
@@ -273,7 +203,9 @@ function PatienteForm() {
                 />
                 {errors.telefone && <div className="invalid-feedback">{errors.telefone}</div>}
               </div>
+            </div>
 
+            <div className="row mb-4">
               {/* Endereço */}
               <div className="col-md-6">
                 <label className="form-label">Endereço</label>
@@ -359,46 +291,46 @@ function PatienteForm() {
 
       {/* Modal de Erro */}
       {showErrorModal && (
-  <div 
-    className="modal show d-block" 
-    tabIndex="-1" 
-    style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
-    onClick={handleCloseErrorModal}
-  >
-    <div 
-      className="modal-dialog modal-dialog-centered"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <div className="modal-content shadow-sm">
-        
-        <div className="modal-header bg-danger text-white">
-          <h5 className="modal-title mb-0">Erro</h5>
-          <button 
-            type="button" 
-            className="btn-close btn-close-white"
-            onClick={handleCloseErrorModal}
-          ></button>
-        </div>
-
-        <div className="modal-body text-center">
-          <p className="fw-semibold text-danger mb-2">CPF Já Cadastrado</p>
-          <small className="text-muted">{errorMessage}</small>
-        </div>
-
-        <div className="modal-footer">
-          <button
-            type="button"
-            className="btn btn-danger px-4"
-            onClick={handleCloseErrorModal}
+        <div 
+          className="modal show d-block" 
+          tabIndex="-1" 
+          style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+          onClick={handleCloseErrorModal}
+        >
+          <div 
+            className="modal-dialog modal-dialog-centered"
+            onClick={(e) => e.stopPropagation()}
           >
-            Ok
-          </button>
-        </div>
+            <div className="modal-content shadow-sm">
+              
+              <div className="modal-header bg-danger text-white">
+                <h5 className="modal-title mb-0">Erro</h5>
+                <button 
+                  type="button" 
+                  className="btn-close btn-close-white"
+                  onClick={handleCloseErrorModal}
+                ></button>
+              </div>
 
-      </div>
-    </div>
-  </div>
-)}
+              <div className="modal-body text-center">
+                <p className="fw-semibold text-danger mb-2">Erro ao cadastrar</p>
+                <small className="text-muted">{errorMessage}</small>
+              </div>
+
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-danger px-4"
+                  onClick={handleCloseErrorModal}
+                >
+                  Ok
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
 
     </>
   );
