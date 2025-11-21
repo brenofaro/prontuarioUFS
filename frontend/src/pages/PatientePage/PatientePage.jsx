@@ -112,8 +112,8 @@ const PatientePage = () => {
               <div className="d-flex align-items-start">
                 {/* <i className="bi bi-card-text text-secondary me-2 mt-1"></i> */}
                 <div>
-                  <small className="text-muted d-block">CPF</small>
-                  <span className="fw-medium">{paciente.cpf || "-"}</span>
+                  <small className="text-muted d-block">Telefone</small>
+                  <span className="fw-medium">{paciente.telefone || "-"}</span>
                 </div>
               </div>
             </div>

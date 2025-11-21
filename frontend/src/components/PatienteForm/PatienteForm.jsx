@@ -223,15 +223,15 @@ function PatienteForm() {
             {/* Botões */}
             <div className="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
               <button
-                type="button"
-                className="btn btn-outline-secondary px-4"
-                onClick={handleClick}
-              >
-                <i className="bi bi-arrow-left me-2"></i>
-                Voltar
-              </button>
+          type="button"
+          className="btn btn-secondary"
+          onClick={handleClick}
+        >
+          <i className="bi bi-arrow-left me-2"></i>
+          Voltar
+        </button>
 
-              <button type="submit" className="btn btn-primary px-4 fw-semibold">
+              <button type="submit" className="btn btn-success px-4 fw-semibold">
                 <i className="bi bi-check-lg me-2"></i>
                 Salvar Paciente
               </button>

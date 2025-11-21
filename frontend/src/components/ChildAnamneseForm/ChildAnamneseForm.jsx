@@ -190,7 +190,7 @@ function ChildAnamneseForm() {
 
         <p className="mt-5 mb-3 ms-1" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Iniciais</p>
         <DadosIniciaisChild formData={formData} setFormData={setFormData} />
-        
+
         <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Demográficos</h4>
         <SocioEconomicosChild formData={formData} setFormData={setFormData} />
 
@@ -214,13 +214,14 @@ function ChildAnamneseForm() {
 
         <div className="d-flex justify-content-between mt-4">
           
-          <button
-            type="button"
-            className="btn btn-outline-secondary rounded-pill px-4"
-            onClick={handleClick}
-          >
-            ← Voltar
-          </button>
+         <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={handleClick}
+        >
+          <i className="bi bi-arrow-left me-2"></i>
+          Voltar
+        </button>
 
           <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
             {anamneseId ? "Atualizar Anamnese" : "Salvar Anamnese"}

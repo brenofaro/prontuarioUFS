@@ -8,7 +8,6 @@ async def cadastrar_paciente(paciente: PacienteCreate, db: Session):
     try:
         novo_paciente = Paciente(
             nome=paciente.nome,
-            cpf=paciente.cpf,
             data_nascimento=paciente.data_nascimento,
             telefone=paciente.telefone,
             endereco=paciente.endereco
@@ -38,14 +37,12 @@ async def buscar_paciente(id: int, db: Session):
     paciente = db.query(Paciente).filter(Paciente.id == id).first()
     return paciente
 
-#READ (buscar por nome ou cpf)
-async def buscar_paciente_por_nome_ou_cpf(nome: str | None, cpf: str | None, db: Session):
+#READ (buscar por nome)
+async def buscar_paciente_por_nome(nome: str | None, db: Session):
     query = select(Paciente)
 
     if nome:
         query = query.filter(Paciente.nome.ilike(f"%{nome}%"))
-    if cpf:
-        query = query.filter(Paciente.cpf == cpf)
 
     result = db.execute(query).scalars().all()
     return result
@@ -57,7 +54,6 @@ async def atualizar_paciente(id: int, dados: PacienteCreate, db: Session):
         return None
 
     paciente.nome = dados.nome
-    paciente.cpf = dados.cpf
     paciente.data_nascimento = dados.data_nascimento
     paciente.telefone = dados.telefone
     paciente.endereco = dados.endereco

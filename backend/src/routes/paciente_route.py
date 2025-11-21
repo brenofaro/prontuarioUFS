@@ -7,7 +7,7 @@ from src.services.paciente_service import (
         listar_pacientes, 
         buscar_paciente, 
         atualizar_paciente,
-        buscar_paciente_por_nome_ou_cpf
+        buscar_paciente_por_nome
     )
 from src.database.connection import get_db
 
@@ -54,17 +54,16 @@ async def atualizar(id: int, paciente: PacienteCreate, db: Session = Depends(get
         raise HTTPException(status_code=404, detail="Paciente não encontrado")
     return atualizado
 
-# 🔍 NOVA ROTA - buscar por nome e/ou CPF
+# 🔍 NOVA ROTA - buscar por nome 
 @router.get("/buscar/", response_model=list[PacienteResponse])
-async def buscar_por_nome_ou_cpf(
+async def buscar_por_nome(
     nome: str | None = Query(None, description="Nome (ou parte dele) do paciente"),
-    cpf: str | None = Query(None, description="CPF completo do paciente"),
     db: Session = Depends(get_db),
 ):
-    if not nome and not cpf:
-        raise HTTPException(status_code=400, detail="Informe nome ou CPF para busca")
+    if not nome :
+        raise HTTPException(status_code=400, detail="Informe nome para busca")
 
-    pacientes = await buscar_paciente_por_nome_ou_cpf(nome, cpf, db)
+    pacientes = await buscar_paciente_por_nome(nome, db)
     if not pacientes:
         raise HTTPException(status_code=404, detail="Nenhum paciente encontrado")
     return pacientes
