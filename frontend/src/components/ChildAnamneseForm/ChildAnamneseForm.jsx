@@ -9,6 +9,7 @@ import SinaisSintomasChild from "./components/SinaisSintomasChild";
 import BioquimicaChild from "./components/BioquimicaChild";
 import HistoriaAlimentarChild from "./components/HistoriaAlimentarChild";
 import DiagnosticoConclusivoChild from "./components/DiagnosticoConclusivoChild";
+import DadosIniciaisChild from "./components/DadosIniciaisChild";
 
 function ChildAnamneseForm() {
   const { pacienteId, anamneseId } = useParams();
@@ -188,8 +189,8 @@ function ChildAnamneseForm() {
 
 
         <p className="mt-5 mb-3 ms-1" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Iniciais</p>
-        {/* <DadosIniciais formData={formData} setFormData={setFormData} /> */}
-
+        <DadosIniciaisChild formData={formData} setFormData={setFormData} />
+        
         <h4 className="mt-5 mb-3" style={{fontFamily:"arial", fontSize:"1.4rem"}}>Dados Demográficos</h4>
         <SocioEconomicosChild formData={formData} setFormData={setFormData} />
 
