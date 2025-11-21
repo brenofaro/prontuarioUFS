@@ -159,32 +159,33 @@ const AnamneseList = () => {
             >
              <div className="bg-light rounded-3 p-3 border-start border-primary border-4">
   <div className="row g-2" >
-    <div className="col-md-5">
+    <div className="col">
       <div className="d-flex align-items-center">
         {/* <i className="bi bi-calendar-check text-primary me-2"></i> */}
         <div>
-          <small className="text-muted d-block">Data da Consulta</small>
+          <small className="text-muted d-block">Data</small>
           <span className="fw-semibold">{formatarData(anamnese.data_consulta)}</span>
         </div>
       </div>
     </div>
+  
     
-    <div className="col-md-4">
-      <div className="d-flex align-items-center">
-        {/* <i className="bi bi-file-medical text-primary me-2"></i> */}
-        <div>
-          <small className="text-muted d-block">Nº Prontuário</small>
-          <span className="fw-semibold">{anamnese.numero_prontuario}</span>
-        </div>
-      </div>
-    </div>
-    
-    <div className="col-md-3">
+    <div className="col">
       <div className="d-flex align-items-center">
         {/* <i className="bi bi-person-badge text-primary me-2"></i> */}
         <div>
           <small className="text-muted d-block">Nutricionista</small>
           <span className="fw-semibold">{anamnese.nutricionista_responsavel}</span>
+        </div>
+      </div>
+    </div>
+
+    <div className="col">
+      <div className="d-flex align-items-center">
+        {/* <i className="bi bi-person-badge text-primary me-2"></i> */}
+        <div>
+          <small className="text-muted d-block">Tipo</small>
+          <span className="fw-semibold">{anamnese.tipo_registro}</span>
         </div>
       </div>
     </div>

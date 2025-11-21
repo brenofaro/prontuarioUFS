@@ -220,8 +220,8 @@ const ReturnAnameseForm = () => {
           Voltar
         </button>
 
-          <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
-            {anamneseId ? "Atualizar Anamnese" : "Salvar Anamnese"}
+          <button type="submit" className="btn btn-success rounded-pill px-4 fw-semibold">
+            {anamneseId ? "Atualizar Ficha" : "Salvar Ficha"}
           </button>
 
         </div>

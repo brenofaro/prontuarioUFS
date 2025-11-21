@@ -204,7 +204,7 @@ function RecordatoryForm() {
         </button>
 
           <button type="submit" className="btn btn-success rounded-pill px-4 ">
-            {anamneseId ? "Atualizar Plano Alimentar" : "Salvar Plano Alimentar"}
+            {anamneseId ? "Atualizar Ficha de Recordatório" : "Salvar Ficha de Recordatório"}
           </button>
 
         </div>

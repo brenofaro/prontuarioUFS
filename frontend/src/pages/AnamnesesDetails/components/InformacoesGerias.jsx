@@ -66,7 +66,7 @@ const InformacoesGerias = ({anamnese}) => {
                     </small>
                   </div>
                   <div className="fw-semibold text-dark ms-2">
-                    {anamnese.tipo_anamnese || <span className="text-muted">Não informado</span>}
+                    {anamnese.tipo_registro || <span className="text-muted">Não informado</span>}
                   </div>
                 </div>
               </div>

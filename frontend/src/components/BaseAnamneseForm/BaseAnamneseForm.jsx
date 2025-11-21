@@ -15,26 +15,8 @@ import DiagnosticoConclusivo from "./components/DiagnosticoConclusivo.jsx";
 function BaseAnamneseForm() {
   const { pacienteId, anamneseId } = useParams();
   const navigate = useNavigate();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-   const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.data_consulta) {
-      newErrors.data_consulta = "Data da consulta é obrigatória";
-    }
-
-    if (!formData.numero_prontuario) {
-      newErrors.numero_prontuario = "Número do prontuário é obrigatório";
-    }
-
-    if (!formData.nutricionista_responsavel) {
-      newErrors.nutricionista_responsavel = "Nutricionista responsável é obrigatório";
-    }
-
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
   const [formData, setFormData] = useState({
       data_consulta : "",
@@ -173,9 +155,7 @@ function BaseAnamneseForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-     if (!validateForm()) {
-      return;
-    }
+   
 
     const url = anamneseId
       ? `http://localhost:8080/base-anamneses/${anamneseId}`
@@ -196,8 +176,9 @@ function BaseAnamneseForm() {
 
       if (!response.ok) throw new Error("Erro ao salvar anamnese");
 
-      alert(anamneseId ? "Anamnese atualizada!" : "Anamnese cadastrada!");
-      navigate(`/pagina-paciente/${pacienteId}`);
+      // alert(anamneseId ? "Anamnese atualizada!" : "Anamnese cadastrada!");
+      setShowSuccessModal(true);
+      //navigate(`/pagina-paciente/${pacienteId}`);
 
     } catch (error) {
       console.error(error);
@@ -205,7 +186,13 @@ function BaseAnamneseForm() {
     }
   };
 
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+    navigate(`/pagina-paciente/${pacienteId}`);
+  };
+
   return (
+    <>
     <div className="container mt-4 border rounded p-4 bg-light">
       <form onSubmit={handleSubmit} className="p-3">
 
@@ -260,13 +247,56 @@ function BaseAnamneseForm() {
           Voltar
         </button>
 
-          <button type="submit" className="btn btn-primary rounded-pill px-4 fw-semibold">
+          <button type="submit" className="btn btn-success rounded-pill px-4 fw-semibold">
             {anamneseId ? "Atualizar Anamnese" : "Salvar Anamnese"}
           </button>
 
         </div>
       </form>
     </div>
+     {showSuccessModal && (
+        <div 
+          className="modal show d-block" 
+          tabIndex="-1" 
+          style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+          onClick={handleCloseModal}
+        >
+          <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-content border-0 shadow-lg">
+              <div className="modal-body text-center p-5">
+                <div className="mb-4">
+                  <div 
+                    className="rounded-circle bg-success d-inline-flex align-items-center justify-content-center"
+                    style={{ width: '80px', height: '80px' }}
+                  >
+                    <svg width="48" height="48" fill="white" viewBox="0 0 16 16">
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <h4 className="text-success fw-bold mb-3">Anamnese Cadastrada!</h4>
+                <p className="text-muted mb-4">
+                  O cadastro foi realizado com sucesso e já está disponível no sistema.
+                </p>
+
+                <div className="d-flex gap-3 justify-content-center">
+                  
+                  <button
+                    type="button"
+                    className="btn btn-primary px-4"
+                    onClick={handleCloseModal}
+                  >
+                    Ir para Lista
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+    
   );
 }
 

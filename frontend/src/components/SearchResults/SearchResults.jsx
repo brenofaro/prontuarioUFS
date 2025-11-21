@@ -89,11 +89,11 @@ const SearchResults = ({ results, loading }) => {
                         {/* Informações */}
                         <div className="mb-2">
                           <div className="d-flex align-items-center text-muted small mb-2">
-                            <i className="bi bi-card-text me-2 text-primary" style={{ fontSize: "1rem" }}></i>
-                            <span className="fw-medium text-dark">{formatCPF(result.cpf)}</span>
+                            <i className="bi bi-telephone me-2 text-dark" style={{ fontSize: "1rem" }}></i>
+                            <span className="text-muted">{result.telefone}</span>
                           </div>
                           <div className="d-flex align-items-center text-muted small">
-                            <i className="bi bi-geo-alt me-2 text-primary mt-1" style={{ fontSize: "1rem" }}></i>
+                            <i className="bi bi-geo-alt me-2 text-dark mt-1" style={{ fontSize: "1rem" }}></i>
                             <span className="text-truncate" title={result.endereco}>
                               {result.endereco || "Endereço não informado"}
                             </span>

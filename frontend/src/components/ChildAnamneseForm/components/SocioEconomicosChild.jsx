@@ -108,11 +108,11 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
                 <label className="text-muted small mb-0">Série:</label>
                 <input
                   type="text"
-                  name="qual_serie_escolar"
+                  name="serie_escolar"
                   className="form-control form-control-sm"
                   style={{ width: "140px" }}
                   placeholder=""
-                  value={formData.qual_serie_escolar || ""}
+                  value={formData.serie_escolar || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -124,7 +124,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
                   className="form-control form-control-sm"
                   style={{ width: "180px" }}
                   placeholder=""
-                  value={formData.qual_turno_escolar || ""}
+                  value={formData.turno_escolar || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -210,50 +210,148 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
         />
           </div>
 
+        <label className="form-label text-muted small">Estrutura Familiar</label>
+          <div className="d-flex flex-wrap gap-3 mb-3">
+
+          <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="pai_mae"
+              id="pai_mae"
+              value="true"
+              checked={formData.pai_mae === true}
+              onChange={handleChange}
+              onClick={() => toggleField("pai_mae")}
+            />
+            <label className="form-check-label" htmlFor="pai_mae">Pai/Mãe</label>
+          </div>
+
+          <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="conjuge"
+              id="conjuge"
+              value="true"
+              checked={formData.conjuge === true}
+              onChange={handleChange}
+              onClick={() => toggleField("conjuge")}
+            />
+            <label className="form-check-label" htmlFor="conjuge">Cônjuge</label>
+          </div>
+
+           <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="filho"
+              id="filho"
+              value="true"
+              checked={formData.filho === true}
+              onChange={handleChange}
+              onClick={() => toggleField("filho")}
+            />
+            <label className="form-check-label" htmlFor="filho">Filho</label>
+          </div>
+
+           <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="irmao"
+              id="irmao"
+              value="true"
+              checked={formData.irmao === true}
+              onChange={handleChange}
+              onClick={() => toggleField("irmao")}
+            />
+            <label className="form-check-label" htmlFor="irmao">Irmão</label>
+          </div>
+
+           <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="netos"
+              id="netos"
+              value="true"
+              checked={formData.netos === true}
+              onChange={handleChange}
+              onClick={() => toggleField("netos")}
+            />
+            <label className="form-check-label" htmlFor="netos">Netos</label>
+          </div>
+
+           <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="sobrinho"
+              id="sobrinho"
+              value="true"
+              checked={formData.sobrinho === true}
+              onChange={handleChange}
+              onClick={() => toggleField("sobrinho")}
+            />
+            <label className="form-check-label" htmlFor="sobrinho">Sobrinho</label>
+          </div>
+           <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="cunhado"
+              id="cunhado"
+              value="true"
+              checked={formData.cunhado === true}
+              onChange={handleChange}
+              onClick={() => toggleField("cunhado")}
+            />
+            <label className="form-check-label" htmlFor="cunhado">Cunhado</label>
+          </div>
+
+           <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="so"
+              id="so"
+              value="true"
+              checked={formData.so === true}
+              onChange={handleChange}
+              onClick={() => toggleField("so")}
+            />
+            <label className="form-check-label" htmlFor="so">Só</label>
+          </div>
+
+           <div className="form-check d-flex align-items-center gap-2">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="amigos"
+              id="amigos"
+              value="true"
+              checked={formData.amigos === true}
+              onChange={handleChange}
+              onClick={() => toggleField("amigos")}
+            />
+            <label className="form-check-label" htmlFor="amigos">Amigos</label>
+          </div>
+          </div>
+       
+       <label htmlFor="ocupacao" className="form-label text-muted small">Outras pessoas da estrutura familiar:</label>
+        <input
+          type="text"
+          className="form-control form-control-sm mb-3"
+          name="outros_da_familia"
+          style={{width:"400px"}}
+          value={formData.outros_da_familia || ""}
+          placeholder=""
+          onChange={handleChange}
+        />
        
 
-        {/* <label className="form-label text-muted small">Estrutura Familiar</label>
-        <div className="row g-3 mb-3">
-          {[
-            { value: "pai e mãe, ", label: "Pai/Mãe", id: "pai_mae" },
-            { value: "cônjuge, ", label: "Cônjuge", id: "conjuge" },
-            { value: "filho, ", label: "Filho", id: "filho" },
-            { value: "irmão, ", label: "Irmão", id: "irmao" },
-            { value: "netos, ", label: "Netos", id: "netos" },
-            { value: "sobrinho, ", label: "Sobrinho", id: "sobrinho" },
-            { value: "cunhado, ", label: "Cunhado", id: "cunhado" },
-            { value: "só.", label: "Só", id: "so" },
-            { value: "outros", label: "Outros", id: "outros" }
-          ].map(item => (
-            <div className="col-md-3" key={item.id}>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="estrutura_familia"
-                  value={item.value}
-                  id={item.id}
-                  checked={formData.estrutura_familia?.includes(item.value)}
-                  onChange={handleCheckboxList}
-                />
-                <label className="form-check-label" htmlFor={item.id}>
-                  {item.label}
-                </label>
-              </div>
-            </div>
-          ))}
-        </div>
-        {formData.estrutura_familia?.includes("outros") && (
-          <input
-            type="text"
-            className="form-control mt-3"
-            placeholder="Especifique..."
-            name="outros_estrutura_familia"
-            value={formData.outros_estrutura_familia || ""}
-            onChange={handleChange}
-          />
-        )}
-     */}
+     
         <div className="row g-3 mb-3">
           <div className="col-md-6">
             <label htmlFor="renda_pessoal" className="form-label text-muted small">
@@ -393,13 +491,13 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
 
              <div>
 
-        <label htmlFor="ocupacao" className="form-label text-muted small">Criança Ativa? (Exemplo: brinca muito, corre):</label>
+        <label htmlFor="" className="form-label text-muted small">Criança Ativa? (Exemplo: brinca muito, corre):</label>
         <input
           type="text"
           className="form-control mb-3"
           name="crianca_ativa"
           style={{width:"400px"}}
-          value={formData.crianca_Ativa || ""}
+          value={formData.crianca_ativa || ""}
           placeholder=""
           onChange={handleChange}
         />
@@ -407,7 +505,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
 
            <div className="d-flex gap-4">
             <div className=''>
-                    <label htmlFor="ocupacao" className="form-label text-muted small">Horário que dorme:</label>
+                    <label htmlFor="" className="form-label text-muted small">Horário que dorme:</label>
                     <input
                     type="time"
                     className="form-control mb-3"
@@ -421,7 +519,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
                 
             <div>
 
-                    <label htmlFor="ocupacao" className="form-label text-muted small">Horário que acorda:</label>
+                    <label htmlFor="" className="form-label text-muted small">Horário que acorda:</label>
                     <input
                     type="time"
                     className="form-control mb-3"
