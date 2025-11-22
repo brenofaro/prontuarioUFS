@@ -2,28 +2,33 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
+
 import InformacoesGerais from "./components/InformacoesGerais";
 
-const ChildAnamneseDetails = () => {
+const FoodPlanDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
 
-  const [anamnese, setAnamnese] = useState(null); // ✔ CORRIGIDO
+  const [anamnese, setAnamnese] = useState(null); // CORRIGIDO
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // ✔ ADICIONADO
+  const [error, setError] = useState(null); // CORRIGIDO
 
-  const pacienteId = location.state?.id; // ✔ seguro contra undefined
+  const pacienteId = location.state?.id; // seguro
 
   const handleClick = () => {
-  navigate(`/pagina-paciente/${anamnese.paciente_id}`);
-};
+    if (pacienteId) {
+      navigate(`/pagina-paciente/${pacienteId}`);
+    } else {
+      navigate("/"); // fallback seguro
+    }
+  };
 
   useEffect(() => {
     const fetchAnamnese = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/child-anamneses/${id}`);
-        if (!response.ok) throw new Error("Erro ao buscar anamnese infantil");
+        const response = await fetch(`http://localhost:8080/food-plans/${id}`);
+        if (!response.ok) throw new Error("Erro ao buscar plano alimentar");
 
         const data = await response.json();
         setAnamnese(data);
@@ -39,7 +44,7 @@ const ChildAnamneseDetails = () => {
 
   if (loading) return <p>Carregando detalhes...</p>;
   if (error) return <p className="text-danger">Erro: {error}</p>;
-  if (!anamnese) return <p>Nenhum registro encontrado.</p>;
+  if (!anamnese) return <p>Nenhuma informação encontrada.</p>;
 
   return (
     <div className="container mt-4">
@@ -54,27 +59,18 @@ const ChildAnamneseDetails = () => {
           style={{ cursor: "pointer" }}
           onClick={handleClick}
         />
-        Detalhes da Anamnese Infantil
+        Detalhes do Plano Alimentar
       </Card.Title>
 
       <Card className="mb-3">
         <InformacoesGerais anamnese={anamnese} />
 
-        {/* 
-        Se quiser adicionar mais detalhes (já deixo pronto para o futuro):
-        
-        <SocioEconomicosDetails anamnese={anamnese} />
-        <SaudeDetails anamnese={anamnese} />
-        <AntropometricaDetails anamnese={anamnese} />
-        <BioimpedanciaDetails anamnese={anamnese} />
-        <SintomasClinicosDetails anamnese={anamnese} />
-        <BioquimicaDetails anamnese={anamnese} />
-        <HistoriaAlimentarDetails anamnese={anamnese} />
-        */}
+        {/* Caso você queira adicionar mais seções depois */}
+        {/* <OutraSection anamnese={anamnese} /> */}
       </Card>
 
     </div>
   );
 };
 
-export default ChildAnamneseDetails;
+export default FoodPlanDetails;

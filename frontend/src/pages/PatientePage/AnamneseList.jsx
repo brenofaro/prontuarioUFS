@@ -9,6 +9,8 @@ const AnamneseList = () => {
   const [anamnesesBase, setAnamnesesBase] = useState([]);
   const [anamnesesChild, setAnamnesesChild] = useState([]);
   const [returnAnamnese, setReturnAnamnese] = useState([]);
+  const [foodPlan, setFoodPlan] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,7 +19,8 @@ const AnamneseList = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // ---------- MODAL DE CONFIRMAÇÃO ----------
+
+    // ---------- MODAL DE CONFIRMAÇÃO ----------
   const ModalExcluir = ({ show, handleClose, handleConfirm }) => (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
@@ -47,9 +50,11 @@ const AnamneseList = () => {
       <Modal.Header closeButton>
         <Modal.Title>Sucesso</Modal.Title>
       </Modal.Header>
+
       <Modal.Body className="text-success fw-semibold">
         Registro excluído com sucesso!
       </Modal.Body>
+
       <Modal.Footer>
         <Button variant="success" onClick={handleClose}>
           OK
@@ -58,35 +63,65 @@ const AnamneseList = () => {
     </Modal>
   );
 
-  // Abrir modal de confirmação
+  
+  // ---------------------- MAPAS DE ROTAS ----------------------
+
+  const detalhesRotas = {
+    base: (id) => `/detalhes-anamnese/${id}`,
+    child: (id) => `/detalhes-child-anamnese/${id}`,
+    retorno: (id) => `/detalhes-return-anamnese/${id}`,
+    plano: (id) => `/detalhes-food-plan/${id}`, // NOVO
+  };
+
+  const editarRotas = {
+    base: (pacienteId, anamneseId) =>
+      `/base-anamnese/editar/${pacienteId}/${anamneseId}`,
+
+    child: (pacienteId, anamneseId) =>
+      `/child-anamnese/editar/${pacienteId}/${anamneseId}`,
+
+    retorno: (pacienteId, anamneseId) =>
+      `/anamnese-retorno/editar/${pacienteId}/${anamneseId}`,
+
+    plano: (pacienteId, anamneseId) =>
+      `/food-plan/editar/${pacienteId}/${anamneseId}`, // NOVO
+  };
+
+  const deleteEndpoints = {
+    base: (id) => `http://localhost:8080/base-anamneses/${id}`,
+    child: (id) => `http://localhost:8080/child-anamneses/${id}`,
+    retorno: (id) => `http://localhost:8080/return-anamneses/${id}`,
+    plano: (id) => `http://localhost:8080/food-plans/${id}`, // NOVO
+  };
+
+  // ------------------------- FUNÇÕES -------------------------
+
   const handleOpenConfirm = (item) => {
     setSelectedItem(item);
     setShowConfirm(true);
   };
 
-  // Confirmar exclusão
   const handleConfirmDelete = async () => {
     setShowConfirm(false);
 
     const { id: registroId, tipo } = selectedItem;
 
-    const endpoint =
-      tipo === "child"
-        ? `http://localhost:8080/child-anamneses/${registroId}`
-        : (tipo === "base" ? `http://localhost:8080/base-anamneses/${registroId}` 
-          :  `http://localhost:8080/return-anamneses/${registroId}`);
+    const endpoint = deleteEndpoints[tipo]?.(registroId);
+    if (!endpoint) return alert("Tipo não suportado para exclusão.");
 
     try {
       const response = await fetch(endpoint, { method: "DELETE" });
       if (!response.ok) throw new Error("Erro ao excluir");
 
-      if (tipo === "child") {
-        setAnamnesesChild((prev) => prev.filter((a) => a.id !== registroId));
-      } else if (tipo === "retorno") {
-        setReturnAnamnese((prev) => prev.filter((a) => a.id !== registroId));
-      } else {
+      // Atualizar listas
+      if (tipo === "base")
         setAnamnesesBase((prev) => prev.filter((a) => a.id !== registroId));
-      }
+      else if (tipo === "child")
+        setAnamnesesChild((prev) => prev.filter((a) => a.id !== registroId));
+      else if (tipo === "retorno")
+        setReturnAnamnese((prev) => prev.filter((a) => a.id !== registroId));
+      else if (tipo === "plano")
+        setFoodPlan((prev) => prev.filter((a) => a.id !== registroId));
 
       setShowSuccess(true);
     } catch (err) {
@@ -94,71 +129,43 @@ const AnamneseList = () => {
     }
   };
 
-  // Buscar anamneses base
+  // ---------------------- FETCH DATA (PARALELO) ----------------------
+
   useEffect(() => {
-    const fetchBase = async () => {
+    const loadData = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:8080/base-anamneses/paciente/${id}`
-        );
-        if (!response.ok) throw new Error("Erro ao buscar base");
+        const [baseRes, childRes, returnRes, planRes] = await Promise.all([
+          fetch(`http://localhost:8080/base-anamneses/paciente/${id}`),
+          fetch(`http://localhost:8080/child-anamneses/paciente/${id}`),
+          fetch(`http://localhost:8080/return-anamneses/paciente/${id}`),
+          fetch(`http://localhost:8080/food-plans/paciente/${id}`),
+        ]);
 
-        const data = await response.json();
-        setAnamnesesBase(
-          data.map((d) => ({ ...d, tipo: "base" })) // marcamos como base
-        );
+        if (!baseRes.ok || !childRes.ok || !returnRes.ok || !planRes.ok)
+          throw new Error("Erro ao carregar dados");
+
+        const baseData = await baseRes.json();
+        const childData = await childRes.json();
+        const retornoData = await returnRes.json();
+        const planData = await planRes.json();
+
+        setAnamnesesBase(baseData.map((d) => ({ ...d, tipo: "base" })));
+        setAnamnesesChild(childData.map((d) => ({ ...d, tipo: "child" })));
+        setReturnAnamnese(retornoData.map((d) => ({ ...d, tipo: "retorno" })));
+        setFoodPlan(planData.map((d) => ({ ...d, tipo: "plano" })));
+
       } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchBase();
-  }, [id]);
-
-  // Buscar anamneses child
-  useEffect(() => {
-    const fetchChild = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/child-anamneses/paciente/${id}`
-        );
-        if (!response.ok) throw new Error("Erro ao buscar child");
-
-        const data = await response.json();
-        setAnamnesesChild(
-          data.map((d) => ({ ...d, tipo: "child" })) // marcamos como child
-        );
-      } catch (err) {
+        console.log(err);
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchChild();
+    loadData();
   }, [id]);
 
-  useEffect(() => {
-    const fetchReturn = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/return-anamneses/paciente/${id}`
-        );
-        if (!response.ok) throw new Error("Erro ao buscar return");
-
-        const data = await response.json();
-        setReturnAnamnese(
-          data.map((d) => ({ ...d, tipo: "retorno" })) // marcamos c
-        );
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchReturn();
-  }, [id]);
+  // ------------------------- UTILS -------------------------
 
   const formatarData = (data) => {
     if (!data) return "-";
@@ -169,37 +176,29 @@ const AnamneseList = () => {
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
 
-  // Mesclar os dois tipos de anamnese em uma única lista
-  const todasAsAnamneses = [...anamnesesBase, ...anamnesesChild, ...returnAnamnese];
+  // Lista única
+  const todasAsAnamneses = [
+    ...anamnesesBase,
+    ...anamnesesChild,
+    ...returnAnamnese,
+    ...foodPlan,
+  ];
 
   return (
     <div className="container mt-4">
+
       {todasAsAnamneses.length > 0 && (
-        <p
-          style={{
-            fontFamily: "Roboto, sans-serif",
-            color: "rgba(53, 64, 78, 1)",
-            fontSize: "1.2rem",
-            marginLeft: "10px",
-          }}
-        >
+        <p className="fw-semibold text-secondary" style={{ marginLeft: "10px" }}>
           Registros encontrados
         </p>
       )}
 
       {todasAsAnamneses.length === 0 ? (
-        <div className="text-muted fst-italic">
-          Nenhum registro encontrado.
-        </div>
+        <div className="text-muted fst-italic">Nenhum registro encontrado.</div>
       ) : (
         <div
           className="list-group border-0"
-          style={{
-            maxHeight: "400px",
-            minHeight: "200px",
-            overflowY: "auto",
-            paddingRight: "6px",
-          }}
+          style={{ maxHeight: "400px", overflowY: "auto", paddingRight: "6px" }}
         >
           {todasAsAnamneses.map((item) => (
             <div
@@ -207,12 +206,14 @@ const AnamneseList = () => {
               className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
               style={{ background: "#f8f9fa" }}
             >
+              {/* INFORMAÇÕES */}
               <div className="bg-light rounded-3 p-3 border-start border-primary border-4">
                 <div className="row g-2">
+
                   <div className="col">
                     <small className="text-muted d-block">Data</small>
                     <span className="fw-semibold">
-                      {formatarData(item.data_consulta)}
+                      {formatarData(item.data_consulta || item.data_plano_alimentar)}
                     </span>
                   </div>
 
@@ -229,57 +230,50 @@ const AnamneseList = () => {
                   </div>
 
                   <div className="col">
-                    <small className="text-muted d-block">Tipo</small>
+                    <small className="text-muted d-block">Categoria</small>
                     <span className="fw-semibold">{item.tipo}</span>
                   </div>
+
                 </div>
               </div>
 
+              {/* DROPDOWN */}
               <Dropdown align="end">
-                <Dropdown.Toggle
-                  variant="light"
-                  size="sm"
-                  className="border-0 p-0"
-                  style={{ boxShadow: "none" }}
-                >
+                <Dropdown.Toggle variant="light" size="sm" className="border-0 p-0">
                   <span style={{ fontSize: "22px", lineHeight: "0" }}>⋮</span>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
+
+                  {/* DETALHES */}
                   <Dropdown.Item
-                    onClick={() =>
-                      navigate(
-                        item.tipo === "retorno"
-                          ? `/detalhes-return-anamnese/${item.id}`
-                          : (item.tipo === "base" ? `/detalhes-anamnese/${item.id}` : `/detalhes-child-anamnese/${item.id}`),
-                        { state: { id } }
-                      )
-                    }
+                    onClick={() => navigate(detalhesRotas[item.tipo](item.id), {
+                       state: { id }
+            })}
                   >
                     Ver detalhes
                   </Dropdown.Item>
 
+                  {/* EDITAR */}
                   <Dropdown.Item
                     onClick={() =>
-                      navigate(
-                        item.tipo === "child"
-                          ? `/child-anamnese/editar/${id}/${item.id}`
-                          : (item.tipo === "base" ? `/base-anamnese/editar/${id}/${item.id}` : `/anamnese-retorno/editar/${id}/${item.id}`)
-                      )
-                      
+                      navigate(editarRotas[item.tipo](id, item.id))
                     }
                   >
                     Editar
                   </Dropdown.Item>
 
+                  {/* EXCLUIR */}
                   <Dropdown.Item
                     className="text-danger"
                     onClick={() => handleOpenConfirm(item)}
                   >
                     Excluir
                   </Dropdown.Item>
+
                 </Dropdown.Menu>
               </Dropdown>
+
             </div>
           ))}
         </div>

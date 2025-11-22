@@ -7,18 +7,18 @@ return (
       <div className="row g-3">
         {/* Data da consulta */}
         <div className="col-md-4">
-          <label htmlFor="data_consulta" className="form-label text-muted small">
+          <label htmlFor="data_plano_alimentar" className="form-label text-muted small">
             Data *
           </label>
           <input
             type="date"
             className="form-control"
-            id="data_consulta"
+            id="data_plano_alimentar"
             value={formData.data_plano_alimentar}
             onChange={(e) =>
               setFormData({
                 ...formData,
-                data_consulta: e.target.value,
+                data_plano_alimentar: e.target.value,
               })
             }
             required

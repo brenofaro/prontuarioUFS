@@ -13,122 +13,44 @@ function FoodPlanForm() {
    
 
   const [formData, setFormData] = useState({
-      //data_consulta : "",
-    //   numero_prontuario: "",
-    //   nutricionista_responsavel: "",
+    data_plano_alimentar: "",
+    nutricionista_responsavel: "",
 
-    //   estado_civil: null,
-    //   escolaridade: null,
-    //   ocupacao: null,
-    //   faz_atividade_dentro_casa: null,
-    //   atividade_dentro_casa: null,
-    //   estrutura_familia: [],
-    //   outros_estrutura_familia: null,
-    //   renda_pessoal: null,
-    //   gastos_alimentacao: null,
-    //   faz_atividade_fisica: null,
-    //   qual_atividade_fisica: null,
-    //   frequencia_atividade_fisica: null,
-    //   ja_fez_atividade_fisica: null,
-    //   tempo_parado_atividade_fisica: null,
-    //   tem_etilismo: null,
-    //   tipo_etilismo: null,
-    //   quanto_etilismo: null,
-    //   ja_foi_etilista: null,
-    //   tempo_parado_etilismo: null,
-    //   tem_tabagismo: null,
-    //   tipo_tabagismo: null,
-    //   quanto_tabagismo: null,
-    //   ja_foi_tabagista: null,
-    //   tempo_parado_tabagismo: null,
+    refeicao_um: null,
+    alimentos_um: null,
+    substituicoes_um: null,
 
-    //   objetivo_consulta: null,
-    //   historia_doenca: null,
-    //   diabetes_hma: null,
-    //   diabetes_hf: null,
-    //   hipertencao_hma: null,
-    //   hipertencao_hf: null,
-    //   doenca_cardiovascular_hma: null,
-    //   doenca_cardiovascular_hf: null,
-    //   dislipidemia_hma: null,
-    //   dislipidemia_hf: null,
-    //   cancer_hma: null,
-    //   cancer_hf: null,
-    //   osteoporose_hma: null,
-    //   osteoporose_hf: null,
-    //   depressao_hma: null,
-    //   depressao_hf: null,
-    //   sop_hma: null,
-    //   sop_hf: null,
-    //   outras_patologias: null,
-    //   faz_uso_medicamentos: null,
-    //   medicamentos: null,
+    refeicao_dois: null,
+    alimentos_dois: null,
+    substituicoes_dois: null,
 
-    //   peso_atual: null,
-    //   peso_usual: null,
-    //   aj: null,
-    //   altura_real: null,
-    //   altura_estimada: null,
-    //   imc: null,
-    //   circunferencia_braco: null,
-    //   comprimento_cotovelo: null,
-    //   pct: null,
-    //   pcb: null,
-    //   pcse: null,
-    //   pcsi: null,
-    //   circunferencia_cintura: null,
-    //   circunferencia_panturrilha: null,
-    //   diagnostico_antropometrico: null,
+    refeicao_tres: null,
+    alimentos_tres: null,
+    substituicoes_tres: null,
 
-    //   percentual_gordura: null,
-    //   peso_gordura: null,
-    //   massa_magra: null,
-    //   gordura_alvo: null,
-    //   peso_alvo: null,
-    //   tmb: null,
-    //   percentual_agua_massa_magra: null,
-    //   agua_corporal_total: null,
+    refeicao_quatro: null,
+    alimentos_quatro: null,
+    substituicoes_quatro: null,
 
-    //   denticao: null,
-    //   mastigacao: null,
-    //   disfagia: null,
-    //   odinofalgia: null,
-    //   dispepsia: null,
-    //   nauseas: null,
-    //   vomitos: null,
-    //   flatulencia: null,
-    //   ritmo_intestinal: null,
-    //   ritmo_urinario: null,
-    //   pele: null,
-    //   unhas: null,
-    //   cabelo: null,
-    //   mucosas: null,
-    //   edemas: null,
-    //   abdomen: null,
+    refeicao_cinco: null,
+    alimentos_cinco: null,
+    substituicoes_cinco: null,
 
-    //   data_ab: null,
-    //   avaliacao_bioquimica: null,
+    refeicao_seis: null,
+    alimentos_seis: null,
+    substituicoes_seis: null,
 
-    //   possui_aversoes_alimentares: null,
-    //   aversoes_alimentares: null,
-    //   possui_alergias_alimentares: null,
-    //   alergias_alimentares: null,
-    //   ingestao_hidrica: null,
-    //   existe_horario_mais_fome: null,
-    //   horario_mais_fome: null,
-    //   apetite: null,
-    //   diagnostico_conclusivo: null,
+    observacoes_plano_alimentar: null,
   });
 
-  // 🔥 CARREGA ANAMNESE SE ESTIVER EDITANDO
   useEffect(() => {
     if (anamneseId) {
-      fetch(`http://localhost:8080/base-anamneses/${anamneseId}`)
+      fetch(`http://localhost:8080/food-plans/${anamneseId}`)
         .then(res => res.json())
         .then(data => {
           setFormData(data);
         })
-        .catch(err => console.error("Erro ao carregar anamnese:", err));
+        .catch(err => console.error("Erro ao carregar plano alimentar:", err));
     }
   }, [anamneseId]);
 
@@ -141,13 +63,10 @@ function FoodPlanForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-     if (!validateForm()) {
-      return;
-    }
 
     const url = anamneseId
-      ? `http://localhost:8080/base-anamneses/${anamneseId}`
-      : `http://localhost:8080/base-anamneses/cadastrar`;
+      ? `http://localhost:8080/food-plans/${anamneseId}`
+      : `http://localhost:8080/food-plans/cadastrar`;
 
     const method = anamneseId ? "PUT" : "POST";
 
@@ -157,13 +76,14 @@ function FoodPlanForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           paciente_id: Number(pacienteId),
+          tipo_registro: "Plano Alimentar",
           ...formData
         }),
       });
 
       if (!response.ok) throw new Error("Erro ao salvar anamnese");
 
-      alert(anamneseId ? "Anamnese atualizada!" : "Anamnese cadastrada!");
+      alert(anamneseId ? "Plano alimentar atualizado!" : "Plano alimentar cadastrado!");
       navigate(`/pagina-paciente/${pacienteId}`);
 
     } catch (error) {

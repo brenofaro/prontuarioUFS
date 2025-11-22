@@ -44,7 +44,8 @@ function PatienteForm() {
   };
 
   const handleClick = () => {
-    navigate("/");
+      pacienteId ? navigate(`/pagina-paciente/${pacienteId}`) :
+      navigate("/");
   };
 
   const handleChange = (e) => {
