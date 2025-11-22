@@ -25,7 +25,7 @@ const InformacoesGerais = ({anamnese}) => {
                     </small>
                   </div>
                   <div className="fw-semibold text-dark ms-2">
-                    {formatarData(anamnese.data_consulta) || <span className="text-muted">Não informado</span>}
+                    {formatarData(anamnese.data_plano_alimentar) || <span className="text-muted">Não informado</span>}
                   </div>
                 </div>
               </div>

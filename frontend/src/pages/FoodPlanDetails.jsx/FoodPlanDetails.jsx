@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
+import TableDetails from "./components/tableDetails";
 
 import InformacoesGerais from "./components/InformacoesGerais";
 
@@ -60,7 +61,7 @@ const FoodPlanDetails = () => {
 
       <Card className="mb-3">
         <InformacoesGerais anamnese={anamnese} />
-
+        <TableDetails anamnese={anamnese} />
         {/* Caso você queira adicionar mais seções depois */}
         {/* <OutraSection anamnese={anamnese} /> */}
       </Card>
