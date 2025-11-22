@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
 from src.models.food_plan_model import FoodPlanCreate, FoodPlanResponse
@@ -11,6 +11,7 @@ from src.services.food_plan_service import (
     buscar_food_plans_por_paciente
 )
 from src.database.connection import get_db
+from src.utils.food_plan_pdf import gerar_pdf_food_plan
 
 
 router = APIRouter(prefix="/food-plans", tags=["FoodPlans"])
@@ -62,3 +63,28 @@ async def deletar(id: int, db: Session = Depends(get_db)):
     if not sucesso:
         raise HTTPException(status_code=404, detail="Plano alimentar não encontrado")
     return {"message": "Plano alimentar excluído com sucesso"}
+
+
+# GERAR PDF
+@router.get("/{id}/pdf")
+async def gerar_pdf(id: int, db: Session = Depends(get_db)):
+    plano = await buscar_food_plan(id, db)
+
+    if not plano:
+        raise HTTPException(status_code=404, detail="Plano alimentar não encontrado")
+
+    # Converter para dict
+    plano_dict = plano.__dict__.copy()
+    plano_dict.pop("_sa_instance_state", None)
+
+    # Gerar PDF
+    buffer = gerar_pdf_food_plan(plano_dict)
+
+    # Enviar arquivo
+    return Response(
+        content=buffer.getvalue(),
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f"attachment; filename=plano_{id}.pdf"
+        }
+    )

@@ -210,69 +210,82 @@ const AnamneseList = () => {
               <div className="bg-light rounded-3 p-3 border-start border-primary border-4">
                 <div className="row g-2">
 
-                  <div className="col">
+                  <div className="col-md-12">
                     <small className="text-muted d-block">Data</small>
                     <span className="text-dark small ">
                       {formatarData(item.data_consulta || item.data_plano_alimentar)}
                     </span>
                   </div>
 
-                  <div className="col">
+                  <div className="col-md-12">
                     <small className="text-muted d-block">Nutricionista</small>
                     <span className="text-dark small ">
                       {item.nutricionista_responsavel}
                     </span>
                   </div>
 
-                  <div className="col">
+                  <div className="col-md-6">
                     <small className="text-muted d-block">Tipo</small>
                     <span className="text-dark small ">{item.tipo_registro}</span>
                   </div>
 
-                  <div className="col">
+                  {/* <div className="col">
                     <small className="text-muted d-block">Categoria</small>
                     <span className="text-dark small ">{item.tipo}</span>
-                  </div>
+                  </div> */}
 
                 </div>
               </div>
 
               {/* DROPDOWN */}
-              <Dropdown align="end">
-                <Dropdown.Toggle variant="light" size="sm" className="border-0 p-0">
-                  <span style={{ fontSize: "22px", lineHeight: "0" }}>⋮</span>
-                </Dropdown.Toggle>
+             {/* DROPDOWN */}
+<Dropdown align="end">
+  <Dropdown.Toggle variant="light" size="sm" className="border-0 p-0">
+    <span style={{ fontSize: "22px", lineHeight: "0" }}>⋮</span>
+  </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+  <Dropdown.Menu>
 
-                  {/* DETALHES */}
-                  <Dropdown.Item
-                    onClick={() => navigate(detalhesRotas[item.tipo](item.id), {
-                       state: { id }
-            })}
-                  >
-                    Ver detalhes
-                  </Dropdown.Item>
+    {/* DETALHES */}
+    <Dropdown.Item
+      onClick={() =>
+        navigate(detalhesRotas[item.tipo](item.id), {
+          state: { id }
+        })
+      }
+    >
+      Ver detalhes
+    </Dropdown.Item>
 
-                  {/* EDITAR */}
-                  <Dropdown.Item
-                    onClick={() =>
-                      navigate(editarRotas[item.tipo](id, item.id))
-                    }
-                  >
-                    Editar
-                  </Dropdown.Item>
+    {/* EDITAR */}
+    <Dropdown.Item
+      onClick={() => navigate(editarRotas[item.tipo](id, item.id))}
+    >
+      Editar
+    </Dropdown.Item>
 
-                  {/* EXCLUIR */}
-                  <Dropdown.Item
-                    className="text-danger"
-                    onClick={() => handleOpenConfirm(item)}
-                  >
-                    Excluir
-                  </Dropdown.Item>
+    {/* GERAR PDF — SOMENTE SE O TIPO FOR "plano" */}
+    {item.tipo === "plano" && (
+      <Dropdown.Item
+        onClick={() =>
+          window.open(`http://localhost:8080/food-plans/${item.id}/pdf`)
+        }
+      >
+        Gerar PDF
+      </Dropdown.Item>
+    )}
 
-                </Dropdown.Menu>
-              </Dropdown>
+    {/* EXCLUIR */}
+    <Dropdown.Item
+      className="text-danger"
+      onClick={() => handleOpenConfirm(item)}
+    >
+      Excluir
+    </Dropdown.Item>
+
+  </Dropdown.Menu>
+</Dropdown>
+
 
             </div>
           ))}
