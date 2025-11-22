@@ -67,7 +67,7 @@ function SearchPanel() {
   return (
     <div className="search-panel-container">
       <SearchBar
-        placeholder="Digite o nome ou CPF do paciente..."
+        placeholder="Digite o nome paciente..."
         onSearch={handleSearch}
       />
       <SearchResults results={results} loading={loading} />

@@ -106,7 +106,7 @@ const ExameFisico = ({formData, setFormData}) => {
       <label className="form-label text-muted small">Língua:</label>
       <input
         type="text"
-        name="linguas"
+        name="lingua"
         className="form-control"
         style={{width:"300px"}}
         placeholder=""

@@ -16,13 +16,9 @@ const FoodPlanDetails = () => {
 
   const pacienteId = location.state?.id; // seguro
 
-  const handleClick = () => {
-    if (pacienteId) {
-      navigate(`/pagina-paciente/${pacienteId}`);
-    } else {
-      navigate("/"); // fallback seguro
-    }
-  };
+   const handleClick = () => {
+  navigate(`/pagina-paciente/${anamnese.paciente_id}`);
+};
 
   useEffect(() => {
     const fetchAnamnese = async () => {

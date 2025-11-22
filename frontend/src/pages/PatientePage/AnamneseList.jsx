@@ -212,26 +212,26 @@ const AnamneseList = () => {
 
                   <div className="col">
                     <small className="text-muted d-block">Data</small>
-                    <span className="fw-semibold">
+                    <span className="text-dark small ">
                       {formatarData(item.data_consulta || item.data_plano_alimentar)}
                     </span>
                   </div>
 
                   <div className="col">
                     <small className="text-muted d-block">Nutricionista</small>
-                    <span className="fw-semibold">
+                    <span className="text-dark small ">
                       {item.nutricionista_responsavel}
                     </span>
                   </div>
 
                   <div className="col">
                     <small className="text-muted d-block">Tipo</small>
-                    <span className="fw-semibold">{item.tipo_registro}</span>
+                    <span className="text-dark small ">{item.tipo_registro}</span>
                   </div>
 
                   <div className="col">
                     <small className="text-muted d-block">Categoria</small>
-                    <span className="fw-semibold">{item.tipo}</span>
+                    <span className="text-dark small ">{item.tipo}</span>
                   </div>
 
                 </div>

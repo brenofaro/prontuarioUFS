@@ -36,7 +36,7 @@ function SearchBar({ placeholder, onSearch, onFilterChange }) {
             <i className="bi bi-search text-muted"></i>
           </span>
           <FormControl
-            placeholder={placeholder || "Buscar paciente por nome ou CPF..."}
+            placeholder={placeholder || "Buscar paciente..."}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyPress={handleKeyPress}

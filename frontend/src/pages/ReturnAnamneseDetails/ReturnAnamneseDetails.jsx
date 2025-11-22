@@ -4,6 +4,11 @@ import { Card } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
 
 import InformacoesGerais from "./components/InformacoesGerais";
+import DadosClinicosDetails from "./components/DadosClinicosDetails";
+import InqueritoRetornoDetails from "./components/InqueritoRetornoDetails";
+import ExameFisicoDetails from "./components/ExameFisicoDetails";
+import AntropometricaReturnDetails from "./components/AntropometricaReturnDetails";
+import BioquimicoReturnDetails from "./components/BioquimicoReturnDetails";
 
 const ReturnAnamneseDetails = () => {
   const navigate = useNavigate();
@@ -59,6 +64,11 @@ const ReturnAnamneseDetails = () => {
 
       <Card className="mb-3">
         <InformacoesGerais anamnese={anamnese} />
+        <DadosClinicosDetails anamnese={anamnese} />
+        <InqueritoRetornoDetails anamnese={anamnese} />
+        <ExameFisicoDetails anamnese={anamnese} />
+        <AntropometricaReturnDetails anamnese={anamnese} />
+        <BioquimicoReturnDetails anamnese={anamnese} />
 
         {/* Caso você queira adicionar mais seções depois */}
         {/* <OutraSection anamnese={anamnese} /> */}
