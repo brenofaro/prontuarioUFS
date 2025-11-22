@@ -122,16 +122,16 @@ const ReturnAnameseForm = () => {
   });
 
   // 🔥 CARREGA ANAMNESE SE ESTIVER EDITANDO
-  // useEffect(() => {
-  //   if (anamneseId) {
-  //     fetch(`http://localhost:8080/base-anamneses/${anamneseId}`)
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setFormData(data);
-  //       })
-  //       .catch(err => console.error("Erro ao carregar anamnese:", err));
-  //   }
-  // }, [anamneseId]);
+  useEffect(() => {
+    if (anamneseId) {
+      fetch(`http://localhost:8080/return-anamneses/${anamneseId}`)
+        .then(res => res.json())
+        .then(data => {
+          setFormData(data);
+        })
+        .catch(err => console.error("Erro ao carregar anamnese:", err));
+    }
+  }, [anamneseId]);
 
   // 🔙 Botão voltar
   const handleClick = () => {
@@ -143,8 +143,8 @@ const ReturnAnameseForm = () => {
     e.preventDefault();
 
     const url = anamneseId
-      ? `http://localhost:8080/base-anamneses/${anamneseId}`
-      : `http://localhost:8080/base-anamneses/cadastrar`;
+      ? `http://localhost:8080/return-anamneses/${anamneseId}`
+      : `http://localhost:8080/return-anamneses/cadastrar`;
 
     const method = anamneseId ? "PUT" : "POST";
 
@@ -154,13 +154,14 @@ const ReturnAnameseForm = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           paciente_id: Number(pacienteId),
+          tipo_registro: "Ficha de Retorno",
           ...formData
         }),
       });
 
       if (!response.ok) throw new Error("Erro ao salvar anamnese");
 
-      alert(anamneseId ? "Anamnese atualizada!" : "Anamnese cadastrada!");
+      alert(anamneseId ? "Ficha de retorno atualizada!" : "Ficha de retorno cadastrada!");
       navigate(`/pagina-paciente/${pacienteId}`);
 
     } catch (error) {

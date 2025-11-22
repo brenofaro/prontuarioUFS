@@ -8,6 +8,7 @@ const AnamneseList = () => {
 
   const [anamnesesBase, setAnamnesesBase] = useState([]);
   const [anamnesesChild, setAnamnesesChild] = useState([]);
+  const [returnAnamnese, setReturnAnamnese] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -72,7 +73,8 @@ const AnamneseList = () => {
     const endpoint =
       tipo === "child"
         ? `http://localhost:8080/child-anamneses/${registroId}`
-        : `http://localhost:8080/base-anamneses/${registroId}`;
+        : (tipo === "base" ? `http://localhost:8080/base-anamneses/${registroId}` 
+          :  `http://localhost:8080/return-anamneses/${registroId}`);
 
     try {
       const response = await fetch(endpoint, { method: "DELETE" });
@@ -80,6 +82,8 @@ const AnamneseList = () => {
 
       if (tipo === "child") {
         setAnamnesesChild((prev) => prev.filter((a) => a.id !== registroId));
+      } else if (tipo === "retorno") {
+        setReturnAnamnese((prev) => prev.filter((a) => a.id !== registroId));
       } else {
         setAnamnesesBase((prev) => prev.filter((a) => a.id !== registroId));
       }
@@ -134,6 +138,28 @@ const AnamneseList = () => {
     fetchChild();
   }, [id]);
 
+  useEffect(() => {
+    const fetchReturn = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/return-anamneses/paciente/${id}`
+        );
+        if (!response.ok) throw new Error("Erro ao buscar return");
+
+        const data = await response.json();
+        setReturnAnamnese(
+          data.map((d) => ({ ...d, tipo: "retorno" })) // marcamos c
+        );
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReturn();
+  }, [id]);
+
   const formatarData = (data) => {
     if (!data) return "-";
     const [ano, mes, dia] = data.split("-");
@@ -144,7 +170,7 @@ const AnamneseList = () => {
   if (error) return <p>Erro: {error}</p>;
 
   // Mesclar os dois tipos de anamnese em uma única lista
-  const todasAsAnamneses = [...anamnesesBase, ...anamnesesChild];
+  const todasAsAnamneses = [...anamnesesBase, ...anamnesesChild, ...returnAnamnese];
 
   return (
     <div className="container mt-4">
@@ -201,6 +227,11 @@ const AnamneseList = () => {
                     <small className="text-muted d-block">Tipo</small>
                     <span className="fw-semibold">{item.tipo_registro}</span>
                   </div>
+
+                  <div className="col">
+                    <small className="text-muted d-block">Tipo</small>
+                    <span className="fw-semibold">{item.tipo}</span>
+                  </div>
                 </div>
               </div>
 
@@ -218,9 +249,9 @@ const AnamneseList = () => {
                   <Dropdown.Item
                     onClick={() =>
                       navigate(
-                        item.tipo === "child"
-                          ? `/detalhes-child-anamnese/${item.id}`
-                          : `/detalhes-anamnese/${item.id}`,
+                        item.tipo === "retorno"
+                          ? `/detalhes-return-anamnese/${item.id}`
+                          : (item.tipo === "base" ? `/detalhes-anamnese/${item.id}` : `/detalhes-child-anamnese/${item.id}`),
                         { state: { id } }
                       )
                     }
@@ -233,8 +264,9 @@ const AnamneseList = () => {
                       navigate(
                         item.tipo === "child"
                           ? `/child-anamnese/editar/${id}/${item.id}`
-                          : `/base-anamnese/editar/${id}/${item.id}`
+                          : (item.tipo === "base" ? `/base-anamnese/editar/${id}/${item.id}` : `/anamnese-retorno/editar/${id}/${item.id}`)
                       )
+                      
                     }
                   >
                     Editar
