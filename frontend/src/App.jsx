@@ -34,13 +34,13 @@ function App() {
       <Route path="/detalhes-anamnese/:id" element={<AnamnesesDetails />} />
       <Route path="/detalhes-child-anamnese/:id" element={<ChildAnamneseDetails />} />
       <Route path="/detalhes-return-anamnese/:id" element={<ReturnAnamneseDetails />} />
-      <Route path="/detalhes-food-plan/:id" element={<FoodPlanDetails />} /> 🔥 NOVO
+      <Route path="/detalhes-food-plan/:id" element={<FoodPlanDetails />} />
 
       {/* EDITAR */}
       <Route path="/base-anamnese/editar/:pacienteId/:anamneseId" element={<BaseAnamneseForm />} />
       <Route path="/child-anamnese/editar/:pacienteId/:anamneseId" element={<ChildAnamneseForm />} />
       <Route path="/anamnese-retorno/editar/:pacienteId/:anamneseId" element={<ReturnAnameseForm />} />
-      <Route path="/food-plan/editar/:pacienteId/:anamneseId" element={<FoodPlanForm />} /> {/* 🔥 NOVO */}
+      <Route path="/food-plan/editar/:pacienteId/:anamneseId" element={<FoodPlanForm />} />
     </Routes>
   );
 }

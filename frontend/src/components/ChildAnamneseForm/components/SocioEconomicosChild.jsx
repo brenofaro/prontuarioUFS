@@ -120,7 +120,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
                 <label className="text-muted small mb-0">Turno:</label>
                 <input
                   type="text"
-                  name="qual_turno_escolar"
+                  name="turno_escolar"
                   className="form-control form-control-sm"
                   style={{ width: "180px" }}
                   placeholder=""

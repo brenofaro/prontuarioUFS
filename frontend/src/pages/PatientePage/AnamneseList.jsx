@@ -198,7 +198,7 @@ const AnamneseList = () => {
       ) : (
         <div
           className="list-group border-0"
-          style={{ maxHeight: "400px", overflowY: "auto", paddingRight: "6px" }}
+          style={{ maxHeight: "400px", minHeight: "200px", overflowY: "auto", paddingRight: "6px" }}
         >
           {todasAsAnamneses.map((item) => (
             <div

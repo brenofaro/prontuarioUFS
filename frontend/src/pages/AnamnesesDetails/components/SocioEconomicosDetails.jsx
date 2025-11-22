@@ -52,16 +52,94 @@ const SocioEconomicosDetails = ({anamnese}) => {
                 </div>
               </div>
             </div>
-
             <div className="col-md-6">
               <div className="d-flex align-items-start">
-                {/* <i className="bi bi-people text-muted me-2 mt-1"></i> */}
+                {/* <i className="bi bi-briefcase text-muted me-2 mt-1"></i> */}
                 <div className="flex-grow-1">
-                  <small className="text-muted d-block">Estrutura Familiar</small>
-                  <span className="fw-medium">{anamnese.estrutura_familia || "-"}</span>
+                  <small className="text-muted d-block">Atividade em casa</small>
+                  <span className="fw-medium">{anamnese.faz_atividade_dentro_casa ? 
+                    anamnese.atividade_dentro_casa : "Não Exerce"}</span>
                 </div>
               </div>
             </div>
+
+            <div className="mb-4">
+
+  
+  <div className="row">
+    {/* HMA */}
+    <div className="col-md-6 mb-3">
+  <small className="text-muted d-block mb-2">Estrutura Familiar</small>
+      <div className="p-3 bg-white rounded border-start border-success border-3">
+        
+        <ul className="list-unstyled mb-0">
+          {anamnese.pai_mae && (
+            <li className="mb-2">
+              Pai e Mãe
+            </li>
+          )}
+          {anamnese.conjuge && (
+            <li className="mb-2">
+              Cônjuge
+            </li>
+          )}
+          {anamnese.filho && (
+            <li className="mb-2">
+              Filho
+            </li>
+          )}
+          {anamnese.irmao && (
+            <li className="mb-2">
+              Irmão
+            </li>
+          )}
+          {anamnese.netos && (
+            <li className="mb-2">
+              Netos
+            </li>
+          )}
+          {anamnese.sobrinho && (
+            <li className="mb-2">
+              Sobrinho
+            </li>
+          )}
+          {anamnese.cunhado && (
+            <li className="mb-2">
+               Cunhado
+            </li>
+          )}
+          {anamnese.so && (
+            <li className="mb-2">
+                Sozinho
+            </li>
+          )}
+          {anamnese.amigos && (
+            <li className="mb-2">
+                Amigos
+            </li>
+          )}
+        </ul>
+        
+        {!anamnese.diabetes_hma && !anamnese.hipertencao_hma && 
+         !anamnese.doenca_cardiovascular_hma && !anamnese.dislipidemia_hma &&
+         !anamnese.cancer_hma && !anamnese.osteoporose_hma && 
+         !anamnese.depressao_hma && !anamnese.sop_hma && (
+          <span className="text-muted fst-italic">Nenhuma patologia atual</span>
+        )}
+      </div>
+    </div>
+    <div className="col-md-6 mb-3">
+            <small className="text-muted d-block mb-2">Outras pessoas da estrutura familiar</small>
+      <div className="p-3 bg-white rounded border-start border-success border-3">
+{anamnese.outros_da_familia}
+</div>
+
+    </div>
+
+   
+    
+  </div>
+</div>
 
 
 

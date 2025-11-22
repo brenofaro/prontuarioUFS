@@ -14,13 +14,13 @@ const AntropometricaDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Peso Atual:</small>
-                    <span className="fw-medium">{anamnese.peso_atual || "-"} Kg</span>
+                    <span className="fw-medium">{anamnese.peso_atual || "-"} </span>
                 </div>                            
             </div>
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Peso Usual:</small>
-                    <span className="fw-medium">{anamnese.peso_usual || "-"} Kg</span>
+                    <span className="fw-medium">{anamnese.peso_usual || "-"} </span>
                 </div>                            
             </div>
             <div className='col-md-3'>
@@ -32,13 +32,13 @@ const AntropometricaDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Altura real:</small>
-                    <span className="fw-medium">{anamnese.altura_real || "-"} m</span>
+                    <span className="fw-medium">{anamnese.altura_real || "-"} </span>
                 </div>                            
             </div>
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Altura Estimada:</small>
-                    <span className="fw-medium">{anamnese.altura_estimada || "-"} m</span>
+                    <span className="fw-medium">{anamnese.altura_estimada || "-"} </span>
                 </div>                            
             </div>
             <div className='col-md-3'>
@@ -50,7 +50,7 @@ const AntropometricaDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Circunferência do braço:</small>
-                    <span className="fw-medium">{anamnese.circunferencia_braco || "-"} cm</span>
+                    <span className="fw-medium">{anamnese.circunferencia_braco || "-"} </span>
                 </div>                            
             </div>
             <div className='col-md-3'>
@@ -62,7 +62,7 @@ const AntropometricaDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Prega cutânea triciptal:</small>
-                    <span className="fw-medium">{anamnese.pct || "-"} mm</span>
+                    <span className="fw-medium">{anamnese.pct || "-"} </span>
                 </div>                            
             </div>
             <div className='col-md-3'>
@@ -74,13 +74,13 @@ const AntropometricaDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">PCSE:</small>
-                    <span className="fw-medium">{anamnese.pcse || "-"} mm</span>
+                    <span className="fw-medium">{anamnese.pcse || "-"}</span>
                 </div>                            
             </div>
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">PCSI:</small>
-                    <span className="fw-medium">{anamnese.pcsi || "-"} mm</span>
+                    <span className="fw-medium">{anamnese.pcsi || "-"}</span>
                 </div>                            
             </div>
             <div className='col-md-3'>
@@ -96,7 +96,7 @@ const AntropometricaDetails = ({anamnese}) => {
             <div className='col-md-3'>
                 <div className="flex-grow-1">
                     <small className="text-muted d-block">Circunferência da panturrilha:</small>
-                    <span className="fw-medium">{anamnese.circunferencia_panturrilha || "-"} cm</span>
+                    <span className="fw-medium">{anamnese.circunferencia_panturrilha || "-"}</span>
                 </div>                            
             </div>
         </div>
