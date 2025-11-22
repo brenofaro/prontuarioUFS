@@ -53,43 +53,35 @@ const TableSchedule = ({formData, setFormData}) => {
     <tbody>
 
       <tr>
-       {/* <td className="text-center">
-          <textarea 
-            name="" 
-            className="form-control"
-
-            id=""
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td> */}
         <td>
           <input 
             type="text"
-            className="form-control" name="" id="" />
+            className="form-control" 
+            name="refeicao_um" 
+            value={formData.refeicao_um || ""}
+            onChange={handleChange}
+            />
         </td>
 
         <td className="text-center">
           <textarea 
-            name="" 
+            name="alimentos_um" 
             className="form-control"
-
-            id=""
+            value={formData.alimentos_um || ""}
+            onChange={handleChange}
             style={{height:"150px"}}
             >
-
-            </textarea>
+          </textarea>
         </td>
         <td className="text-center">
          <textarea 
-            name="" 
+            name="substituicoes_um" 
             className="form-control"
-            id=""
+            value={formData.substituicoes_um || ""}
+            onChange={handleChange}
             style={{height:"150px"}}
             >
-
-            </textarea>
+          </textarea>
         </td>
       </tr>
 
@@ -97,26 +89,29 @@ const TableSchedule = ({formData, setFormData}) => {
          <td>
           <input 
             type="text"
-            className="form-control" name="" id="" />
+            className="form-control" 
+            name="refeicao_dois" 
+            value={formData.refeicao_dois || ""}
+            onChange={handleChange}
+            />
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
+            name="alimentos_dois" 
+            className="form-control"
+            value={formData.alimentos_dois || ""}
+            onChange={handleChange}
             style={{height:"150px"}}
             >
-
-            </textarea>
+          </textarea>
          
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
+            name="substituicoes_dois" 
+            className="form-control"
+            value={formData.substituicoes_dois || ""}
+            onChange={handleChange}
             style={{height:"150px"}}
             >
 
@@ -128,14 +123,18 @@ const TableSchedule = ({formData, setFormData}) => {
          <td>
           <input 
             type="text"
-            className="form-control" name="" id="" />
+            className="form-control" 
+            name="refeicao_tres" 
+            value={formData.refeicao_tres || ""}
+            onChange={handleChange}
+            />
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-            id=""
-                  className="form-control"
-
+            name="alimentos_tres" 
+            value={formData.alimentos_tres || ""}
+            onChange={handleChange}
+            className="form-control"
             style={{height:"150px"}}
             >
 
@@ -143,40 +142,10 @@ const TableSchedule = ({formData, setFormData}) => {
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-      </tr>
-
-      <tr>
-         <td>
-          <input 
-            type="text"
-            className="form-control" name="" id="" />
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-            id=""
-                  className="form-control"
-
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-            id=""
-                  className="form-control"
-
+            name="substituicoes_tres" 
+            className="form-control"
+            value={formData.substituicoes_tres || ""}
+            onChange={handleChange}
             style={{height:"150px"}}
             >
 
@@ -188,14 +157,18 @@ const TableSchedule = ({formData, setFormData}) => {
          <td>
           <input 
             type="text"
-            className="form-control" name="" id="" />
+            className="form-control" 
+            name="refeicao_quatro" 
+            value={formData.refeicao_quatro || ""}
+            onChange={handleChange}
+          />
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
+            name="alimentos_quatro" 
+            value={formData.alimentos_quatro || ""}
+            onChange={handleChange}
+            className="form-control"
             style={{height:"150px"}}
             >
 
@@ -203,10 +176,10 @@ const TableSchedule = ({formData, setFormData}) => {
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
+            name="substituicoes_quatro"
+            value={formData.substituicoes_quatro || ""}
+            onChange={handleChange}
+            className="form-control"
             style={{height:"150px"}}
             >
 
@@ -218,14 +191,18 @@ const TableSchedule = ({formData, setFormData}) => {
          <td>
           <input 
             type="text"
-            className="form-control" name="" id="" />
+            className="form-control" 
+            name="refeicao_cinco"
+            value={formData.refeicao_cinco || ""}
+            onChange={handleChange}
+            />
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
+            name="alimentos_cinco" 
+            value={formData.alimentos_cinco || ""}
+            onChange={handleChange}
+            className="form-control"
             style={{height:"150px"}}
             >
 
@@ -233,10 +210,44 @@ const TableSchedule = ({formData, setFormData}) => {
         </td>
         <td className="text-center">
           <textarea 
-            name="" 
-                  className="form-control"
+            name="substituicoes_cinco" 
+            value={formData.substituicoes_cinco || ""}
+            onChange={handleChange}
+            className="form-control"
+            style={{height:"150px"}}
+            >
 
-            id=""
+            </textarea>
+        </td>
+      </tr>
+
+      <tr>
+         <td>
+          <input 
+            type="text"
+            className="form-control" 
+            name="refeicao_seis" 
+            value={formData.refeicao_seis || ""}
+            onChange={handleChange}
+          />
+        </td>
+        <td className="text-center">
+          <textarea 
+            name="alimentos_seis" 
+            value={formData.alimentos_seis || ""}
+            onChange={handleChange}
+            className="form-control"
+            style={{height:"150px"}}
+            >
+
+            </textarea>
+        </td>
+        <td className="text-center">
+          <textarea 
+            name="substituicoes_seis" 
+            value={formData.substituicoes_seis || ""}
+            onChange={handleChange}
+            className="form-control"
             style={{height:"150px"}}
             >
 
