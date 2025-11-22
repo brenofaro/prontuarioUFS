@@ -1,7 +1,12 @@
 import { useState } from "react"; 
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+
 
 function PatienteForm() {
+  const {pacienteId} = useParams();
+
   const [formData, setFormData] = useState({
     nome: "",
     data_nascimento: "",
@@ -11,6 +16,7 @@ function PatienteForm() {
 
   const [errors, setErrors] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showSuccessUpdateModal, setShowSuccessUpdateModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -86,6 +92,17 @@ function PatienteForm() {
     return Object.keys(newErrors).length === 0;
   };
 
+    useEffect(() => {
+      if (pacienteId) {
+        fetch(`http://localhost:8080/pacientes/${pacienteId}`)
+          .then(res => res.json())
+          .then(data => {
+            setFormData(data);
+          })
+          .catch(err => console.error("Erro ao carregar paciente:", err));
+      }
+    }, [pacienteId]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -93,9 +110,15 @@ function PatienteForm() {
       return;
     }
 
+    const url = pacienteId
+      ? `http://localhost:8080/pacientes/${pacienteId}`
+      : `http://localhost:8080/pacientes/cadastrar`;
+
+    const method = pacienteId ? "PUT" : "POST";
+
     try {
-      const response = await fetch("http://localhost:8080/pacientes/cadastrar", {
-        method: "POST",
+      const response = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -110,7 +133,11 @@ function PatienteForm() {
       const data = await response.json();
       console.log("Paciente cadastrado:", data);
 
-      setShowSuccessModal(true);
+      if (pacienteId) {
+          setShowSuccessUpdateModal(true);
+        } else {
+          setShowSuccessModal(true);
+        }
 
       setFormData({
         nome: "",
@@ -145,7 +172,7 @@ function PatienteForm() {
             <div className="bg-white rounded-circle p-2 me-2">
               <i className="bi bi-person-circle fs-2 text-dark"></i>
             </div>
-            <h4 className="mb-0 text-dark" style={{fontFamily:"arial"}}>Cadastrar Paciente</h4>
+            <h4 className="mb-0 text-dark" style={{fontFamily:"arial"}}>{pacienteId ? "Editar Paciente" : "Cadastro de Paciente"}</h4>
           </div>
 
           <form onSubmit={handleSubmit}>
@@ -233,7 +260,7 @@ function PatienteForm() {
 
               <button type="submit" className="btn btn-success px-4 fw-semibold">
                 <i className="bi bi-check-lg me-2"></i>
-                Salvar Paciente
+                {pacienteId ? "Atualizar Paciente" : "Salvar Paciente"}
               </button>
             </div>
           </form>
@@ -288,6 +315,31 @@ function PatienteForm() {
           </div>
         </div>
       )}
+
+      {showSuccessUpdateModal && (
+          <div className="modal show d-block" >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content border-0 shadow-lg">
+                <div className="modal-body text-center p-5">
+                  <h4 className="text-success fw-bold mb-3">Paciente Atualizado!</h4>
+                  <p className="text-muted mb-4">
+                    Os dados do paciente foram atualizados com sucesso.
+                  </p>
+
+                  <button
+                    className="btn btn-primary px-4"
+                    onClick={() => navigate(`/pagina-paciente/${pacienteId}`)}
+                  >
+                    Ver Prontuário
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+        )}
+
 
       {/* Modal de Erro */}
       {showErrorModal && (

@@ -16,6 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<InitialPage />} />
       <Route path="/cadastrar-paciente" element={<RegisterPatientePage />} />
+      <Route path="/editar-paciente/:pacienteId" element={<RegisterPatientePage />} />
       <Route path= "/pagina-paciente/:id" element={<PatientePage />} />
       <Route path="/anamnese-padrao/:pacienteId" element={<BaseAnamneseForm/>}/>
       <Route path="/anamnese-infantil/:pacienteId" element={<ChildAnamneseForm/>}/>

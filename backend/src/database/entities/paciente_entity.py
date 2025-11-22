@@ -1,6 +1,23 @@
-from sqlalchemy import Column, Integer, String, Date
-from src.database.connection import Base
+from sqlalchemy import (
+    Column, 
+    Integer, 
+    String, 
+    ForeignKey, 
+    Boolean, 
+    Date, 
+    Text, 
+    Enum as SqlEnum
+)
 from sqlalchemy.orm import relationship
+from src.database.connection import Base
+from src.database.entities.enums import (
+    RitmoIntestinal, 
+    RitmoUrinario,
+    SonoEnum,
+    SatisfacaoAlimentarEnum,
+    GrauImcEnum
+
+)
 
 class Paciente(Base):
     __tablename__ = "pacientes"
@@ -13,4 +30,4 @@ class Paciente(Base):
 
     base_anamneses = relationship("BaseAnamnese", back_populates="paciente", cascade="all, delete")
     child_anamneses = relationship("ChildAnamnese", back_populates="paciente", cascade="all, delete")
-    #return_anamneses = relationship("ReturnAnamnese", back_populates="paciente", cascade="all, delete")
+    return_anamneses = relationship("ReturnAnamnese", back_populates="paciente", cascade="all, delete")

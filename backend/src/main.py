@@ -3,10 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.routes import (
     paciente_route,
     base_anamnese_route,
-    child_anamnese_route
+    child_anamnese_route,
+    return_anamnese_route
 )
 
 from src.database.connection import Base, engine
+
+import src.database.entities 
 
 # Cria o app principal
 app = FastAPI(title="API Prontuário")
@@ -27,3 +30,4 @@ Base.metadata.create_all(bind=engine)
 app.include_router(paciente_route.router)
 app.include_router(base_anamnese_route.router)
 app.include_router(child_anamnese_route.router)
+app.include_router(return_anamnese_route.router)

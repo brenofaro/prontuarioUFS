@@ -205,14 +205,14 @@ const AnamneseList = () => {
 
                 <Dropdown.Menu>
                   <Dropdown.Item
-  onClick={() =>
-    navigate(`/detalhes-anamnese/${anamnese.id}`, {
-      state: { id }
-    })
-  }
->
-  Ver detalhes
-</Dropdown.Item>
+                    onClick={() =>
+                      navigate(`/detalhes-anamnese/${anamnese.id}`, {
+                        state: { id }
+                      })
+                    }
+                  >
+                    Ver detalhes
+                  </Dropdown.Item>
 
                   <Dropdown.Item
                     onClick={() =>

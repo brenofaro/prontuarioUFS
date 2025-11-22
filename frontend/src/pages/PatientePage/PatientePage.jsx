@@ -2,11 +2,66 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CadastrateAnamneseButton from "../../components/CadastrateAnamneseButton/CadastrateAnamneseButton";
 import AnamneseList from "./AnamneseList";
+import { Modal, Button, Dropdown } from "react-bootstrap";
+
 
 const PatientePage = () => {
   const { id } = useParams();
   const [paciente, setPaciente] = useState(null);
   const navigate = useNavigate();
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  
+  function ModalExcluir({ show, handleClose, handleConfirm }) {
+      return (
+        <Modal show={show} onHide={handleClose} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirmar Exclusão</Modal.Title>
+          </Modal.Header>
+  
+          <Modal.Body>
+            Tem certeza que deseja excluir este registro?
+            <br />
+            <strong>Ao exluir um paciente, todos os registros associados a ele também serão excluidos.</strong>
+          </Modal.Body>
+  
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancelar
+            </Button>
+            <Button variant="danger" onClick={handleConfirm}>
+              Excluir
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    }
+  
+    // ---------- MODAL DE SUCESSO ----------
+    function ModalSucesso({ show, handleClose }) {
+      return (
+        <Modal show={show} onHide={handleClose} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Sucesso</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="text-success fw-semibold">
+            Paciente excluído com sucesso!
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" onClick={handleClose}>
+              OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    }
+
+    const handleCloseSuccess = () => {
+        setShowSuccess(false);
+        navigate("/");
+      };
+        
 
   const handleClick = () => {
     navigate("/");
@@ -58,6 +113,30 @@ const PatientePage = () => {
     return `${dia}/${mes}/${ano}`;
   };
 
+  const handleOpenConfirm = (id) => {
+    setSelectedId(id);
+    setShowConfirm(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    setShowConfirm(false); // fecha modal de confirmação
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/pacientes/${selectedId}`,
+        { method: "DELETE" }
+      );
+
+      if (!response.ok) throw new Error("Erro ao excluir paciente");
+
+
+      setShowSuccess(true); // abre modal de sucesso
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao excluir paciente.");
+    }
+  };
+
   return (
     <div className="container mt-4 mb-5">
       {/* Header com breadcrumb */}
@@ -103,7 +182,37 @@ const PatientePage = () => {
                 </small>
               </div>
             </div>
-
+                 <Dropdown align="end">
+                                <Dropdown.Toggle
+                                  variant="light"
+                                  size="sm"
+                                  className="border-0 p-0"
+                                  id="dropdown-basic"
+                                  style={{ boxShadow: "none" }}
+                                >
+                                  <span style={{ fontSize: "22px", lineHeight: "0" }}>⋮</span>
+                                </Dropdown.Toggle>
+                
+                                <Dropdown.Menu>
+                
+                                  <Dropdown.Item
+                                    onClick={() =>
+                                      navigate(
+                                        `/editar-paciente/${id}/`
+                                      )
+                                    }
+                                  >
+                                    Editar
+                                  </Dropdown.Item>
+                
+                                  <Dropdown.Item
+                                    className="text-danger"
+                                    onClick={() => handleOpenConfirm(id)}
+                                  >
+                                    Excluir
+                                  </Dropdown.Item>
+                                </Dropdown.Menu>
+                              </Dropdown>
             
           </div>
 
@@ -164,6 +273,17 @@ const PatientePage = () => {
           Voltar
         </button>
       </div>
+
+      <ModalExcluir
+        show={showConfirm}
+        handleClose={() => setShowConfirm(false)}
+        handleConfirm={handleConfirmDelete}
+      />
+
+      <ModalSucesso
+        show={showSuccess}
+        handleClose={handleCloseSuccess}
+      />
     </div>
   );
 };
