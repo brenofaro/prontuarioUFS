@@ -114,17 +114,16 @@ function ChildAnamneseForm() {
       diagnostico_conclusivo: null,
   });
 
-  // 🔥 CARREGA ANAMNESE SE ESTIVER EDITANDO
-  // useEffect(() => {
-  //   if (anamneseId) {
-  //     fetch(`http://localhost:8080/base-anamneses/${anamneseId}`)
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setFormData(data);
-  //       })
-  //       .catch(err => console.error("Erro ao carregar anamnese:", err));
-  //   }
-  // }, [anamneseId]);
+  useEffect(() => {
+    if (anamneseId) {
+      fetch(`http://localhost:8080/child-anamneses/${anamneseId}`)
+        .then(res => res.json())
+        .then(data => {
+          setFormData(data);
+        })
+        .catch(err => console.error("Erro ao carregar anamnese:", err));
+    }
+  }, [anamneseId]);
 
   // 🔙 Botão voltar
   const handleClick = () => {
