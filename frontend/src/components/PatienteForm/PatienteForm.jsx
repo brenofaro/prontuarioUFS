@@ -177,24 +177,25 @@ function PatienteForm() {
 
           <form onSubmit={handleSubmit}>
             {/* Nome */}
-            <div className="mb-4">
-              <label className="form-label">
-                Nome completo <span className="text-dark">*</span>
-              </label>
-              <input
-                type="text"
-                className={`form-control ${errors.nome ? 'is-invalid' : ''}`}
-                name="nome"
-                value={formData.nome}
-                onChange={handleChange}
-                placeholder="Ex: Maria Silva Santos"
-              />
-              {errors.nome && <div className="invalid-feedback">{errors.nome}</div>}
-            </div>
-
             <div className="row mb-4">
-              {/* Data de nascimento */}
               <div className="col-md-6">
+                <label className="form-label">
+                  Nome completo <span className="text-dark">*</span>
+                </label>
+                <input
+                  type="text"
+                  className={`form-control ${errors.nome ? 'is-invalid' : ''}`}
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  placeholder="Ex: Maria Silva Santos"
+                />
+                {errors.nome && <div className="invalid-feedback">{errors.nome}</div>}
+              </div>
+
+            
+              {/* Data de nascimento */}
+              <div className="col-md-6 mb-3">
                 <label className="form-label">
                   Data de Nascimento <span className="text-dark">*</span>
                 </label>
@@ -230,9 +231,8 @@ function PatienteForm() {
                 />
                 {errors.telefone && <div className="invalid-feedback">{errors.telefone}</div>}
               </div>
-            </div>
 
-            <div className="row mb-4">
+            
               {/* Endereço */}
               <div className="col-md-6">
                 <label className="form-label">Endereço</label>
@@ -245,8 +245,9 @@ function PatienteForm() {
                   placeholder="Rua, número, bairro, cidade"
                 />
               </div>
-            </div>
+            
 
+        </div>
             {/* Botões */}
             <div className="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
               <button

@@ -6,7 +6,8 @@ from src.services.child_anamnese_service import (
         listar_child_anamneses,
         buscar_child_anamnese,      
         atualizar_child_anamnese,
-        deletar_child_anamnese
+        deletar_child_anamnese,
+        buscar_child_anamneses_por_paciente
     )
 from src.database.connection import get_db
 
@@ -49,4 +50,10 @@ async def deletar(id: int, db: Session = Depends(get_db)):
     if not sucesso:
         raise HTTPException(status_code=404, detail="Anamnese não encontrada")
     return {"message": "Anamnese excluída com sucesso"}
+
+# READ - buscar por paciente_id
+@router.get("/paciente/{paciente_id}", response_model=list[ChildAnamneseResponse])
+async def buscar_por_paciente(paciente_id: int, db: Session = Depends(get_db)):
+    anamneses = await buscar_child_anamneses_por_paciente(paciente_id, db)
+    return anamneses    
 

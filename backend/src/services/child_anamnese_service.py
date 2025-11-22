@@ -2,47 +2,59 @@ from sqlalchemy.orm import Session
 from src.database.entities.child_anamnese_entity import ChildAnamnese
 from src.models.child_anamnese_model import ChildAnamneseCreate
 
+
+# CREATE
 async def cadastrar_child_anamnese(anamnese: ChildAnamneseCreate, db: Session):
-    nova_child_anamnese = ChildAnamnese(
-        paciente_id=anamnese.paciente_id,
-        tipo=anamnese.tipo,  # 🔹 novo campo
-        nome_da_crianca=anamnese.nome_da_crianca,
-        historico_gripe=anamnese.historico_gripe,
-        habitos=anamnese.habitos,
-        observacoes=anamnese.observacoes,
+    nova_anamnese = ChildAnamnese(
+        **anamnese.model_dump(exclude_unset=True)
     )
-    db.add(nova_child_anamnese)
+    db.add(nova_anamnese)
     db.commit()
-    db.refresh(nova_child_anamnese)
-    return nova_child_anamnese
+    db.refresh(nova_anamnese)
+    return nova_anamnese
 
+
+# READ - listar todos
 async def listar_child_anamneses(db: Session):
-    return db.query(ChildAnamnese).all()    
+    return db.query(ChildAnamnese).all()
 
+
+# READ - buscar por ID
 async def buscar_child_anamnese(id: int, db: Session):
-    child_anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
-    return child_anamnese
+    anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
+    return anamnese
 
+
+# UPDATE
 async def atualizar_child_anamnese(id: int, dados: ChildAnamneseCreate, db: Session):
-    child_anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
-    if not child_anamnese:
+    anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
+
+    if not anamnese:
         return None
 
-    child_anamnese.paciente_id = dados.paciente_id
-    child_anamnese.tipo = dados.tipo  # 🔹 novo campo
-    child_anamnese.nome_da_crianca = dados.nome_da_crianca
-    child_anamnese.historico_gripe = dados.historico_gripe
-    child_anamnese.habitos = dados.habitos
-    child_anamnese.observacoes = dados.observacoes
+    for key, value in dados.model_dump(exclude_unset=True).items():
+        setattr(anamnese, key, value)
 
     db.commit()
-    db.refresh(child_anamnese)
-    return child_anamnese
+    db.refresh(anamnese)
+    return anamnese
 
-async def deletar_child_anamnese(child_anamnese_id: int, db: Session):
-    child_anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == child_anamnese_id).first()
-    if child_anamnese:
-        db.delete(child_anamnese)
+
+# DELETE
+async def deletar_child_anamnese(id: int, db: Session):
+    anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
+    if anamnese:
+        db.delete(anamnese)
         db.commit()
         return True
     return False
+
+
+# READ - buscar por paciente_id
+async def buscar_child_anamneses_por_paciente(paciente_id: int, db: Session):
+    anamneses = (
+        db.query(ChildAnamnese)
+        .filter(ChildAnamnese.paciente_id == paciente_id)
+        .all()
+    )
+    return anamneses

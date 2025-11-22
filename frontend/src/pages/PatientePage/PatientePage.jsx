@@ -21,9 +21,9 @@ const PatientePage = () => {
           </Modal.Header>
   
           <Modal.Body>
-            Tem certeza que deseja excluir este registro?
+            Tem certeza que deseja excluir este paciente?
             <br />
-            <strong>Ao exluir um paciente, todos os registros associados a ele também serão excluidos.</strong>
+            <strong>Ao excluir um paciente, todos os registros associados a ele também serão excluidos.</strong>
           </Modal.Body>
   
           <Modal.Footer>
