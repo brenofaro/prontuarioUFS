@@ -120,12 +120,12 @@ const SocioEconomicosDetails = ({anamnese}) => {
           )}
         </ul>
         
-        {!anamnese.diabetes_hma && !anamnese.hipertencao_hma && 
+        {/* {!anamnese.diabetes_hma && !anamnese.hipertencao_hma && 
          !anamnese.doenca_cardiovascular_hma && !anamnese.dislipidemia_hma &&
          !anamnese.cancer_hma && !anamnese.osteoporose_hma && 
          !anamnese.depressao_hma && !anamnese.sop_hma && (
           <span className="text-muted fst-italic">Nenhuma patologia atual</span>
-        )}
+        )} */}
       </div>
     </div>
     <div className="col-md-6 mb-3">
@@ -167,13 +167,13 @@ const SocioEconomicosDetails = ({anamnese}) => {
         <div className="row g-3 mb-4">
         {/* Atividade Física */}
         <div className="col-md-4">
-          <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
+          {/* <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
             Atividade Física
-          </h6>
-          <div className="bg-light rounded-3 p-3">
+          </h6> */}
+          <div className="bg-white rounded-3 p-3">
             <div className="d-flex align-items-center mb-3">
               {/* <i className="bi bi-lightning-charge text-warning me-2"></i> */}
-              <span className="text-muted me-2">Exerce atualmente:</span>
+              <span className="text-muted me-2 ">Pratica Atividade Física:</span>
               <span className={`badge ${anamnese.faz_atividade_fisica ? 'bg-success' : 'bg-secondary'}`}>
                 {booleanLabels[anamnese.faz_atividade_fisica] ?? "-"}
               </span>
@@ -211,13 +211,13 @@ const SocioEconomicosDetails = ({anamnese}) => {
 
         {/* Etilismo */}
         <div className="col-md-4">
-          <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
+          {/* <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
             Consumo de álcool
-          </h6>
-          <div className="bg-light rounded-3 p-3">
+          </h6> */}
+          <div className="bg-white rounded-3 p-3">
             <div className="d-flex align-items-center mb-3">
               {/* <i className="bi bi-exclamation-circle text-warning me-2"></i> */}
-              <span className="text-muted me-2">Consome atualmente:</span>
+              <span className="text-muted me-2">Etilismo:</span>
               <span className={`badge ${anamnese.tem_etilismo ? 'bg-success' : 'bg-secondary'}`}>
                 {booleanLabels[anamnese.tem_etilismo] ?? "-"}
               </span>
@@ -238,7 +238,7 @@ const SocioEconomicosDetails = ({anamnese}) => {
 
             <div className="d-flex align-items-center mt-3">
               {/* <i className="bi bi-clock-history text-muted me-2"></i> */}
-              <span className="text-muted me-2">Já consumiu antes:</span>
+              <span className="text-muted me-2">Já foi etilista:</span>
               <span className={`badge ${anamnese.ja_foi_etilista ? 'bg-success' : 'bg-secondary'}`}>
                 {booleanLabels[anamnese.ja_foi_etilista] ?? "-"}
               </span>
@@ -253,13 +253,13 @@ const SocioEconomicosDetails = ({anamnese}) => {
           </div>
         </div>
         <div className='col-md-4'>
-        <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
+        {/* <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
             Tabagismo
-          </h6>
-          <div className="bg-light rounded-3 p-3">
+          </h6> */}
+          <div className="bg-white rounded-3 p-3">
             <div className="d-flex align-items-center mb-3">
               {/* <i className="bi bi-exclamation-triangle text-danger me-2"></i> */}
-              <span className="text-muted me-2">Fuma atualmente:</span>
+              <span className="text-muted me-2">Tabagismo:</span>
               <span className={`badge ${anamnese.tem_tabagismo ? 'bg-success' : 'bg-secondary'}`}>
                 {booleanLabels[anamnese.tem_tabagismo] ?? "-"}
               </span>
@@ -280,7 +280,7 @@ const SocioEconomicosDetails = ({anamnese}) => {
 
             <div className="d-flex align-items-center mt-3">
               {/* <i className="bi bi-clock-history text-muted me-2"></i> */}
-              <span className="text-muted me-2">Já fumou antes:</span>
+              <span className="text-muted me-2">Já foi tabagista:</span>
               <span className={`badge ${anamnese.ja_foi_tabagista ? 'bg-success' : 'bg-secondary'}`}>
                 {booleanLabels[anamnese.ja_foi_tabagista] ?? "-"}
               </span>

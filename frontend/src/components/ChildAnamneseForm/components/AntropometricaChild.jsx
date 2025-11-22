@@ -52,12 +52,9 @@ const AntropometricaChild = ({formData, setFormData}) => {
                 Peso atual (kg) <span className="text-danger">*</span>
               </label>
               <input 
-                type="number"
+                type="text"
                 name="peso_atual"
                 className="form-control"
-                placeholder="Ex: 72.5"
-                step="0.1"
-                min="0"
                 value={formData.peso_atual || ''}
                 onChange={handleChange}
               />
@@ -66,12 +63,9 @@ const AntropometricaChild = ({formData, setFormData}) => {
             <div className="col-md-3">
               <label className="form-label text-muted small">Peso ao nascer (kg):</label>
               <input 
-                type="number"
+                type="text"
                 name="peso_ao_nascer"
                 className="form-control"
-                placeholder="Ex: 70.0"
-                step="0.1"
-                min="0"
                 value={formData.peso_ao_nascer || ''}
                 onChange={handleChange}
               />
@@ -81,11 +75,9 @@ const AntropometricaChild = ({formData, setFormData}) => {
               <label className="form-label text-muted small">Comprimento ao nascer (cm):</label>
               <div className="input-group">
                 <input 
-                  type="number"
+                  type="text"
                   name="comprimento_ao_nascer"
                   className="form-control"
-                  placeholder="Ex: 30"
-                  min="0"
                   value={formData.comprimento_ao_nascer || ''}
                   onChange={handleChange}
                 />
@@ -98,12 +90,9 @@ const AntropometricaChild = ({formData, setFormData}) => {
                 Altura (m): <span className="text-danger">*</span>
               </label>
               <input 
-                type="number"
+                type="text"
                 name="altura"
                 className="form-control"
-                placeholder="Ex: 1.75"
-                step="0.01"
-                min="0"
                 value={formData.altura || ''}
                 onChange={handleChange}
               />
@@ -112,12 +101,9 @@ const AntropometricaChild = ({formData, setFormData}) => {
              <div className="col-md-3">
               <label className="form-label text-muted small">E/I:</label>
               <input 
-                type="number"
+                type="text"
                 name="e_i"
                 className="form-control"
-                placeholder=""
-                step="0.01"
-                min="0"
                 value={formData.e_i || ''}
                 onChange={handleChange}
               />
@@ -126,12 +112,9 @@ const AntropometricaChild = ({formData, setFormData}) => {
              <div className="col-md-3">
               <label className="form-label text-muted small">P/I:</label>
               <input 
-                type="number"
+                type="text"
                 name="p_i"
                 className="form-control"
-                placeholder=""
-                step="0.01"
-                min="0"
                 value={formData.p_i || ''}
                 onChange={handleChange}
               />
@@ -142,12 +125,9 @@ const AntropometricaChild = ({formData, setFormData}) => {
               <label className="form-label text-muted small">Peso para comprimento:</label>
               <div className="input-group">
                 <input 
-                  type="number"
+                  type="text"
                   name="peso_para_comprimento"
                   className="form-control"
-                  placeholder=""
-                  step="0.01"
-                  min="0"
                   value={formData.peso_para_comprimento || ''}
                   onChange={handleChange}
                 />

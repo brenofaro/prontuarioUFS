@@ -20,6 +20,11 @@ class DenticaoEnum(str, Enum):
     protese_parcial = "protese_parcial"
     edentulo = "edentulo"
 
+class DenticaoChildEnum(str, Enum):
+    ausente = "ausente"
+    em_desenvolvimento = "em_desenvolvimento"
+    completa = "completa"
+
 class MastigacaoEnum(str, Enum):
     normal = "normal"
     comprometida = "comprometida"

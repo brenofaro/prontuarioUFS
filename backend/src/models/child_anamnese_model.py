@@ -3,7 +3,7 @@ from datetime import date
 from typing import Optional
 
 from src.database.entities.enums import (
-    DenticaoEnum, 
+    DenticaoChildEnum, 
     MastigacaoEnum, 
     RitmoIntestinal, 
     RitmoUrinario,
@@ -83,7 +83,7 @@ class ChildAnamneseCreate(BaseModel):
     diagnostico_antropometrico: Optional[str] = None
 
     # Dados e sintomas clínicos
-    denticao: Optional[DenticaoEnum] = None
+    denticao: Optional[DenticaoChildEnum] = None
     mastigacao: Optional[MastigacaoEnum] = None
     disfagia: Optional[bool] = False
     odinofagia: Optional[bool] = False
@@ -116,6 +116,7 @@ class ChildAnamneseCreate(BaseModel):
     existe_horario_mais_fome: Optional[bool] = False
     horario_mais_fome: Optional[str] = None
     apetite: Optional[ApetiteEnum] = None
+    motivo_apetite: Optional[str] = None
 
     # Diagnóstico conclusivo
     diagnostico_conclusivo: Optional[str] = None

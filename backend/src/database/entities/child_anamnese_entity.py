@@ -11,7 +11,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import relationship
 from src.database.connection import Base
 from src.database.entities.enums import (
-    DenticaoEnum, 
+    DenticaoChildEnum, 
     MastigacaoEnum, 
     RitmoIntestinal, 
     RitmoUrinario,
@@ -93,7 +93,7 @@ class ChildAnamnese(Base):
     diagnostico_antropometrico = Column(Text, nullable=True)
 
     #Dados e sintomas clínicos
-    denticao = Column(SqlEnum(DenticaoEnum), nullable=True)
+    denticao = Column(SqlEnum(DenticaoChildEnum), nullable=True)
     mastigacao = Column(SqlEnum(MastigacaoEnum), nullable=True)
     disfagia = Column(Boolean, nullable=True, default=False)
     odinofagia = Column(Boolean, nullable=True, default=False)
@@ -126,6 +126,7 @@ class ChildAnamnese(Base):
     existe_horario_mais_fome = Column(Boolean, nullable=True, default=False)
     horario_mais_fome = Column(String, nullable=True)
     apetite = Column(SqlEnum(ApetiteEnum), nullable=True)
+    motivo_apetite = Column(String, nullable=True)
 
     #Diagnóstico conclusivo
     diagnostico_conclusivo = Column(Text, nullable=True)

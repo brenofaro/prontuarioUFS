@@ -44,8 +44,8 @@ function ChildAnamneseForm() {
       ja_fez_atividade_fisica: null,
       tempo_parado_atividade_fisica: null,
       crianca_ativa: null,
-      horario_dormer: null,
-      horario_acordar: null,
+      horario_dorme: null,
+      horario_acorda: null,
 
       objetivo_consulta: null,
       historia_doenca: null,
@@ -83,7 +83,7 @@ function ChildAnamneseForm() {
       denticao: null,
       mastigacao: null,
       disfagia: null,
-      odinofalgia: null,
+      odinofagia: null,
       dispepsia: null,
       nauseas: null,
       vomitos: null,
@@ -111,6 +111,7 @@ function ChildAnamneseForm() {
       existe_horario_mais_fome: null,
       horario_mais_fome: null,
       apetite: null,
+      motivo_apetite: null,
       diagnostico_conclusivo: null,
   });
 

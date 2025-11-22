@@ -3,6 +3,12 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
 import InformacoesGerais from "./components/InformacoesGerais";
+import SocioEconomicosChildDetails from "./components/SocioEconomicosChildDetails";
+import SaudeChildDetails from "./components/SaudeChildDetails";
+import AntropometricaChildDetails from "./components/AntropometricaChildDetails";
+import SintomasClinicosChildDetails from "./components/SintomasClinicosChildDetails";
+import HistoriaAlimentarChildDetails from "./components/HistoriaAlimentarChildDetails";
+import BioquimicaChildDetails from "./components/BioquimicaChildDetails";
 
 const ChildAnamneseDetails = () => {
   const navigate = useNavigate();
@@ -59,18 +65,13 @@ const ChildAnamneseDetails = () => {
 
       <Card className="mb-3">
         <InformacoesGerais anamnese={anamnese} />
-
-        {/* 
-        Se quiser adicionar mais detalhes (já deixo pronto para o futuro):
+        <SocioEconomicosChildDetails anamnese={anamnese} />
+        <SaudeChildDetails anamnese={anamnese} />
+        <AntropometricaChildDetails anamnese={anamnese} />
+        <SintomasClinicosChildDetails anamnese={anamnese} />
+        <BioquimicaChildDetails anamnese={anamnese} />
+        <HistoriaAlimentarChildDetails anamnese={anamnese} />
         
-        <SocioEconomicosDetails anamnese={anamnese} />
-        <SaudeDetails anamnese={anamnese} />
-        <AntropometricaDetails anamnese={anamnese} />
-        <BioimpedanciaDetails anamnese={anamnese} />
-        <SintomasClinicosDetails anamnese={anamnese} />
-        <BioquimicaDetails anamnese={anamnese} />
-        <HistoriaAlimentarDetails anamnese={anamnese} />
-        */}
       </Card>
 
     </div>

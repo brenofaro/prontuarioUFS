@@ -51,6 +51,14 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
   }));
 };
 
+const toggleBooleanField = (fieldName, newValue) => {
+  setFormData((prev) => ({
+    ...prev,
+    [fieldName]: prev[fieldName] === newValue ? null : newValue
+  }));
+};
+
+
   const handleCheckboxList = (e) => {
     const { name, checked, value } = e.target;
 
@@ -77,6 +85,42 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
         <label className="form-label text-muted small">Escolar?</label>
         <div className="d-flex flex-wrap gap-3 mb-3">
           <div className="form-check d-flex align-items-center gap-2">
+  <input
+    type="radio"
+    className="form-check-input"
+    name="escolar"
+    id="sim_escolar"
+    checked={formData.escolar === true}
+    onClick={() =>
+      setFormData(prev => ({
+        ...prev,
+        escolar: prev.escolar === true ? null : true
+      }))
+    }
+    onChange={() => {}} // necessário para prevenir comportamento nativo
+  />
+  <label htmlFor="sim_escolar">Sim</label>
+</div>
+
+<div className="form-check d-flex align-items-center gap-2">
+  <input
+    type="radio"
+    className="form-check-input"
+    name="escolar"
+    id="nao_escolar"
+    checked={formData.escolar === false}
+    onClick={() =>
+      setFormData(prev => ({
+        ...prev,
+        escolar: prev.escolar === false ? null : false
+      }))
+    }
+    onChange={() => {}} // impede o HTML de sobrescrever o estado
+  />
+  <label htmlFor="nao_escolar">Não</label>
+</div>
+
+          {/* <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="radio"
@@ -101,7 +145,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
               onClick={() => toggleField("escolar")}
             />
             <label className="form-check-label" htmlFor="nao_escolar">Não</label>
-          </div>
+          </div> */}
           {formData.escolar === true && (
             <>
               <div className="d-flex align-items-center gap-2 ms-3">
@@ -143,7 +187,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
               value="true"
               checked={formData.adaptacao_escolar === true}
               onChange={handleChange}
-              onClick={() => toggleField("adaptacao_escolar")}
+              onClick={() => toggleBooleanField("adaptacao_escolar", true)}
             />
             <label className="form-check-label" htmlFor="sim_adaptacao_escolar">Sim</label>
           </div>
@@ -156,7 +200,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
               value="false"
               checked={formData.adaptacao_escolar === false}
               onChange={handleChange}
-              onClick={() => toggleField("adaptacao_escolar")}
+              onClick={() => toggleBooleanField("adaptacao_escolar", false)}
             />
             <label className="form-check-label" htmlFor="nao_adaptacao_escolar">Não</label>
           </div>
@@ -216,7 +260,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
           <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="pai_mae"
               id="pai_mae"
               value="true"
@@ -230,7 +274,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
           <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="conjuge"
               id="conjuge"
               value="true"
@@ -244,7 +288,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
            <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="filho"
               id="filho"
               value="true"
@@ -258,7 +302,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
            <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="irmao"
               id="irmao"
               value="true"
@@ -272,7 +316,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
            <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="netos"
               id="netos"
               value="true"
@@ -286,7 +330,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
            <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="sobrinho"
               id="sobrinho"
               value="true"
@@ -299,7 +343,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
            <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="cunhado"
               id="cunhado"
               value="true"
@@ -313,7 +357,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
            <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="so"
               id="so"
               value="true"
@@ -327,7 +371,7 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
            <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
-              type="radio"
+              type="checkbox"
               name="amigos"
               id="amigos"
               value="true"
@@ -358,27 +402,23 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
               Renda Pessoal (R$)
             </label>
             <input
-              type="number"
+              type="text"
               id="renda_pessoal"
               name="renda_pessoal"
               className="form-control"
-              placeholder="Ex: 1200"
-              min="0"
               value={formData.renda_pessoal || ""}
               onChange={handleChange}
             />
           </div>
           <div className="col-md-6">
             <label htmlFor="gastos_alimentacao" className="form-label text-muted small">
-              Gastos com Alimentação (R$)
+            Gastos com Alimentação (R$)
             </label>
             <input
-              type="number"
+              type="text"
               id="gastos_alimentacao"
               name="gastos_alimentacao"
               className="form-control"
-              placeholder="Ex: 300"
-              min="0"
               value={formData.gastos_alimentacao || ""}
               onChange={handleChange}
             />
