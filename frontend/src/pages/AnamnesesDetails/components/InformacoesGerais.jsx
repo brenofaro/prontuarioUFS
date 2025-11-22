@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from "react-bootstrap";
 
-const InformacoesGerias = ({anamnese}) => {
+const InformacoesGerais = ({anamnese}) => {
       const formatarData = (data) => {
         if (!data) return "-";
         const [ano, mes, dia] = data.split("-");
@@ -76,4 +76,4 @@ const InformacoesGerias = ({anamnese}) => {
   )
 }
 
-export default InformacoesGerias
+export default InformacoesGerais

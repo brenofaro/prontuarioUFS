@@ -8,6 +8,7 @@ import ReturnAnameseForm from "./components/ReturnAnamneseForm/ReturnAnameseForm
 import AnamnesesDetails from "./pages/AnamnesesDetails/AnamnesesDetails.jsx";
 import FoodPlanForm from "./components/FoodPlanForm/FoodPlanForm.jsx";
 import RecordatoryForm from "./components/RecordatoryForm/RecordatoryForm.jsx";
+import ChildAnamneseDetails from "./pages/ChildAnamneseDetails/ChildAnamneseDetails.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path="/anamnese-plano-alimentar/:pacienteId" element={<FoodPlanForm/>}/>
       <Route path="/anamnese-ficha-recordatorio/:pacienteId" element={<RecordatoryForm/>}/>
       <Route path="/detalhes-anamnese/:id" element={<AnamnesesDetails/>}/>
+      <Route path="/detalhes-child-anamnese/:id" element={<ChildAnamneseDetails/>}/>
       <Route path="/base-anamnese/editar/:pacienteId/:anamneseId" element={<BaseAnamneseForm />} />
       <Route path="/child-anamnese/editar/:pacienteId/:anamneseId" element={<ChildAnamneseForm />} />
 
