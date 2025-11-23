@@ -1,7 +1,5 @@
-import React from 'react'
-
-const ExameBioquimico = ({formData, setFormData}) => {
-    const handleChange = (e) => {
+const ExameBioquimico = ({ formData, setFormData }) => {
+  const handleChange = (e) => {
     let { name, value, type, checked } = e.target;
 
     if (type === "checkbox" && !Array.isArray(formData[name])) {
@@ -19,12 +17,12 @@ const ExameBioquimico = ({formData, setFormData}) => {
     }
 
     if (type === "number") {
-  const numericValue = value === "" ? null : Number(value);
-  return setFormData((prev) => ({
-    ...prev,
-    [name]: numericValue,
-  }));
-}
+      const numericValue = value === "" ? null : Number(value);
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: numericValue,
+      }));
+    }
 
     if (type === "date") {
       return setFormData((prev) => ({
@@ -41,41 +39,40 @@ const ExameBioquimico = ({formData, setFormData}) => {
 
   return (
     <div className="mb-3 p-4 border rounded-3 bg-white ">
-        <div className="d-flex flex-column mb-3" style={{ maxWidth: "250px" }}>
-            <label className="form-label text-muted small" htmlFor="data_eb">Data:</label>
-            <input
-            type="date"
-            id="data_eb"
-            name="data_eb"
-            className="form-control text-muted"
-            value={formData.data_eb || ""}
-            onChange={handleChange}
-            />
-        </div>
+      <div className="d-flex flex-column mb-3" style={{ maxWidth: "250px" }}>
+        <label className="form-label text-muted small" htmlFor="data_eb">
+          Data:
+        </label>
+        <input
+          type="date"
+          id="data_eb"
+          name="data_eb"
+          className="form-control text-muted"
+          value={formData.data_eb || ""}
+          onChange={handleChange}
+        />
+      </div>
 
-         <div className="mb-4">
-        {/* <h6 className="text-secondary mb-3">Peso e Altura</h6> */}
+      <div className="mb-4">
         <div className="row g-3">
           <div className="col-md-3">
-            <label className="form-label text-muted small">
-              Vitamina A: 
-            </label>
-            <input 
+            <label className="form-label text-muted small">Vitamina A:</label>
+            <input
               type="text"
               name="vitamina_a"
               className="form-control"
-              value={formData.vitamina_a || ''}
+              value={formData.vitamina_a || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
             <label className="form-label text-muted small">Vitamina B12:</label>
-            <input 
+            <input
               type="text"
               name="vitamina_bdoze"
               className="form-control"
-              value={formData.vitamina_bdoze || ''}
+              value={formData.vitamina_bdoze || ""}
               onChange={handleChange}
             />
           </div>
@@ -84,11 +81,11 @@ const ExameBioquimico = ({formData, setFormData}) => {
             <label className="form-label text-muted small">
               Fosfatase ácida prostática:
             </label>
-            <input 
+            <input
               type="text"
               name="fosfatase_prostatica"
               className="form-control"
-              value={formData.fosfatase_prostatica || ''}
+              value={formData.fosfatase_prostatica || ""}
               onChange={handleChange}
             />
           </div>
@@ -96,11 +93,11 @@ const ExameBioquimico = ({formData, setFormData}) => {
           <div className="col-md-3">
             <label className="form-label text-muted small">Vitamina D:</label>
             <div className="input-group">
-              <input 
+              <input
                 type="text"
                 name="vitamina_d"
                 className="form-control"
-                value={formData.vitamina_d || ''}
+                value={formData.vitamina_d || ""}
                 onChange={handleChange}
               />
             </div>
@@ -108,7 +105,7 @@ const ExameBioquimico = ({formData, setFormData}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ExameBioquimico
+export default ExameBioquimico;

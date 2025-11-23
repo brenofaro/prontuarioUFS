@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const RecordatoryTable = ({formData, setFormData}) => {
-    const handleChange = (e) => {
+const RecordatoryTable = ({ formData, setFormData }) => {
+  const handleChange = (e) => {
     let { name, value, type, checked } = e.target;
 
     if (type === "checkbox" && !Array.isArray(formData[name])) {
@@ -19,12 +19,12 @@ const RecordatoryTable = ({formData, setFormData}) => {
     }
 
     if (type === "number") {
-  const numericValue = value === "" ? null : Number(value);
-  return setFormData((prev) => ({
-    ...prev,
-    [name]: numericValue,
-  }));
-}
+      const numericValue = value === "" ? null : Number(value);
+      return setFormData((prev) => ({
+        ...prev,
+        [name]: numericValue,
+      }));
+    }
 
     if (type === "date") {
       return setFormData((prev) => ({
@@ -39,224 +39,186 @@ const RecordatoryTable = ({formData, setFormData}) => {
     }));
   };
   return (
-     <div>
-       <table className="table table-hover align-middle mb-4">
-
-    <thead className="table-secondary">
-      <tr>
-        <th style={{ width: "30%" }} className="text-center text-muted small text-uppercase">Refeição</th>
-        <th style={{ width: "35%" }} className="text-center text-muted small text-uppercase">Alimentos</th>
-        <th style={{ width: "35%" }} className="text-center text-muted small text-uppercase">Quantidade/Medida caseira</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <tr>
-   
-        <td>
-          <input 
-            type="text"
-            className="form-control" name="" id="" />
-        </td>
-
-        <td className="text-center">
-          <textarea 
-            name="" 
-            className="form-control"
-
-            id=""
-            style={{height:"150px"}}
+    <div>
+      <table className="table table-hover align-middle mb-4">
+        <thead className="table-secondary">
+          <tr>
+            <th
+              style={{ width: "30%" }}
+              className="text-center text-muted small text-uppercase"
             >
-
-            </textarea>
-        </td>
-        <td className="text-center">
-         <textarea 
-            name="" 
-            className="form-control"
-            id=""
-            style={{height:"150px"}}
+              Refeição
+            </th>
+            <th
+              style={{ width: "35%" }}
+              className="text-center text-muted small text-uppercase"
             >
-
-            </textarea>
-        </td>
-      </tr>
-
-      <tr>
-         <td>
-          <input 
-            type="text"
-            className="form-control" name="" id="" />
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
-            style={{height:"150px"}}
+              Alimentos
+            </th>
+            <th
+              style={{ width: "35%" }}
+              className="text-center text-muted small text-uppercase"
             >
+              Quantidade/Medida caseira
+            </th>
+          </tr>
+        </thead>
 
-            </textarea>
-         
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-                  className="form-control"
+        <tbody>
+          <tr>
+            <td>
+              <input type="text" className="form-control" name="" id="" />
+            </td>
 
-            id=""
-            style={{height:"150px"}}
-            >
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+          </tr>
 
-            </textarea>
-        </td>
-      </tr>
+          <tr>
+            <td>
+              <input type="text" className="form-control" name="" id="" />
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+          </tr>
 
-      <tr>
-         <td>
-          <input 
-            type="text"
-            className="form-control" name="" id="" />
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-            id=""
-                  className="form-control"
+          <tr>
+            <td>
+              <input type="text" className="form-control" name="" id="" />
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                id=""
+                className="form-control"
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+          </tr>
 
-            style={{height:"150px"}}
-            >
+          <tr>
+            <td>
+              <input type="text" className="form-control" name="" id="" />
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                id=""
+                className="form-control"
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                id=""
+                className="form-control"
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+          </tr>
 
-            </textarea>
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-                  className="form-control"
+          <tr>
+            <td>
+              <input type="text" className="form-control" name="" id="" />
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+          </tr>
 
-            id=""
-            style={{height:"150px"}}
-            >
+          <tr>
+            <td>
+              <input type="text" className="form-control" name="" id="" />
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+            <td className="text-center">
+              <textarea
+                name=""
+                className="form-control"
+                id=""
+                style={{ height: "150px" }}
+              ></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-            </textarea>
-        </td>
-      </tr>
-
-      <tr>
-         <td>
-          <input 
-            type="text"
-            className="form-control" name="" id="" />
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-            id=""
-                  className="form-control"
-
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-            id=""
-                  className="form-control"
-
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-      </tr>
-
-      <tr>
-         <td>
-          <input 
-            type="text"
-            className="form-control" name="" id="" />
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-      </tr>
-
-      <tr>
-         <td>
-          <input 
-            type="text"
-            className="form-control" name="" id="" />
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-        <td className="text-center">
-          <textarea 
-            name="" 
-                  className="form-control"
-
-            id=""
-            style={{height:"150px"}}
-            >
-
-            </textarea>
-        </td>
-      </tr>
-
-      
-
-    </tbody>
-  </table>
-
-  <div className=" mb-3">
-    <label htmlFor="diagnostico_antropometrico" className="form-label text-muted small">
+      <div className=" mb-3">
+        <label
+          htmlFor="diagnostico_antropometrico"
+          className="form-label text-muted small"
+        >
           Orientações/Observações:
         </label>
-    <textarea
-      className="form-control"
-      placeholder=""
-      id="observacoes_plano_alimentar"
-      name="observacoes_plano_alimentar"
-      style={{ height: "150px" }}
-      value={formData.observacoes_plano_alimentar || ""}
-      onChange={handleChange}
-    ></textarea>
-
-   
-  </div>
+        <textarea
+          className="form-control"
+          placeholder=""
+          id="observacoes_plano_alimentar"
+          name="observacoes_plano_alimentar"
+          style={{ height: "150px" }}
+          value={formData.observacoes_plano_alimentar || ""}
+          onChange={handleChange}
+        ></textarea>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RecordatoryTable
+export default RecordatoryTable;

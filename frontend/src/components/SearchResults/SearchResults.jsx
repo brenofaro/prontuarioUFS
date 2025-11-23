@@ -27,12 +27,17 @@ const SearchResults = ({ results, loading }) => {
       {/* Header com contador */}
       <div className="d-flex align-items-center justify-content-between mb-3">
         <div className="d-flex align-items-center">
-          <i className="bi bi-people-fill text-secondary me-2" style={{ fontSize: "1.2rem" }}></i>
-          <h5 className="mb-0 " style={{fontFamily:"arial"}}>Pacientes Cadastrados</h5>
+          <i
+            className="bi bi-people-fill text-secondary me-2"
+            style={{ fontSize: "1.2rem" }}
+          ></i>
+          <h5 className="mb-0 " style={{ fontFamily: "arial" }}>
+            Pacientes Cadastrados
+          </h5>
         </div>
         {!loading && results.length > 0 && (
           <span className="badge bg-primary bg-opacity-10 text-dark rounded-pill px-3 py-2">
-            {results.length} {results.length === 1 ? 'paciente' : 'pacientes'}
+            {results.length} {results.length === 1 ? "paciente" : "pacientes"}
           </span>
         )}
       </div>
@@ -42,7 +47,11 @@ const SearchResults = ({ results, loading }) => {
         {/* Estado de loading */}
         {loading ? (
           <div className="text-center py-5">
-            <div className="spinner-border text-primary mb-3" role="status" style={{ width: "3rem", height: "3rem" }}>
+            <div
+              className="spinner-border text-primary mb-3"
+              role="status"
+              style={{ width: "3rem", height: "3rem" }}
+            >
               <span className="visually-hidden">Carregando...</span>
             </div>
             <p className="text-muted mb-0">Buscando pacientes...</p>
@@ -50,7 +59,10 @@ const SearchResults = ({ results, loading }) => {
         ) : sortedResults.length > 0 ? (
           <>
             {/* Grid de cards */}
-            <div className="p-3 overflow-y-auto fina" style={{maxHeight:"400px"}} >
+            <div
+              className="p-3 overflow-y-auto fina"
+              style={{ maxHeight: "400px" }}
+            >
               <div className="row g-3">
                 {sortedResults.map((result) => (
                   <div className="col-12 col-md-6 col-lg-4" key={result.id}>
@@ -64,7 +76,11 @@ const SearchResults = ({ results, loading }) => {
                         <div className="d-flex align-items-center mb-3">
                           <div
                             className="bg-secondary bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center fw-bold flex-shrink-0"
-                            style={{ width: 50, height: 50, fontSize: "1.1rem" }}
+                            style={{
+                              width: 50,
+                              height: 50,
+                              fontSize: "1.1rem",
+                            }}
                           >
                             {result.nome
                               ? result.nome
@@ -76,7 +92,10 @@ const SearchResults = ({ results, loading }) => {
                               : "??"}
                           </div>
                           <div className="ms-3 flex-grow-1 overflow-hidden">
-                            <h6 className="fw-semibold mb-0 text-truncate" title={result.nome}>
+                            <h6
+                              className="fw-semibold mb-0 text-truncate"
+                              title={result.nome}
+                            >
                               {result.nome}
                             </h6>
                             <small className="text-muted">
@@ -89,12 +108,23 @@ const SearchResults = ({ results, loading }) => {
                         {/* Informações */}
                         <div className="mb-2">
                           <div className="d-flex align-items-center text-muted small mb-2">
-                            <i className="bi bi-telephone me-2 text-dark" style={{ fontSize: "1rem" }}></i>
-                            <span className="text-muted">{result.telefone}</span>
+                            <i
+                              className="bi bi-telephone me-2 text-dark"
+                              style={{ fontSize: "1rem" }}
+                            ></i>
+                            <span className="text-muted">
+                              {result.telefone}
+                            </span>
                           </div>
                           <div className="d-flex align-items-center text-muted small">
-                            <i className="bi bi-geo-alt me-2 text-dark mt-1" style={{ fontSize: "1rem" }}></i>
-                            <span className="text-truncate" title={result.endereco}>
+                            <i
+                              className="bi bi-geo-alt me-2 text-dark mt-1"
+                              style={{ fontSize: "1rem" }}
+                            ></i>
+                            <span
+                              className="text-truncate"
+                              title={result.endereco}
+                            >
                               {result.endereco || "Endereço não informado"}
                             </span>
                           </div>
@@ -120,7 +150,10 @@ const SearchResults = ({ results, loading }) => {
           // Estado vazio
           <div className="text-center py-5">
             <div className="mb-3">
-              <i className="bi bi-inbox text-muted" style={{ fontSize: "4rem" }}></i>
+              <i
+                className="bi bi-inbox text-muted"
+                style={{ fontSize: "4rem" }}
+              ></i>
             </div>
             <h5 className="text-muted mb-2">Nenhum paciente encontrado</h5>
             <p className="text-muted small mb-0">

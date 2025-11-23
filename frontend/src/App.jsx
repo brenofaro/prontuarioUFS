@@ -14,33 +14,68 @@ import FoodPlanDetails from "./pages/FoodPlanDetails.jsx/FoodPlanDetails.jsx";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-
 function App() {
   return (
     <Routes>
       <Route path="/" element={<InitialPage />} />
       <Route path="/cadastrar-paciente" element={<RegisterPatientePage />} />
-      <Route path="/editar-paciente/:pacienteId" element={<RegisterPatientePage />} />
+      <Route
+        path="/editar-paciente/:pacienteId"
+        element={<RegisterPatientePage />}
+      />
       <Route path="/pagina-paciente/:id" element={<PatientePage />} />
 
       {/* ANAMNESES */}
-      <Route path="/anamnese-padrao/:pacienteId" element={<BaseAnamneseForm />} />
-      <Route path="/anamnese-infantil/:pacienteId" element={<ChildAnamneseForm />} />
-      <Route path="/anamnese-retorno/:pacienteId" element={<ReturnAnameseForm />} />
-      <Route path="/anamnese-plano-alimentar/:pacienteId" element={<FoodPlanForm />} />
-      <Route path="/anamnese-ficha-recordatorio/:pacienteId" element={<RecordatoryForm />} />
+      <Route
+        path="/anamnese-padrao/:pacienteId"
+        element={<BaseAnamneseForm />}
+      />
+      <Route
+        path="/anamnese-infantil/:pacienteId"
+        element={<ChildAnamneseForm />}
+      />
+      <Route
+        path="/anamnese-retorno/:pacienteId"
+        element={<ReturnAnameseForm />}
+      />
+      <Route
+        path="/anamnese-plano-alimentar/:pacienteId"
+        element={<FoodPlanForm />}
+      />
+      <Route
+        path="/anamnese-ficha-recordatorio/:pacienteId"
+        element={<RecordatoryForm />}
+      />
 
       {/* DETALHES */}
       <Route path="/detalhes-anamnese/:id" element={<AnamnesesDetails />} />
-      <Route path="/detalhes-child-anamnese/:id" element={<ChildAnamneseDetails />} />
-      <Route path="/detalhes-return-anamnese/:id" element={<ReturnAnamneseDetails />} />
+      <Route
+        path="/detalhes-child-anamnese/:id"
+        element={<ChildAnamneseDetails />}
+      />
+      <Route
+        path="/detalhes-return-anamnese/:id"
+        element={<ReturnAnamneseDetails />}
+      />
       <Route path="/detalhes-food-plan/:id" element={<FoodPlanDetails />} />
 
       {/* EDITAR */}
-      <Route path="/base-anamnese/editar/:pacienteId/:anamneseId" element={<BaseAnamneseForm />} />
-      <Route path="/child-anamnese/editar/:pacienteId/:anamneseId" element={<ChildAnamneseForm />} />
-      <Route path="/anamnese-retorno/editar/:pacienteId/:anamneseId" element={<ReturnAnameseForm />} />
-      <Route path="/food-plan/editar/:pacienteId/:anamneseId" element={<FoodPlanForm />} />
+      <Route
+        path="/base-anamnese/editar/:pacienteId/:anamneseId"
+        element={<BaseAnamneseForm />}
+      />
+      <Route
+        path="/child-anamnese/editar/:pacienteId/:anamneseId"
+        element={<ChildAnamneseForm />}
+      />
+      <Route
+        path="/anamnese-retorno/editar/:pacienteId/:anamneseId"
+        element={<ReturnAnameseForm />}
+      />
+      <Route
+        path="/food-plan/editar/:pacienteId/:anamneseId"
+        element={<FoodPlanForm />}
+      />
     </Routes>
   );
 }

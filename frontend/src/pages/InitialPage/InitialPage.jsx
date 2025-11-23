@@ -5,12 +5,10 @@ import CadastratePatienteButton from "../../components/CadastratePatienteButton/
 import "./InitialPage.css";
 
 const InitialPage = () => {
-  
   return (
     <div className="container mt-4 border rounded p-4 bg-light">
       <SearchPanel />
       <CadastratePatienteButton />
-  
     </div>
   );
 };

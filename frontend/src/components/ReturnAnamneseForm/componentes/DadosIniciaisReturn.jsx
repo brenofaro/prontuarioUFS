@@ -1,13 +1,12 @@
-import React from 'react'
-
-const DadosIniciaisReturn = ({formData, setFormData}) => {
-    return (
+const DadosIniciaisReturn = ({ formData, setFormData }) => {
+  return (
     <div className="p-4 rounded-3 bg-white border">
-
       <div className="row g-3">
-        {/* Data da consulta */}
         <div className="col-md-4">
-          <label htmlFor="data_consulta" className="form-label text-muted small">
+          <label
+            htmlFor="data_consulta"
+            className="form-label text-muted small"
+          >
             Data da Consulta *
           </label>
           <input
@@ -25,10 +24,12 @@ const DadosIniciaisReturn = ({formData, setFormData}) => {
           />
         </div>
 
-        {/* Número do prontuário */}
         <div className="col-md-4">
-          <label htmlFor="numero_prontuario" className="form-label text-muted small">
-            Número do Prontuário 
+          <label
+            htmlFor="numero_prontuario"
+            className="form-label text-muted small"
+          >
+            Número do Prontuário
           </label>
           <input
             type="text"
@@ -41,12 +42,14 @@ const DadosIniciaisReturn = ({formData, setFormData}) => {
                 numero_prontuario: e.target.value,
               })
             }
-            
           />
         </div>
 
-         <div className="col-md-4">
-          <label htmlFor="nutricionista_responsavel" className="form-label text-muted small">
+        <div className="col-md-4">
+          <label
+            htmlFor="nutricionista_responsavel"
+            className="form-label text-muted small"
+          >
             Nutricionista Responsável *
           </label>
           <input
@@ -64,10 +67,9 @@ const DadosIniciaisReturn = ({formData, setFormData}) => {
             required
           />
         </div>
-
       </div>
     </div>
   );
-}
+};
 
-export default DadosIniciaisReturn
+export default DadosIniciaisReturn;

@@ -63,7 +63,7 @@
 
 /* Scrollbar para navegadores baseados em WebKit (Chrome, Edge, Brave, Opera) */
 .fina::-webkit-scrollbar {
-  width: 6px;        /* Largura da scroll vertical */
+  width: 6px; /* Largura da scroll vertical */
 }
 
 .fina::-webkit-scrollbar-track {
@@ -71,12 +71,12 @@
 }
 
 .fina::-webkit-scrollbar-thumb {
-  background: #b5b5b5;      /* cor da barrinha */
-  border-radius: 10px;      /* deixa arredondada */
+  background: #b5b5b5; /* cor da barrinha */
+  border-radius: 10px; /* deixa arredondada */
 }
 
 /* Scrollbar para Firefox */
 .fina {
-  scrollbar-width: thin;        /* deixa fina */
+  scrollbar-width: thin; /* deixa fina */
   scrollbar-color: #b5b5b5 transparent; /* cor da barra e fundo */
 }

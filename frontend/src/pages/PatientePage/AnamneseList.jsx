@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -14,13 +14,10 @@ const AnamneseList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Modais
   const [showConfirm, setShowConfirm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
-
-    // ---------- MODAL DE CONFIRMAÇÃO ----------
   const ModalExcluir = ({ show, handleClose, handleConfirm }) => (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
@@ -44,7 +41,6 @@ const AnamneseList = () => {
     </Modal>
   );
 
-  // ---------- MODAL DE SUCESSO ----------
   const ModalSucesso = ({ show, handleClose }) => (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
@@ -62,9 +58,6 @@ const AnamneseList = () => {
       </Modal.Footer>
     </Modal>
   );
-
-  
-  // ---------------------- MAPAS DE ROTAS ----------------------
 
   const detalhesRotas = {
     base: (id) => `/detalhes-anamnese/${id}`,
@@ -94,8 +87,6 @@ const AnamneseList = () => {
     plano: (id) => `http://localhost:8080/food-plans/${id}`, // NOVO
   };
 
-  // ------------------------- FUNÇÕES -------------------------
-
   const handleOpenConfirm = (item) => {
     setSelectedItem(item);
     setShowConfirm(true);
@@ -113,7 +104,6 @@ const AnamneseList = () => {
       const response = await fetch(endpoint, { method: "DELETE" });
       if (!response.ok) throw new Error("Erro ao excluir");
 
-      // Atualizar listas
       if (tipo === "base")
         setAnamnesesBase((prev) => prev.filter((a) => a.id !== registroId));
       else if (tipo === "child")
@@ -128,8 +118,6 @@ const AnamneseList = () => {
       alert("Erro ao excluir.");
     }
   };
-
-  // ---------------------- FETCH DATA (PARALELO) ----------------------
 
   useEffect(() => {
     const loadData = async () => {
@@ -153,7 +141,6 @@ const AnamneseList = () => {
         setAnamnesesChild(childData.map((d) => ({ ...d, tipo: "child" })));
         setReturnAnamnese(retornoData.map((d) => ({ ...d, tipo: "retorno" })));
         setFoodPlan(planData.map((d) => ({ ...d, tipo: "plano" })));
-
       } catch (err) {
         console.log(err);
         setError(err.message);
@@ -165,8 +152,6 @@ const AnamneseList = () => {
     loadData();
   }, [id]);
 
-  // ------------------------- UTILS -------------------------
-
   const formatarData = (data) => {
     if (!data) return "-";
     const [ano, mes, dia] = data.split("-");
@@ -176,7 +161,6 @@ const AnamneseList = () => {
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
 
-  // Lista única
   const todasAsAnamneses = [
     ...anamnesesBase,
     ...anamnesesChild,
@@ -186,9 +170,11 @@ const AnamneseList = () => {
 
   return (
     <div className="container mt-4">
-
       {todasAsAnamneses.length > 0 && (
-        <p className="fw-semibold text-secondary" style={{ marginLeft: "10px" }}>
+        <p
+          className="fw-semibold text-secondary"
+          style={{ marginLeft: "10px" }}
+        >
           Registros encontrados
         </p>
       )}
@@ -198,7 +184,12 @@ const AnamneseList = () => {
       ) : (
         <div
           className="list-group border-0"
-          style={{ maxHeight: "400px", minHeight: "200px", overflowY: "auto", paddingRight: "6px" }}
+          style={{
+            maxHeight: "400px",
+            minHeight: "200px",
+            overflowY: "auto",
+            paddingRight: "6px",
+          }}
         >
           {todasAsAnamneses.map((item) => (
             <div
@@ -206,14 +197,14 @@ const AnamneseList = () => {
               className="list-group-item border-0 shadow-sm mb-3 rounded-4 p-3 d-flex justify-content-between align-items-center"
               style={{ background: "#f8f9fa" }}
             >
-              {/* INFORMAÇÕES */}
               <div className="bg-light rounded-3 p-3 border-start border-primary border-4">
                 <div className="row g-2">
-
                   <div className="col-md-12">
                     <small className="text-muted d-block">Data</small>
                     <span className="text-dark small ">
-                      {formatarData(item.data_consulta || item.data_plano_alimentar)}
+                      {formatarData(
+                        item.data_consulta || item.data_plano_alimentar,
+                      )}
                     </span>
                   </div>
 
@@ -226,73 +217,71 @@ const AnamneseList = () => {
 
                   <div className="col-md-6">
                     <small className="text-muted d-block">Tipo</small>
-                    <span className="text-dark small ">{item.tipo_registro}</span>
+                    <span className="text-dark small ">
+                      {item.tipo_registro}
+                    </span>
                   </div>
 
                   {/* <div className="col">
                     <small className="text-muted d-block">Categoria</small>
                     <span className="text-dark small ">{item.tipo}</span>
                   </div> */}
-
                 </div>
               </div>
 
-              {/* DROPDOWN */}
-             {/* DROPDOWN */}
-<Dropdown align="end">
-  <Dropdown.Toggle variant="light" size="sm" className="border-0 p-0">
-    <span style={{ fontSize: "22px", lineHeight: "0" }}>⋮</span>
-  </Dropdown.Toggle>
+              <Dropdown align="end">
+                <Dropdown.Toggle
+                  variant="light"
+                  size="sm"
+                  className="border-0 p-0"
+                >
+                  <span style={{ fontSize: "22px", lineHeight: "0" }}>⋮</span>
+                </Dropdown.Toggle>
 
-  <Dropdown.Menu>
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() =>
+                      navigate(detalhesRotas[item.tipo](item.id), {
+                        state: { id },
+                      })
+                    }
+                  >
+                    Ver detalhes
+                  </Dropdown.Item>
 
-    {/* DETALHES */}
-    <Dropdown.Item
-      onClick={() =>
-        navigate(detalhesRotas[item.tipo](item.id), {
-          state: { id }
-        })
-      }
-    >
-      Ver detalhes
-    </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() =>
+                      navigate(editarRotas[item.tipo](id, item.id))
+                    }
+                  >
+                    Editar
+                  </Dropdown.Item>
 
-    {/* EDITAR */}
-    <Dropdown.Item
-      onClick={() => navigate(editarRotas[item.tipo](id, item.id))}
-    >
-      Editar
-    </Dropdown.Item>
+                  {item.tipo === "plano" && (
+                    <Dropdown.Item
+                      onClick={() =>
+                        window.open(
+                          `http://localhost:8080/food-plans/${item.id}/pdf`,
+                        )
+                      }
+                    >
+                      Gerar PDF
+                    </Dropdown.Item>
+                  )}
 
-    {/* GERAR PDF — SOMENTE SE O TIPO FOR "plano" */}
-    {item.tipo === "plano" && (
-      <Dropdown.Item
-        onClick={() =>
-          window.open(`http://localhost:8080/food-plans/${item.id}/pdf`)
-        }
-      >
-        Gerar PDF
-      </Dropdown.Item>
-    )}
-
-    {/* EXCLUIR */}
-    <Dropdown.Item
-      className="text-danger"
-      onClick={() => handleOpenConfirm(item)}
-    >
-      Excluir
-    </Dropdown.Item>
-
-  </Dropdown.Menu>
-</Dropdown>
-
-
+                  <Dropdown.Item
+                    className="text-danger"
+                    onClick={() => handleOpenConfirm(item)}
+                  >
+                    Excluir
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           ))}
         </div>
       )}
 
-      {/* Modais */}
       <ModalExcluir
         show={showConfirm}
         handleClose={() => setShowConfirm(false)}

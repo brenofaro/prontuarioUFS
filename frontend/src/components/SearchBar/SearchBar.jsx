@@ -2,7 +2,7 @@ import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import "./SearchBar.css";
 
-function SearchBar({ placeholder, onSearch, onFilterChange }) {
+function SearchBar({ placeholder, onSearch }) {
   const [filter, setFilter] = React.useState("Todos os profissionais");
   const [query, setQuery] = React.useState("");
 
@@ -16,11 +16,6 @@ function SearchBar({ placeholder, onSearch, onFilterChange }) {
     }
   };
 
-  const handleFilter = (newFilter) => {
-    setFilter(newFilter);
-    if (onFilterChange) onFilterChange(newFilter);
-  };
-
   const handleClear = () => {
     setQuery("");
     if (onSearch) onSearch("", filter);
@@ -28,7 +23,9 @@ function SearchBar({ placeholder, onSearch, onFilterChange }) {
 
   return (
     <div className="search-bar-wrapper">
-      <h4 className=" mb-3" style={{fontFamily:"arial"}}>Prontuários</h4>
+      <h4 className=" mb-3" style={{ fontFamily: "arial" }}>
+        Prontuários
+      </h4>
 
       <div className="search-container">
         <InputGroup className="search-input-group">

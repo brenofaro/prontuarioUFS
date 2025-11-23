@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
@@ -12,22 +12,21 @@ import BioquimicoReturnDetails from "./components/BioquimicoReturnDetails";
 
 const ReturnAnamneseDetails = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { id } = useParams();
 
-  const [anamnese, setAnamnese] = useState(null); // CORRIGIDO
+  const [anamnese, setAnamnese] = useState(null); 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // CORRIGIDO
-
-  const pacienteId = location.state?.id; // seguro
+  const [error, setError] = useState(null); 
 
   const handleClick = () => {
-  navigate(`/pagina-paciente/${anamnese.paciente_id}`);
-};
+    navigate(`/pagina-paciente/${anamnese.paciente_id}`);
+  };
   useEffect(() => {
     const fetchAnamnese = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/return-anamneses/${id}`);
+        const response = await fetch(
+          `http://localhost:8080/return-anamneses/${id}`,
+        );
         if (!response.ok) throw new Error("Erro ao buscar anamnese");
 
         const data = await response.json();
@@ -48,7 +47,6 @@ const ReturnAnamneseDetails = () => {
 
   return (
     <div className="container mt-4">
-
       <Card.Title
         className="mb-3 d-flex align-items-center"
         style={{ fontFamily: "arial", fontSize: "1.5rem" }}
@@ -69,11 +67,7 @@ const ReturnAnamneseDetails = () => {
         <ExameFisicoDetails anamnese={anamnese} />
         <AntropometricaReturnDetails anamnese={anamnese} />
         <BioquimicoReturnDetails anamnese={anamnese} />
-
-        {/* Caso você queira adicionar mais seções depois */}
-        {/* <OutraSection anamnese={anamnese} /> */}
       </Card>
-
     </div>
   );
 };

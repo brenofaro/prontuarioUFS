@@ -10,10 +10,7 @@ function CadastrarPacienteButton() {
 
   return (
     <div className="d-flex justify-content-end mt-3">
-      <button
-        className="btn btn-success me-3 mt-2"
-        onClick={handleClick}
-      >
+      <button className="btn btn-success me-3 mt-2" onClick={handleClick}>
         Cadastrar Paciente
       </button>
     </div>

@@ -1,10 +1,7 @@
-import React from 'react'
-
-const SocioEconomicosChild = ({formData, setFormData}) => {
+const SocioEconomicosChild = ({ formData, setFormData }) => {
   const handleChange = (e) => {
     let { name, value, type, checked } = e.target;
 
-    // 1️⃣ Checkbox boolean (não é lista)
     if (type === "checkbox" && !Array.isArray(formData[name])) {
       return setFormData((prev) => ({
         ...prev,
@@ -12,7 +9,6 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
       }));
     }
 
-    // 2️⃣ Radio boolean (value="true"/"false")
     if (type === "radio" && (value === "true" || value === "false")) {
       return setFormData((prev) => ({
         ...prev,
@@ -20,7 +16,6 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
       }));
     }
 
-    // 3️⃣ Number (converte string → número)
     if (type === "number") {
       const numericValue = value === "" ? null : Number(value);
       return setFormData((prev) => ({
@@ -29,7 +24,6 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
       }));
     }
 
-    // 4️⃣ Datas (YYYY-MM-DD)
     if (type === "date") {
       return setFormData((prev) => ({
         ...prev,
@@ -37,115 +31,67 @@ const SocioEconomicosChild = ({formData, setFormData}) => {
       }));
     }
 
-    // 5️⃣ Campos normais (text, select, radio string etc.)
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-    const toggleField = (fieldName) => {
-  setFormData((prev) => ({
-    ...prev,
-    [fieldName]: prev[fieldName] === "true" ? null : "true",
-  }));
-};
+  const toggleField = (fieldName) => {
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: prev[fieldName] === "true" ? null : "true",
+    }));
+  };
 
-const toggleBooleanField = (fieldName, newValue) => {
-  setFormData((prev) => ({
-    ...prev,
-    [fieldName]: prev[fieldName] === newValue ? null : newValue
-  }));
-};
-
-
-  const handleCheckboxList = (e) => {
-    const { name, checked, value } = e.target;
-
-    setFormData((prev) => {
-      const list = prev[name] || [];
-
-      const updatedList = checked
-        ? [...list, value]
-        : list.filter((item) => item !== value);
-
-      return {
-        ...prev,
-        [name]: updatedList,
-      };
-    });
+  const toggleBooleanField = (fieldName, newValue) => {
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: prev[fieldName] === newValue ? null : newValue,
+    }));
   };
 
   return (
     <>
-
-        
-      {/* Estado Civil */}
       <div className="mb-3 p-4 border rounded-3 bg-white ">
         <label className="form-label text-muted small">Escolar?</label>
         <div className="d-flex flex-wrap gap-3 mb-3">
           <div className="form-check d-flex align-items-center gap-2">
-  <input
-    type="radio"
-    className="form-check-input"
-    name="escolar"
-    id="sim_escolar"
-    checked={formData.escolar === true}
-    onClick={() =>
-      setFormData(prev => ({
-        ...prev,
-        escolar: prev.escolar === true ? null : true
-      }))
-    }
-    onChange={() => {}} // necessário para prevenir comportamento nativo
-  />
-  <label htmlFor="sim_escolar">Sim</label>
-</div>
-
-<div className="form-check d-flex align-items-center gap-2">
-  <input
-    type="radio"
-    className="form-check-input"
-    name="escolar"
-    id="nao_escolar"
-    checked={formData.escolar === false}
-    onClick={() =>
-      setFormData(prev => ({
-        ...prev,
-        escolar: prev.escolar === false ? null : false
-      }))
-    }
-    onChange={() => {}} // impede o HTML de sobrescrever o estado
-  />
-  <label htmlFor="nao_escolar">Não</label>
-</div>
-
-          {/* <div className="form-check d-flex align-items-center gap-2">
             <input
-              className="form-check-input"
               type="radio"
+              className="form-check-input"
               name="escolar"
               id="sim_escolar"
-              value="true"
               checked={formData.escolar === true}
-              onChange={handleChange}
-              onClick={() => toggleField("escolar")}
+              onClick={() =>
+                setFormData((prev) => ({
+                  ...prev,
+                  escolar: prev.escolar === true ? null : true,
+                }))
+              }
+              onChange={() => {}}
             />
-            <label className="form-check-label" htmlFor="sim_escolar">Sim</label>
+            <label htmlFor="sim_escolar">Sim</label>
           </div>
+
           <div className="form-check d-flex align-items-center gap-2">
             <input
-              className="form-check-input"
               type="radio"
+              className="form-check-input"
               name="escolar"
               id="nao_escolar"
-              value="false"
               checked={formData.escolar === false}
-              onChange={handleChange}
-              onClick={() => toggleField("escolar")}
+              onClick={() =>
+                setFormData((prev) => ({
+                  ...prev,
+                  escolar: prev.escolar === false ? null : false,
+                }))
+              }
+              onChange={() => {}} 
             />
-            <label className="form-check-label" htmlFor="nao_escolar">Não</label>
-          </div> */}
+            <label htmlFor="nao_escolar">Não</label>
+          </div>
+
           {formData.escolar === true && (
             <>
               <div className="d-flex align-items-center gap-2 ms-3">
@@ -176,7 +122,9 @@ const toggleBooleanField = (fieldName, newValue) => {
           )}
         </div>
 
-        <label className="form-label text-muted small">Adaptação Escolar:</label>
+        <label className="form-label text-muted small">
+          Adaptação Escolar:
+        </label>
         <div className="d-flex flex-wrap gap-3 mb-3">
           <div className="form-check d-flex align-items-center gap-2">
             <input
@@ -189,7 +137,9 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleBooleanField("adaptacao_escolar", true)}
             />
-            <label className="form-check-label" htmlFor="sim_adaptacao_escolar">Sim</label>
+            <label className="form-check-label" htmlFor="sim_adaptacao_escolar">
+              Sim
+            </label>
           </div>
           <div className="form-check d-flex align-items-center gap-2">
             <input
@@ -202,11 +152,13 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleBooleanField("adaptacao_escolar", false)}
             />
-            <label className="form-check-label" htmlFor="nao_adaptacao_escolar">Não</label>
+            <label className="form-check-label" htmlFor="nao_adaptacao_escolar">
+              Não
+            </label>
           </div>
-          </div>
+        </div>
 
-           <label className="form-label text-muted small">Merenda Escolar:</label>
+        <label className="form-label text-muted small">Merenda Escolar:</label>
         <div className="d-flex flex-wrap gap-3 mb-3">
           <div className="form-check d-flex align-items-center gap-2">
             <input
@@ -219,7 +171,9 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("merenda_escolar")}
             />
-            <label className="form-check-label" htmlFor="sim_merenda_escolar">Sim</label>
+            <label className="form-check-label" htmlFor="sim_merenda_escolar">
+              Sim
+            </label>
           </div>
           <div className="form-check d-flex align-items-center gap-2">
             <input
@@ -232,31 +186,31 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("merenda_escolar")}
             />
-            <label className="form-check-label" htmlFor="nao_merenda_escolar">Não</label>
+            <label className="form-check-label" htmlFor="nao_merenda_escolar">
+              Não
+            </label>
           </div>
-          </div>
+        </div>
 
-      
+        <div>
+          <label htmlFor="ocupacao" className="form-label text-muted small">
+            Ocupação da responsável:
+          </label>
+          <input
+            type="text"
+            className="form-control mb-3"
+            name="ocupacao_responsavel"
+            style={{ width: "400px" }}
+            value={formData.ocupacao_responsavel || ""}
+            placeholder=""
+            onChange={handleChange}
+          />
+        </div>
 
-  
-
-          <div>
-
-        <label htmlFor="ocupacao" className="form-label text-muted small">Ocupação da responsável:</label>
-        <input
-          type="text"
-          className="form-control mb-3"
-          name="ocupacao_responsavel"
-          style={{width:"400px"}}
-          value={formData.ocupacao_responsavel || ""}
-          placeholder=""
-          onChange={handleChange}
-        />
-          </div>
-
-        <label className="form-label text-muted small">Estrutura Familiar</label>
-          <div className="d-flex flex-wrap gap-3 mb-3">
-
+        <label className="form-label text-muted small">
+          Estrutura Familiar
+        </label>
+        <div className="d-flex flex-wrap gap-3 mb-3">
           <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
@@ -268,7 +222,9 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("pai_mae")}
             />
-            <label className="form-check-label" htmlFor="pai_mae">Pai/Mãe</label>
+            <label className="form-check-label" htmlFor="pai_mae">
+              Pai/Mãe
+            </label>
           </div>
 
           <div className="form-check d-flex align-items-center gap-2">
@@ -282,10 +238,12 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("conjuge")}
             />
-            <label className="form-check-label" htmlFor="conjuge">Cônjuge</label>
+            <label className="form-check-label" htmlFor="conjuge">
+              Cônjuge
+            </label>
           </div>
 
-           <div className="form-check d-flex align-items-center gap-2">
+          <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -296,10 +254,12 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("filho")}
             />
-            <label className="form-check-label" htmlFor="filho">Filho</label>
+            <label className="form-check-label" htmlFor="filho">
+              Filho
+            </label>
           </div>
 
-           <div className="form-check d-flex align-items-center gap-2">
+          <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -310,10 +270,12 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("irmao")}
             />
-            <label className="form-check-label" htmlFor="irmao">Irmão</label>
+            <label className="form-check-label" htmlFor="irmao">
+              Irmão
+            </label>
           </div>
 
-           <div className="form-check d-flex align-items-center gap-2">
+          <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -324,10 +286,12 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("netos")}
             />
-            <label className="form-check-label" htmlFor="netos">Netos</label>
+            <label className="form-check-label" htmlFor="netos">
+              Netos
+            </label>
           </div>
 
-           <div className="form-check d-flex align-items-center gap-2">
+          <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -338,9 +302,11 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("sobrinho")}
             />
-            <label className="form-check-label" htmlFor="sobrinho">Sobrinho</label>
+            <label className="form-check-label" htmlFor="sobrinho">
+              Sobrinho
+            </label>
           </div>
-           <div className="form-check d-flex align-items-center gap-2">
+          <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -351,10 +317,12 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("cunhado")}
             />
-            <label className="form-check-label" htmlFor="cunhado">Cunhado</label>
+            <label className="form-check-label" htmlFor="cunhado">
+              Cunhado
+            </label>
           </div>
 
-           <div className="form-check d-flex align-items-center gap-2">
+          <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -365,10 +333,12 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("so")}
             />
-            <label className="form-check-label" htmlFor="so">Só</label>
+            <label className="form-check-label" htmlFor="so">
+              Só
+            </label>
           </div>
 
-           <div className="form-check d-flex align-items-center gap-2">
+          <div className="form-check d-flex align-items-center gap-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -379,26 +349,31 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("amigos")}
             />
-            <label className="form-check-label" htmlFor="amigos">Amigos</label>
+            <label className="form-check-label" htmlFor="amigos">
+              Amigos
+            </label>
           </div>
-          </div>
-       
-       <label htmlFor="ocupacao" className="form-label text-muted small">Outras pessoas da estrutura familiar:</label>
+        </div>
+
+        <label htmlFor="ocupacao" className="form-label text-muted small">
+          Outras pessoas da estrutura familiar:
+        </label>
         <input
           type="text"
           className="form-control form-control-sm mb-3"
           name="outros_da_familia"
-          style={{width:"400px"}}
+          style={{ width: "400px" }}
           value={formData.outros_da_familia || ""}
           placeholder=""
           onChange={handleChange}
         />
-       
 
-     
         <div className="row g-3 mb-3">
           <div className="col-md-6">
-            <label htmlFor="renda_pessoal" className="form-label text-muted small">
+            <label
+              htmlFor="renda_pessoal"
+              className="form-label text-muted small"
+            >
               Renda Pessoal (R$)
             </label>
             <input
@@ -411,8 +386,11 @@ const toggleBooleanField = (fieldName, newValue) => {
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="gastos_alimentacao" className="form-label text-muted small">
-            Gastos com Alimentação (R$)
+            <label
+              htmlFor="gastos_alimentacao"
+              className="form-label text-muted small"
+            >
+              Gastos com Alimentação (R$)
             </label>
             <input
               type="text"
@@ -438,7 +416,9 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("faz_atividade_fisica")}
             />
-            <label className="form-check-label" htmlFor="sim_atividade">Sim</label>
+            <label className="form-check-label" htmlFor="sim_atividade">
+              Sim
+            </label>
           </div>
           <div className="form-check d-flex align-items-center gap-2">
             <input
@@ -451,7 +431,9 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("faz_atividade_fisica")}
             />
-            <label className="form-check-label" htmlFor="nao_atividade">Não</label>
+            <label className="form-check-label" htmlFor="nao_atividade">
+              Não
+            </label>
           </div>
           {formData.faz_atividade_fisica === true && (
             <>
@@ -498,7 +480,9 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("ja_fez_atividade_fisica")}
             />
-            <label className="form-check-label" htmlFor="sim_ja_fez">Sim</label>
+            <label className="form-check-label" htmlFor="sim_ja_fez">
+              Sim
+            </label>
           </div>
           <div className="form-check d-flex align-items-center gap-2">
             <input
@@ -511,11 +495,15 @@ const toggleBooleanField = (fieldName, newValue) => {
               onChange={handleChange}
               onClick={() => toggleField("ja_fez_atividade_fisica")}
             />
-            <label className="form-check-label" htmlFor="nao_ja_fez">Não</label>
+            <label className="form-check-label" htmlFor="nao_ja_fez">
+              Não
+            </label>
           </div>
           {formData.ja_fez_atividade_fisica === true && (
             <div className="d-flex align-items-center gap-2 ms-3">
-              <label className="text-muted small mb-0">Há quanto tempo parou:</label>
+              <label className="text-muted small mb-0">
+                Há quanto tempo parou:
+              </label>
               <input
                 type="text"
                 className="form-control form-control-sm"
@@ -529,56 +517,55 @@ const toggleBooleanField = (fieldName, newValue) => {
           )}
         </div>
 
-             <div>
+        <div>
+          <label htmlFor="" className="form-label text-muted small">
+            Criança Ativa? (Exemplo: brinca muito, corre):
+          </label>
+          <input
+            type="text"
+            className="form-control mb-3"
+            name="crianca_ativa"
+            style={{ width: "400px" }}
+            value={formData.crianca_ativa || ""}
+            placeholder=""
+            onChange={handleChange}
+          />
+        </div>
 
-        <label htmlFor="" className="form-label text-muted small">Criança Ativa? (Exemplo: brinca muito, corre):</label>
-        <input
-          type="text"
-          className="form-control mb-3"
-          name="crianca_ativa"
-          style={{width:"400px"}}
-          value={formData.crianca_ativa || ""}
-          placeholder=""
-          onChange={handleChange}
-        />
+        <div className="d-flex gap-4">
+          <div className="">
+            <label htmlFor="" className="form-label text-muted small">
+              Horário que dorme:
+            </label>
+            <input
+              type="time"
+              className="form-control mb-3"
+              name="horario_dorme"
+              style={{ width: "200px" }}
+              value={formData.horario_dorme || ""}
+              placeholder=""
+              onChange={handleChange}
+            />
           </div>
 
-           <div className="d-flex gap-4">
-            <div className=''>
-                    <label htmlFor="" className="form-label text-muted small">Horário que dorme:</label>
-                    <input
-                    type="time"
-                    className="form-control mb-3"
-                    name="horario_dorme"
-                    style={{width:"200px"}}
-                    value={formData.horario_dorme || ""}
-                    placeholder=""
-                    onChange={handleChange}
-                    />
-            </div>
-                
-            <div>
-
-                    <label htmlFor="" className="form-label text-muted small">Horário que acorda:</label>
-                    <input
-                    type="time"
-                    className="form-control mb-3"
-                    name="horario_acorda"
-                    style={{width:"200px"}}
-                    value={formData.horario_acorda || ""}
-                    placeholder=""
-                    onChange={handleChange}
-                    />
-            </div>
+          <div>
+            <label htmlFor="" className="form-label text-muted small">
+              Horário que acorda:
+            </label>
+            <input
+              type="time"
+              className="form-control mb-3"
+              name="horario_acorda"
+              style={{ width: "200px" }}
+              value={formData.horario_acorda || ""}
+              placeholder=""
+              onChange={handleChange}
+            />
           </div>
-       
-
-       
-
-       
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SocioEconomicosChild
+export default SocioEconomicosChild;

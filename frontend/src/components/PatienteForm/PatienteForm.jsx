@@ -1,18 +1,12 @@
-import { useState } from "react"; 
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-
 function PatienteForm() {
-  const {pacienteId} = useParams();
+  const { pacienteId } = useParams();
 
-  const [formData, setFormData] = useState({
-    nome: "",
-    data_nascimento: "",
-    telefone: "",
-    endereco: "",
-  });
+  const [formData, setFormData] = useState({});
 
   const [errors, setErrors] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -21,16 +15,14 @@ function PatienteForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  // Formatar telefone: (79) 99999-9999
   const formatTelefone = (value) => {
-    const numbers = value.replace(/\D/g, '');
+    const numbers = value.replace(/\D/g, "");
     if (numbers.length <= 10) {
-      return numbers.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+      return numbers.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
     }
-    return numbers.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    return numbers.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
   };
 
-  // Calcular idade
   const calcularIdade = (dataNascimento) => {
     if (!dataNascimento) return null;
     const hoje = new Date();
@@ -44,8 +36,7 @@ function PatienteForm() {
   };
 
   const handleClick = () => {
-      pacienteId ? navigate(`/pagina-paciente/${pacienteId}`) :
-      navigate("/");
+    pacienteId ? navigate(`/pagina-paciente/${pacienteId}`) : navigate("/");
   };
 
   const handleChange = (e) => {
@@ -83,7 +74,7 @@ function PatienteForm() {
     }
 
     if (formData.telefone) {
-      const numbers = formData.telefone.replace(/\D/g, '');
+      const numbers = formData.telefone.replace(/\D/g, "");
       if (numbers.length < 10) {
         newErrors.telefone = "Telefone incompleto";
       }
@@ -93,16 +84,16 @@ function PatienteForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-    useEffect(() => {
-      if (pacienteId) {
-        fetch(`http://localhost:8080/pacientes/${pacienteId}`)
-          .then(res => res.json())
-          .then(data => {
-            setFormData(data);
-          })
-          .catch(err => console.error("Erro ao carregar paciente:", err));
-      }
-    }, [pacienteId]);
+  useEffect(() => {
+    if (pacienteId) {
+      fetch(`http://localhost:8080/pacientes/${pacienteId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setFormData(data);
+        })
+        .catch((err) => console.error("Erro ao carregar paciente:", err));
+    }
+  }, [pacienteId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -135,10 +126,10 @@ function PatienteForm() {
       console.log("Paciente cadastrado:", data);
 
       if (pacienteId) {
-          setShowSuccessUpdateModal(true);
-        } else {
-          setShowSuccessModal(true);
-        }
+        setShowSuccessUpdateModal(true);
+      } else {
+        setShowSuccessModal(true);
+      }
 
       setFormData({
         nome: "",
@@ -149,7 +140,9 @@ function PatienteForm() {
       setErrors({});
     } catch (error) {
       console.error("Erro ao cadastrar paciente:", error);
-      setErrorMessage("Erro ao cadastrar paciente. Por favor, tente novamente.");
+      setErrorMessage(
+        "Erro ao cadastrar paciente. Por favor, tente novamente.",
+      );
       setShowErrorModal(true);
     }
   };
@@ -173,11 +166,12 @@ function PatienteForm() {
             <div className="bg-white rounded-circle p-2 me-2">
               <i className="bi bi-person-circle fs-2 text-dark"></i>
             </div>
-            <h4 className="mb-0 text-dark" style={{fontFamily:"arial"}}>{pacienteId ? "Editar Paciente" : "Cadastro de Paciente"}</h4>
+            <h4 className="mb-0 text-dark" style={{ fontFamily: "arial" }}>
+              {pacienteId ? "Editar Paciente" : "Cadastro de Paciente"}
+            </h4>
           </div>
 
           <form onSubmit={handleSubmit}>
-            {/* Nome */}
             <div className="row mb-4">
               <div className="col-md-6">
                 <label className="form-label">
@@ -185,56 +179,57 @@ function PatienteForm() {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${errors.nome ? 'is-invalid' : ''}`}
+                  className={`form-control ${errors.nome ? "is-invalid" : ""}`}
                   name="nome"
                   value={formData.nome}
                   onChange={handleChange}
                   placeholder="Ex: Maria Silva Santos"
                 />
-                {errors.nome && <div className="invalid-feedback">{errors.nome}</div>}
+                {errors.nome && (
+                  <div className="invalid-feedback">{errors.nome}</div>
+                )}
               </div>
 
-            
-              {/* Data de nascimento */}
               <div className="col-md-6 mb-3">
                 <label className="form-label">
                   Data de Nascimento <span className="text-dark">*</span>
                 </label>
                 <input
                   type="date"
-                  className={`form-control ${errors.data_nascimento ? 'is-invalid' : ''}`}
+                  className={`form-control ${errors.data_nascimento ? "is-invalid" : ""}`}
                   name="data_nascimento"
                   value={formData.data_nascimento}
                   onChange={handleChange}
-                  max={new Date().toISOString().split('T')[0]}
+                  max={new Date().toISOString().split("T")[0]}
                 />
                 {idade !== null && idade >= 0 && (
                   <small className="text-muted">
-                    {idade} {idade === 1 ? 'ano' : 'anos'}
+                    {idade} {idade === 1 ? "ano" : "anos"}
                   </small>
                 )}
                 {errors.data_nascimento && (
-                  <div className="invalid-feedback">{errors.data_nascimento}</div>
+                  <div className="invalid-feedback">
+                    {errors.data_nascimento}
+                  </div>
                 )}
               </div>
 
-              {/* Telefone */}
               <div className="col-md-6">
                 <label className="form-label">Telefone</label>
                 <input
                   type="text"
-                  className={`form-control ${errors.telefone ? 'is-invalid' : ''}`}
+                  className={`form-control ${errors.telefone ? "is-invalid" : ""}`}
                   name="telefone"
                   value={formData.telefone}
                   onChange={handleChange}
                   placeholder="(79) 99999-9999"
                   maxLength="15"
                 />
-                {errors.telefone && <div className="invalid-feedback">{errors.telefone}</div>}
+                {errors.telefone && (
+                  <div className="invalid-feedback">{errors.telefone}</div>
+                )}
               </div>
 
-            
-              {/* Endereço */}
               <div className="col-md-6">
                 <label className="form-label">Endereço</label>
                 <input
@@ -246,21 +241,21 @@ function PatienteForm() {
                   placeholder="Rua, número, bairro, cidade"
                 />
               </div>
-            
-
-        </div>
-            {/* Botões */}
+            </div>
             <div className="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
               <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={handleClick}
-        >
-          <i className="bi bi-arrow-left me-2"></i>
-          Voltar
-        </button>
+                type="button"
+                className="btn btn-secondary"
+                onClick={handleClick}
+              >
+                <i className="bi bi-arrow-left me-2"></i>
+                Voltar
+              </button>
 
-              <button type="submit" className="btn btn-success px-4 fw-semibold">
+              <button
+                type="submit"
+                className="btn btn-success px-4 fw-semibold"
+              >
                 <i className="bi bi-check-lg me-2"></i>
                 {pacienteId ? "Atualizar Paciente" : "Salvar Paciente"}
               </button>
@@ -269,31 +264,41 @@ function PatienteForm() {
         </div>
       </div>
 
-      {/* Modal de Sucesso */}
       {showSuccessModal && (
-        <div 
-          className="modal show d-block" 
-          tabIndex="-1" 
-          style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+        <div
+          className="modal show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
           onClick={handleCloseModal}
         >
-          <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="modal-dialog modal-dialog-centered"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="modal-content border-0 shadow-lg">
               <div className="modal-body text-center p-5">
                 <div className="mb-4">
-                  <div 
+                  <div
                     className="rounded-circle bg-success d-inline-flex align-items-center justify-content-center"
-                    style={{ width: '80px', height: '80px' }}
+                    style={{ width: "80px", height: "80px" }}
                   >
-                    <svg width="48" height="48" fill="white" viewBox="0 0 16 16">
-                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                    <svg
+                      width="48"
+                      height="48"
+                      fill="white"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
                     </svg>
                   </div>
                 </div>
 
-                <h4 className="text-success fw-bold mb-3">Paciente Cadastrado!</h4>
+                <h4 className="text-success fw-bold mb-3">
+                  Paciente Cadastrado!
+                </h4>
                 <p className="text-muted mb-4">
-                  O cadastro foi realizado com sucesso e já está disponível no sistema.
+                  O cadastro foi realizado com sucesso e já está disponível no
+                  sistema.
                 </p>
 
                 <div className="d-flex gap-3 justify-content-center">
@@ -319,55 +324,54 @@ function PatienteForm() {
       )}
 
       {showSuccessUpdateModal && (
-          <div className="modal show d-block" >
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content border-0 shadow-lg">
-                <div className="modal-body text-center p-5">
-                  <h4 className="text-success fw-bold mb-3">Paciente Atualizado!</h4>
-                  <p className="text-muted mb-4">
-                    Os dados do paciente foram atualizados com sucesso.
-                  </p>
+        <div className="modal show d-block">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content border-0 shadow-lg">
+              <div className="modal-body text-center p-5">
+                <h4 className="text-success fw-bold mb-3">
+                  Paciente Atualizado!
+                </h4>
+                <p className="text-muted mb-4">
+                  Os dados do paciente foram atualizados com sucesso.
+                </p>
 
-                  <button
-                    className="btn btn-primary px-4"
-                    onClick={() => navigate(`/pagina-paciente/${pacienteId}`)}
-                  >
-                    Ver Prontuário
-                  </button>
-                </div>
+                <button
+                  className="btn btn-primary px-4"
+                  onClick={() => navigate(`/pagina-paciente/${pacienteId}`)}
+                >
+                  Ver Prontuário
+                </button>
               </div>
             </div>
           </div>
+        </div>
+      )}
 
-          
-        )}
-
-
-      {/* Modal de Erro */}
       {showErrorModal && (
-        <div 
-          className="modal show d-block" 
-          tabIndex="-1" 
-          style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+        <div
+          className="modal show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
           onClick={handleCloseErrorModal}
         >
-          <div 
+          <div
             className="modal-dialog modal-dialog-centered"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="modal-content shadow-sm">
-              
               <div className="modal-header bg-danger text-white">
                 <h5 className="modal-title mb-0">Erro</h5>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="btn-close btn-close-white"
                   onClick={handleCloseErrorModal}
                 ></button>
               </div>
 
               <div className="modal-body text-center">
-                <p className="fw-semibold text-danger mb-2">Erro ao cadastrar</p>
+                <p className="fw-semibold text-danger mb-2">
+                  Erro ao cadastrar
+                </p>
                 <small className="text-muted">{errorMessage}</small>
               </div>
 
@@ -380,12 +384,10 @@ function PatienteForm() {
                   Ok
                 </button>
               </div>
-
             </div>
           </div>
         </div>
       )}
-
     </>
   );
 }

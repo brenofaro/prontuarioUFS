@@ -1,13 +1,12 @@
-import React from 'react'
-
 const DadosIniciaisPlano = ({ formData, setFormData }) => {
-return (
+  return (
     <div className="p-4 rounded-3 bg-white border">
-
       <div className="row g-3">
-        {/* Data da consulta */}
         <div className="col-md-4">
-          <label htmlFor="data_plano_alimentar" className="form-label text-muted small">
+          <label
+            htmlFor="data_plano_alimentar"
+            className="form-label text-muted small"
+          >
             Data *
           </label>
           <input
@@ -25,9 +24,11 @@ return (
           />
         </div>
 
-        {/* Nutricionista */}
         <div className="col-md-4">
-          <label htmlFor="nutricionista_responsavel" className="form-label text-muted small">
+          <label
+            htmlFor="nutricionista_responsavel"
+            className="form-label text-muted small"
+          >
             Nutricionista Responsável *
           </label>
           <input
@@ -50,4 +51,4 @@ return (
   );
 };
 
-export default DadosIniciaisPlano
+export default DadosIniciaisPlano;

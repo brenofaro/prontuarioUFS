@@ -6,18 +6,16 @@ function SearchPanel() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Carrega todos os pacientes ao montar o componente
   useEffect(() => {
     fetchAllPacientes();
   }, []);
 
-  // Função para buscar todos os pacientes
   const fetchAllPacientes = async () => {
     setLoading(true);
     try {
       const response = await fetch("http://localhost:8080/pacientes");
       if (!response.ok) throw new Error(`Erro: ${response.status}`);
-      
+
       const data = await response.json();
       setResults(data);
     } catch (error) {
@@ -28,9 +26,7 @@ function SearchPanel() {
     }
   };
 
-  // Função de busca
   const handleSearch = async (query, filter) => {
-    // Se a busca estiver vazia, recarrega todos os pacientes
     if (!query.trim()) {
       fetchAllPacientes();
       return;
@@ -38,11 +34,9 @@ function SearchPanel() {
 
     setLoading(true);
     try {
-      // 🔍 Detecta se o input é um CPF (11 dígitos numéricos)
-      const cleaned = query.replace(/\D/g, ""); // remove pontuação
+      const cleaned = query.replace(/\D/g, ""); 
       const isCpf = /^[0-9]{11}$/.test(cleaned);
 
-      // Define o parâmetro da URL
       const param = isCpf
         ? `cpf=${encodeURIComponent(cleaned)}`
         : `nome=${encodeURIComponent(query)}`;

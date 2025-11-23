@@ -12,23 +12,22 @@ import BioquimicaChildDetails from "./components/BioquimicaChildDetails";
 
 const ChildAnamneseDetails = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { id } = useParams();
 
-  const [anamnese, setAnamnese] = useState(null); // ✔ CORRIGIDO
+  const [anamnese, setAnamnese] = useState(null); 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // ✔ ADICIONADO
-
-  const pacienteId = location.state?.id; // ✔ seguro contra undefined
+  const [error, setError] = useState(null); 
 
   const handleClick = () => {
-  navigate(`/pagina-paciente/${anamnese.paciente_id}`);
-};
+    navigate(`/pagina-paciente/${anamnese.paciente_id}`);
+  };
 
   useEffect(() => {
     const fetchAnamnese = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/child-anamneses/${id}`);
+        const response = await fetch(
+          `http://localhost:8080/child-anamneses/${id}`,
+        );
         if (!response.ok) throw new Error("Erro ao buscar anamnese infantil");
 
         const data = await response.json();
@@ -49,7 +48,6 @@ const ChildAnamneseDetails = () => {
 
   return (
     <div className="container mt-4">
-
       <Card.Title
         className="mb-3 d-flex align-items-center"
         style={{ fontFamily: "arial", fontSize: "1.5rem" }}
@@ -71,9 +69,7 @@ const ChildAnamneseDetails = () => {
         <SintomasClinicosChildDetails anamnese={anamnese} />
         <BioquimicaChildDetails anamnese={anamnese} />
         <HistoriaAlimentarChildDetails anamnese={anamnese} />
-        
       </Card>
-
     </div>
   );
 };

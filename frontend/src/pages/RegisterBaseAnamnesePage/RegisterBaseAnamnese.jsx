@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RegisterBaseAnamnese = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default RegisterBaseAnamnese
+export default RegisterBaseAnamnese;

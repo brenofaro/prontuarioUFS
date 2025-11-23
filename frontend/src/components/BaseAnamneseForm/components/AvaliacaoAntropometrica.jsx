@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-
 const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
   const handleChange = (e) => {
     let { name, value, type, checked } = e.target;
@@ -41,190 +39,197 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
 
   return (
     <div className="mb-4 p-4 border rounded bg-white shadow-sm">
-
-      {/* SEÇÃO 1: Peso e Altura */}
       <div className="mb-4">
-        {/* <h6 className="text-secondary mb-3">Peso e Altura</h6> */}
         <div className="row g-3">
           <div className="col-md-3">
             <label className="form-label text-muted small">
               Peso atual (kg)
             </label>
-            <input 
+            <input
               type="text"
               name="peso_atual"
               className="form-control"
-              value={formData.peso_atual || ''}
+              value={formData.peso_atual || ""}
               onChange={handleChange}
             />
-          </div>
-
-          <div className="col-md-3">
-            <label className="form-label text-muted small">Peso usual (kg)</label>
-            <input 
-              type="text"
-              name="peso_usual"
-              className="form-control"
-              value={formData.peso_usual || ''}
-              onChange={handleChange}
-            />
-  
           </div>
 
           <div className="col-md-3">
             <label className="form-label text-muted small">
-              Altura real (m) 
+              Peso usual (kg)
             </label>
-            <input 
+            <input
               type="text"
-              name="altura_real"
+              name="peso_usual"
               className="form-control"
-              value={formData.altura_real || ''}
+              value={formData.peso_usual || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
-            <label className="form-label text-muted small">Altura da joelho (cm)</label>
+            <label className="form-label text-muted small">
+              Altura real (m)
+            </label>
+            <input
+              type="text"
+              name="altura_real"
+              className="form-control"
+              value={formData.altura_real || ""}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label className="form-label text-muted small">
+              Altura da joelho (cm)
+            </label>
             <div className="input-group">
-              <input 
+              <input
                 type="text"
                 name="aj"
                 className="form-control"
-                value={formData.aj || ''}
+                value={formData.aj || ""}
                 onChange={handleChange}
               />
             </div>
           </div>
 
           <div className="col-md-3">
-            <label className="form-label text-muted small">Altura estimada (m)</label>
-            <input 
+            <label className="form-label text-muted small">
+              Altura estimada (m)
+            </label>
+            <input
               type="text"
               name="altura_estimada"
               className="form-control"
-              value={formData.altura_estimada || ''}
+              value={formData.altura_estimada || ""}
               onChange={handleChange}
             />
-            {/* <small className="text-info">Calculada por AJ ou manual</small> */}
           </div>
 
           <div className="col-md-3">
             <label className="form-label text-muted small">IMC (kg/m²)</label>
-            <input 
+            <input
               type="text"
               name="imc"
               className="form-control"
-              value={formData.imc || ''}
+              value={formData.imc || ""}
               onChange={handleChange}
             />
           </div>
         </div>
       </div>
 
-      {/* SEÇÃO 2: Circunferências */}
       <div className="mb-4">
-        {/* <h6 className="text-secondary mb-3">Circunferências (cm)</h6> */}
         <div className="row g-3">
           <div className="col-md-3">
             <label className="form-label text-muted small">Braço</label>
-            <input 
+            <input
               type="text"
               name="circunferencia_braco"
               className="form-control"
-              value={formData.circunferencia_braco || ''}
+              value={formData.circunferencia_braco || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
             <label className="form-label text-muted small">Cintura</label>
-            <input 
+            <input
               type="text"
               name="circunferencia_cintura"
               className="form-control"
-              value={formData.circunferencia_cintura || ''}
+              value={formData.circunferencia_cintura || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
             <label className="form-label text-muted small">Panturrilha</label>
-            <input 
+            <input
               type="text"
               name="circunferencia_panturrilha"
               className="form-control"
-              value={formData.circunferencia_panturrilha || ''}
+              value={formData.circunferencia_panturrilha || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
             <label className="form-label text-muted small">Pescoço</label>
-            <input 
+            <input
               type="text"
               name="comprimento_pescoco"
               className="form-control"
-              value={formData.comprimento_pescoco || ''}
+              value={formData.comprimento_pescoco || ""}
               onChange={handleChange}
             />
           </div>
         </div>
       </div>
 
-      {/* SEÇÃO 3: Pregas Cutâneas */}
       <div className="mb-4">
-        {/* <h6 className="text-secondary mb-3">Pregas Cutâneas (mm)</h6> */}
         <div className="row g-3">
           <div className="col-md-3">
-            <label className="form-label text-muted small">Tricipital (PCT)</label>
-            <input 
+            <label className="form-label text-muted small">
+              Tricipital (PCT)
+            </label>
+            <input
               type="text"
               name="pct"
               className="form-control"
-              value={formData.pct || ''}
+              value={formData.pct || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
-            <label className="form-label text-muted small">Bicipital (PCB)</label>
-            <input 
+            <label className="form-label text-muted small">
+              Bicipital (PCB)
+            </label>
+            <input
               type="text"
               name="pcb"
               className="form-control"
-              value={formData.pcb || ''}
+              value={formData.pcb || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
-            <label className="form-label text-muted small">Subescapular (PCSE)</label>
-            <input 
+            <label className="form-label text-muted small">
+              Subescapular (PCSE)
+            </label>
+            <input
               type="text"
               name="pcse"
               className="form-control"
-              value={formData.pcse || ''}
+              value={formData.pcse || ""}
               onChange={handleChange}
             />
           </div>
 
           <div className="col-md-3">
-            <label className="form-label text-muted small">Suprailíaca (PCSI)</label>
-            <input 
+            <label className="form-label text-muted small">
+              Suprailíaca (PCSI)
+            </label>
+            <input
               type="text"
               name="pcsi"
               className="form-control"
-              value={formData.pcsi || ''}
+              value={formData.pcsi || ""}
               onChange={handleChange}
             />
           </div>
         </div>
       </div>
 
-      {/* SEÇÃO 4: Diagnóstico */}
       <div className="mb-3">
-        <label htmlFor="diagnostico_antropometrico" className="form-label text-muted small">
+        <label
+          htmlFor="diagnostico_antropometrico"
+          className="form-label text-muted small"
+        >
           Diagnóstico Antropométrico
         </label>
         <textarea
@@ -236,7 +241,6 @@ const AvaliacaoAntropometrica = ({ formData, setFormData }) => {
           value={formData.diagnostico_antropometrico || ""}
           onChange={handleChange}
         />
-       
       </div>
     </div>
   );

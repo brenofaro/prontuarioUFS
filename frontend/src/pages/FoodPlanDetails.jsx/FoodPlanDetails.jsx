@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
@@ -8,18 +8,15 @@ import InformacoesGerais from "./components/InformacoesGerais";
 
 const FoodPlanDetails = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { id } = useParams();
 
-  const [anamnese, setAnamnese] = useState(null); // CORRIGIDO
+  const [anamnese, setAnamnese] = useState(null); 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // CORRIGIDO
+  const [error, setError] = useState(null); 
 
-  const pacienteId = location.state?.id; // seguro
-
-   const handleClick = () => {
-  navigate(`/pagina-paciente/${anamnese.paciente_id}`);
-};
+  const handleClick = () => {
+    navigate(`/pagina-paciente/${anamnese.paciente_id}`);
+  };
 
   useEffect(() => {
     const fetchAnamnese = async () => {
@@ -45,7 +42,6 @@ const FoodPlanDetails = () => {
 
   return (
     <div className="container mt-4">
-
       <Card.Title
         className="mb-3 d-flex align-items-center"
         style={{ fontFamily: "arial", fontSize: "1.5rem" }}
@@ -62,10 +58,7 @@ const FoodPlanDetails = () => {
       <Card className="mb-3">
         <InformacoesGerais anamnese={anamnese} />
         <TableDetails anamnese={anamnese} />
-        {/* Caso você queira adicionar mais seções depois */}
-        {/* <OutraSection anamnese={anamnese} /> */}
       </Card>
-
     </div>
   );
 };
