@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import InitialPage from "./pages/InitialPage/InitialPage.jsx";
-import RegisterPatientePage from "./pages/RegisterPatientePage/RegisterPatientePage.jsx";
+import PatienteForm from "./components/PatienteForm/PatienteForm.jsx";
 import PatientePage from "./pages/PatientePage/PatientePage.jsx";
 import BaseAnamneseForm from "./components/BaseAnamneseForm/BaseAnamneseForm.jsx";
 import ChildAnamneseForm from "./components/ChildAnamneseForm/ChildAnamneseForm.jsx";
@@ -18,10 +18,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<InitialPage />} />
-      <Route path="/cadastrar-paciente" element={<RegisterPatientePage />} />
+      <Route path="/cadastrar-paciente" element={<PatienteForm />} />
       <Route
         path="/editar-paciente/:pacienteId"
-        element={<RegisterPatientePage />}
+        element={<PatienteForm />}
       />
       <Route path="/pagina-paciente/:id" element={<PatientePage />} />
 
@@ -73,7 +73,7 @@ function App() {
         element={<ReturnAnameseForm />}
       />
       <Route
-        path="/food-plan/editar/:pacienteId/:anamneseId"
+        psath="/food-plan/editar/:pacienteId/:anamneseId"
         element={<FoodPlanForm />}
       />
     </Routes>
