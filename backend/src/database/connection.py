@@ -1,12 +1,20 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+import os
 
-# Caminho do arquivo do banco (será criado automaticamente)
-DATABASE_URL = "sqlite:///./prontuario.db"
+# Se a variável DATABASE_URL existir → usa (Docker / produção)
+# Caso contrário → usa SQLite local (desenvolvimento)
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./prontuario.db")
 
-# Parâmetro especial: check_same_thread=False (necessário no SQLite)
+# Detecta se é PostgreSQL
+is_postgres = DATABASE_URL.startswith("postgres")
+
+# Configura os argumentos extras dependendo do banco
+connect_args = {} if is_postgres else {"check_same_thread": False}
+
 engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}
+    DATABASE_URL,
+    connect_args=connect_args
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
