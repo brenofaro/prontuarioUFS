@@ -1,6 +1,3 @@
-import React from "react";
-import TabelaPatologica from "./TabelaPatologica";
-
 const DadosSaude = ({ formData, setFormData }) => {
   const handleChange = (e) => {
     let { name, value, type, checked } = e.target;
