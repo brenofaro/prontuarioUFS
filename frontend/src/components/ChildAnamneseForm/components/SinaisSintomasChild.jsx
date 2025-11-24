@@ -37,10 +37,10 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
     }));
   };
 
-  const toggleField = (fieldName) => {
+  const toggleBooleanField = (fieldName, newValue) => {
     setFormData((prev) => ({
       ...prev,
-      [fieldName]: prev[fieldName] === "true" ? null : "true",
+      [fieldName]: prev[fieldName] === newValue ? null : newValue,
     }));
   };
 
@@ -60,7 +60,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               id="denticao_ausente"
               checked={formData.denticao === "ausente"}
               onChange={handleChange}
-              onClick={() => toggleField("denticao")}
+              onClick={() => toggleBooleanField("denticao", "ausente")}
             />
             <label className="form-check-label ms-1" htmlFor="denticao_ausente">
               Ausente
@@ -75,7 +75,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               id="denticao_em_desenvolvimento"
               checked={formData.denticao === "em_desenvolvimento"}
               onChange={handleChange}
-              onClick={() => toggleField("denticao")}
+              onClick={() => toggleBooleanField("denticao", "em_desenvolvimento")}
             />
             <label
               className="form-check-label ms-1"
@@ -93,7 +93,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               id="denticao_completa"
               checked={formData.denticao === "completa"}
               onChange={handleChange}
-              onClick={() => toggleField("denticao")}
+              onClick={() => toggleBooleanField("denticao", "completa")}
             />
             <label
               className="form-check-label ms-1"
@@ -117,7 +117,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               id="comprometida"
               checked={formData.mastigacao === "comprometida"}
               onChange={handleChange}
-              onClick={() => toggleField("mastigacao")}
+              onClick={() => toggleBooleanField("mastigacao", "comprometida")}
             />
             <label htmlFor="comprometida">Comprometida</label>
           </div>
@@ -130,7 +130,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               checked={formData.mastigacao === "normal"}
               onChange={handleChange}
               id="mastigacao_normal"
-              onClick={() => toggleField("mastigacao")}
+              onClick={() => toggleBooleanField("mastigacao", "normal")}
             />
             <label
               htmlFor="mastigacao_normal"
@@ -154,7 +154,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   checked={formData.disfagia === true}
                   onChange={handleChange}
                   id="disfagia_sim"
-                  onClick={() => toggleField("disfagia")}
+                  onClick={() => toggleBooleanField("disfagia", true)}
                 />
                 <label className="form-check-label ms-1" htmlFor="disfagia_sim">
                   Sim
@@ -170,7 +170,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   id="disfagia_nao"
                   checked={formData.disfagia === false}
                   onChange={handleChange}
-                  onClick={() => toggleField("disfagia")}
+                  onClick={() => toggleBooleanField("disfagia", false)}
                 />
                 <label className="form-check-label ms-1" htmlFor="disfagia_nao">
                   Não
@@ -191,7 +191,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   checked={formData.odinofagia === true}
                   onChange={handleChange}
                   id="odinofagia_sim"
-                  onClick={() => toggleField("odinofagia")}
+                  onClick={() => toggleBooleanField("odinofagia", true)}
                 />
                 <label
                   className="form-check-label ms-1"
@@ -210,7 +210,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   checked={formData.odinofagia === false}
                   onChange={handleChange}
                   id="odinofagia_nao"
-                  onClick={() => toggleField("odinofagia")}
+                  onClick={() => toggleBooleanField("odinofagia", false)}
                 />
                 <label
                   className="form-check-label ms-1"
@@ -234,7 +234,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   id="dispepsia_sim"
                   checked={formData.dispepsia === true}
                   onChange={handleChange}
-                  onClick={() => toggleField("dispepsia")}
+                  onClick={() => toggleBooleanField("dispepsia", true)}
                 />
                 <label
                   className="form-check-label ms-1"
@@ -253,7 +253,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   id="dispepsia_nao"
                   checked={formData.dispepsia === false}
                   onChange={handleChange}
-                  onClick={() => toggleField("dispepsia")}
+                  onClick={() => toggleBooleanField("dispepsia", false)}
                 />
                 <label
                   className="form-check-label ms-1"
@@ -279,7 +279,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   id="nauseas_sim"
                   checked={formData.nauseas === true}
                   onChange={handleChange}
-                  onClick={() => toggleField("nauseas")}
+                  onClick={() => toggleBooleanField("nauseas", true)}
                 />
                 <label className="form-check-label ms-1" htmlFor="nauseas_sim">
                   Sim
@@ -295,7 +295,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   id="nauseas_nao"
                   checked={formData.nauseas === false}
                   onChange={handleChange}
-                  onClick={() => toggleField("nauseas")}
+                  onClick={() => toggleBooleanField("nauseas", false)}
                 />
                 <label className="form-check-label ms-1" htmlFor="nauseas_nao">
                   Não
@@ -316,7 +316,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   id="vomitos_sim"
                   checked={formData.vomitos === true}
                   onChange={handleChange}
-                  onClick={() => toggleField("vomitos")}
+                  onClick={() => toggleBooleanField("vomitos", true)}
                 />
                 <label className="form-check-label ms-1" htmlFor="vomitos_sim">
                   Sim
@@ -332,7 +332,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
                   id="vomitos_nao"
                   checked={formData.vomitos === false}
                   onChange={handleChange}
-                  onClick={() => toggleField("vomitos")}
+                  onClick={() => toggleBooleanField("vomitos", false)}
                 />
                 <label className="form-check-label ms-1" htmlFor="vomitos_nao">
                   Não
@@ -355,7 +355,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               id="ritmo_normal"
               checked={formData.ritmo_intestinal === "normal"}
               onChange={handleChange}
-              onClick={() => toggleField("ritmo_intestinal")}
+              onClick={() => toggleBooleanField("ritmo_intestinal", "normal")}
             />
             <label className="form-check-label ms-1" htmlFor="ritmo_normal">
               Normal
@@ -371,7 +371,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               id="ritmo_diarreia"
               checked={formData.ritmo_intestinal === "diarreia"}
               onChange={handleChange}
-              onClick={() => toggleField("ritmo_intestinal")}
+              onClick={() => toggleBooleanField("ritmo_intestinal", "diarreia")}
             />
             <label className="form-check-label ms-1" htmlFor="ritmo_diarreia">
               Diarréia
@@ -387,7 +387,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               id="ritmo_obstipacao"
               checked={formData.ritmo_intestinal === "obstipacao"}
               onChange={handleChange}
-              onClick={() => toggleField("ritmo_intestinal")}
+              onClick={() => toggleBooleanField("ritmo_intestinal", "obstipacao")}
             />
             <label className="form check-label ms-1" htmlFor="ritmo_obstipacao">
               Obstipação
@@ -409,7 +409,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               value="oliguria"
               checked={formData.ritmo_urinario === "oliguria"}
               onChange={handleChange}
-              onClick={() => toggleField("ritmo_urinario")}
+              onClick={() => toggleBooleanField("ritmo_urinario", "oliguria")}
             />
             <label className="form-check-label ms-1" htmlFor="oliguria">
               Oligúria
@@ -425,7 +425,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               value="anuria"
               checked={formData.ritmo_urinario === "anuria"}
               onChange={handleChange}
-              onClick={() => toggleField("ritmo_urinario")}
+              onClick={() => toggleBooleanField("ritmo_urinario", "anuria")}
             />
             <label className="form-check-label ms-1" htmlFor="anuria">
               Anúria
@@ -441,7 +441,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               value="poliuria"
               checked={formData.ritmo_urinario === "poliuria"}
               onChange={handleChange}
-              onClick={() => toggleField("ritmo_urinario")}
+              onClick={() => toggleBooleanField("ritmo_urinario", "poliuria")}
             />
             <label className="form-check-label ms-1" htmlFor="poliuria">
               Poliúria
@@ -457,7 +457,7 @@ const SinaisSintomasChild = ({ formData, setFormData }) => {
               value="normal"
               checked={formData.ritmo_urinario === "normal"}
               onChange={handleChange}
-              onClick={() => toggleField("ritmo_urinario")}
+              onClick={() => toggleBooleanField("ritmo_urinario", "normal")}
             />
             <label className="form-check-label ms-1" htmlFor="normal">
               Normal

@@ -1,3 +1,5 @@
+import "./index.css"
+
 const HistoriaAlimentar = ({ formData, setFormData }) => {
   const handleChange = (e) => {
     let { name, value, type, checked } = e.target;
@@ -37,10 +39,10 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
     }));
   };
 
-  const toggleField = (fieldName) => {
+  const toggleBooleanField = (fieldName, newValue) => {
     setFormData((prev) => ({
       ...prev,
-      [fieldName]: prev[fieldName] === "true" ? null : "true",
+      [fieldName]: prev[fieldName] === newValue ? null : newValue,
     }));
   };
 
@@ -62,7 +64,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="true"
                 checked={formData.possui_aversoes_alimentares === true}
                 onChange={handleChange}
-                onClick={() => toggleField("possui_aversoes_alimentares")}
+                onClick={() => toggleBooleanField("possui_aversoes_alimentares", true)}
               />
               <label htmlFor="aversao_sim" className="form-check-label">
                 Sim
@@ -78,7 +80,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="false"
                 checked={formData.possui_aversoes_alimentares === false}
                 onChange={handleChange}
-                onClick={() => toggleField("possui_aversoes_alimentares")}
+                onClick={() => toggleBooleanField("possui_aversoes_alimentares", false)}
               />
               <label htmlFor="aversao_nao" className="form-check-label">
                 Não
@@ -117,7 +119,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="true"
                 checked={formData.possui_alergias_alimentares === true}
                 onChange={handleChange}
-                onClick={() => toggleField("possui_alergias_alimentares")}
+                onClick={() => toggleBooleanField("possui_alergias_alimentares", true)}
               />
               <label htmlFor="alergia_sim" className="form-check-label">
                 Sim
@@ -133,7 +135,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="false"
                 checked={formData.possui_alergias_alimentares === false}
                 onChange={handleChange}
-                onClick={() => toggleField("possui_alergias_alimentares")}
+                onClick={() => toggleBooleanField("possui_alergias_alimentares", false)}
               />
               <label htmlFor="alergia_nao" className="form-check-label">
                 Não
@@ -187,7 +189,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="true"
                 checked={formData.existe_horario_mais_fome === true}
                 onChange={handleChange}
-                onClick={() => toggleField("existe_horario_mais_fome")}
+                onClick={() => toggleBooleanField("existe_horario_mais_fome", true)}
               />
               <label htmlFor="fome_sim" className="form-check-label">
                 Sim
@@ -203,7 +205,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="false"
                 checked={formData.existe_horario_mais_fome === false}
                 onChange={handleChange}
-                onClick={() => toggleField("existe_horario_mais_fome")}
+                onClick={() => toggleBooleanField("existe_horario_mais_fome", false)}
               />
               <label htmlFor="fome_nao" className="form-check-label">
                 Não
@@ -242,7 +244,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="normal"
                 checked={formData.apetite === "normal"}
                 onChange={handleChange}
-                onClick={() => toggleField("apetite")}
+                onClick={() => toggleBooleanField("apetite", "normal")}
               />
               <label htmlFor="apetite_normal">Normal</label>
             </div>
@@ -256,7 +258,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="aumentado"
                 checked={formData.apetite === "aumentado"}
                 onChange={handleChange}
-                onClick={() => toggleField("apetite")}
+                onClick={() => toggleBooleanField("apetite", "aumentado")}
               />
               <label htmlFor="apetite_aumentado">Aumentado</label>
             </div>
@@ -270,7 +272,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
                 value="diminuido"
                 checked={formData.apetite === "diminuido"}
                 onChange={handleChange}
-                onClick={() => toggleField("apetite")}
+                onClick={() => toggleBooleanField("apetite", "diminuido")}
               />
               <label htmlFor="apetite_diminuido">Diminuído</label>
             </div>

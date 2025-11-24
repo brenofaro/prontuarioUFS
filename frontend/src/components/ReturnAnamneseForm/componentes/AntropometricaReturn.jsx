@@ -37,10 +37,10 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
     }));
   };
 
-  const toggleField = (fieldName) => {
+  const toggleBooleanField = (fieldName, newValue) => {
     setFormData((prev) => ({
       ...prev,
-      [fieldName]: prev[fieldName] === "true" ? null : "true",
+      [fieldName]: prev[fieldName] === newValue ? null : newValue,
     }));
   };
 
@@ -167,7 +167,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="desnutricao_grau_i"
                 checked={formData.grau_imc === "desnutricao_grau_i"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "desnutricao_grau_i")}
               />
               <label
                 className="form-check-label text-muted small "
@@ -186,7 +186,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="desnutricao_grau_ii"
                 checked={formData.grau_imc === "desnutricao_grau_ii"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "desnutricao_grau_ii")}
               />
               <label
                 className="form-check-label text-muted small"
@@ -205,7 +205,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="desnutricao_grau_iii"
                 checked={formData.grau_imc === "desnutricao_grau_iii"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "desnutricao_grau_iii")}
               />
               <label
                 className="form-check-label text-muted small"
@@ -224,7 +224,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="eutrofia"
                 checked={formData.grau_imc === "eutrofia"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "eutrofia")}
               />
               <label
                 className="form-check-label text-muted small"
@@ -243,7 +243,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="sobrepeso"
                 checked={formData.grau_imc === "sobrepeso"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "sobrepeso")}
               />
               <label
                 className="form-check-label text-muted small "
@@ -262,7 +262,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="obesidade_grau_i"
                 checked={formData.grau_imc === "obesidade_grau_i"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "obesidade_grau_i")}
               />
               <label
                 className="form-check-label text-muted small"
@@ -281,7 +281,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="obesidade_grau_ii"
                 checked={formData.grau_imc === "obesidade_grau_ii"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "obesidade_grau_ii")}
               />
               <label
                 className="form-check-label text-muted small "
@@ -300,7 +300,7 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
                 value="obesidade_grau_iii"
                 checked={formData.grau_imc === "obesidade_grau_iii"}
                 onChange={handleChange}
-                onClick={() => toggleField("grau_imc")}
+                onClick={() => toggleBooleanField("grau_imc", "obesidade_grau_iii")}
               />
               <label
                 className="form-check-label text-muted small"

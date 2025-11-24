@@ -175,7 +175,7 @@ function PatienteForm() {
             <div className="row mb-4">
               <div className="col-md-6">
                 <label className="form-label">
-                  Nome completo <span className="text-dark">*</span>
+                  Nome <span className="text-dark">*</span>
                 </label>
                 <input
                   type="text"
@@ -183,14 +183,43 @@ function PatienteForm() {
                   name="nome"
                   value={formData.nome}
                   onChange={handleChange}
-                  placeholder="Ex: Maria Silva Santos"
+                  placeholder=""
                 />
                 {errors.nome && (
                   <div className="invalid-feedback">{errors.nome}</div>
                 )}
               </div>
+              <div className="col-md-6 mb-4">
+                <label className="form-label">Endereço</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="endereco"
+                  value={formData.endereco}
+                  onChange={handleChange}
+                  placeholder=""
+                />
+              </div>
 
-              <div className="col-md-6 mb-3">
+              
+
+              <div className="col-md-2">
+                <label className="form-label">Telefone</label>
+                <input
+                  type="text"
+                  className={`form-control ${errors.telefone ? "is-invalid" : ""}`}
+                  name="telefone"
+                  value={formData.telefone}
+                  onChange={handleChange}
+                  placeholder="(79) 99999-9999"
+                  maxLength="15"
+                />
+                {errors.telefone && (
+                  <div className="invalid-feedback">{errors.telefone}</div>
+                )}
+              </div>
+
+             <div className="col-md-2">
                 <label className="form-label">
                   Data de Nascimento <span className="text-dark">*</span>
                 </label>
@@ -212,34 +241,6 @@ function PatienteForm() {
                     {errors.data_nascimento}
                   </div>
                 )}
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Telefone</label>
-                <input
-                  type="text"
-                  className={`form-control ${errors.telefone ? "is-invalid" : ""}`}
-                  name="telefone"
-                  value={formData.telefone}
-                  onChange={handleChange}
-                  placeholder="(79) 99999-9999"
-                  maxLength="15"
-                />
-                {errors.telefone && (
-                  <div className="invalid-feedback">{errors.telefone}</div>
-                )}
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Endereço</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="endereco"
-                  value={formData.endereco}
-                  onChange={handleChange}
-                  placeholder="Rua, número, bairro, cidade"
-                />
               </div>
             </div>
             <div className="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">

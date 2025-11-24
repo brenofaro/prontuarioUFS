@@ -36,11 +36,11 @@ const DadosSaude = ({ formData, setFormData }) => {
       [name]: value,
     }));
   };
-
-  const toggleField = (fieldName) => {
+  
+  const toggleBooleanField = (fieldName, newValue) => {
     setFormData((prev) => ({
       ...prev,
-      [fieldName]: prev[fieldName] === "true" ? null : "true",
+      [fieldName]: prev[fieldName] === newValue ? null : newValue,
     }));
   };
   return (
@@ -287,7 +287,7 @@ const DadosSaude = ({ formData, setFormData }) => {
               value="true"
               checked={formData.faz_uso_medicamentos === true}
               onChange={handleChange}
-              onClick={() => toggleField("faz_uso_medicamentos")}
+              onClick={() => toggleBooleanField("faz_uso_medicamentos", true)}
             />
             <label className="form-check-label ms-1" htmlFor="uso_medicamentos">
               Sim
@@ -303,7 +303,7 @@ const DadosSaude = ({ formData, setFormData }) => {
               value="false"
               checked={formData.faz_uso_medicamentos === false}
               onChange={handleChange}
-              onClick={() => toggleField("faz_uso_medicamentos")}
+              onClick={() => toggleBooleanField("faz_uso_medicamentos", false)}
             />
             <label
               className="form-check-label ms-1"

@@ -253,15 +253,15 @@ const SaudeDetails = ({ anamnese }) => {
                   </table>
                 </div>
 
-                {!anamnese.diabetes_hma &&
+                {/* {!anamnese.diabetes_hma &&
                   !anamnese.diabetes_hf &&
                   !anamnese.hipertencao_hma &&
                   !anamnese.hipertencao_hf && (
-                    /* ... outros checks ... */ <div className="alert alert-info">
+                    <div className="alert alert-info">
                       <i className="bi bi-info-circle me-2"></i>
                       Nenhuma patologia registrada
                     </div>
-                  )}
+                  )} */}
               </div>
             </div>
           </div>

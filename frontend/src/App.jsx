@@ -73,7 +73,7 @@ function App() {
         element={<ReturnAnameseForm />}
       />
       <Route
-        psath="/food-plan/editar/:pacienteId/:anamneseId"
+        path="/food-plan/editar/:pacienteId/:anamneseId"
         element={<FoodPlanForm />}
       />
     </Routes>

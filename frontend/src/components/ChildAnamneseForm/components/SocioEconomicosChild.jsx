@@ -63,13 +63,8 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               name="escolar"
               id="sim_escolar"
               checked={formData.escolar === true}
-              onClick={() =>
-                setFormData((prev) => ({
-                  ...prev,
-                  escolar: prev.escolar === true ? null : true,
-                }))
-              }
-              onChange={() => {}}
+              onClick={() => toggleBooleanField("escolar", false)}
+              onChange={handleChange}
             />
             <label htmlFor="sim_escolar">Sim</label>
           </div>
@@ -81,13 +76,8 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               name="escolar"
               id="nao_escolar"
               checked={formData.escolar === false}
-              onClick={() =>
-                setFormData((prev) => ({
-                  ...prev,
-                  escolar: prev.escolar === false ? null : false,
-                }))
-              }
-              onChange={() => {}} 
+              onClick={() => toggleBooleanField("escolar", false)}
+              onChange={handleChange} 
             />
             <label htmlFor="nao_escolar">Não</label>
           </div>
@@ -169,7 +159,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.merenda_escolar === true}
               onChange={handleChange}
-              onClick={() => toggleField("merenda_escolar")}
+              onClick={() => toggleBooleanField("merenda_escolar", true)}
             />
             <label className="form-check-label" htmlFor="sim_merenda_escolar">
               Sim
@@ -184,7 +174,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="false"
               checked={formData.merenda_escolar === false}
               onChange={handleChange}
-              onClick={() => toggleField("merenda_escolar")}
+              onClick={() => toggleBooleanField("merenda_escolar", false)}
             />
             <label className="form-check-label" htmlFor="nao_merenda_escolar">
               Não
@@ -220,7 +210,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.pai_mae === true}
               onChange={handleChange}
-              onClick={() => toggleField("pai_mae")}
+              onClick={() => toggleBooleanField("pai_mae", true)}
             />
             <label className="form-check-label" htmlFor="pai_mae">
               Pai/Mãe
@@ -236,7 +226,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.conjuge === true}
               onChange={handleChange}
-              onClick={() => toggleField("conjuge")}
+              onClick={() => toggleBooleanField("conjuge", true)}
             />
             <label className="form-check-label" htmlFor="conjuge">
               Cônjuge
@@ -252,7 +242,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.filho === true}
               onChange={handleChange}
-              onClick={() => toggleField("filho")}
+              onClick={() => toggleBooleanField("filho", true)}
             />
             <label className="form-check-label" htmlFor="filho">
               Filho
@@ -268,7 +258,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.irmao === true}
               onChange={handleChange}
-              onClick={() => toggleField("irmao")}
+              onClick={() => toggleBooleanField("irmao", true)}
             />
             <label className="form-check-label" htmlFor="irmao">
               Irmão
@@ -284,7 +274,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.netos === true}
               onChange={handleChange}
-              onClick={() => toggleField("netos")}
+              onClick={() => toggleBooleanField("netos", true)}
             />
             <label className="form-check-label" htmlFor="netos">
               Netos
@@ -300,7 +290,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.sobrinho === true}
               onChange={handleChange}
-              onClick={() => toggleField("sobrinho")}
+              onClick={() => toggleBooleanField("sobrinho", true)}
             />
             <label className="form-check-label" htmlFor="sobrinho">
               Sobrinho
@@ -315,7 +305,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.cunhado === true}
               onChange={handleChange}
-              onClick={() => toggleField("cunhado")}
+              onClick={() => toggleBooleanField("cunhado", true)}
             />
             <label className="form-check-label" htmlFor="cunhado">
               Cunhado
@@ -331,7 +321,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.so === true}
               onChange={handleChange}
-              onClick={() => toggleField("so")}
+              onClick={() => toggleBooleanField("so", true)}
             />
             <label className="form-check-label" htmlFor="so">
               Só
@@ -347,7 +337,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.amigos === true}
               onChange={handleChange}
-              onClick={() => toggleField("amigos")}
+              onClick={() => toggleBooleanField("amigos", true)}
             />
             <label className="form-check-label" htmlFor="amigos">
               Amigos
@@ -414,7 +404,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.faz_atividade_fisica === true}
               onChange={handleChange}
-              onClick={() => toggleField("faz_atividade_fisica")}
+              onClick={() => toggleBooleanField("faz_atividade_fisica", true)}
             />
             <label className="form-check-label" htmlFor="sim_atividade">
               Sim
@@ -429,7 +419,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="false"
               checked={formData.faz_atividade_fisica === false}
               onChange={handleChange}
-              onClick={() => toggleField("faz_atividade_fisica")}
+              onClick={() => toggleBooleanField("faz_atividade_fisica", false)}
             />
             <label className="form-check-label" htmlFor="nao_atividade">
               Não
@@ -478,7 +468,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="true"
               checked={formData.ja_fez_atividade_fisica === true}
               onChange={handleChange}
-              onClick={() => toggleField("ja_fez_atividade_fisica")}
+              onClick={() => toggleBooleanField("ja_fez_atividade_fisica", true)}
             />
             <label className="form-check-label" htmlFor="sim_ja_fez">
               Sim
@@ -493,7 +483,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               value="false"
               checked={formData.ja_fez_atividade_fisica === false}
               onChange={handleChange}
-              onClick={() => toggleField("ja_fez_atividade_fisica")}
+              onClick={() => toggleBooleanField("ja_fez_atividade_fisica", false)}
             />
             <label className="form-check-label" htmlFor="nao_ja_fez">
               Não

@@ -43,6 +43,13 @@ const InqueritoRetorno = ({ formData, setFormData }) => {
       [fieldName]: prev[fieldName] === "true" ? null : "true",
     }));
   };
+
+  const toggleBooleanField = (fieldName, newValue) => {
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: prev[fieldName] === newValue ? null : newValue,
+    }));
+  };
   return (
     <div className="mb-3 p-4 border rounded-3 bg-white ">
       <div className="mb-4">
@@ -210,7 +217,7 @@ const InqueritoRetorno = ({ formData, setFormData }) => {
             value="insatisfeito"
             checked={formData.satisfacao_plano === "insatisfeito"}
             onChange={handleChange}
-            onClick={() => toggleField("satisfacao_plano")}
+            onClick={() => toggleBooleanField("satisfacao_plano", "insatisfeito")}
           />
           <label className="form-check-label ms-1" htmlFor="insatisfeito">
             Insatisfeito(a))
@@ -226,7 +233,7 @@ const InqueritoRetorno = ({ formData, setFormData }) => {
             value="pouco_satisfeito"
             checked={formData.satisfacao_plano === "pouco_satisfeito"}
             onChange={handleChange}
-            onClick={() => toggleField("satisfacao_plano")}
+            onClick={() => toggleBooleanField("satisfacao_plano", "pouco_satisfeito")}
           />
           <label className="form-check-label ms-1" htmlFor="pouco_satisfeito">
             Pouco satisfeito(a)
@@ -242,7 +249,7 @@ const InqueritoRetorno = ({ formData, setFormData }) => {
             value="satisfeito"
             checked={formData.satisfacao_plano === "satisfeito"}
             onChange={handleChange}
-            onClick={() => toggleField("satisfacao_plano")}
+            onClick={() => toggleBooleanField("satisfacao_plano", "satisfeito")}
           />
           <label className="form-check-label ms-1" htmlFor="satisfeito">
             Satisfeito(a)
@@ -258,7 +265,7 @@ const InqueritoRetorno = ({ formData, setFormData }) => {
             value="muito_satisfeito"
             checked={formData.satisfacao_plano === "muito_satisfeito"}
             onChange={handleChange}
-            onClick={() => toggleField("satisfacao_plano")}
+            onClick={() => toggleBooleanField("satisfacao_plano", "muito_satisfeito")}
           />
           <label className="form-check-label ms-1" htmlFor="muito_satisfeito">
             Muito satisfeito(a)

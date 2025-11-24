@@ -1,0 +1,5 @@
+.form-check-input {
+  margin-top: 0 !important;
+  vertical-align: middle !important;
+  transform: translateY(-1px);
+}
