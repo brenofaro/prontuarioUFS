@@ -20,28 +20,28 @@ class ChildAnamneseCreate(BaseModel):
     nutricionista_responsavel: str
 
     # Dados Socio-Econômicos
-    escolar: Optional[bool] = False
+    escolar: Optional[bool] = None
     serie_escolar: Optional[str] = None
     turno_escolar: Optional[str] = None
-    adaptacao_escolar: Optional[bool] = False
-    merenda_escolar: Optional[bool] = False
+    adaptacao_escolar: Optional[bool] = None
+    merenda_escolar: Optional[bool] = None
     ocupacao_responsavel: Optional[str] = None
-    pai_mae: Optional[bool] = False
-    conjuge: Optional[bool] = False
-    filho: Optional[bool] = False
-    irmao: Optional[bool] = False
-    netos: Optional[bool] = False
-    sobrinho: Optional[bool] = False
-    cunhado: Optional[bool] = False
-    so: Optional[bool] = False
-    amigos: Optional[bool] = False
+    pai_mae: Optional[bool] = None
+    conjuge: Optional[bool] = None
+    filho: Optional[bool] = None
+    irmao: Optional[bool] = None
+    netos: Optional[bool] = None
+    sobrinho: Optional[bool] = None
+    cunhado: Optional[bool] = None
+    so: Optional[bool] = None
+    amigos: Optional[bool] = None
     outros_da_familia: Optional[str] = None
     renda_pessoal: Optional[str] = None
     gastos_alimentacao: Optional[str] = None
-    faz_atividade_fisica: Optional[bool] = False
+    faz_atividade_fisica: Optional[bool] = None
     qual_atividade_fisica: Optional[str] = None
     frequencia_atividade_fisica: Optional[str] = None
-    ja_fez_atividade_fisica: Optional[bool] = False
+    ja_fez_atividade_fisica: Optional[bool] = None
     tempo_parado_atividade_fisica: Optional[str] = None
     crianca_ativa: Optional[str] = None
     horario_dorme: Optional[str] = None
@@ -50,26 +50,26 @@ class ChildAnamneseCreate(BaseModel):
     # Dados de Saúde
     objetivo_consulta: Optional[str] = None
     historia_doenca: Optional[str] = None
-    diabetes_hma: Optional[bool] = False
-    diabetes_hf: Optional[bool] = False 
-    hipertencao_hma: Optional[bool] = False
-    hipertencao_hf: Optional[bool] = False
-    doenca_cardiovascular_hma: Optional[bool] = False
-    doenca_cardiovascular_hf: Optional[bool] = False
-    dislipidemia_hma: Optional[bool] = False
-    dislipidemia_hf: Optional[bool] = False
-    cancer_hma: Optional[bool] = False
-    cancer_hf: Optional[bool] = False
-    osteoporose_hma: Optional[bool] = False
-    osteoporose_hf: Optional[bool] = False
-    depressao_hma: Optional[bool] = False
-    depressao_hf: Optional[bool] = False
-    parasitoses_hma: Optional[bool] = False
-    parasitoses_hf: Optional[bool] = False
-    drge_hma: Optional[bool] = False
-    drge_hf: Optional[bool] = False
+    diabetes_hma: Optional[bool] = None
+    diabetes_hf: Optional[bool] = None 
+    hipertencao_hma: Optional[bool] = None
+    hipertencao_hf: Optional[bool] = None
+    doenca_cardiovascular_hma: Optional[bool] = None
+    doenca_cardiovascular_hf: Optional[bool] = None
+    dislipidemia_hma: Optional[bool] = None
+    dislipidemia_hf: Optional[bool] = None
+    cancer_hma: Optional[bool] = None
+    cancer_hf: Optional[bool] = None
+    osteoporose_hma: Optional[bool] = None
+    osteoporose_hf: Optional[bool] = None
+    depressao_hma: Optional[bool] = None
+    depressao_hf: Optional[bool] = None
+    parasitoses_hma: Optional[bool] = None
+    parasitoses_hf: Optional[bool] = None
+    drge_hma: Optional[bool] = None
+    drge_hf: Optional[bool] = None
     outras_patologias: Optional[str] = None
-    faz_uso_medicamentos: Optional[bool] = False
+    faz_uso_medicamentos: Optional[bool] = None
     medicamentos: Optional[str] = None
 
     # Avaliação antropométrica
@@ -85,11 +85,11 @@ class ChildAnamneseCreate(BaseModel):
     # Dados e sintomas clínicos
     denticao: Optional[DenticaoChildEnum] = None
     mastigacao: Optional[MastigacaoEnum] = None
-    disfagia: Optional[bool] = False
-    odinofagia: Optional[bool] = False
-    dispepsia: Optional[bool] = False
-    nauseas: Optional[bool] = False
-    vomitos: Optional[bool] = False
+    disfagia: Optional[bool] = None
+    odinofagia: Optional[bool] = None
+    dispepsia: Optional[bool] = None
+    nauseas: Optional[bool] = None
+    vomitos: Optional[bool] = None
     ritmo_intestinal: Optional[RitmoIntestinal] = None
     ritmo_urinario: Optional[RitmoUrinario] = None
     pele: Optional[str] = None
@@ -104,16 +104,16 @@ class ChildAnamneseCreate(BaseModel):
     avaliacao_bioquimica: Optional[str] = None
 
     # História Alimentar
-    aleitamento_materno_exclusivo: Optional[bool] = False
+    aleitamento_materno_exclusivo: Optional[bool] = None
     tempo_aleitamento_materno_exclusivo: Optional[str] = None
-    ainda_mama: Optional[bool] = False
+    ainda_mama: Optional[bool] = None
     idade_desmame: Optional[str] = None
-    possui_aversoes_alimentares: Optional[bool] = False
+    possui_aversoes_alimentares: Optional[bool] = None
     aversoes_alimentares: Optional[str] = None
-    possui_alergias_alimentares: Optional[bool] = False
+    possui_alergias_alimentares: Optional[bool] = None
     alergias_alimentares: Optional[str] = None
     ingestao_hidrica: Optional[str] = None
-    existe_horario_mais_fome: Optional[bool] = False
+    existe_horario_mais_fome: Optional[bool] = None
     horario_mais_fome: Optional[str] = None
     apetite: Optional[ApetiteEnum] = None
     motivo_apetite: Optional[str] = None

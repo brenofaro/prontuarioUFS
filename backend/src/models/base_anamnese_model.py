@@ -26,61 +26,61 @@ class BaseAnamneseCreate(BaseModel):
     estado_civil: Optional[EstadoCivilEnum] = None
     escolaridade: Optional[EscolaridadeEnum] = None
     ocupacao: Optional[str] = None
-    faz_atividade_dentro_casa: Optional[bool] = False
+    faz_atividade_dentro_casa: Optional[bool] = None
     atividade_dentro_casa: Optional[str] = None
-    pai_mae: Optional[bool] = False
-    conjuge: Optional[bool] = False
-    filho: Optional[bool] = False
-    irmao: Optional[bool] = False
-    netos: Optional[bool] = False
-    sobrinho: Optional[bool] = False
-    cunhado: Optional[bool] = False
-    so: Optional[bool] = False
-    amigos: Optional[bool] = False
+    pai_mae: Optional[bool] = None
+    conjuge: Optional[bool] = None
+    filho: Optional[bool] = None
+    irmao: Optional[bool] = None
+    netos: Optional[bool] = None
+    sobrinho: Optional[bool] = None
+    cunhado: Optional[bool] = None
+    so: Optional[bool] = None
+    amigos: Optional[bool] = None
     outros_da_familia: Optional[str] = None
     renda_pessoal: Optional[str] = None
     gastos_alimentacao: Optional[str] = None
 
-    faz_atividade_fisica: Optional[bool] = False
+    faz_atividade_fisica: Optional[bool] = None
     qual_atividade_fisica: Optional[str] = None
     frequencia_atividade_fisica: Optional[str] = None
-    ja_fez_atividade_fisica: Optional[bool] = False
+    ja_fez_atividade_fisica: Optional[bool] = None
     tempo_parado_atividade_fisica: Optional[str] = None
 
-    tem_etilismo: Optional[bool] = False
+    tem_etilismo: Optional[bool] = None
     tipo_etilismo: Optional[str] = None
     quanto_etilismo: Optional[str] = None
-    ja_foi_etilista: Optional[bool] = False
+    ja_foi_etilista: Optional[bool] = None
     tempo_parado_etilismo: Optional[str] = None
 
-    tem_tabagismo: Optional[bool] = False
+    tem_tabagismo: Optional[bool] = None
     tipo_tabagismo: Optional[str] = None
     quanto_tabagismo: Optional[str] = None
-    ja_foi_tabagista: Optional[bool] = False
+    ja_foi_tabagista: Optional[bool] = None
     tempo_parado_tabagismo: Optional[str] = None
 
     # -------------------- Dados de Saúde --------------------
     objetivo_consulta: Optional[str] = None
     historia_doenca: Optional[str] = None
 
-    diabetes_hma: Optional[bool] = False
-    diabetes_hf: Optional[bool] = False
-    hipertencao_hma: Optional[bool] = False
-    hipertencao_hf: Optional[bool] = False
-    doenca_cardiovascular_hma: Optional[bool] = False
-    doenca_cardiovascular_hf: Optional[bool] = False
-    dislipidemia_hma: Optional[bool] = False
-    dislipidemia_hf: Optional[bool] = False
-    cancer_hma: Optional[bool] = False
-    cancer_hf: Optional[bool] = False
-    osteoporose_hma: Optional[bool] = False
-    osteoporose_hf: Optional[bool] = False
-    depressao_hma: Optional[bool] = False
-    depressao_hf: Optional[bool] = False
-    sop_hma: Optional[bool] = False
-    sop_hf: Optional[bool] = False
+    diabetes_hma: Optional[bool] = None
+    diabetes_hf: Optional[bool] = None
+    hipertencao_hma: Optional[bool] = None
+    hipertencao_hf: Optional[bool] = None
+    doenca_cardiovascular_hma: Optional[bool] = None
+    doenca_cardiovascular_hf: Optional[bool] = None
+    dislipidemia_hma: Optional[bool] = None
+    dislipidemia_hf: Optional[bool] = None
+    cancer_hma: Optional[bool] = None
+    cancer_hf: Optional[bool] = None
+    osteoporose_hma: Optional[bool] = None
+    osteoporose_hf: Optional[bool] = None
+    depressao_hma: Optional[bool] = None
+    depressao_hf: Optional[bool] = None
+    sop_hma: Optional[bool] = None
+    sop_hf: Optional[bool] = None
     outras_patologias: Optional[str] = None
-    faz_uso_medicamentos: Optional[bool] = False
+    faz_uso_medicamentos: Optional[bool] = None
     medicamentos: Optional[str] = None
 
     # -------------------- Avaliação Antropométrica --------------------
@@ -113,12 +113,12 @@ class BaseAnamneseCreate(BaseModel):
     # -------------------- Dados Clínicos --------------------
     denticao: Optional[DenticaoEnum] = None
     mastigacao: Optional[MastigacaoEnum] = None
-    disfagia: Optional[bool] = False
-    odinofagia: Optional[bool] = False
-    dispepsia: Optional[bool] = False
-    nauseas: Optional[bool] = False
-    vomitos: Optional[bool] = False
-    flatulencia: Optional[bool] = False
+    disfagia: Optional[bool] = None
+    odinofagia: Optional[bool] = None
+    dispepsia: Optional[bool] = None
+    nauseas: Optional[bool] = None
+    vomitos: Optional[bool] = None
+    flatulencia: Optional[bool] = None
     ritmo_intestinal: Optional[RitmoIntestinal] = None
     ritmo_urinario: Optional[RitmoUrinario] = None
     pele: Optional[str] = None
@@ -133,12 +133,12 @@ class BaseAnamneseCreate(BaseModel):
     avaliacao_bioquimica: Optional[str] = None
 
     # -------------------- História Alimentar --------------------
-    possui_aversoes_alimentares: Optional[bool] = False
+    possui_aversoes_alimentares: Optional[bool] = None
     aversoes_alimentares: Optional[str] = None
-    possui_alergias_alimentares: Optional[bool] = False
+    possui_alergias_alimentares: Optional[bool] = None
     alergias_alimentares: Optional[str] = None
     ingestao_hidrica: Optional[str] = None
-    existe_horario_mais_fome: Optional[bool] = False
+    existe_horario_mais_fome: Optional[bool] = None
     horario_mais_fome: Optional[str] = None
     apetite: Optional[ApetiteEnum] = None
 

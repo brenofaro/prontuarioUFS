@@ -18,7 +18,6 @@ function BaseAnamneseForm() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showUpdateSuccessModal, setUpdateShowSuccessModal] = useState(false);
 
-
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
