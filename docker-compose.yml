@@ -18,8 +18,11 @@ services:
       - "${FRONTEND_PORT}:5173"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
+      - /app/.vite
     depends_on:
       - backend
+    user: "1000:1000"
 
   db:
     image: postgres:16
