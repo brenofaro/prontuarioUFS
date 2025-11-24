@@ -12,6 +12,8 @@ import ExameBioquimico from "./componentes/ExameBioquimico";
 const ReturnAnameseForm = () => {
   const { pacienteId, anamneseId } = useParams();
   const navigate = useNavigate();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showUpdateSuccessModal, setUpdateShowSuccessModal] = useState(false);
 
   const [formData, setFormData] = useState({});
 
@@ -52,102 +54,216 @@ const ReturnAnameseForm = () => {
 
       if (!response.ok) throw new Error("Erro ao salvar anamnese");
 
-      alert(
-        anamneseId
-          ? "Ficha de retorno atualizada!"
-          : "Ficha de retorno cadastrada!",
-      );
-      navigate(`/pagina-paciente/${pacienteId}`);
+      if (method === "PUT") {
+        setUpdateShowSuccessModal(true);
+        return;
+      }
+      setShowSuccessModal(true);
+
     } catch (error) {
       console.error(error);
       alert("Erro ao salvar anamnese.");
     }
   };
 
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+    navigate(`/pagina-paciente/${pacienteId}`);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setUpdateShowSuccessModal(false);
+    navigate(`/pagina-paciente/${pacienteId}`);
+  };
+
   return (
-    <div className="container mt-4 border rounded p-4 bg-light">
-      <form onSubmit={handleSubmit} className="p-3">
-        <h3
-          className="d-flex align-items-center"
-          style={{ fontFamily: "arial" }}
-        >
-          <FaArrowLeft
-            size={22}
-            className="me-2"
-            style={{ cursor: "pointer" }}
-            onClick={handleClick}
-          />
-
-          {anamneseId ? "Editar Ficha de retorno" : "Ficha de retorno"}
-        </h3>
-
-        <p
-          className="mt-5 mb-3 ms-1"
-          style={{ fontFamily: "arial", fontSize: "1.4rem" }}
-        >
-          Dados Iniciais
-        </p>
-        <DadosIniciaisReturn formData={formData} setFormData={setFormData} />
-
-        <h4
-          className="mt-5 mb-3"
-          style={{ fontFamily: "arial", fontSize: "1.4rem" }}
-        >
-          Dados Clínicos
-        </h4>
-        <DadosClinicos formData={formData} setFormData={setFormData} />
-
-        <h4
-          className="mt-5 mb-3"
-          style={{ fontFamily: "arial", fontSize: "1.4rem" }}
-        >
-          Inquérito de Retorno
-        </h4>
-        <InqueritoRetorno formData={formData} setFormData={setFormData} />
-
-        <h4
-          className="mt-5 mb-3"
-          style={{ fontFamily: "arial", fontSize: "1.4rem" }}
-        >
-          Exame Físico
-        </h4>
-        <ExameFisico formData={formData} setFormData={setFormData} />
-
-        <h4
-          className="mt-5 mb-3"
-          style={{ fontFamily: "arial", fontSize: "1.4rem" }}
-        >
-          Avaliação Antropométrica
-        </h4>
-        <AntropometricaReturn formData={formData} setFormData={setFormData} />
-
-        <h4
-          className="mt-5 mb-3"
-          style={{ fontFamily: "arial", fontSize: "1.4rem" }}
-        >
-          Exame Bioquímico
-        </h4>
-        <ExameBioquimico formData={formData} setFormData={setFormData} />
-
-        <div className="d-flex justify-content-between mt-4">
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={handleClick}
+    <>
+      <div className="container mt-4 border rounded p-4 bg-light">
+        <form onSubmit={handleSubmit} className="p-3">
+          <h3
+            className="d-flex align-items-center"
+            style={{ fontFamily: "arial" }}
           >
-            <i className="bi bi-arrow-left me-2"></i>
-            Voltar
-          </button>
+            <FaArrowLeft
+              size={22}
+              className="me-2"
+              style={{ cursor: "pointer" }}
+              onClick={handleClick}
+            />
 
-          <button
-            type="submit"
-            className="btn btn-success rounded-pill px-4 fw-semibold"
+            {anamneseId ? "Editar Ficha de retorno" : "Ficha de retorno"}
+          </h3>
+
+          <p
+            className="mt-5 mb-3 ms-1"
+            style={{ fontFamily: "arial", fontSize: "1.4rem" }}
           >
-            {anamneseId ? "Atualizar Ficha" : "Salvar Ficha"}
-          </button>
+            Dados Iniciais
+          </p>
+          <DadosIniciaisReturn formData={formData} setFormData={setFormData} />
+
+          <h4
+            className="mt-5 mb-3"
+            style={{ fontFamily: "arial", fontSize: "1.4rem" }}
+          >
+            Dados Clínicos
+          </h4>
+          <DadosClinicos formData={formData} setFormData={setFormData} />
+
+          <h4
+            className="mt-5 mb-3"
+            style={{ fontFamily: "arial", fontSize: "1.4rem" }}
+          >
+            Inquérito de Retorno
+          </h4>
+          <InqueritoRetorno formData={formData} setFormData={setFormData} />
+
+          <h4
+            className="mt-5 mb-3"
+            style={{ fontFamily: "arial", fontSize: "1.4rem" }}
+          >
+            Exame Físico
+          </h4>
+          <ExameFisico formData={formData} setFormData={setFormData} />
+
+          <h4
+            className="mt-5 mb-3"
+            style={{ fontFamily: "arial", fontSize: "1.4rem" }}
+          >
+            Avaliação Antropométrica
+          </h4>
+          <AntropometricaReturn formData={formData} setFormData={setFormData} />
+
+          <h4
+            className="mt-5 mb-3"
+            style={{ fontFamily: "arial", fontSize: "1.4rem" }}
+          >
+            Exame Bioquímico
+          </h4>
+          <ExameBioquimico formData={formData} setFormData={setFormData} />
+
+          <div className="d-flex justify-content-between mt-4">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={handleClick}
+            >
+              <i className="bi bi-arrow-left me-2"></i>
+              Voltar
+            </button>
+
+            <button
+              type="submit"
+              className="btn btn-success rounded-pill px-4 fw-semibold"
+            >
+              {anamneseId ? "Atualizar Ficha" : "Salvar Ficha"}
+            </button>
+          </div>
+        </form>
+      </div>
+      {showSuccessModal && (
+        <div
+          className="modal show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+          onClick={handleCloseModal}
+        >
+          <div
+            className="modal-dialog modal-dialog-centered"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-content border-0 shadow-lg">
+              <div className="modal-body text-center p-5">
+                <div className="mb-4">
+                  <div
+                    className="rounded-circle bg-success d-inline-flex align-items-center justify-content-center"
+                    style={{ width: "80px", height: "80px" }}
+                  >
+                    <svg
+                      width="48"
+                      height="48"
+                      fill="white"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <h4 className="text-success fw-bold mb-3">
+                  Ficha de Retorno Cadastrada!
+                </h4>
+                <p className="text-muted mb-4">
+                  O cadastro foi realizado com sucesso e já está disponível no
+                  sistema.
+                </p>
+
+                <div className="d-flex gap-3 justify-content-center">
+                  <button
+                    type="button"
+                    className="btn btn-primary px-4"
+                    onClick={handleCloseModal}
+                  >
+                    Ir para Lista
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+      )}
+      {showUpdateSuccessModal && (
+        <div
+          className="modal show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+          onClick={handleCloseModal}
+        >
+          <div
+            className="modal-dialog modal-dialog-centered"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-content border-0 shadow-lg">
+              <div className="modal-body text-center p-5">
+                <div className="mb-4">
+                  <div
+                    className="rounded-circle bg-success d-inline-flex align-items-center justify-content-center"
+                    style={{ width: "80px", height: "80px" }}
+                  >
+                    <svg
+                      width="48"
+                      height="48"
+                      fill="white"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <h4 className="text-success fw-bold mb-3">
+                  Ficha de Retorno Atualizada!
+                </h4>
+                <p className="text-muted mb-4">
+                  A atualização foi realizada com sucesso e já está disponível no
+                  sistema.
+                </p>
+
+                <div className="d-flex gap-3 justify-content-center">
+                  <button
+                    type="button"
+                    className="btn btn-primary px-4"
+                    onClick={handleCloseUpdateModal}
+                  >
+                    Ir para Lista
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -5,9 +5,7 @@ import os
 # Pega DATABASE_URL da variável de ambiente
 # Se não existir → usa SQLite local
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./prontuario.db")
-#DATABASE_URL="postgresql://rafael:1234@localhost:5432/prontuario"
 print("🟢 USANDO BANCO:", DATABASE_URL)
-
 
 # Detecta se o banco é PostgreSQL
 USING_POSTGRES = DATABASE_URL.startswith("postgresql")

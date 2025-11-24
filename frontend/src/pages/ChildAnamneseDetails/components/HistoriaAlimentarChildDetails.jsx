@@ -26,7 +26,6 @@ const HistoriaAlimentarChildDetails = ({ anamnese }) => {
           <div className="col-md-4">
             <div className="bg-white rounded-3 p-3">
               <div className="d-flex align-items-center mb-3">
-                {/* <i className="bi bi-lightning-charge text-warning me-2"></i> */}
                 <span className="text-muted me-2">
                   Aleitamento materno exclusivo:
                 </span>
@@ -53,7 +52,6 @@ const HistoriaAlimentarChildDetails = ({ anamnese }) => {
           <div className="col-md-4">
             <div className="bg-white rounded-3 p-3">
               <div className="d-flex align-items-center mb-3">
-                {/* <i className="bi bi-lightning-charge text-warning me-2"></i> */}
                 <span className="text-muted me-2">Ainda mama:</span>
                 <span
                   className={`badge ${anamnese.aleitamento_materno_exclusivo ? "bg-success" : "bg-secondary"}`}
@@ -80,12 +78,8 @@ const HistoriaAlimentarChildDetails = ({ anamnese }) => {
 
         <div className="row g-3 mb-4 ps-1">
           <div className="col-md-4">
-            {/* <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
-      Aversões alimentares
-    </h6> */}
             <div className="bg-light rounded-3 p-3">
               <div className="d-flex align-items-center mb-3">
-                {/* <i className="bi bi-lightning-charge text-warning me-2"></i> */}
                 <span className="text-muted me-2">
                   Possui aversões alimentares:
                 </span>
@@ -110,12 +104,8 @@ const HistoriaAlimentarChildDetails = ({ anamnese }) => {
           </div>
 
           <div className="col-md-4">
-            {/* <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
-      Alergias/Intolerâncias alimentares
-    </h6> */}
             <div className="bg-light rounded-3 p-3">
               <div className="d-flex align-items-center mb-3">
-                {/* <i className="bi bi-exclamation-circle text-warning me-2"></i> */}
                 <span className="text-muted me-2">
                   Possui alergias alimentares:
                 </span>
@@ -139,12 +129,8 @@ const HistoriaAlimentarChildDetails = ({ anamnese }) => {
             </div>
           </div>
           <div className="col-md-4">
-            {/* <h6 className="text-muted fw-semibold mb-3 small text-uppercase border-bottom pb-2">
-      Horário que sente mais fome
-    </h6> */}
             <div className="bg-light rounded-3 p-3">
               <div className="d-flex align-items-center mb-3">
-                {/* <i className="bi bi-exclamation-triangle text-danger me-2"></i> */}
                 <span className="text-muted me-2">
                   Existe horário que sente mais fome:
                 </span>
@@ -207,7 +193,6 @@ const HistoriaAlimentarChildDetails = ({ anamnese }) => {
 
         <div className="ps-2">
           <h6 className="text-muted fw-semibold mb-2 small text-uppercase">
-            {/* <i className="bi bi-clipboard-check me-2"></i> */}
             Diagnóstico nutricional conclusivo:
           </h6>
           <div className="p-3 bg-light rounded border-start border-secondary border-3">

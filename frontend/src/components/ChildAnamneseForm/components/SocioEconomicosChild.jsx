@@ -37,13 +37,6 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
     }));
   };
 
-  const toggleField = (fieldName) => {
-    setFormData((prev) => ({
-      ...prev,
-      [fieldName]: prev[fieldName] === "true" ? null : "true",
-    }));
-  };
-
   const toggleBooleanField = (fieldName, newValue) => {
     setFormData((prev) => ({
       ...prev,

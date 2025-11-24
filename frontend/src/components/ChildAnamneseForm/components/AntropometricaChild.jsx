@@ -39,9 +39,7 @@ const AntropometricaChild = ({ formData, setFormData }) => {
 
   return (
     <div className="mb-4 p-4 border rounded bg-white shadow-sm">
-      {/* SEÇÃO 1: Peso e Altura */}
       <div className="mb-4">
-        {/* <h6 className="text-secondary mb-3">Peso e Altura</h6> */}
         <div className="row g-3">
           <div className="col-md-3">
             <label className="form-label text-muted small">
@@ -117,7 +115,6 @@ const AntropometricaChild = ({ formData, setFormData }) => {
               value={formData.p_i || ""}
               onChange={handleChange}
             />
-            {/* <small className="text-info">Calculada por AJ ou manual</small> */}
           </div>
 
           <div className="col-md-3">
@@ -137,7 +134,6 @@ const AntropometricaChild = ({ formData, setFormData }) => {
         </div>
       </div>
 
-      {/* SEÇÃO 4: Diagnóstico */}
       <div className="mb-3">
         <label
           htmlFor="diagnostico_antropometrico"

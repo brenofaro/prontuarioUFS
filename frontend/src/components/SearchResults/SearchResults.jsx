@@ -9,13 +9,6 @@ const SearchResults = ({ results, loading }) => {
     navigate(`/pagina-paciente/${id}`);
   };
 
-  // Função para formatar CPF
-  const formatCPF = (cpf) => {
-    if (!cpf) return "-";
-    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-  };
-
-  // Ordenar pacientes por ordem alfabética
   const sortedResults = [...results].sort((a, b) => {
     const nomeA = a.nome?.toLowerCase() || "";
     const nomeB = b.nome?.toLowerCase() || "";
@@ -24,7 +17,6 @@ const SearchResults = ({ results, loading }) => {
 
   return (
     <div className="mt-4">
-      {/* Header com contador */}
       <div className="d-flex align-items-center justify-content-between mb-3">
         <div className="d-flex align-items-center">
           <i
@@ -42,9 +34,7 @@ const SearchResults = ({ results, loading }) => {
         )}
       </div>
 
-      {/* Container principal */}
       <div className="card border-0 shadow-sm rounded-3 overflow-hidden">
-        {/* Estado de loading */}
         {loading ? (
           <div className="text-center py-5">
             <div
@@ -58,7 +48,6 @@ const SearchResults = ({ results, loading }) => {
           </div>
         ) : sortedResults.length > 0 ? (
           <>
-            {/* Grid de cards */}
             <div
               className="p-3 overflow-y-auto fina"
               style={{ maxHeight: "400px" }}
@@ -72,7 +61,6 @@ const SearchResults = ({ results, loading }) => {
                       onClick={() => handleClick(result.id)}
                     >
                       <div className="card-body p-3">
-                        {/* Avatar e nome */}
                         <div className="d-flex align-items-center mb-3">
                           <div
                             className="bg-secondary bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center fw-bold flex-shrink-0"
@@ -105,7 +93,6 @@ const SearchResults = ({ results, loading }) => {
                           </div>
                         </div>
 
-                        {/* Informações */}
                         <div className="mb-2">
                           <div className="d-flex align-items-center text-muted small mb-2">
                             <i
@@ -130,7 +117,6 @@ const SearchResults = ({ results, loading }) => {
                           </div>
                         </div>
 
-                        {/* Ação */}
                         <div className="pt-2 border-top mt-3">
                           <div className="d-flex align-items-center justify-content-between">
                             <small className="text-primary fw-medium">
@@ -147,7 +133,6 @@ const SearchResults = ({ results, loading }) => {
             </div>
           </>
         ) : (
-          // Estado vazio
           <div className="text-center py-5">
             <div className="mb-3">
               <i
