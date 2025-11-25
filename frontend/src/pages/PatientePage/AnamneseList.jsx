@@ -10,6 +10,7 @@ const AnamneseList = () => {
   const [anamnesesChild, setAnamnesesChild] = useState([]);
   const [returnAnamnese, setReturnAnamnese] = useState([]);
   const [foodPlan, setFoodPlan] = useState([]);
+  const [recordatory, setRecordatory] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -63,7 +64,8 @@ const AnamneseList = () => {
     base: (id) => `/detalhes-anamnese/${id}`,
     child: (id) => `/detalhes-child-anamnese/${id}`,
     retorno: (id) => `/detalhes-return-anamnese/${id}`,
-    plano: (id) => `/detalhes-food-plan/${id}`, // NOVO
+    plano: (id) => `/detalhes-food-plan/${id}`, 
+    recordatorio: (id) => `/detalhes-recordatory/${id}`,
   };
 
   const editarRotas = {
@@ -77,14 +79,17 @@ const AnamneseList = () => {
       `/anamnese-retorno/editar/${pacienteId}/${anamneseId}`,
 
     plano: (pacienteId, anamneseId) =>
-      `/food-plan/editar/${pacienteId}/${anamneseId}`, // NOVO
+      `/food-plan/editar/${pacienteId}/${anamneseId}`, 
+    recordatorio: (pacienteId, anamneseId) =>
+      `/recordatory/editar/${pacienteId}/${anamneseId}`,
   };
 
   const deleteEndpoints = {
     base: (id) => `http://localhost:8080/base-anamneses/${id}`,
     child: (id) => `http://localhost:8080/child-anamneses/${id}`,
     retorno: (id) => `http://localhost:8080/return-anamneses/${id}`,
-    plano: (id) => `http://localhost:8080/food-plans/${id}`, // NOVO
+    plano: (id) => `http://localhost:8080/food-plans/${id}`, 
+    recordatorio: (id) => `http://localhost:8080/recordatorys/${id}`,
   };
 
   const handleOpenConfirm = (item) => {
@@ -112,7 +117,9 @@ const AnamneseList = () => {
         setReturnAnamnese((prev) => prev.filter((a) => a.id !== registroId));
       else if (tipo === "plano")
         setFoodPlan((prev) => prev.filter((a) => a.id !== registroId));
-
+      else if (tipo === "recordatorio")
+        setRecordatory((prev) => prev.filter((a) => a.id !== registroId));
+        
       setShowSuccess(true);
     } catch (err) {
       alert("Erro ao excluir.");
@@ -122,25 +129,28 @@ const AnamneseList = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [baseRes, childRes, returnRes, planRes] = await Promise.all([
+        const [baseRes, childRes, returnRes, planRes, recordatoryRes] = await Promise.all([
           fetch(`http://localhost:8080/base-anamneses/paciente/${id}`),
           fetch(`http://localhost:8080/child-anamneses/paciente/${id}`),
           fetch(`http://localhost:8080/return-anamneses/paciente/${id}`),
           fetch(`http://localhost:8080/food-plans/paciente/${id}`),
+          fetch(`http://localhost:8080/recordatorys/paciente/${id}`),
         ]);
 
-        if (!baseRes.ok || !childRes.ok || !returnRes.ok || !planRes.ok)
+        if (!baseRes.ok || !childRes.ok || !returnRes.ok || !planRes.ok || !recordatoryRes.ok)
           throw new Error("Erro ao carregar dados");
 
         const baseData = await baseRes.json();
         const childData = await childRes.json();
         const retornoData = await returnRes.json();
         const planData = await planRes.json();
+        const recordatoryData = await recordatoryRes.json();
 
         setAnamnesesBase(baseData.map((d) => ({ ...d, tipo: "base" })));
         setAnamnesesChild(childData.map((d) => ({ ...d, tipo: "child" })));
         setReturnAnamnese(retornoData.map((d) => ({ ...d, tipo: "retorno" })));
         setFoodPlan(planData.map((d) => ({ ...d, tipo: "plano" })));
+        setRecordatory(recordatoryData.map((d) => ({ ...d, tipo: "recordatorio" })));
       } catch (err) {
         console.log(err);
         setError(err.message);
@@ -166,6 +176,7 @@ const AnamneseList = () => {
     ...anamnesesChild,
     ...returnAnamnese,
     ...foodPlan,
+    ...recordatory,
   ];
 
   return (
@@ -198,35 +209,40 @@ const AnamneseList = () => {
               style={{ background: "#f8f9fa" }}
             >
               <div className="bg-light rounded-3 p-3 border-start border-primary border-4">
-                <div className="row g-2">
-                  <div className="col-md-12">
-                    <small className="text-muted d-block">Data</small>
-                    <span className="text-dark small ">
-                      {formatarData(
-                        item.data_consulta || item.data_plano_alimentar,
-                      )}
-                    </span>
-                  </div>
+               <div className="row g-2">
 
-                  <div className="col-md-12">
-                    <small className="text-muted d-block">Nutricionista</small>
-                    <span className="text-dark small ">
-                      {item.nutricionista_responsavel}
-                    </span>
-                  </div>
+                  {/* DATA */}
+                  {(item.data_consulta || item.data_plano_alimentar) && (
+                    <div className="col-md-12">
+                      <small className="text-muted d-block">Data</small>
+                      <span className="text-dark small">
+                        {formatarData(item.data_consulta || item.data_plano_alimentar)}
+                      </span>
+                    </div>
+                  )}
 
-                  <div className="col-md-6">
-                    <small className="text-muted d-block">Tipo</small>
-                    <span className="text-dark small ">
-                      {item.tipo_registro}
-                    </span>
-                  </div>
+                  {/* NUTRICIONISTA */}
+                  {item.nutricionista_responsavel && (
+                    <div className="col-md-12">
+                      <small className="text-muted d-block">Nutricionista</small>
+                      <span className="text-dark small">
+                        {item.nutricionista_responsavel}
+                      </span>
+                    </div>
+                  )}
 
-                  {/* <div className="col">
-                    <small className="text-muted d-block">Categoria</small>
-                    <span className="text-dark small ">{item.tipo}</span>
-                  </div> */}
+                  {/* TIPO */}
+                  {item.tipo_registro && (
+                    <div className="col-md-6">
+                      <small className="text-muted d-block">Tipo</small>
+                      <span className="text-dark small">
+                        {item.tipo_registro}
+                      </span>
+                    </div>
+                  )}
+
                 </div>
+
               </div>
 
               <Dropdown align="end">

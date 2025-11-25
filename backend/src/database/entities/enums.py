@@ -66,4 +66,7 @@ class GrauImcEnum(str, Enum):
     obesidade_grau_ii = "obesidade_grau_ii"
     obesidade_grau_iii = "obesidade_grau_iii"
 
+class RecordatorioEnum(str, Enum):
+    vinte_quatro_horas = "vinte_quatro_horas"
+    habitual = "habitual"
 

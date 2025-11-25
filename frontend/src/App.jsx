@@ -11,6 +11,7 @@ import RecordatoryForm from "./components/RecordatoryForm/RecordatoryForm.jsx";
 import ChildAnamneseDetails from "./pages/ChildAnamneseDetails/ChildAnamneseDetails.jsx";
 import ReturnAnamneseDetails from "./pages/ReturnAnamneseDetails/ReturnAnamneseDetails.jsx";
 import FoodPlanDetails from "./pages/FoodPlanDetails.jsx/FoodPlanDetails.jsx";
+import RecordatoryDetails from "./pages/RecordatoryDetails.jsx/RecordatoryDetails.jsx";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -57,7 +58,14 @@ function App() {
         path="/detalhes-return-anamnese/:id"
         element={<ReturnAnamneseDetails />}
       />
-      <Route path="/detalhes-food-plan/:id" element={<FoodPlanDetails />} />
+      <Route 
+        path="/detalhes-food-plan/:id" 
+        element={<FoodPlanDetails />} 
+      />
+      <Route 
+        path="/detalhes-recordatory/:id" 
+        element={<RecordatoryDetails />} 
+      />
 
       {/* EDITAR */}
       <Route
@@ -75,6 +83,10 @@ function App() {
       <Route
         path="/food-plan/editar/:pacienteId/:anamneseId"
         element={<FoodPlanForm />}
+      />
+      <Route
+        path="/recordatory/editar/:pacienteId/:anamneseId"
+        element={<RecordatoryForm />}
       />
     </Routes>
   );

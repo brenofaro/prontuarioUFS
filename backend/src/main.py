@@ -8,7 +8,8 @@ from src.routes import (
     base_anamnese_route,
     child_anamnese_route,
     return_anamnese_route,
-    food_plan_route
+    food_plan_route,
+    recordatory_route
 )
 
 from src.database.connection import Base, engine
@@ -36,3 +37,4 @@ app.include_router(base_anamnese_route.router)
 app.include_router(child_anamnese_route.router)
 app.include_router(return_anamnese_route.router)
 app.include_router(food_plan_route.router)
+app.include_router(recordatory_route.router)

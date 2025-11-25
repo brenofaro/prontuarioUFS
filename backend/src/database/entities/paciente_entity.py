@@ -32,4 +32,5 @@ class Paciente(Base):
     child_anamneses = relationship("ChildAnamnese", back_populates="paciente", cascade="all, delete")
     return_anamneses = relationship("ReturnAnamnese", back_populates="paciente", cascade="all, delete")
     food_plans = relationship("FoodPlan", back_populates="paciente")
+    recordatory = relationship("Recordatory", back_populates="paciente")
 
