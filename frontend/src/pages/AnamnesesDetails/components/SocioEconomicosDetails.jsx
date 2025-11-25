@@ -59,9 +59,11 @@ const SocioEconomicosDetails = ({ anamnese }) => {
                     Atividade em casa
                   </small>
                   <span className="fw-medium">
-                    {anamnese.faz_atividade_dentro_casa
-                      ? anamnese.atividade_dentro_casa
-                      : "Não Exerce"}
+                    {anamnese.faz_atividade_dentro_casa === true
+                      ? anamnese.atividade_dentro_casa || ""
+                      : anamnese.faz_atividade_dentro_casa === false
+                      ? "Não Exerce"
+                      : ""}
                   </span>
                 </div>
               </div>
@@ -86,12 +88,6 @@ const SocioEconomicosDetails = ({ anamnese }) => {
                       {anamnese.amigos && <li className="mb-2">Amigos</li>}
                     </ul>
 
-                    {/* {!anamnese.diabetes_hma && !anamnese.hipertencao_hma && 
-         !anamnese.doenca_cardiovascular_hma && !anamnese.dislipidemia_hma &&
-         !anamnese.cancer_hma && !anamnese.osteoporose_hma && 
-         !anamnese.depressao_hma && !anamnese.sop_hma && (
-          <span className="text-muted fst-italic">Nenhuma patologia atual</span>
-        )} */}
                   </div>
                 </div>
                 <div className="col-md-6 mb-3">
@@ -110,7 +106,7 @@ const SocioEconomicosDetails = ({ anamnese }) => {
                 <div className="flex-grow-1">
                   <small className="text-muted d-block">Renda Pessoal</small>
                   <span className="fw-medium">
-                    R$ {anamnese.renda_pessoal || "-"}
+                   {anamnese.renda_pessoal || "-"}
                   </span>
                 </div>
               </div>
@@ -122,7 +118,7 @@ const SocioEconomicosDetails = ({ anamnese }) => {
                     Gastos com Alimentação
                   </small>
                   <span className="fw-medium">
-                    R$ {anamnese.gastos_alimentacao || "-"}
+                   {anamnese.gastos_alimentacao || "-"}
                   </span>
                 </div>
               </div>

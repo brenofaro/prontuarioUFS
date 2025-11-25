@@ -253,15 +253,30 @@ const SaudeDetails = ({ anamnese }) => {
                   </table>
                 </div>
 
-                {/* {!anamnese.diabetes_hma &&
+                {
+                  !anamnese.diabetes_hma &&
                   !anamnese.diabetes_hf &&
                   !anamnese.hipertencao_hma &&
-                  !anamnese.hipertencao_hf && (
+                  !anamnese.hipertencao_hf &&
+                  !anamnese.doenca_cardiovascular_hma &&
+                  !anamnese.doenca_cardiovascular_hf &&
+                  !anamnese.dislipidemia_hma &&
+                  !anamnese.dislipidemia_hf &&
+                  !anamnese.cancer_hma &&
+                  !anamnese.cancer_hf &&
+                  !anamnese.osteoporose_hma &&
+                  !anamnese.osteoporose_hf &&
+                  !anamnese.depressao_hma &&
+                  !anamnese.depressao_hf &&
+                  !anamnese.sop_hma &&
+                  !anamnese.sop_hf &&
+                  (
                     <div className="alert alert-info">
                       <i className="bi bi-info-circle me-2"></i>
                       Nenhuma patologia registrada
                     </div>
-                  )} */}
+                  )
+                }
               </div>
             </div>
           </div>
@@ -291,7 +306,6 @@ const SaudeDetails = ({ anamnese }) => {
             </h6>
             <div className="bg-light rounded-3 p-3">
               <div className="d-flex align-items-center mb-3">
-                <i className="bi bi-lightning-charge text-warning me-2"></i>
                 <span className="text-muted me-2">Faz uso Atualmente:</span>
                 <span
                   className={`badge ${anamnese.faz_uso_medicamentos ? "bg-success" : "bg-secondary"}`}

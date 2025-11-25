@@ -277,15 +277,32 @@ const SaudeChildDetails = ({ anamnese }) => {
                   </table>
                 </div>
 
-                {!anamnese.diabetes_hma &&
+                {
+                  !anamnese.diabetes_hma &&
                   !anamnese.diabetes_hf &&
                   !anamnese.hipertencao_hma &&
-                  !anamnese.hipertencao_hf && (
-                    /* ... outros checks ... */ <div className="alert alert-info">
+                  !anamnese.hipertencao_hf &&
+                  !anamnese.doenca_cardiovascular_hma &&
+                  !anamnese.doenca_cardiovascular_hf &&
+                  !anamnese.dislipidemia_hma &&
+                  !anamnese.dislipidemia_hf &&
+                  !anamnese.cancer_hma &&
+                  !anamnese.cancer_hf &&
+                  !anamnese.osteoporose_hma &&
+                  !anamnese.osteoporose_hf &&
+                  !anamnese.depressao_hma &&
+                  !anamnese.depressao_hf &&
+                  !anamnese.parasitoses_hma &&
+                  !anamnese.parasitoses_hf &&
+                  !anamnese.drge_hma &&
+                  !anamnese.drge_hf && (
+                    <div className="alert alert-info">
                       <i className="bi bi-info-circle me-2"></i>
                       Nenhuma patologia registrada
                     </div>
-                  )}
+                  )
+                }
+
               </div>
             </div>
           </div>

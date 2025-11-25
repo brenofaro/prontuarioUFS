@@ -68,7 +68,11 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Odinofagia:</small>
               <span className="fw-medium">
-                {anamnese.odinofagia === true ? "Sim" : "Não"}
+                {anamnese.odinofagia === true
+                  ? "Sim"
+                  : anamnese.odinofagia === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -76,7 +80,11 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Dispepsia:</small>
               <span className="fw-medium">
-                {anamnese.dispepsia === true ? "Sim" : "Não"}
+                {anamnese.dispepsia === true
+                  ? "Sim"
+                  : anamnese.dispepsia === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -84,7 +92,11 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Náuseas:</small>
               <span className="fw-medium">
-                {anamnese.nauseas === true ? "Sim" : "Não"}
+                {anamnese.nauseas === true
+                  ? "Sim"
+                  : anamnese.nauseas === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -92,7 +104,11 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Vômitos:</small>
               <span className="fw-medium">
-                {anamnese.vomitos === true ? "Sim" : "Não"}
+                {anamnese.vomitos === true
+                  ? "Sim"
+                  : anamnese.vomitos === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>

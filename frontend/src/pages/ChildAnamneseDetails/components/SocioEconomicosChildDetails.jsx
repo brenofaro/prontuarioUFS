@@ -70,48 +70,6 @@ const SocioEconomicosChildDetails = ({ anamnese }) => {
               </div>
             </div>
 
-            <div className="">
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="d-flex align-items-start">
-                    <div className="flex-grow-1">
-                      <small className="text-muted d-block">
-                        Ocupação da responsável
-                      </small>
-                      <span className="fw-medium">
-                        {anamnese.ocupacao_responsavel || "-"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-md-4">
-                  <div className="d-flex align-items-start">
-                    <div className="flex-grow-1">
-                      <small className="text-muted d-block">
-                        Renda Pessoal
-                      </small>
-                      <span className="fw-medium">
-                        R$ {anamnese.renda_pessoal || "-"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="d-flex align-items-start">
-                    <div className="flex-grow-1">
-                      <small className="text-muted d-block">
-                        Gastos com Alimentação
-                      </small>
-                      <span className="fw-medium">
-                        R$ {anamnese.gastos_alimentacao || "-"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className="col-md-4">
               <div className="d-flex align-items-start">
                 <div className="flex-grow-1">
@@ -234,6 +192,47 @@ const SocioEconomicosChildDetails = ({ anamnese }) => {
             </div>
           </div>
         </div>
+        <div className="">
+              <div className="row">
+                <div className="col-md-4">
+                  <div className="d-flex align-items-start">
+                    <div className="flex-grow-1">
+                      <small className="text-muted d-block">
+                        Ocupação da responsável
+                      </small>
+                      <span className="fw-medium">
+                        {anamnese.ocupacao_responsavel || "-"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-md-4">
+                  <div className="d-flex align-items-start">
+                    <div className="flex-grow-1">
+                      <small className="text-muted d-block">
+                        Renda Pessoal
+                      </small>
+                      <span className="fw-medium">
+                        {anamnese.renda_pessoal || "-"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="d-flex align-items-start">
+                    <div className="flex-grow-1">
+                      <small className="text-muted d-block">
+                        Gastos com Alimentação
+                      </small>
+                      <span className="fw-medium">
+                        {anamnese.gastos_alimentacao || "-"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
       </Card.Body>
     </div>
   );
