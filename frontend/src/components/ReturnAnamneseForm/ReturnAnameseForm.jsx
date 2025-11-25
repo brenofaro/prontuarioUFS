@@ -80,8 +80,8 @@ const ReturnAnameseForm = () => {
 
   return (
     <>
-      <div className="container mt-4 border rounded p-4 bg-light">
-        <form onSubmit={handleSubmit} className="p-3">
+      <div className="container mt-0 border-none rounded bg-white">
+        <form onSubmit={handleSubmit} className="pt-3 pb-3">
           <h3
             className="d-flex align-items-center"
             style={{ fontFamily: "arial" }}
@@ -97,7 +97,7 @@ const ReturnAnameseForm = () => {
           </h3>
 
           <p
-            className="mt-5 mb-3 ms-1"
+            className="mt-4 mb-3 ms-1"
             style={{ fontFamily: "arial", fontSize: "1.4rem" }}
           >
             Dados Iniciais

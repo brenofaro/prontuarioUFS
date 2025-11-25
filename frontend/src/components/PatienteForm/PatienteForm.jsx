@@ -85,7 +85,6 @@ function PatienteForm() {
   };
 
   const API_URL = import.meta.env.VITE_API_URL;
-  console.log(import.meta.env.VITE_API_URL);
   
   useEffect(() => {
     if (pacienteId) {
@@ -163,10 +162,10 @@ function PatienteForm() {
 
   return (
     <>
-      <div className="container mt-4 bg-white" style={{ maxWidth: "900px" }}>
-        <div className="card shadow-sm border-0 rounded p-4 bg-light">
+      <div className="container mt-4 bg-white" style={{ maxWidth: "80%" }}>
+        <div className="card shadow-sm border-0 rounded p-4 bg-white">
           <div className="d-flex align-items-center mb-4">
-            <div className="bg-light rounded-circle p-2 me-2">
+            <div className="bg-white rounded-circle p-2 me-2">
               <i className="bi bi-person-circle fs-2 text-dark"></i>
             </div>
             <h4 className="mb-0 text-dark" style={{ fontFamily: "arial" }}>
@@ -182,10 +181,11 @@ function PatienteForm() {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${errors.nome ? "is-invalid" : ""}`}
+                  className={`form-control form-control-sm ${errors.nome ? "is-invalid" : ""}`}
                   name="nome"
                   value={formData.nome}
                   onChange={handleChange}
+                  style={{width:"300px"}}
                   placeholder=""
                 />
                 {errors.nome && (
@@ -196,10 +196,11 @@ function PatienteForm() {
                 <label className="form-label text-muted small">Endereço</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="endereco"
                   value={formData.endereco}
                   onChange={handleChange}
+                  style={{width:"300px"}}
                   placeholder=""
                 />
               </div>
@@ -210,12 +211,13 @@ function PatienteForm() {
                 <label className="form-label text-muted small">Telefone</label>
                 <input
                   type="text"
-                  className={`form-control ${errors.telefone ? "is-invalid" : ""}`}
+                  className={`form-control form-control-sm ${errors.telefone ? "is-invalid" : ""}`}
                   name="telefone"
                   value={formData.telefone}
                   onChange={handleChange}
                   placeholder="(79) 99999-9999"
                   maxLength="15"
+                  style={{width:"120px"}}
                 />
                 {errors.telefone && (
                   <div className="invalid-feedback">{errors.telefone}</div>
@@ -228,10 +230,11 @@ function PatienteForm() {
                 </label>
                 <input
                   type="date"
-                  className={`form-control ${errors.data_nascimento ? "is-invalid" : ""}`}
+                  className={`form-control form-control-sm ${errors.data_nascimento ? "is-invalid" : ""}`}
                   name="data_nascimento"
                   value={formData.data_nascimento}
                   onChange={handleChange}
+                  style={{width:"130px"}}
                   max={new Date().toISOString().split("T")[0]}
                 />
                 {idade !== null && idade >= 0 && (
