@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
+from src.database.entities.paciente_entity import Paciente
+from fastapi.responses import StreamingResponse
 
 from src.models.food_plan_model import FoodPlanCreate, FoodPlanResponse
 from src.services.food_plan_service import (
@@ -68,23 +70,28 @@ async def deletar(id: int, db: Session = Depends(get_db)):
 # GERAR PDF
 @router.get("/{id}/pdf")
 async def gerar_pdf(id: int, db: Session = Depends(get_db)):
+    # Buscar plano
     plano = await buscar_food_plan(id, db)
-
     if not plano:
         raise HTTPException(status_code=404, detail="Plano alimentar não encontrado")
+
+    # Buscar paciente para pegar o nome
+    paciente = db.query(Paciente).filter(Paciente.id == plano.paciente_id).first()
+    if not paciente:
+        raise HTTPException(status_code=404, detail="Paciente não encontrado")
 
     # Converter para dict
     plano_dict = plano.__dict__.copy()
     plano_dict.pop("_sa_instance_state", None)
 
-    # Gerar PDF
-    buffer = gerar_pdf_food_plan(plano_dict)
+    # Gerar PDF com nome do paciente incluído
+    buffer = gerar_pdf_food_plan(plano_dict, paciente.nome)
 
-    # Enviar arquivo
-    return Response(
-        content=buffer.getvalue(),
+    # Enviar PDF como streaming (melhor para arquivos)
+    return StreamingResponse(
+        buffer,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": f"attachment; filename=plano_{id}.pdf"
+            "Content-Disposition": f"inline; filename=plano_{paciente.nome}.pdf"
         }
     )
