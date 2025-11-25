@@ -72,7 +72,7 @@ const AntropometricaChildDetails = ({ anamnese }) => {
           </h6>
           <div className="p-3 bg-light rounded border-start border-success border-3">
             <p
-              className="mb-0 text-muted fst-italic"
+              className="mb-0 text-muted"
               style={{
                 whiteSpace: "pre-wrap",
                 lineHeight: "1.6",

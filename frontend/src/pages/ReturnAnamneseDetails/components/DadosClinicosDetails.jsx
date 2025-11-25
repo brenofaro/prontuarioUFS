@@ -21,7 +21,7 @@ const DadosClinicosDetails = ({ anamnese }) => {
           className="mb-4 border-bottom pb-2"
           style={{ fontFamily: "arial" }}
         >
-          Sinais e sintomas clínicos:
+          Dados Clínicos:
         </Card.Title>
 
         <div className="row g-3 ps-1">
@@ -31,7 +31,7 @@ const DadosClinicosDetails = ({ anamnese }) => {
             </h6>
             <div className="p-3 bg-light rounded border-start border-success border-3">
               <p
-                className="mb-0 text-dark"
+                className="mb-0 text-muted"
                 style={{
                   whiteSpace: "pre-wrap",
                   lineHeight: "1.6",
@@ -51,7 +51,7 @@ const DadosClinicosDetails = ({ anamnese }) => {
             </h6>
             <div className="p-3 bg-light rounded border-start border-success border-3">
               <p
-                className="mb-0 text-dark"
+                className="mb-0 text-muted"
                 style={{
                   whiteSpace: "pre-wrap",
                   lineHeight: "1.6",
@@ -71,7 +71,7 @@ const DadosClinicosDetails = ({ anamnese }) => {
             </h6>
             <div className="p-3 bg-light rounded border-start border-success border-3 mb-3">
               <p
-                className="mb-0 text-dark"
+                className="mb-0 text-muted"
                 style={{
                   whiteSpace: "pre-wrap",
                   lineHeight: "1.6",
@@ -148,7 +148,11 @@ const DadosClinicosDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Odinofagia:</small>
               <span className="fw-medium">
-                {anamnese.odinofagia === true ? "Sim" : "Não"}
+                {anamnese.odinofagia === true
+                  ? "Sim"
+                  : anamnese.odinofagia === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -156,7 +160,11 @@ const DadosClinicosDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Dispepsia:</small>
               <span className="fw-medium">
-                {anamnese.dispepsia === true ? "Sim" : "Não"}
+                {anamnese.dispepsia === true
+                  ? "Sim"
+                  : anamnese.dispepsia === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -164,7 +172,11 @@ const DadosClinicosDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Náuseas:</small>
               <span className="fw-medium">
-                {anamnese.nauseas === true ? "Sim" : "Não"}
+                {anamnese.nauseas === true
+                  ? "Sim"
+                  : anamnese.nauseas === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -172,7 +184,11 @@ const DadosClinicosDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Vômitos:</small>
               <span className="fw-medium">
-                {anamnese.vomitos === true ? "Sim" : "Não"}
+                {anamnese.vomitos === true
+                  ? "Sim"
+                  : anamnese.vomitos === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -180,7 +196,11 @@ const DadosClinicosDetails = ({ anamnese }) => {
             <div className="flex-grow-1">
               <small className="text-muted d-block">Flatulência:</small>
               <span className="fw-medium">
-                {anamnese.flatulencia === true ? "Sim" : "Não"}
+                {anamnese.flatulencia === true
+                  ? "Sim"
+                  : anamnese.flatulencia === false
+                    ? "Não"
+                    : ""}
               </span>
             </div>
           </div>
@@ -215,9 +235,9 @@ const DadosClinicosDetails = ({ anamnese }) => {
             <h6 className="text-muted fw-semibold mb-2 small text-uppercase mt-4">
               Outros dados clínicos:
             </h6>
-            <div className="p-3 bg-light rounded border-start border-info border-3">
+            <div className="p-3 bg-light rounded border-start border-success border-3">
               <p
-                className="mb-0 text-dark"
+                className="mb-0 text-muted"
                 style={{
                   whiteSpace: "pre-wrap",
                   lineHeight: "1.6",

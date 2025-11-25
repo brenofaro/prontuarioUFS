@@ -182,9 +182,9 @@ const tableDetails = ({ anamnese }) => {
           <h6 className="text-muted fw-semibold mb-2 small text-uppercase">
             Observações:
           </h6>
-          <div className="p-3 bg-light rounded border-start border-secondary border-3">
+          <div className="p-3 bg-light rounded border-start border-success border-3">
             <p
-              className="mb-0 text-dark"
+              className="mb-0 text-muted"
               style={{
                 whiteSpace: "pre-wrap",
                 lineHeight: "1.6",
