@@ -20,7 +20,7 @@ function ChildAnamneseForm() {
 
   useEffect(() => {
     if (anamneseId) {
-      fetch(`http://localhost:8080/child-anamneses/${anamneseId}`)
+      fetch(`${API_URL}/child-anamneses/${anamneseId}`)
         .then((res) => res.json())
         .then((data) => {
           setFormData(data);
@@ -33,12 +33,14 @@ function ChildAnamneseForm() {
     navigate(`/pagina-paciente/${pacienteId}`);
   };
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const url = anamneseId
-      ? `http://localhost:8080/child-anamneses/${anamneseId}`
-      : `http://localhost:8080/child-anamneses/cadastrar`;
+      ? `${API_URL}/child-anamneses/${anamneseId}`
+      : `${API_URL}/child-anamneses/cadastrar`;
 
     const method = anamneseId ? "PUT" : "POST";
 

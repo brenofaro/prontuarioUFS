@@ -84,9 +84,12 @@ function PatienteForm() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log(import.meta.env.VITE_API_URL);
+  
   useEffect(() => {
     if (pacienteId) {
-      fetch(`http://localhost:8080/pacientes/${pacienteId}`)
+      fetch(`${API_URL}/pacientes/${pacienteId}`)
         .then((res) => res.json())
         .then((data) => {
           setFormData(data);
@@ -103,8 +106,8 @@ function PatienteForm() {
     }
 
     const url = pacienteId
-      ? `http://localhost:8080/pacientes/${pacienteId}`
-      : `http://localhost:8080/pacientes/cadastrar`;
+      ? `${API_URL}/pacientes/${pacienteId}`
+      : `${API_URL}/pacientes/cadastrar`;
 
     const method = pacienteId ? "PUT" : "POST";
 
@@ -160,10 +163,10 @@ function PatienteForm() {
 
   return (
     <>
-      <div className="container mt-4">
-        <div className="card shadow-sm border-0 rounded p-4 bg-white">
+      <div className="container mt-4 bg-white" style={{ maxWidth: "900px" }}>
+        <div className="card shadow-sm border-0 rounded p-4 bg-light">
           <div className="d-flex align-items-center mb-4">
-            <div className="bg-white rounded-circle p-2 me-2">
+            <div className="bg-light rounded-circle p-2 me-2">
               <i className="bi bi-person-circle fs-2 text-dark"></i>
             </div>
             <h4 className="mb-0 text-dark" style={{ fontFamily: "arial" }}>
@@ -174,8 +177,8 @@ function PatienteForm() {
           <form onSubmit={handleSubmit}>
             <div className="row mb-4">
               <div className="col-md-6">
-                <label className="form-label">
-                  Nome <span className="text-dark">*</span>
+                <label className="form-label text-muted small">
+                  Nome
                 </label>
                 <input
                   type="text"
@@ -190,7 +193,7 @@ function PatienteForm() {
                 )}
               </div>
               <div className="col-md-6 mb-4">
-                <label className="form-label">Endereço</label>
+                <label className="form-label text-muted small">Endereço</label>
                 <input
                   type="text"
                   className="form-control"
@@ -203,8 +206,8 @@ function PatienteForm() {
 
               
 
-              <div className="col-md-2">
-                <label className="form-label">Telefone</label>
+              <div className="col-md-6">
+                <label className="form-label text-muted small">Telefone</label>
                 <input
                   type="text"
                   className={`form-control ${errors.telefone ? "is-invalid" : ""}`}
@@ -219,9 +222,9 @@ function PatienteForm() {
                 )}
               </div>
 
-             <div className="col-md-2">
-                <label className="form-label">
-                  Data de Nascimento <span className="text-dark">*</span>
+             <div className="col-md-6">
+                <label className="form-label text-muted small">
+                  Data de Nascimento
                 </label>
                 <input
                   type="date"

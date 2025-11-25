@@ -10,10 +10,12 @@ function SearchPanel() {
     fetchAllPacientes();
   }, []);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const fetchAllPacientes = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/pacientes");
+      const response = await fetch(`${API_URL}/pacientes`);
       if (!response.ok) throw new Error(`Erro: ${response.status}`);
 
       const data = await response.json();
@@ -41,7 +43,7 @@ function SearchPanel() {
         ? `cpf=${encodeURIComponent(cleaned)}`
         : `nome=${encodeURIComponent(query)}`;
 
-      const url = `http://localhost:8080/pacientes/buscar/?${param}`;
+      const url = `${API_URL}/pacientes/buscar/?${param}`;
 
       console.log("Buscando em:", url);
 

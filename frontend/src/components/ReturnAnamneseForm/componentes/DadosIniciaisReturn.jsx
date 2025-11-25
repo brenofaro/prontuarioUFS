@@ -39,10 +39,15 @@ const DadosIniciaisReturn = ({ formData, setFormData }) => {
 
           <div className="custom-input-wrapper">
             <input
-              type="text"
+              type="number"
               className="custom-input"
               id="numero_prontuario"
               placeholder=""
+              onKeyDown={(e) => {
+                if (["e", "E", "+", "-", "."].includes(e.key)) {
+                  e.preventDefault();
+                }
+              }}
               value={formData.numero_prontuario}
               onChange={(e) =>
                 setFormData({
@@ -50,7 +55,6 @@ const DadosIniciaisReturn = ({ formData, setFormData }) => {
                   numero_prontuario: e.target.value,
                 })
               }
-              required
             />
           </div>
         </div>

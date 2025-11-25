@@ -39,18 +39,22 @@ const DadosIniciais = ({ formData, setFormData }) => {
 
           <div className="custom-input-wrapper">
             <input
-              type="text"
+              type="number"
               className="custom-input"
               id="numero_prontuario"
               placeholder=""
               value={formData.numero_prontuario}
+              onKeyDown={(e) => {
+                if (["e", "E", "+", "-", "."].includes(e.key)) {
+                  e.preventDefault();
+                }
+              }}
               onChange={(e) =>
                 setFormData({
                   ...formData,
                   numero_prontuario: e.target.value,
                 })
               }
-              required
             />
           </div>
         </div>

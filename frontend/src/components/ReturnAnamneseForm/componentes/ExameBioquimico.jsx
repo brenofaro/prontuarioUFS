@@ -56,7 +56,6 @@ const ExameBioquimico = ({ formData, setFormData }) => {
                 onChange={(e) =>
                   setFormData({ ...formData, data_eb: e.target.value })
                 }
-                required
               />
 
               <span className="calendar-icon">📅</span>

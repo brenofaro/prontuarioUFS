@@ -56,7 +56,6 @@ const BioquimicaChild = ({ formData, setFormData }) => {
                 onChange={(e) =>
                   setFormData({ ...formData, data_ab: e.target.value })
                 }
-                required
               />
 
               <span className="calendar-icon">📅</span>

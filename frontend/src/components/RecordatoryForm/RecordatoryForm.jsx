@@ -13,9 +13,11 @@ function RecordatoryForm() {
 
   const [formData, setFormData] = useState({ });
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (anamneseId) {
-      fetch(`http://localhost:8080/recordatorys/${anamneseId}`)
+      fetch(`${API_URL}/recordatorys/${anamneseId}`)
         .then((res) => res.json())
         .then((data) => {
           setFormData(data);
@@ -32,8 +34,8 @@ function RecordatoryForm() {
     e.preventDefault();
 
     const url = anamneseId
-      ? `http://localhost:8080/recordatorys/${anamneseId}`
-      : `http://localhost:8080/recordatorys/cadastrar`;
+      ? `${API_URL}/recordatorys/${anamneseId}`
+      : `${API_URL}/recordatorys/cadastrar`;
 
     const method = anamneseId ? "PUT" : "POST";
 

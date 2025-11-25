@@ -67,10 +67,12 @@ const PatientePage = () => {
     navigate("/");
   };
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchPatiente = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/pacientes/${id}`);
+        const response = await fetch(`${API_URL}/pacientes/${id}`);
         const data = await response.json();
         setPaciente(data);
       } catch (error) {
@@ -123,7 +125,7 @@ const PatientePage = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/pacientes/${selectedId}`,
+        `${API_URL}/pacientes/${selectedId}`,
         { method: "DELETE" },
       );
 

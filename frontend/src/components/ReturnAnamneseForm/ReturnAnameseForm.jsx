@@ -17,9 +17,11 @@ const ReturnAnameseForm = () => {
 
   const [formData, setFormData] = useState({});
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (anamneseId) {
-      fetch(`http://localhost:8080/return-anamneses/${anamneseId}`)
+      fetch(`${API_URL}/return-anamneses/${anamneseId}`)
         .then((res) => res.json())
         .then((data) => {
           setFormData(data);
@@ -36,8 +38,8 @@ const ReturnAnameseForm = () => {
     e.preventDefault();
 
     const url = anamneseId
-      ? `http://localhost:8080/return-anamneses/${anamneseId}`
-      : `http://localhost:8080/return-anamneses/cadastrar`;
+      ? `${API_URL}/return-anamneses/${anamneseId}`
+      : `${API_URL}/return-anamneses/cadastrar`;
 
     const method = anamneseId ? "PUT" : "POST";
 

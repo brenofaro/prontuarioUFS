@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const AnamneseList = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
+  
   const [anamnesesBase, setAnamnesesBase] = useState([]);
   const [anamnesesChild, setAnamnesesChild] = useState([]);
   const [returnAnamnese, setReturnAnamnese] = useState([]);
@@ -60,6 +60,8 @@ const AnamneseList = () => {
     </Modal>
   );
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const detalhesRotas = {
     base: (id) => `/detalhes-anamnese/${id}`,
     child: (id) => `/detalhes-child-anamnese/${id}`,
@@ -85,11 +87,11 @@ const AnamneseList = () => {
   };
 
   const deleteEndpoints = {
-    base: (id) => `http://localhost:8080/base-anamneses/${id}`,
-    child: (id) => `http://localhost:8080/child-anamneses/${id}`,
-    retorno: (id) => `http://localhost:8080/return-anamneses/${id}`,
-    plano: (id) => `http://localhost:8080/food-plans/${id}`, 
-    recordatorio: (id) => `http://localhost:8080/recordatorys/${id}`,
+    base: (id) => `${API_URL}/base-anamneses/${id}`,
+    child: (id) => `${API_URL}/child-anamneses/${id}`,
+    retorno: (id) => `${API_URL}/return-anamneses/${id}`,
+    plano: (id) => `${API_URL}/food-plans/${id}`, 
+    recordatorio: (id) => `${API_URL}/recordatorys/${id}`,
   };
 
   const handleOpenConfirm = (item) => {
@@ -130,11 +132,11 @@ const AnamneseList = () => {
     const loadData = async () => {
       try {
         const [baseRes, childRes, returnRes, planRes, recordatoryRes] = await Promise.all([
-          fetch(`http://localhost:8080/base-anamneses/paciente/${id}`),
-          fetch(`http://localhost:8080/child-anamneses/paciente/${id}`),
-          fetch(`http://localhost:8080/return-anamneses/paciente/${id}`),
-          fetch(`http://localhost:8080/food-plans/paciente/${id}`),
-          fetch(`http://localhost:8080/recordatorys/paciente/${id}`),
+          fetch(`${API_URL}/base-anamneses/paciente/${id}`),
+          fetch(`${API_URL}/child-anamneses/paciente/${id}`),
+          fetch(`${API_URL}/return-anamneses/paciente/${id}`),
+          fetch(`${API_URL}/food-plans/paciente/${id}`),
+          fetch(`${API_URL}/recordatorys/paciente/${id}`),
         ]);
 
         if (!baseRes.ok || !childRes.ok || !returnRes.ok || !planRes.ok || !recordatoryRes.ok)
@@ -277,7 +279,7 @@ const AnamneseList = () => {
                     <Dropdown.Item
                       onClick={() =>
                         window.open(
-                          `http://localhost:8080/food-plans/${item.id}/pdf`,
+                          `${API_URL}/food-plans/${item.id}/pdf`,
                         )
                       }
                     >

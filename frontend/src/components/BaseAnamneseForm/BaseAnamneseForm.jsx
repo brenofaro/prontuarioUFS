@@ -20,9 +20,11 @@ function BaseAnamneseForm() {
 
   const [formData, setFormData] = useState({});
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (anamneseId) {
-      fetch(`http://localhost:8080/base-anamneses/${anamneseId}`)
+      fetch(`${API_URL}/base-anamneses/${anamneseId}`)
         .then((res) => res.json())
         .then((data) => {
           setFormData(data);
@@ -39,8 +41,8 @@ function BaseAnamneseForm() {
     e.preventDefault();
 
     const url = anamneseId
-      ? `http://localhost:8080/base-anamneses/${anamneseId}`
-      : `http://localhost:8080/base-anamneses/cadastrar`;
+      ? `${API_URL}/base-anamneses/${anamneseId}`
+      : `${API_URL}/base-anamneses/cadastrar`;
 
     const method = anamneseId ? "PUT" : "POST";
 

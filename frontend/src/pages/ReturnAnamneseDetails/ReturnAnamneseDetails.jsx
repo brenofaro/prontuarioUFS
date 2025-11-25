@@ -21,11 +21,14 @@ const ReturnAnamneseDetails = () => {
   const handleClick = () => {
     navigate(`/pagina-paciente/${anamnese.paciente_id}`);
   };
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchAnamnese = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/return-anamneses/${id}`,
+          `${API_URL}/return-anamneses/${id}`,
         );
         if (!response.ok) throw new Error("Erro ao buscar anamnese");
 

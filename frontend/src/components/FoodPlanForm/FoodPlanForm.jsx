@@ -13,9 +13,11 @@ function FoodPlanForm() {
 
   const [formData, setFormData] = useState({});
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (anamneseId) {
-      fetch(`http://localhost:8080/food-plans/${anamneseId}`)
+      fetch(`${API_URL}/food-plans/${anamneseId}`)
         .then((res) => res.json())
         .then((data) => {
           setFormData(data);
@@ -34,8 +36,8 @@ function FoodPlanForm() {
     e.preventDefault();
 
     const url = anamneseId
-      ? `http://localhost:8080/food-plans/${anamneseId}`
-      : `http://localhost:8080/food-plans/cadastrar`;
+      ? `${API_URL}/food-plans/${anamneseId}`
+      : `${API_URL}/food-plans/cadastrar`;
 
     const method = anamneseId ? "PUT" : "POST";
 
