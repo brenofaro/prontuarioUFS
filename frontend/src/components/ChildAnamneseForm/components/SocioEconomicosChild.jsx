@@ -55,6 +55,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               className="form-check-input"
               name="escolar"
               id="sim_escolar"
+              value="true"
               checked={formData.escolar === true}
               onClick={() => toggleBooleanField("escolar", false)}
               onChange={handleChange}
@@ -68,6 +69,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
               className="form-check-input"
               name="escolar"
               id="nao_escolar"
+              value="false"
               checked={formData.escolar === false}
               onClick={() => toggleBooleanField("escolar", false)}
               onChange={handleChange} 

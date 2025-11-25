@@ -40,17 +40,28 @@ const ExameBioquimico = ({ formData, setFormData }) => {
   return (
     <div className="mb-3 p-4 border rounded-3 bg-white ">
       <div className="d-flex flex-column mb-3" style={{ maxWidth: "250px" }}>
-        <label className="form-label text-muted small" htmlFor="data_eb">
-          Data:
-        </label>
-        <input
-          type="date"
-          id="data_eb"
-          name="data_eb"
-          className="form-control text-muted"
-          value={formData.data_eb || ""}
-          onChange={handleChange}
-        />
+        <div className="custom-date-container">
+            <label htmlFor="data_consulta" className="form-label text-muted small">
+              Data do Exame Bioquímico
+            </label>
+
+            <div className="custom-date-wrapper">
+              <input
+                type="date"
+                className="custom-date-input"
+                id="data_eb"
+                value={formData.data_eb}
+                min="1900-01-01"
+                max="2100-12-31"
+                onChange={(e) =>
+                  setFormData({ ...formData, data_eb: e.target.value })
+                }
+                required
+              />
+
+              <span className="calendar-icon">📅</span>
+            </div>
+          </div>
       </div>
 
       <div className="mb-4">
