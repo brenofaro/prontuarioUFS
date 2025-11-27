@@ -22,6 +22,19 @@ router = APIRouter(prefix="/food-plans", tags=["FoodPlans"])
 # CREATE
 @router.post("/cadastrar", response_model=FoodPlanResponse)
 async def cadastrar(plan: FoodPlanCreate, db: Session = Depends(get_db)):
+    """
+    Cadastra um novo plano alimentar.
+
+    Args:
+        plan (FoodPlanCreate): Dados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        FoodPlanResponse: Plano alimentar criado.
+
+    Raises:
+        HTTPException: Se ocorrer erro interno ao salvar no banco.
+    """
     try:
         return await cadastrar_food_plan(plan, db)
     except Exception as e:
@@ -31,12 +44,34 @@ async def cadastrar(plan: FoodPlanCreate, db: Session = Depends(get_db)):
 # READ - listar todos
 @router.get("/", response_model=list[FoodPlanResponse])
 async def listar(db: Session = Depends(get_db)):
+    """
+    Lista todos os planos alimentares cadastrados.
+
+    Args:
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[FoodPlanResponse]: Lista completa de planos.
+    """
     return await listar_food_plans(db)
 
 
 # READ - buscar por id
 @router.get("/{id}", response_model=FoodPlanResponse)
 async def buscar(id: int, db: Session = Depends(get_db)):
+    """
+    Busca um plano alimentar pelo ID.
+
+    Args:
+        id (int): ID do plano alimentar.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        FoodPlanResponse: Plano encontrado.
+
+    Raises:
+        HTTPException: Caso o ID não exista.
+    """
     plano = await buscar_food_plan(id, db)
     if not plano:
         raise HTTPException(status_code=404, detail="Plano alimentar não encontrado")
@@ -46,12 +81,36 @@ async def buscar(id: int, db: Session = Depends(get_db)):
 # READ - buscar por paciente_id
 @router.get("/paciente/{paciente_id}", response_model=list[FoodPlanResponse])
 async def buscar_por_paciente(paciente_id: int, db: Session = Depends(get_db)):
+    """
+    Lista todos os planos alimentares associados a um paciente específico.
+
+    Args:
+        paciente_id (int): ID do paciente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[FoodPlanResponse]: Planos do paciente.
+    """
     return await buscar_food_plans_por_paciente(paciente_id, db)
 
 
 # UPDATE
 @router.put("/{id}", response_model=FoodPlanResponse)
 async def atualizar(id: int, plano: FoodPlanCreate, db: Session = Depends(get_db)):
+    """
+    Atualiza um plano alimentar existente.
+
+    Args:
+        id (int): ID do plano alimentar.
+        plano (FoodPlanCreate): Dados atualizados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        FoodPlanResponse: Registro atualizado.
+
+    Raises:
+        HTTPException: Caso o plano não seja encontrado.
+    """
     atualizado = await atualizar_food_plan(id, plano, db)
     if not atualizado:
         raise HTTPException(status_code=404, detail="Plano alimentar não encontrado")
@@ -61,6 +120,19 @@ async def atualizar(id: int, plano: FoodPlanCreate, db: Session = Depends(get_db
 # DELETE
 @router.delete("/{id}")
 async def deletar(id: int, db: Session = Depends(get_db)):
+    """
+    Remove um plano alimentar do banco de dados.
+
+    Args:
+        id (int): ID do plano alimentar.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        dict: Mensagem de confirmação.
+
+    Raises:
+        HTTPException: Caso o plano não exista.
+    """
     sucesso = await deletar_food_plan(id, db)
     if not sucesso:
         raise HTTPException(status_code=404, detail="Plano alimentar não encontrado")
@@ -70,12 +142,27 @@ async def deletar(id: int, db: Session = Depends(get_db)):
 # GERAR PDF
 @router.get("/{id}/pdf")
 async def gerar_pdf(id: int, db: Session = Depends(get_db)):
+    """
+    Gera e retorna o PDF de um plano alimentar.
+
+    Args:
+        id (int): ID do plano alimentar.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        StreamingResponse: PDF do plano alimentar.
+
+    Raises:
+        HTTPException:
+            - Se o plano não existir.
+            - Se o paciente não existir.
+    """
     # Buscar plano
     plano = await buscar_food_plan(id, db)
     if not plano:
         raise HTTPException(status_code=404, detail="Plano alimentar não encontrado")
 
-    # Buscar paciente para pegar o nome
+    # Buscar paciente para obter nome
     paciente = db.query(Paciente).filter(Paciente.id == plano.paciente_id).first()
     if not paciente:
         raise HTTPException(status_code=404, detail="Paciente não encontrado")
@@ -84,10 +171,10 @@ async def gerar_pdf(id: int, db: Session = Depends(get_db)):
     plano_dict = plano.__dict__.copy()
     plano_dict.pop("_sa_instance_state", None)
 
-    # Gerar PDF com nome do paciente incluído
+    # Gerar PDF com nome do paciente
     buffer = gerar_pdf_food_plan(plano_dict, paciente.nome)
 
-    # Enviar PDF como streaming (melhor para arquivos)
+    # Retornar arquivo
     return StreamingResponse(
         buffer,
         media_type="application/pdf",

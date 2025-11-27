@@ -39,7 +39,7 @@ const DadosIniciaisChild = ({ formData, setFormData }) => {
 
           <div className="custom-input-wrapper">
             <input
-              type="numero"
+              type="number"
               className="custom-input"
               id="numero_prontuario"
               placeholder=""

@@ -5,6 +5,16 @@ from src.models.child_anamnese_model import ChildAnamneseCreate
 
 # CREATE
 async def cadastrar_child_anamnese(anamnese: ChildAnamneseCreate, db: Session):
+    """
+    Cadastra uma nova anamnese infantil no banco de dados.
+
+    Args:
+        anamnese (ChildAnamneseCreate): Dados enviados pelo cliente (Pydantic Model).
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ChildAnamnese: Objeto recém-criado e persistido no banco.
+    """
     nova_anamnese = ChildAnamnese(
         **anamnese.model_dump(exclude_unset=True)
     )
@@ -16,17 +26,49 @@ async def cadastrar_child_anamnese(anamnese: ChildAnamneseCreate, db: Session):
 
 # READ - listar todos
 async def listar_child_anamneses(db: Session):
+    """
+    Lista todas as anamneses infantis cadastradas.
+
+    Args:
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[ChildAnamnese]: Lista completa de registros.
+    """
     return db.query(ChildAnamnese).all()
 
 
 # READ - buscar por ID
 async def buscar_child_anamnese(id: int, db: Session):
+    """
+    Busca uma anamnese infantil específica pelo ID.
+
+    Args:
+        id (int): ID da anamnese.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ChildAnamnese | None: Registro encontrado ou None se não existir.
+    """
     anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
     return anamnese
 
 
 # UPDATE
 async def atualizar_child_anamnese(id: int, dados: ChildAnamneseCreate, db: Session):
+    """
+    Atualiza uma anamnese infantil existente com os dados fornecidos.
+
+    Apenas os campos enviados serão modificados, preservando os demais.
+
+    Args:
+        id (int): ID da anamnese a ser atualizada.
+        dados (ChildAnamneseCreate): Dados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ChildAnamnese | None: Registro atualizado ou None se não encontrado.
+    """
     anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
 
     if not anamnese:
@@ -42,6 +84,16 @@ async def atualizar_child_anamnese(id: int, dados: ChildAnamneseCreate, db: Sess
 
 # DELETE
 async def deletar_child_anamnese(id: int, db: Session):
+    """
+    Deleta uma anamnese infantil do banco de dados.
+
+    Args:
+        id (int): ID do registro a ser removido.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        bool: True se o registro foi deletado, False se não existir.
+    """
     anamnese = db.query(ChildAnamnese).filter(ChildAnamnese.id == id).first()
     if anamnese:
         db.delete(anamnese)
@@ -52,6 +104,16 @@ async def deletar_child_anamnese(id: int, db: Session):
 
 # READ - buscar por paciente_id
 async def buscar_child_anamneses_por_paciente(paciente_id: int, db: Session):
+    """
+    Lista todas as anamneses infantis de um paciente específico.
+
+    Args:
+        paciente_id (int): ID do paciente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[ChildAnamnese]: Lista de anamneses vinculadas ao paciente.
+    """
     anamneses = (
         db.query(ChildAnamnese)
         .filter(ChildAnamnese.paciente_id == paciente_id)

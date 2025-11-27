@@ -13,7 +13,7 @@ from src.database.entities.enums import (
 )
 
 class Recordatory(Base):
-    __tablename__ = 'recodatory'
+    __tablename__ = 'recordatory'
 
     id = Column(Integer, primary_key=True, index=True)
     paciente_id = Column(Integer, ForeignKey("pacientes.id"))

@@ -5,6 +5,16 @@ from src.models.recordatory_model import RecordatoryCreate
 
 # CREATE
 async def cadastrar_recordatorio(recordatorio: RecordatoryCreate, db: Session):
+    """
+    Cria um novo registro de Recordatory no banco de dados.
+
+    Args:
+        recordatorio (RecordatoryCreate): Dados validados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        Recordatory: O registro recém-criado, com ID e campos atualizados.
+    """
     novo = Recordatory(**recordatorio.model_dump(exclude_unset=True))
     db.add(novo)
     db.commit()
@@ -14,26 +24,68 @@ async def cadastrar_recordatorio(recordatorio: RecordatoryCreate, db: Session):
 
 # READ — listar todos
 async def listar_recordatorios(db: Session):
+    """
+    Lista todos os registros de Recordatory.
+
+    Args:
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[Recordatory]: Lista completa de todos os recordatórios cadastrados.
+    """
     return db.query(Recordatory).all()
 
 
 # READ — buscar por ID
 async def buscar_recordatorio(id: int, db: Session):
+    """
+    Busca um recordatório específico pelo ID.
+
+    Args:
+        id (int): ID do recordatório desejado.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        Recordatory | None: O registro encontrado ou None se não existir.
+    """
     return db.query(Recordatory).filter(Recordatory.id == id).first()
 
 
 # READ — buscar por paciente_id
 async def buscar_recordatorios_por_paciente(paciente_id: int, db: Session):
+    """
+    Lista todos os recordatórios de um paciente específico.
+
+    Args:
+        paciente_id (int): ID do paciente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[Recordatory]: Lista de recordatórios pertencentes ao paciente.
+    """
     return db.query(Recordatory).filter(Recordatory.paciente_id == paciente_id).all()
 
 
 # UPDATE
 async def atualizar_recordatorio(id: int, dados: RecordatoryCreate, db: Session):
+    """
+    Atualiza um recordatório existente com os dados enviados.
+
+    Somente os campos presentes no payload serão atualizados,
+    preservando os demais valores.
+
+    Args:
+        id (int): ID do recordatório a ser atualizado.
+        dados (RecordatoryCreate): Dados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        Recordatory | None: Registro atualizado ou None se não existir.
+    """
     registro = db.query(Recordatory).filter(Recordatory.id == id).first()
     if not registro:
         return None
 
-    # Atualiza somente os campos enviados
     for key, value in dados.model_dump(exclude_unset=True).items():
         setattr(registro, key, value)
 
@@ -44,6 +96,16 @@ async def atualizar_recordatorio(id: int, dados: RecordatoryCreate, db: Session)
 
 # DELETE
 async def deletar_recordatorio(id: int, db: Session):
+    """
+    Deleta um recordatório do banco de dados.
+
+    Args:
+        id (int): ID do registro que será removido.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        bool: True se o registro foi deletado com sucesso, False se não existir.
+    """
     registro = db.query(Recordatory).filter(Recordatory.id == id).first()
     if registro:
         db.delete(registro)

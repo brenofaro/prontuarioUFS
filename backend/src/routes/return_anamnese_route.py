@@ -25,6 +25,19 @@ router = APIRouter(prefix="/return-anamneses", tags=["ReturnAnamneses"])
 # ---------------------------------------------------------
 @router.post("/cadastrar", response_model=ReturnAnamneseResponse)
 async def cadastrar(anamnese: ReturnAnamneseCreate, db: Session = Depends(get_db)):
+    """
+    Cadastra uma nova anamnese de retorno.
+
+    Args:
+        anamnese (ReturnAnamneseCreate): Dados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ReturnAnamneseResponse: Registro criado.
+
+    Raises:
+        HTTPException: Caso ocorra erro interno ao salvar no banco.
+    """
     try:
         return await cadastrar_return_anamnese(anamnese, db)
     except Exception as e:
@@ -36,8 +49,16 @@ async def cadastrar(anamnese: ReturnAnamneseCreate, db: Session = Depends(get_db
 # ---------------------------------------------------------
 @router.get("/", response_model=list[ReturnAnamneseResponse])
 async def listar(db: Session = Depends(get_db)):
-    anamneses = await listar_return_anamneses(db)
-    return anamneses
+    """
+    Lista todas as anamneses de retorno cadastradas.
+
+    Args:
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[ReturnAnamneseResponse]: Lista completa de registros.
+    """
+    return await listar_return_anamneses(db)
 
 
 # ---------------------------------------------------------
@@ -45,6 +66,19 @@ async def listar(db: Session = Depends(get_db)):
 # ---------------------------------------------------------
 @router.get("/{id}", response_model=ReturnAnamneseResponse)
 async def buscar(id: int, db: Session = Depends(get_db)):
+    """
+    Busca uma anamnese de retorno pelo ID.
+
+    Args:
+        id (int): ID da anamnese de retorno.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ReturnAnamneseResponse: Registro encontrado.
+
+    Raises:
+        HTTPException: Caso o registro não exista.
+    """
     anamnese = await buscar_return_anamnese(id, db)
     if not anamnese:
         raise HTTPException(status_code=404, detail="Anamnese não encontrada")
@@ -56,8 +90,17 @@ async def buscar(id: int, db: Session = Depends(get_db)):
 # ---------------------------------------------------------
 @router.get("/paciente/{paciente_id}", response_model=list[ReturnAnamneseResponse])
 async def buscar_por_paciente(paciente_id: int, db: Session = Depends(get_db)):
-    anamneses = await buscar_return_anamneses_por_paciente(paciente_id, db)
-    return anamneses
+    """
+    Lista todas as anamneses de retorno associadas a um paciente específico.
+
+    Args:
+        paciente_id (int): ID do paciente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[ReturnAnamneseResponse]: Registros do paciente.
+    """
+    return await buscar_return_anamneses_por_paciente(paciente_id, db)
 
 
 # ---------------------------------------------------------
@@ -65,6 +108,20 @@ async def buscar_por_paciente(paciente_id: int, db: Session = Depends(get_db)):
 # ---------------------------------------------------------
 @router.put("/{id}", response_model=ReturnAnamneseResponse)
 async def atualizar(id: int, anamnese: ReturnAnamneseCreate, db: Session = Depends(get_db)):
+    """
+    Atualiza uma anamnese de retorno existente.
+
+    Args:
+        id (int): ID da anamnese.
+        anamnese (ReturnAnamneseCreate): Dados atualizados.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ReturnAnamneseResponse: Registro atualizado.
+
+    Raises:
+        HTTPException: Caso o registro não exista.
+    """
     atualizado = await atualizar_return_anamnese(id, anamnese, db)
     if not atualizado:
         raise HTTPException(status_code=404, detail="Anamnese não encontrada")
@@ -76,6 +133,19 @@ async def atualizar(id: int, anamnese: ReturnAnamneseCreate, db: Session = Depen
 # ---------------------------------------------------------
 @router.delete("/{id}")
 async def deletar(id: int, db: Session = Depends(get_db)):
+    """
+    Remove uma anamnese de retorno do banco de dados.
+
+    Args:
+        id (int): ID da anamnese de retorno.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        dict: Mensagem de confirmação da exclusão.
+
+    Raises:
+        HTTPException: Caso o registro não exista.
+    """
     sucesso = await deletar_return_anamnese(id, db)
     if not sucesso:
         raise HTTPException(status_code=404, detail="Anamnese não encontrada")

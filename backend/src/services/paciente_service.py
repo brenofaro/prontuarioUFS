@@ -5,6 +5,19 @@ from sqlalchemy import select
 
 
 async def cadastrar_paciente(paciente: PacienteCreate, db: Session):
+    """
+    Cadastra um novo paciente no banco de dados.
+
+    Args:
+        paciente (PacienteCreate): Dados validados do paciente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        Paciente: Paciente recém-criado e persistido no banco.
+
+    Raises:
+        Exception: Caso ocorra erro na transação, a exceção é repassada.
+    """
     try:
         novo_paciente = Paciente(
             nome=paciente.nome,
@@ -20,7 +33,18 @@ async def cadastrar_paciente(paciente: PacienteCreate, db: Session):
         db.rollback()  # desfaz transação se der erro
         raise e
 
+
 async def deletar_paciente(paciente_id: int, db: Session):
+    """
+    Remove um paciente do banco de dados.
+
+    Args:
+        paciente_id (int): ID do paciente que será deletado.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        bool: True se o paciente foi deletado, False se não encontrado.
+    """
     paciente = db.query(Paciente).filter(Paciente.id == paciente_id).first()
     if paciente:
         db.delete(paciente)
@@ -28,17 +52,51 @@ async def deletar_paciente(paciente_id: int, db: Session):
         return True
     return False
 
+
 # READ (listar todos)
 async def listar_pacientes(db: Session):
+    """
+    Lista todos os pacientes cadastrados.
+
+    Args:
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[Paciente]: Lista completa de pacientes.
+    """
     return db.query(Paciente).all()
+
 
 # READ (buscar por id)
 async def buscar_paciente(id: int, db: Session):
+    """
+    Busca um paciente específico pelo ID.
+
+    Args:
+        id (int): ID do paciente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        Paciente | None: Paciente encontrado ou None se não existir.
+    """
     paciente = db.query(Paciente).filter(Paciente.id == id).first()
     return paciente
 
-#READ (buscar por nome)
+
+# READ (buscar por nome)
 async def buscar_paciente_por_nome(nome: str | None, db: Session):
+    """
+    Busca pacientes filtrando pelo nome (parcial ou completo).
+
+    A busca é case-insensitive e utiliza operador LIKE.
+
+    Args:
+        nome (str | None): Nome ou fragmento para busca. Se None, retorna todos.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[Paciente]: Lista de pacientes filtrados pelo nome.
+    """
     query = select(Paciente)
 
     if nome:
@@ -47,8 +105,20 @@ async def buscar_paciente_por_nome(nome: str | None, db: Session):
     result = db.execute(query).scalars().all()
     return result
 
+
 # UPDATE
 async def atualizar_paciente(id: int, dados: PacienteCreate, db: Session):
+    """
+    Atualiza os dados de um paciente existente.
+
+    Args:
+        id (int): ID do paciente a ser atualizado.
+        dados (PacienteCreate): Dados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        Paciente | None: Paciente atualizado ou None se não existir.
+    """
     paciente = db.query(Paciente).filter(Paciente.id == id).first()
     if not paciente:
         return None

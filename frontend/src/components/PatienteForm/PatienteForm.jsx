@@ -66,7 +66,10 @@ function PatienteForm() {
 
     if (!formData.data_nascimento) {
       newErrors.data_nascimento = "Data de nascimento é obrigatória";
-    } else {
+    } else if (!formData.nome) {
+      newErrors.nome = "Data de nascimento é obrigatória";
+    }
+    else {
       const idade = calcularIdade(formData.data_nascimento);
       if (idade < 0) {
         newErrors.data_nascimento = "Data de nascimento inválida";
@@ -187,6 +190,7 @@ function PatienteForm() {
                   onChange={handleChange}
                   style={{width:"300px"}}
                   placeholder=""
+                  required
                 />
                 {errors.nome && (
                   <div className="invalid-feedback">{errors.nome}</div>
@@ -217,7 +221,7 @@ function PatienteForm() {
                   onChange={handleChange}
                   placeholder="(79) 99999-9999"
                   maxLength="15"
-                  style={{width:"120px"}}
+                  style={{width:"125px"}}
                 />
                 {errors.telefone && (
                   <div className="invalid-feedback">{errors.telefone}</div>
@@ -234,8 +238,9 @@ function PatienteForm() {
                   name="data_nascimento"
                   value={formData.data_nascimento}
                   onChange={handleChange}
-                  style={{width:"130px"}}
+                  style={{width:"125px"}}
                   max={new Date().toISOString().split("T")[0]}
+                  required
                 />
                 {idade !== null && idade >= 0 && (
                   <small className="text-muted">

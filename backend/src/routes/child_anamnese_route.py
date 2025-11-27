@@ -2,58 +2,133 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from src.models.child_anamnese_model import ChildAnamneseCreate, ChildAnamneseResponse
 from src.services.child_anamnese_service import (
-        cadastrar_child_anamnese,
-        listar_child_anamneses,
-        buscar_child_anamnese,      
-        atualizar_child_anamnese,
-        deletar_child_anamnese,
-        buscar_child_anamneses_por_paciente
-    )
+    cadastrar_child_anamnese,
+    listar_child_anamneses,
+    buscar_child_anamnese,      
+    atualizar_child_anamnese,
+    deletar_child_anamnese,
+    buscar_child_anamneses_por_paciente
+)
 from src.database.connection import get_db
 
 router = APIRouter(prefix="/child-anamneses", tags=["ChildAnamneses"])  
 
-#CREATE
+
+# CREATE
 @router.post("/cadastrar", response_model=ChildAnamneseResponse)
 async def cadastrar(anamnese: ChildAnamneseCreate, db: Session = Depends(get_db)):
+    """
+    Cadastra uma nova anamnese infantil.
+
+    Args:
+        anamnese (ChildAnamneseCreate): Dados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ChildAnamneseResponse: Anamnese cadastrada com ID e valores persistidos.
+
+    Raises:
+        HTTPException: Se ocorrer erro interno durante a inserção.
+    """
     try:
         return await cadastrar_child_anamnese(anamnese, db)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) 
     
+
 # READ - listar todos
 @router.get("/", response_model=list[ChildAnamneseResponse])
 async def listar(db: Session = Depends(get_db)):
-    anamneses = await listar_child_anamneses(db)
-    return anamneses    
+    """
+    Lista todas as anamneses infantis cadastradas.
+
+    Args:
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[ChildAnamneseResponse]: Lista completa de registros.
+    """
+    return await listar_child_anamneses(db)    
+
 
 # READ - buscar por id
 @router.get("/{id}", response_model=ChildAnamneseResponse)
 async def buscar(id: int, db: Session = Depends(get_db)):
+    """
+    Busca uma anamnese infantil específica pelo ID.
+
+    Args:
+        id (int): ID da anamnese infantil.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ChildAnamneseResponse: Registro encontrado.
+
+    Raises:
+        HTTPException: Caso o ID não exista.
+    """
     anamnese = await buscar_child_anamnese(id, db)
     if not anamnese:
         raise HTTPException(status_code=404, detail="Anamnese não encontrada")
     return anamnese
 
+
 # UPDATE
 @router.put("/{id}", response_model=ChildAnamneseResponse)
 async def atualizar(id: int, anamnese: ChildAnamneseCreate, db: Session = Depends(get_db)):
+    """
+    Atualiza uma anamnese infantil existente.
+
+    Args:
+        id (int): ID da anamnese infantil.
+        anamnese (ChildAnamneseCreate): Dados atualizados enviados pelo cliente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        ChildAnamneseResponse: Registro atualizado.
+
+    Raises:
+        HTTPException: Caso o ID não exista.
+    """
     atualizado = await atualizar_child_anamnese(id, anamnese, db)
     if not atualizado:
         raise HTTPException(status_code=404, detail="Anamnese não encontrada")
     return atualizado
 
-#DELETE
+
+# DELETE
 @router.delete("/{id}")
 async def deletar(id: int, db: Session = Depends(get_db)):  
+    """
+    Remove uma anamnese infantil do banco de dados.
+
+    Args:
+        id (int): ID da anamnese infantil.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        dict: Mensagem indicando sucesso da exclusão.
+
+    Raises:
+        HTTPException: Caso o ID não exista.
+    """
     sucesso = await deletar_child_anamnese(id, db)
     if not sucesso:
         raise HTTPException(status_code=404, detail="Anamnese não encontrada")
     return {"message": "Anamnese excluída com sucesso"}
 
+
 # READ - buscar por paciente_id
 @router.get("/paciente/{paciente_id}", response_model=list[ChildAnamneseResponse])
 async def buscar_por_paciente(paciente_id: int, db: Session = Depends(get_db)):
-    anamneses = await buscar_child_anamneses_por_paciente(paciente_id, db)
-    return anamneses    
+    """
+    Lista todas as anamneses infantis de um paciente específico.
 
+    Args:
+        paciente_id (int): ID do paciente.
+        db (Session): Sessão ativa do banco de dados.
+
+    Returns:
+        list[ChildAnamneseResponse]: Lista de anamneses associadas ao paciente.
+    """
+    return await buscar_child_anamneses_por_paciente(paciente_id, db)
