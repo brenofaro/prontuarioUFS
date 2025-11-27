@@ -48,9 +48,23 @@ function FoodPlanForm() {
         body: JSON.stringify({
           paciente_id: Number(pacienteId),
           tipo_registro: "Plano Alimentar",
+          data_plano_alimentar: formData.data_plano_alimentar, 
           ...formData,
         }),
       });
+
+      console.log("Status:", response.status);
+console.log("Resposta:", await response.clone().json().catch(() => null));
+
+
+        console.log("=== DEBUG ===");
+        console.log("URL:", url);
+        console.log("Method:", method);
+        console.log("Payload:", response);
+        console.log("pacienteId:", pacienteId);
+        console.log("anamneseId:", anamneseId);
+        console.log("formData:", formData);
+        console.log("============");
 
       if (!response.ok) throw new Error("Erro ao salvar anamnese");
 

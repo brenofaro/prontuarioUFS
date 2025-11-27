@@ -112,7 +112,7 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           className="form-control form-control-sm mb-3"
           id="ocupacao"
           name="ocupacao"
-          style={{ width: "400px" }}
+          style={{ width: "200px" }}
           value={formData.ocupacao || ""}
           placeholder="Ex: Professor"
           onChange={handleChange}
@@ -329,35 +329,37 @@ const DadosSocioEconomicos = ({ formData, setFormData }) => {
           onChange={handleChange}
         />
 
-        <div className="row g-3 mb-3">
-          <div className="col-md-6">
+        <div className="row g-3 mb-4 mt-3">
+          <div className="d-flex align-items-center gap-2 col-md-6">
             <label
               htmlFor="renda_pessoal"
-              className="form-label text-muted small"
+              className="form-label form-side text-muted small"
             >
-              Renda Pessoal (R$)
+              Renda Pessoal (R$):
             </label>
             <input
               type="text"
               id="renda_pessoal"
               name="renda_pessoal"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{ width: "150px" }}
               value={formData.renda_pessoal || ""}
               onChange={handleChange}
             />
           </div>
-          <div className="col-md-6">
+          <div className="d-flex align-items-center gap-2 col-md-6">
             <label
               htmlFor="gastos_alimentacao"
-              className="form-label text-muted small"
+              className="form-label form-side text-muted small"
             >
-              Gastos com Alimentação (R$)
+              Gastos com Alimentação (R$):
             </label>
             <input
               type="text"
               id="gastos_alimentacao"
               name="gastos_alimentacao"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{ width: "150px" }}
               value={formData.gastos_alimentacao || ""}
               onChange={handleChange}
             />

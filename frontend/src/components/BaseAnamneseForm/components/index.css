@@ -70,3 +70,7 @@
 .form-label {
   font-weight: 500;
 }
+
+.form-side {
+  transform: translateY(4px);
+}

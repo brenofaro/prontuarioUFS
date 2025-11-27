@@ -48,110 +48,117 @@ const AntropometricaReturn = ({ formData, setFormData }) => {
     <div className="mb-4 p-4 border rounded bg-white shadow-sm">
       <div className="mb-4">
         <div className="row g-3">
-          <div className="col-md-3">
-            <label className="form-label text-muted small">Peso (kg):</label>
+          <div className="d-flex align-items-center gap-2 col-md-3">
+            <label className="form-label form-side text-muted small">Peso (kg):</label>
             <input
               type="text"
               name="peso"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.peso || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">Altura (m):</label>
+          <div className="d-flex align-items-center gap-2 col-md-3">
+            <label className="form-label form-side text-muted small">Altura (m):</label>
             <input
               type="text"
               name="altura"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.altura || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">IMC/I:</label>
+          <div className="d-flex align-items-center gap-2 col-md-3">
+            <label className="form-label form-side text-muted small">IMC/I:</label>
             <input
               type="text"
               name="imc_i"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.imc_i || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">E/I:</label>
-            <div className="input-group">
+          <div className="d-flex align-items-center gap-2 col-md-3">
+            <label className="form-label form-side text-muted small">E/I:</label>
               <input
                 type="text"
                 name="e_i"
-                className="form-control"
+                className="form-control form-control-sm"
+                style={{width:"100px"}}
                 value={formData.e_i || ""}
                 onChange={handleChange}
               />
             </div>
-          </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
+          <div className="d-flex align-items-center gap-1 col-md-4">
+            <label className="form-label form-side text-muted small">
               Circunferência da cabeça (cm):
             </label>
             <input
               type="text"
               name="circunferencia_cabeca"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.circunferencia_cabeca || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
+          <div className="d-flex align-items-center gap-1 col-md-4">
+            <label className="form-label form-side text-muted small">
               Circunferência da coxa (cm):
             </label>
             <input
               type="text"
               name="circunferencia_coxa"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.circunferencia_coxa || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
+          <div className="d-flex align-items-center gap-1 col-md-3">
+            <label className="form-label form-side text-muted small">
               Prega cutânea triciptal (mm):
             </label>
             <input
               type="text"
               name="pct"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.pct || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
+          <div className="d-flex align-items-center gap-2 col-md-4">
+            <label className="form-label form-side text-muted small">
               Circunferência do braço (cm):
             </label>
             <input
               type="text"
               name="circunferencia_braco"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.circunferencia_braco || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">IMC:</label>
+          <div className="d-flex align-items-center gap-2 col-md-3">
+            <label className="form-label form-side text-muted small">IMC:</label>
             <input
               type="text"
               name="imc"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.imc || ""}
               onChange={handleChange}
             />

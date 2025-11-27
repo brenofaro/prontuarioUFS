@@ -284,7 +284,7 @@ const HistoriaAlimentarChild = ({ formData, setFormData }) => {
             placeholder="Ex: 2 litros/dia"
             value={formData.ingestao_hidrica || ""}
             onChange={handleChange}
-            style={{ width: "250px", height: "40px" }}
+            style={{ width: "250px" }}
           />
         </div>
 

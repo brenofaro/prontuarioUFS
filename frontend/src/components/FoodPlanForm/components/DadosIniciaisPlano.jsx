@@ -8,7 +8,7 @@ const DadosIniciaisPlano = ({ formData, setFormData }) => {
         {/* DATA DA CONSULTA */}
         <div className="col-md-4">
           <div className="custom-date-container">
-            <label htmlFor="data_consulta" className="form-label text-muted small">
+            <label htmlFor="data_plano_alimentar" className="form-label text-muted small">
               Data da Consulta *
             </label>
 
@@ -16,12 +16,12 @@ const DadosIniciaisPlano = ({ formData, setFormData }) => {
               <input
                 type="date"
                 className="custom-date-input"
-                id="data_consulta"
-                value={formData.data_consulta}
+                id="data_plano_alimentar"
+                value={formData.data_plano_alimentar}
                 min="1900-01-01"
                 max="2100-12-31"
                 onChange={(e) =>
-                  setFormData({ ...formData, data_consulta: e.target.value })
+                  setFormData({ ...formData, data_plano_alimentar: e.target.value })
                 }
                 required
               />

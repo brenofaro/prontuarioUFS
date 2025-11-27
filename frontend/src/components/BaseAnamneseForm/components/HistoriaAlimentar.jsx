@@ -159,8 +159,8 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
           </div>
         </div>
 
-        <div className="mb-3">
-          <label className="form-label text-muted small">
+        <div className="d-flex align-items-center gap-2 mb-3">
+          <label className="form-label form-side text-muted small">
             Ingestão hídrica:
           </label>
           <input
@@ -170,7 +170,7 @@ const HistoriaAlimentar = ({ formData, setFormData }) => {
             placeholder="Ex: 2 litros/dia"
             value={formData.ingestao_hidrica || ""}
             onChange={handleChange}
-            style={{ width: "250px", height: "40px" }}
+            style={{ width: "250px" }}
           />
         </div>
 

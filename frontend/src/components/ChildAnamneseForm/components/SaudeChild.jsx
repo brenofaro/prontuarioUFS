@@ -83,7 +83,7 @@ const SaudeChild = ({ formData, setFormData }) => {
         </div>
 
         <table className="table table-hover align-middle mb-4">
-          <thead className="table-primary">
+          <thead className="table-secondary">
             <tr>
               <th style={{ width: "45%" }}>Patologia</th>
               <th className="text-center">HMA</th>

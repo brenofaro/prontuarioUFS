@@ -41,95 +41,98 @@ const AntropometricaChild = ({ formData, setFormData }) => {
     <div className="mb-4 p-4 border rounded bg-white shadow-sm">
       <div className="mb-4">
         <div className="row g-3">
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
-              Peso atual (kg) <span className="text-danger">*</span>
+          <div className="d-flex align-items-center gap-2 col-md-3">
+            <label className="form-label form-side text-muted small">
+              Peso atual (kg):
             </label>
             <input
               type="text"
               name="peso_atual"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.peso_atual || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
+          <div className="d-flex align-items-center gap-2 col-md-4">
+            <label className="form-label form-side text-muted small">
               Peso ao nascer (kg):
             </label>
             <input
               type="text"
               name="peso_ao_nascer"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.peso_ao_nascer || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
-              Comprimento ao nascer (cm):
+          <div className="d-flex align-items-center gap-2 col-md-4 mb-3">
+            <label className="form-label form-side text-muted small">
+              Comprimento ao nascer(cm):
             </label>
-            <div className="input-group">
               <input
                 type="text"
                 name="comprimento_ao_nascer"
-                className="form-control"
+                className="form-control form-control-sm"
+                style={{width:"100px"}}
                 value={formData.comprimento_ao_nascer || ""}
                 onChange={handleChange}
               />
-            </div>
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
-              Altura (m): <span className="text-danger">*</span>
+          <div className="d-flex align-items-center gap-2 col-md-3">
+            <label className="form-label  form-side text-muted small">
+              Altura (m): 
             </label>
             <input
               type="text"
               name="altura"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.altura || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">E/I:</label>
+          <div className="d-flex align-items-center gap-2 col-md-2">
+            <label className="form-label form-side text-muted small">E/I:</label>
             <input
               type="text"
               name="e_i"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.e_i || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">P/I:</label>
+          <div className="d-flex align-items-center gap-2 col-md-2">
+            <label className="form-label form-side text-muted small">P/I:</label>
             <input
               type="text"
               name="p_i"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.p_i || ""}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-3">
-            <label className="form-label text-muted small">
+          <div className="d-flex align-items-center gap-2 col-md-4">
+            <label className="form-label form-side text-muted small">
               Peso para comprimento:
             </label>
-            <div className="input-group">
               <input
                 type="text"
                 name="peso_para_comprimento"
-                className="form-control"
+                className="form-control form-control-sm"
+                style={{width:"100px"}}
                 value={formData.peso_para_comprimento || ""}
                 onChange={handleChange}
               />
-            </div>
           </div>
         </div>
       </div>

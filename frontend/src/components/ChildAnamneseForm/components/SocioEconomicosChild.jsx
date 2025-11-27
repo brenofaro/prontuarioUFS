@@ -183,9 +183,9 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
           </label>
           <input
             type="text"
-            className="form-control mb-3"
+            className="form-control form-control-sm mb-3"
             name="ocupacao_responsavel"
-            style={{ width: "400px" }}
+            style={{ width: "200px" }}
             value={formData.ocupacao_responsavel || ""}
             placeholder=""
             onChange={handleChange}
@@ -353,35 +353,37 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
           onChange={handleChange}
         />
 
-        <div className="row g-3 mb-3">
-          <div className="col-md-6">
+        <div className="row g-3 mb-4 mt-3">
+          <div className="d-flex align-items-center gap-2 col-md-6">
             <label
               htmlFor="renda_pessoal"
-              className="form-label text-muted small"
+              className="form-label form-side text-muted small"
             >
-              Renda Pessoal (R$)
+              Renda Pessoal (R$):
             </label>
             <input
               type="text"
               id="renda_pessoal"
               name="renda_pessoal"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.renda_pessoal || ""}
               onChange={handleChange}
             />
           </div>
-          <div className="col-md-6">
+          <div className="d-flex align-items-center gap-2 col-md-6">
             <label
               htmlFor="gastos_alimentacao"
-              className="form-label text-muted small"
+              className="form-label form-side text-muted small"
             >
-              Gastos com Alimentação (R$)
+              Gastos com Alimentação (R$):
             </label>
             <input
               type="text"
               id="gastos_alimentacao"
               name="gastos_alimentacao"
-              className="form-control"
+              className="form-control form-control-sm"
+              style={{width:"100px"}}
               value={formData.gastos_alimentacao || ""}
               onChange={handleChange}
             />
@@ -508,7 +510,7 @@ const SocioEconomicosChild = ({ formData, setFormData }) => {
           </label>
           <input
             type="text"
-            className="form-control mb-3"
+            className="form-control form-control-sm mb-3"
             name="crianca_ativa"
             style={{ width: "400px" }}
             value={formData.crianca_ativa || ""}
