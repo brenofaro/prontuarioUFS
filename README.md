@@ -4,6 +4,7 @@ Sistema completo de gerenciamento de pacientes, anamneses, planos alimentares e 
 Projetado para clínicas, consultórios e ambientes acadêmicos, com foco na rapidez, segurança, escalabilidade e usabilidade.
 
  Tecnologias Utilizadas
+ 
 Backend
 
  Python 3.10+
@@ -16,9 +17,10 @@ Backend
 
  Pydantic
 
- Docker / Docker Compose (opcional)
+ Docker / Docker Compose 
 
- ReportLab (geração de PDFs, caso esteja usando)
+ ReportLab 
+ 
 
 Frontend
 
