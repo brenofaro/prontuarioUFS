@@ -16,7 +16,7 @@ class ReturnAnamneseCreate(BaseModel):
     tipo_registro: str
 
     data_consulta: date
-    numero_prontuario: Optional[int] = None
+    numero_prontuario: Optional[str] = None
     nutricionista_responsavel: str
 
     # Dados clínicos iniciais

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
 import TableDetails from "./components/TableDetails.jsx";

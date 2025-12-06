@@ -64,7 +64,7 @@ const SaudeChild = ({ formData, setFormData }) => {
           ></textarea>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-3">
           <label
             htmlFor="diagnostico_antropometrico"
             className="form-label text-muted small"
@@ -78,6 +78,24 @@ const SaudeChild = ({ formData, setFormData }) => {
             name="historia_doenca"
             style={{ height: "150px" }}
             value={formData.historia_doenca || ""}
+            onChange={handleChange}
+          ></textarea>
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="diagnostico_antropometrico"
+            className="form-label text-muted small"
+          >
+            História da Gestação, parto e amamentação
+          </label>
+          <textarea
+            className="form-control"
+            placeholder=""
+            id="historia_gestacao"
+            name="historia_gestacao"
+            style={{ height: "150px" }}
+            value={formData.historia_gestacao || ""}
             onChange={handleChange}
           ></textarea>
         </div>

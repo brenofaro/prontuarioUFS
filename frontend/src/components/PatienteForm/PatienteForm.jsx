@@ -5,9 +5,7 @@ import { useEffect } from "react";
 
 function PatienteForm() {
   const { pacienteId } = useParams();
-
   const [formData, setFormData] = useState({});
-
   const [errors, setErrors] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showSuccessUpdateModal, setShowSuccessUpdateModal] = useState(false);

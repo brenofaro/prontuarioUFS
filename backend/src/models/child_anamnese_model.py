@@ -16,7 +16,7 @@ class ChildAnamneseCreate(BaseModel):
 
     # Dados iniciais
     data_consulta: date
-    numero_prontuario: Optional[int] = None
+    numero_prontuario: Optional[str] = None
     nutricionista_responsavel: str
 
     # Dados Socio-Econômicos
@@ -50,6 +50,7 @@ class ChildAnamneseCreate(BaseModel):
     # Dados de Saúde
     objetivo_consulta: Optional[str] = None
     historia_doenca: Optional[str] = None
+    historia_gestacao: Optional[str] = None
     diabetes_hma: Optional[bool] = None
     diabetes_hf: Optional[bool] = None 
     hipertencao_hma: Optional[bool] = None

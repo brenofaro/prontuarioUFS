@@ -31,34 +31,6 @@ const DadosIniciais = ({ formData, setFormData }) => {
           </div>
         </div>
 
-        {/* NÚMERO DO PRONTUÁRIO */}
-        <div className="col-md-4">
-          <label htmlFor="numero_prontuario" className="form-label text-muted small">
-            Número do Prontuário *
-          </label>
-
-          <div className="custom-input-wrapper">
-            <input
-              type="number"
-              className="custom-input"
-              id="numero_prontuario"
-              placeholder=""
-              value={formData.numero_prontuario}
-              onKeyDown={(e) => {
-                if (["e", "E", "+", "-", "."].includes(e.key)) {
-                  e.preventDefault();
-                }
-              }}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  numero_prontuario: e.target.value,
-                })
-              }
-            />
-          </div>
-        </div>
-
         {/* NUTRICIONISTA RESPONSÁVEL */}
         <div className="col-md-4">
           <label htmlFor="nutricionista_responsavel" className="form-label text-muted small">

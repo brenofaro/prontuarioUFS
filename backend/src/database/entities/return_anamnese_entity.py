@@ -27,7 +27,7 @@ class ReturnAnamnese(Base):
     tipo_registro = Column(String, nullable=False)
 
     data_consulta = Column(Date, nullable=False)
-    numero_prontuario = Column(Integer, unique=False)
+    numero_prontuario = Column(String, unique=False, nullable=True)
     nutricionista_responsavel = Column(String, nullable=False)
 
     diagnostico_clinico = Column(Text, nullable=True)

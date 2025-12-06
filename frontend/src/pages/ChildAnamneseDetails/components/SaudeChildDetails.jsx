@@ -55,6 +55,26 @@ const SaudeChildDetails = ({ anamnese }) => {
               </p>
             </div>
           </div>
+
+          <div>
+            <h6 className="text-muted fw-semibold mb-2 small text-uppercase">
+              História da Gestação, parto e amamentação
+            </h6>
+            <div className="p-3 bg-light rounded border-start border-success border-3">
+              <p
+                className="mb-0 text-muted"
+                style={{
+                  whiteSpace: "pre-wrap",
+                  lineHeight: "1.6",
+                  fontFamily: "sans-serif",
+                }}
+              >
+                {anamnese.historia_gestacao || (
+                  <span className="text-muted fst-italic">Não informado</span>
+                )}
+              </p>
+            </div>
+          </div>
           <div className="mb-2">
             <div className="row g-3 mt-1">
               <div className="mb-2">

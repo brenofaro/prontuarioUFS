@@ -48,7 +48,6 @@ function FoodPlanForm() {
         body: JSON.stringify({
           paciente_id: Number(pacienteId),
           tipo_registro: "Plano Alimentar",
-          data_plano_alimentar: formData.data_plano_alimentar, 
           ...formData,
         }),
       });

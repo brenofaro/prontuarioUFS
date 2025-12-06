@@ -26,7 +26,7 @@ class ChildAnamnese(Base):
     tipo_registro = Column(String, nullable=False)
 
     data_consulta = Column(Date, nullable=False)
-    numero_prontuario = Column(Integer, unique=False)
+    numero_prontuario = Column(String, unique=False, nullable=True)
     nutricionista_responsavel = Column(String, nullable=False)
 
     #Dados Socio-Econômicos
@@ -60,6 +60,7 @@ class ChildAnamnese(Base):
     #Dados de saúde
     objetivo_consulta = Column(Text, nullable=True)
     historia_doenca = Column(Text, nullable=True)
+    historia_gestacao = Column(Text, nullable=True)
     diabetes_hma = Column(Boolean, nullable=True)
     diabetes_hf = Column(Boolean, nullable=True) 
     hipertencao_hma = Column(Boolean, nullable=True)
