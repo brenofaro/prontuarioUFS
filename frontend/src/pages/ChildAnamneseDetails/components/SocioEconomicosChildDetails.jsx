@@ -174,13 +174,6 @@ const SocioEconomicosChildDetails = ({ anamnese }) => {
                 {anamnese.so && <li className="mb-2">Sozinho</li>}
                 {anamnese.amigos && <li className="mb-2">Amigos</li>}
               </ul>
-
-              {/* {!anamnese.diabetes_hma && !anamnese.hipertencao_hma && 
-         !anamnese.doenca_cardiovascular_hma && !anamnese.dislipidemia_hma &&
-         !anamnese.cancer_hma && !anamnese.osteoporose_hma && 
-         !anamnese.depressao_hma && !anamnese.sop_hma && (
-          <span className="text-muted fst-italic">Nenhuma patologia atual</span>
-        )} */}
             </div>
           </div>
           <div className="col-md-4 mb-3">
