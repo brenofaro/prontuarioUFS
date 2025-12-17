@@ -60,7 +60,7 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
                   ? "Sim"
                   : anamnese.disfagia === false
                     ? "Não"
-                    : ""}
+                    : "-"}
               </span>
             </div>
           </div>
@@ -72,7 +72,7 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
                   ? "Sim"
                   : anamnese.odinofagia === false
                     ? "Não"
-                    : ""}
+                    : "-"}
               </span>
             </div>
           </div>
@@ -84,7 +84,7 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
                   ? "Sim"
                   : anamnese.dispepsia === false
                     ? "Não"
-                    : ""}
+                    : "-"}
               </span>
             </div>
           </div>
@@ -96,7 +96,7 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
                   ? "Sim"
                   : anamnese.nauseas === false
                     ? "Não"
-                    : ""}
+                    : "-"}
               </span>
             </div>
           </div>
@@ -108,7 +108,7 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
                   ? "Sim"
                   : anamnese.vomitos === false
                     ? "Não"
-                    : ""}
+                    : "-"}
               </span>
             </div>
           </div>
