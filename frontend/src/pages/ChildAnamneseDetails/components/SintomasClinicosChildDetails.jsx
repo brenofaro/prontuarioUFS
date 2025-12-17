@@ -39,7 +39,7 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
           <div className="col-md-3">
             <div className="flex-grow-1">
               <small className="text-muted d-block">Dentição:</small>
-              <span className="fw-normal">
+              <span className="fw-medium">
                 {denticaoLabels[anamnese.denticao] || "-"}
               </span>
             </div>
@@ -47,7 +47,7 @@ const SintomasClinicosChildDetails = ({ anamnese }) => {
           <div className="col-md-3">
             <div className="flex-grow-1">
               <small className="text-muted d-block">Mastigação:</small>
-              <span className="fw-normal">
+              <span className="fw-medium">
                 {mastigacaoLabels[anamnese.mastigacao] || "-"}
               </span>
             </div>
